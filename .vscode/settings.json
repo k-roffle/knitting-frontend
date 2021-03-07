@@ -1,0 +1,27 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[scss]": {
+    "editor.formatOnSave": false
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.format.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "files.exclude": {
+    "node_modules/": true
+  },
+  "eslint.packageManager": "yarn",
+  "npm.packageManager": "yarn",
+  "prettier.packageManager": "yarn",
+  "javascript.suggestionActions.enabled": false,
+  "css.validate": false,
+  "scss.validate": false
+}
