@@ -20,6 +20,7 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "no-use-before-define": "off",
+    "import/prefer-default-export": "false",
     "import/order": [
       "error",
       {
