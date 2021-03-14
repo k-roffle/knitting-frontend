@@ -1,0 +1,5 @@
+build/
+node_modules/
+.git/
+
+react-app-env.d.ts

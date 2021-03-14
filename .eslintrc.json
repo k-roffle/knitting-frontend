@@ -19,6 +19,55 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "types/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "utils?[/**]",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "components/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "pages/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "assets/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "./components",
+            "group": "index",
+            "position": "before"
+          }
+        ],
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always"
+      }
+    ]
   }
 }
