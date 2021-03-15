@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil';
 const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
 
-  const handleOnClickPreview = (): void => {
+  const handleOnClickPrevious = (): void => {
     switch (currentStep) {
       case PAGE.PATTERN:
         setCurrentStep(PAGE.DETAIL);
@@ -43,7 +43,7 @@ const Footer = (): React.ReactElement => {
   return (
     <div>
       {currentStep !== PAGE.DETAIL && (
-        <Button side="left" label="이전" onClick={handleOnClickPreview} />
+        <Button side="left" label="이전" onClick={handleOnClickPrevious} />
       )}
       <Button
         side="right"
