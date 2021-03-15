@@ -15,7 +15,7 @@ const Button = ({ side, label, onClick }: Props): React.ReactElement => {
     color: white;
     float: ${side};
     &:hover {
-      background: #e0562e;
+      background: #c8542a;
     }
   `;
 
