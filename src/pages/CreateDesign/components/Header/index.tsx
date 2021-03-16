@@ -13,15 +13,18 @@ const Header = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
 
   const renderContents = (): string => {
+    const detailContents =
+      '도안의 기본 정보를 입력하여 주세요.\n니터들이 원하는 도안을 더 빠르게 찾을 수 있을 거예요!';
+
     switch (currentStep) {
       case PAGE.DETAIL:
-        return '도안의 기본 정보를 입력하여 주세요.\n니터들이 원하는 도안을 더 빠르게 찾을 수 있을 거예요!';
+        return detailContents;
       case PAGE.PATTERN:
         return '편물을 만드는 방법을 단계별로 작성해주세요.\n게이지 계산이 필요한 코와 단의 경우 자동완성 기능을 사용하면,\n니팅이 게이지 계산을 자동으로 도와드릴게요! :D';
       case PAGE.REVIEW:
         return '입력한 도안이 올바른지 확인해보세요!\n정확한 도안은 니터로부터 더 높은 만족을 받을 수 있을 거예요;)';
       default:
-        return '';
+        return detailContents;
     }
   };
 
