@@ -28,8 +28,7 @@ const Container = (): React.ReactElement => {
   return (
     <div>
       <Header />
-      <Detail />
-      {renderContent}
+      {renderContent()}
       <Footer />
     </div>
   );
