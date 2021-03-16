@@ -1,4 +1,4 @@
-import Button from 'dumbs/Button';
+import Button, { SIDE } from 'dumbs/Button';
 import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
@@ -43,10 +43,10 @@ const Footer = (): React.ReactElement => {
   return (
     <div>
       {currentStep !== PAGE.DETAIL && (
-        <Button side="left" label="이전" onClick={handleOnClickPrevious} />
+        <Button side={SIDE.LEFT} label="이전" onClick={handleOnClickPrevious} />
       )}
       <Button
-        side="right"
+        side={SIDE.RIGHT}
         label={renderNextLabel()}
         onClick={handleOnClickNext}
       />
