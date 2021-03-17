@@ -1,16 +1,13 @@
 import React from 'react';
+import { RecoilRoot } from 'recoil';
 
-import Detail from './Detail';
-import Pattern from './Pattern';
-import Review from './Review';
+import Container from './components/Container';
 
 const CreateDesign = (): React.ReactElement => {
   return (
-    <div>
-      <Detail />
-      <Pattern />
-      <Review />
-    </div>
+    <RecoilRoot>
+      <Container />
+    </RecoilRoot>
   );
 };
 
