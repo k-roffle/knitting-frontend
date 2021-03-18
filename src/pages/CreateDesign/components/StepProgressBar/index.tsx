@@ -83,8 +83,8 @@ const StepProgressBar = (): React.ReactElement => {
 
   return (
     <Stepper
-      activeStep={currentStep}
       alternativeLabel
+      activeStep={currentStep}
       connector={<Connector />}
     >
       {steps.map((label) => (
