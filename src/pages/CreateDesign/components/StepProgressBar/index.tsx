@@ -68,11 +68,9 @@ function StepIcon(props: StepIconProps) {
         [classes.active]: active,
       })}
     >
-      {completed ? (
-        <div className={clsx(classes.circle, classes.completed)} />
-      ) : (
-        <div className={classes.circle} />
-      )}
+      <div
+        className={clsx(classes.circle, { [classes.completed]: completed })}
+      />
     </div>
   );
 }
