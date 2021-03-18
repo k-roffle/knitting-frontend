@@ -1,15 +1,20 @@
-## 기능 제안 사유
+---
+name: Feature request
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
 
-<!-- 왜 이 기능을 제안하게 되었는지 간략하게 적어주세요. -->
+---
 
-## 기대 사항
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-<!-- 기능에 대한 기대 사항을 적어주세요. -->
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen.
 
-## 디자인 화면
+**Describe alternatives you've considered**
+A clear and concise description of any alternative solutions or features you've considered.
 
-<!-- 디자인 화면 링크나 스크린샷이 있다면 첨부해주세요. -->
-
-## 부가 설명
-
-<!-- 생략 가능합니다. -->
+**Additional context**
+Add any other context or screenshots about the feature request here.
