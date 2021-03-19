@@ -5,6 +5,8 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
+import StepProgressBar from '../StepProgressBar';
+
 const Contents = styled(Typography)`
   white-space: pre-line;
 `;
@@ -35,7 +37,7 @@ const Header = (): React.ReactElement => {
         <Contents>{renderContents()}</Contents>
       </Grid>
       <Grid item xs={12} sm={4}>
-        <div>프로그래스바 들어갈 자리</div>
+        <StepProgressBar />
       </Grid>
     </Grid>
   );
