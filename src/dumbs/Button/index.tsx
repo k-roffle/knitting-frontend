@@ -15,19 +15,13 @@ export interface Props {
   onClick?(): void;
 }
 
-const Button = ({ side, label, onClick }: Props): React.ReactElement => {
-  const StyledButton = styled(MaterialButton)`
-    background: #e0562e;
-    border-radius: 5;
-    color: white;
-    float: ${side};
-    &:hover {
-      background: #c8542a;
-    }
-  `;
+const StyledButton = styled(MaterialButton)<Pick<Props, 'side'>>`
+  float: ${({ side }) => side};
+`;
 
+const Button = ({ label, ...other }: Props): React.ReactElement => {
   return (
-    <StyledButton color="primary" variant="contained" onClick={onClick}>
+    <StyledButton color="primary" variant="contained" {...other}>
       {label}
     </StyledButton>
   );
