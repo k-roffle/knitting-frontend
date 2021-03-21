@@ -1,3 +1,4 @@
+import Layout from 'dumbs/Layout';
 import { Detail } from 'pages';
 import Pattern from 'pages/CreateDesign/Pattern';
 import Review from 'pages/CreateDesign/Review';
@@ -26,11 +27,11 @@ const Container = (): React.ReactElement => {
   };
 
   return (
-    <div>
+    <Layout>
       <Header />
       {renderContent()}
       <Footer />
-    </div>
+    </Layout>
   );
 };
 
