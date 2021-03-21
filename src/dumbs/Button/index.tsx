@@ -27,7 +27,7 @@ const Button = ({ side, label, onClick }: Props): React.ReactElement => {
   `;
 
   return (
-    <StyledButton variant="contained" onClick={onClick}>
+    <StyledButton color="primary" variant="contained" onClick={onClick}>
       {label}
     </StyledButton>
   );
