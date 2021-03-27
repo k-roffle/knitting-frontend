@@ -1,5 +1,6 @@
 build/
 node_modules/
 .git/
+.storybook/
 
 react-app-env.d.ts
