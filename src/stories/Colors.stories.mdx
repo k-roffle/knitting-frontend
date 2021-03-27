@@ -1,0 +1,41 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { palette } from 'themes/palatte';
+
+<Meta title="Mui/Palette" />
+
+# Palette
+
+## Primary
+
+<ColorPalette>
+  <ColorItem
+    title="Light"
+    subtitle="palette.primary.light"
+    colors={[palette.primary.light]}
+  />
+  <ColorItem
+    title="Main"
+    subtitle="palette.primary.main"
+    colors={[palette.primary.main]}
+  />
+</ColorPalette>
+
+## Action
+
+<ColorPalette>
+  <ColorItem
+    title="Hover"
+    subtitle="palette.action.hover"
+    colors={[palette.action.hover]}
+  />
+</ColorPalette>
+
+## Grey
+
+<ColorPalette>
+  <ColorItem
+    title="200"
+    subtitle="palette.grey[200]"
+    colors={[palette.grey[200]]}
+  />
+</ColorPalette>
