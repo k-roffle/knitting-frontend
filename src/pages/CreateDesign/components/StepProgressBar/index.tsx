@@ -6,6 +6,7 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
 import { palette } from 'themes/palatte';
+import { zIndex } from 'themes/zIndex';
 
 interface StepIconProps {
   active: boolean;
@@ -16,7 +17,7 @@ const StyledStepIcon = styled.div<StepIconProps>`
   color: ${palette.grey[200]};
   display: flex;
   height: 22px;
-  z-index: 1;
+  z-index: ${zIndex.drawer};
   align-items: center;
   ${(props) =>
     props.active &&
