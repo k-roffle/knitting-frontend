@@ -44,5 +44,28 @@ export const { overrides } = createMuiTheme({
         },
       },
     },
+    MuiStepConnector: {
+      alternativeLabel: {
+        top: 10,
+        left: 'calc(-50%)',
+        right: 'calc(50%)',
+      },
+      active: {
+        '& $line': {
+          borderColor: palette.primary.main,
+        },
+      },
+      completed: {
+        '& $line': {
+          borderColor: palette.primary.main,
+        },
+      },
+      line: {
+        borderColor: palette.grey[200],
+      },
+      lineHorizontal: {
+        borderTopWidth: 5,
+      },
+    },
   },
 });

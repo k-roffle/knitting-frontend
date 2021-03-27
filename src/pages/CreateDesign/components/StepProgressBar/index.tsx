@@ -1,77 +1,48 @@
 import Step from '@material-ui/core/Step';
-import StepConnector from '@material-ui/core/StepConnector';
 import StepLabel from '@material-ui/core/StepLabel';
 import Stepper from '@material-ui/core/Stepper';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-
-const Connector = withStyles({
-  alternativeLabel: {
-    top: 10,
-    left: 'calc(-50%)',
-    right: 'calc(50%)',
-  },
-  active: {
-    '& $line': {
-      borderColor: '#e0562e',
-    },
-  },
-  completed: {
-    '& $line': {
-      borderColor: '#e0562e',
-    },
-  },
-  line: {
-    borderColor: '#dcdcdc',
-    borderTopWidth: 5,
-  },
-})(StepConnector);
-
-const StepIconStyles = makeStyles({
-  root: {
-    color: '#dcdcdc',
-    display: 'flex',
-    height: 22,
-    zIndex: 1,
-    alignItems: 'center',
-  },
-  active: {
-    color: '#e0562e',
-  },
-  circle: {
-    width: 15,
-    height: 15,
-    borderRadius: '50%',
-    backgroundColor: 'currentColor',
-  },
-  completed: {
-    color: '#e0562e',
-    fontSize: 18,
-  },
-});
+import styled, { css } from 'styled-components';
+import { palette } from 'themes/palatte';
 
 interface StepIconProps {
   active: boolean;
   completed: boolean;
 }
 
-function StepIcon(props: StepIconProps) {
-  const classes = StepIconStyles();
-  const { active, completed } = props;
+const StyledStepIcon = styled.div<StepIconProps>`
+  color: ${palette.grey[200]};
+  display: flex;
+  height: 22px;
+  z-index: 1;
+  align-items: center;
+  ${(props) =>
+    props.active &&
+    css`
+      color: ${palette.primary.main};
+    `};
+  div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: currentColor;
 
+    ${(props) =>
+      props.completed &&
+      css`
+        color: ${palette.primary.main};
+        font-size: 18px;
+      `};
+  }
+`;
+
+function StepIcon(props: StepIconProps) {
   return (
-    <div
-      className={clsx(classes.root, {
-        [classes.active]: active,
-      })}
-    >
-      <div
-        className={clsx(classes.circle, { [classes.completed]: completed })}
-      />
-    </div>
+    <StyledStepIcon {...props}>
+      <div />
+    </StyledStepIcon>
   );
 }
 
@@ -80,11 +51,7 @@ const StepProgressBar = (): React.ReactElement => {
   const steps = ['기본 정보 입력', '도안 작성', '최종 확인'];
 
   return (
-    <Stepper
-      alternativeLabel
-      activeStep={currentStep}
-      connector={<Connector />}
-    >
+    <Stepper alternativeLabel activeStep={currentStep}>
       {steps.map((label) => (
         <Step key={label}>
           <StepLabel StepIconComponent={StepIcon}>{label}</StepLabel>
