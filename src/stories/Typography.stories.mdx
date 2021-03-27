@@ -1,0 +1,42 @@
+import {
+  Meta,
+  ColorPalette,
+  ColorItem,
+  Typeset,
+} from '@storybook/addon-docs/blocks';
+import { typography } from 'themes/typography';
+
+<Meta title="Mui/Typography" />
+
+# Typography
+
+<hr />
+<div>
+  <b>Font Size: </b>
+  {typography.h2.fontSize}px
+</div>
+<div>
+  <b>Font Weight: </b>
+  {typography.h2.fontWeight}
+</div>
+
+<Typeset
+  title="Main"
+  fontSizes={[typography.h2.fontSize]}
+  fontWeight={typography.h2.fontWeight}
+  sampleText="Heading 2"
+/>
+<hr />
+<div>
+  <b>Font Size: </b>
+  {typography.h6.fontSize}px
+</div>
+<div>
+  <b>Font Weight: </b>
+  {typography.h6.fontWeight}
+</div>
+<Typeset
+  fontSizes={[typography.h6.fontSize]}
+  fontWeight={typography.h6.fontWeight}
+  sampleText="Heading 6"
+/>
