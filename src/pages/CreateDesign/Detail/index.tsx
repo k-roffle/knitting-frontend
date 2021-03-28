@@ -11,6 +11,8 @@ import KnitDesign from 'assets/designs/knit.png';
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+import { DESIGN, PATTERN, PATTERN_TYPE } from '../types';
+
 const fullWidth = css`
   width: 100%;
 `;
@@ -53,6 +55,19 @@ const DesignImageWrapper = styled.div`
 `;
 
 const Detail = (): React.ReactElement => {
+  const renderPattern = (pattern: PATTERN_TYPE): string => {
+    switch (pattern) {
+      case PATTERN.TEXT:
+        return '서술형 도안';
+      case PATTERN.IMAGE:
+        return '그림 도안';
+      case PATTERN.VIDEO:
+        return '영상 도안';
+      default:
+        return '서술형 도안';
+    }
+  };
+
   return (
     <>
       <form autoComplete="false">
@@ -76,25 +91,20 @@ const Detail = (): React.ReactElement => {
                 defaultValue={1}
               >
                 <ListSubheader>상의</ListSubheader>
-                <MenuItem value={1}>니트</MenuItem>
-                <MenuItem value={2} disabled={true}>
-                  원피스
-                </MenuItem>
-                <ListSubheader>악세서리</ListSubheader>
-                <MenuItem value={3} disabled={true}>
-                  목도리
-                </MenuItem>
-                <MenuItem value={4} disabled={true}>
-                  모자
-                </MenuItem>
+                <MenuItem value={DESIGN.SWEATER}>니트</MenuItem>
               </FullWithSelect>
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormLabel variant="h2">도안 종류</FormLabel>
               <FullWithSelect id="pattern-type" required defaultValue={1}>
-                <MenuItem value={1}>서술형 도안</MenuItem>
-                <MenuItem value={2} disabled={true}>
-                  도식화 도안
+                <MenuItem value={PATTERN.TEXT}>
+                  {renderPattern(PATTERN.TEXT)}
+                </MenuItem>
+                <MenuItem value={PATTERN.IMAGE}>
+                  {renderPattern(PATTERN.IMAGE)}
+                </MenuItem>
+                <MenuItem value={PATTERN.VIDEO}>
+                  {renderPattern(PATTERN.VIDEO)}
                 </MenuItem>
               </FullWithSelect>
             </Grid>
