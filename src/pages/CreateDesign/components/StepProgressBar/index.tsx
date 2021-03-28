@@ -13,7 +13,7 @@ interface StepIconProps {
   completed: boolean;
 }
 
-const StyledStepIcon = styled.div<StepIconProps>`
+const StepIcon = styled.div<StepIconProps>`
   color: ${palette.grey[200]};
   display: flex;
   height: 22px;
@@ -39,13 +39,13 @@ const StyledStepIcon = styled.div<StepIconProps>`
   }
 `;
 
-function StepIcon(props: StepIconProps) {
+const renderStepIcon = (props: StepIconProps): React.ReactElement => {
   return (
-    <StyledStepIcon {...props}>
+    <StepIcon {...props}>
       <div />
-    </StyledStepIcon>
+    </StepIcon>
   );
-}
+};
 
 const StepProgressBar = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
@@ -55,7 +55,7 @@ const StepProgressBar = (): React.ReactElement => {
     <Stepper alternativeLabel activeStep={currentStep}>
       {steps.map((label) => (
         <Step key={label}>
-          <StepLabel StepIconComponent={StepIcon}>{label}</StepLabel>
+          <StepLabel StepIconComponent={renderStepIcon}>{label}</StepLabel>
         </Step>
       ))}
     </Stepper>
