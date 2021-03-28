@@ -4,8 +4,14 @@ import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { theme } from 'themes';
 
 import StepProgressBar from '../StepProgressBar';
+
+const Title = styled(Typography)`
+  margin-bottom: ${theme.spacing(2)};
+  font-weight: 600;
+`;
 
 const Contents = styled(Typography)`
   white-space: pre-line;
@@ -33,7 +39,7 @@ const Header = (): React.ReactElement => {
   return (
     <Grid container>
       <Grid item xs={12} sm={8}>
-        <Typography variant="h6">🧶 새로운 도안 작성하기</Typography>
+        <Title variant="h3">🧶 새로운 도안 작성하기</Title>
         <Contents>{renderContents()}</Contents>
       </Grid>
       <Grid item xs={12} sm={4}>
