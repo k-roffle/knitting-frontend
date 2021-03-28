@@ -1,10 +1,13 @@
 import { createMuiTheme } from '@material-ui/core';
 
+import { deepOrange } from './colors/deepOrange';
+
 export const { palette } = createMuiTheme({
   palette: {
     primary: {
-      light: '#ff8a65',
-      main: '#f24726',
+      light: deepOrange[200],
+      main: deepOrange[600],
+      dark: deepOrange[800],
     },
     action: {
       hover: 'rgba(0, 0, 0, 0.06)',
