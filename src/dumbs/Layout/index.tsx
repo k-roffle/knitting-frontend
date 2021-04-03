@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { theme } from 'themes';
 
 interface Props {
   children: React.ReactNode;
@@ -7,14 +8,21 @@ interface Props {
 
 const Content = styled.section`
   max-width: 1100px;
-  margin: 36px auto;
+  height: 100vh;
+  display: flex;
+  margin: auto;
+
+  > div {
+    margin: ${theme.spacing(4)} 0;
+    width: 100%;
+  }
 `;
 
 const Layout = ({ children }: Props): React.ReactElement => {
   return (
-    <>
-      <Content>{children}</Content>
-    </>
+    <Content>
+      <div>{children}</div>
+    </Content>
   );
 };
 
