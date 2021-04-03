@@ -2,6 +2,7 @@ import {
   Grid,
   Input,
   InputAdornment,
+  InputProps,
   ListSubheader,
   MenuItem,
   Select,
@@ -9,8 +10,10 @@ import {
 } from '@material-ui/core';
 import KnitDesign from 'assets/designs/knit.png';
 import React from 'react';
+import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 
+import { currentDetailInputsAtom } from '../recoils';
 import { DESIGN, PATTERN, PATTERN_TYPE } from '../types';
 
 const fullWidth = css`
@@ -55,6 +58,10 @@ const DesignImageWrapper = styled.div`
 `;
 
 const Detail = (): React.ReactElement => {
+  const [currentDetailInputs, setCurrentDetailInputsAtom] = useRecoilState(
+    currentDetailInputsAtom,
+  );
+
   const renderPattern = (pattern: PATTERN_TYPE): string => {
     switch (pattern) {
       case PATTERN.TEXT:
@@ -68,6 +75,79 @@ const Detail = (): React.ReactElement => {
     }
   };
 
+  const onChangeName: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      name: event.target?.value,
+    });
+  };
+  const onChangeStitches: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      stitches: Number(event.target?.value),
+    });
+  };
+  const onChangeRows: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      rows: Number(event.target?.value),
+    });
+  };
+  const onChangeTotalLength: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      totalLength: Number(event.target?.value),
+    });
+  };
+  const onChangeRetailLength: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      retailLength: Number(event.target?.value),
+    });
+  };
+  const onChangeShoulderLength: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      shoulderLength: Number(event.target?.value),
+    });
+  };
+  const onChangeBottomLength: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      bottomLength: Number(event.target?.value),
+    });
+  };
+  const onChangeArmLength: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      armLength: Number(event.target?.value),
+    });
+  };
+  const onChangeNeedle: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      needle: event.target?.value,
+    });
+  };
+  const onChangeYarn: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      yarn: event.target?.value,
+    });
+  };
+  const onChangeExtra: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      extra: event.target?.value,
+    });
+  };
+  const onChangePrice: InputProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      price: Number(event.target?.value),
+    });
+  };
+
   return (
     <>
       <form autoComplete="false">
@@ -78,6 +158,8 @@ const Detail = (): React.ReactElement => {
               id="name"
               aria-describedby="name"
               placeholder="예) 토니 캔디 라운드넥 니트"
+              value={currentDetailInputs.name}
+              onChange={onChangeName}
               required
             />
           </Row>
@@ -123,6 +205,8 @@ const Detail = (): React.ReactElement => {
                   endAdornment={
                     <InputAdornment position="end">코</InputAdornment>
                   }
+                  value={currentDetailInputs.stitches}
+                  onChange={onChangeStitches}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -135,6 +219,8 @@ const Detail = (): React.ReactElement => {
                   endAdornment={
                     <InputAdornment position="end">단</InputAdornment>
                   }
+                  value={currentDetailInputs.rows}
+                  onChange={onChangeRows}
                 />
               </Grid>
             </Grid>
@@ -158,6 +244,8 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={currentDetailInputs.totalLength}
+                    onChange={onChangeTotalLength}
                   />
                 </Grid>
                 <Grid>
@@ -170,6 +258,8 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={currentDetailInputs.retailLength}
+                    onChange={onChangeRetailLength}
                   />
                 </Grid>
                 <Grid>
@@ -182,6 +272,8 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={currentDetailInputs.shoulderLength}
+                    onChange={onChangeShoulderLength}
                   />
                 </Grid>
                 <Grid>
@@ -193,6 +285,8 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={currentDetailInputs.bottomLength}
+                    onChange={onChangeBottomLength}
                   />
                 </Grid>
                 <Grid>
@@ -204,6 +298,8 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={currentDetailInputs.armLength}
+                    onChange={onChangeArmLength}
                   />
                 </Grid>
               </Grid>
@@ -215,6 +311,8 @@ const Detail = (): React.ReactElement => {
               id="yarn"
               aria-describedby="yarn"
               placeholder="예) 티파니 100g 4볼"
+              value={currentDetailInputs.yarn}
+              onChange={onChangeYarn}
             />
           </Row>
           <Row item xs={12}>
@@ -224,6 +322,8 @@ const Detail = (): React.ReactElement => {
               aria-describedby="needle"
               required
               placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
+              value={currentDetailInputs.needle}
+              onChange={onChangeNeedle}
             />
           </Row>
           <Row item xs={12}>
@@ -232,6 +332,8 @@ const Detail = (): React.ReactElement => {
               id="extra"
               aria-describedby="extra"
               placeholder="예) 18mm 단추 3개, 돗바늘, 지퍼 10개, 마커 10개"
+              value={currentDetailInputs.extra}
+              onChange={onChangeExtra}
             />
           </Row>
           <Row item xs={12}>
@@ -241,6 +343,8 @@ const Detail = (): React.ReactElement => {
               type="number"
               aria-describedby="price"
               endAdornment={<InputAdornment position="end">원</InputAdornment>}
+              value={currentDetailInputs.price}
+              onChange={onChangePrice}
             />
           </Row>
         </Grid>
