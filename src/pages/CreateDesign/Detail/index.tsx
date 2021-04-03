@@ -6,6 +6,7 @@ import {
   ListSubheader,
   MenuItem,
   Select,
+  SelectProps,
   Typography,
 } from '@material-ui/core';
 import KnitDesign from 'assets/designs/knit.png';
@@ -14,7 +15,7 @@ import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 
 import { currentDetailInputsAtom } from '../recoils';
-import { DESIGN, PATTERN, PATTERN_TYPE } from '../types';
+import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
 
 const fullWidth = css`
   width: 100%;
@@ -147,6 +148,18 @@ const Detail = (): React.ReactElement => {
       price: Number(event.target?.value),
     });
   };
+  const onChangeDesignType: SelectProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      designType: event.target?.value as DESIGN_TYPE,
+    });
+  };
+  const onChangePatternType: SelectProps['onChange'] = (event) => {
+    setCurrentDetailInputsAtom({
+      ...currentDetailInputs,
+      patternType: event.target?.value as PATTERN_TYPE,
+    });
+  };
 
   return (
     <>
@@ -170,7 +183,9 @@ const Detail = (): React.ReactElement => {
                 id="design-type"
                 placeholder="종류 선택"
                 required
-                defaultValue={1}
+                defaultValue={DESIGN.SWEATER}
+                value={currentDetailInputs.designType}
+                onChange={onChangeDesignType}
               >
                 <ListSubheader>상의</ListSubheader>
                 <MenuItem value={DESIGN.SWEATER}>니트</MenuItem>
@@ -178,7 +193,13 @@ const Detail = (): React.ReactElement => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormLabel variant="h2">도안 종류</FormLabel>
-              <FullWithSelect id="pattern-type" required defaultValue={1}>
+              <FullWithSelect
+                id="pattern-type"
+                required
+                defaultValue={PATTERN.TEXT}
+                value={currentDetailInputs.patternType}
+                onChange={onChangePatternType}
+              >
                 <MenuItem value={PATTERN.TEXT}>
                   {renderPattern(PATTERN.TEXT)}
                 </MenuItem>
