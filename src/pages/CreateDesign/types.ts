@@ -32,8 +32,8 @@ export type DetailInputs = {
   bottomLength: number;
   armLength: number;
   needle: string;
-  yarn: string | null;
-  extra: string | null;
+  yarn: string | undefined;
+  extra: string | undefined;
   price: number;
   pattern: string;
 };
