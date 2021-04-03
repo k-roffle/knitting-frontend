@@ -26,7 +26,9 @@
     "format": "yarn prettier --write \"./**/*.{ts,tsx,js,jsx,md,json}\"",
     "format-check": "yarn prettier -c \"./**/*.{ts,tsx,js,jsx,md,json}\"",
     "lint": "eslint --config ./.eslintrc.json --ext .js,.jsx,.ts,.tsx ./src --cache",
-    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'"
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +49,12 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-docs": "^6.1.21",
+    "@storybook/addon-knobs": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/react": "^6.1.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-router-dom": "^5.1.7",

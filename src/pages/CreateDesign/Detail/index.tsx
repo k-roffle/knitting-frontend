@@ -166,7 +166,7 @@ const Detail = (): React.ReactElement => {
       <form autoComplete="false">
         <Grid container>
           <Row item xs={12}>
-            <FormLabel variant="h2">이름</FormLabel>
+            <FormLabel variant="h5">이름</FormLabel>
             <FullWithInput
               id="name"
               aria-describedby="name"
@@ -178,7 +178,7 @@ const Detail = (): React.ReactElement => {
           </Row>
           <Row container spacing={6}>
             <Grid item xs={12} sm={6}>
-              <FormLabel variant="h2">편물 종류</FormLabel>
+              <FormLabel variant="h5">편물 종류</FormLabel>
               <FullWithSelect
                 id="design-type"
                 placeholder="종류 선택"
@@ -192,7 +192,7 @@ const Detail = (): React.ReactElement => {
               </FullWithSelect>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <FormLabel variant="h2">도안 종류</FormLabel>
+              <FormLabel variant="h5">도안 종류</FormLabel>
               <FullWithSelect
                 id="pattern-type"
                 required
@@ -213,7 +213,7 @@ const Detail = (): React.ReactElement => {
             </Grid>
           </Row>
           <Row container>
-            <FormLabel variant="h2">게이지</FormLabel>
+            <FormLabel variant="h5">게이지</FormLabel>
             <FormLabel>10 x 10(cm) 편물의 코와 단을 공유해주세요.</FormLabel>
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
@@ -247,7 +247,7 @@ const Detail = (): React.ReactElement => {
             </Grid>
           </Row>
           <Row container>
-            <FormLabel variant="h2">사이즈</FormLabel>
+            <FormLabel variant="h5">사이즈</FormLabel>
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
                 <DesignImageWrapper>
@@ -327,7 +327,7 @@ const Detail = (): React.ReactElement => {
             </Grid>
           </Row>
           <Row item xs={12}>
-            <FormLabel variant="h2">사용한 실</FormLabel>
+            <FormLabel variant="h5">사용한 실</FormLabel>
             <FullWithInput
               id="yarn"
               aria-describedby="yarn"
@@ -337,7 +337,7 @@ const Detail = (): React.ReactElement => {
             />
           </Row>
           <Row item xs={12}>
-            <FormLabel variant="h2">사용한 바늘</FormLabel>
+            <FormLabel variant="h5">사용한 바늘</FormLabel>
             <FullWithInput
               id="needle"
               aria-describedby="needle"
@@ -348,7 +348,7 @@ const Detail = (): React.ReactElement => {
             />
           </Row>
           <Row item xs={12}>
-            <FormLabel variant="h2">추가 재료</FormLabel>
+            <FormLabel variant="h5">추가 재료</FormLabel>
             <FullWithInput
               id="extra"
               aria-describedby="extra"
@@ -358,7 +358,7 @@ const Detail = (): React.ReactElement => {
             />
           </Row>
           <Row item xs={12}>
-            <FormLabel variant="h2">판매 가격</FormLabel>
+            <FormLabel variant="h5">판매 가격</FormLabel>
             <NumberInput
               id="price"
               type="number"

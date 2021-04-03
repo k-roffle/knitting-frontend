@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core';
+import { grey } from '@material-ui/core/colors';
 
 import { palette } from './palatte';
 
@@ -18,19 +19,19 @@ export const { overrides } = createMuiTheme({
     },
     MuiInput: {
       root: {
-        border: '2px solid transparent',
+        border: '1.5px solid transparent',
         backgroundColor: palette.grey[200],
         borderRadius: defaultTheme.spacing(1),
-        padding: `0 ${defaultTheme.spacing(1.5)}px`,
+        padding: defaultTheme.spacing(0, 1.5),
         '&.Mui-focused': {
-          border: `2px solid ${palette.primary.light}`,
+          border: `1.5px solid ${grey[400]}`,
         },
         '&:hover:not($disabled):not($focused):not($error)': {
           backgroundColor: palette.action.hover,
         },
       },
       input: {
-        padding: `${defaultTheme.spacing(1.5)}px 0`,
+        padding: defaultTheme.spacing(1.5, 0),
       },
       underline: {
         '&:before': {
