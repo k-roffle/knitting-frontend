@@ -1,9 +1,14 @@
 import Editor from '@draft-js-plugins/editor';
 import { EditorState } from 'draft-js';
+import createUnitDecoratorPlugin from 'plugins/unitDecorator';
+import { UnitDecoratorStyleMap } from 'plugins/unitDecorator/types';
 import { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palatte';
+
+const stitcheDecoratorPlugin = createUnitDecoratorPlugin({ unit: '코' });
+const rowDecoratorPlugin = createUnitDecoratorPlugin({ unit: '단' });
 
 interface EditorWrapperProps {
   isFocused: boolean;
@@ -43,21 +48,31 @@ const Pattern = (): React.ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
   const editor = useRef<Editor | null>(null);
 
+  const plugins = [stitcheDecoratorPlugin, rowDecoratorPlugin];
+
   const focusEditor = (): void => {
     editor?.current?.focus();
   };
 
+  const customStyleMap = {
+    ...UnitDecoratorStyleMap,
+  };
+
   return (
-    <EditorWrapper onClick={focusEditor} isFocused={isFocused}>
-      <Editor
-        ref={editor}
-        editorState={editorState}
-        onChange={setEditorState}
-        onFocus={(): void => setIsFocused(true)}
-        onBlur={(): void => setIsFocused(false)}
-        placeholder="도안을 입력하세요"
-      />
-    </EditorWrapper>
+    <>
+      <EditorWrapper onClick={focusEditor} isFocused={isFocused}>
+        <Editor
+          ref={editor}
+          editorState={editorState}
+          plugins={plugins}
+          customStyleMap={customStyleMap}
+          onChange={setEditorState}
+          onFocus={(): void => setIsFocused(true)}
+          onBlur={(): void => setIsFocused(false)}
+          placeholder="도안을 입력하세요"
+        />
+      </EditorWrapper>
+    </>
   );
 };
 
