@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@draft-js-plugins/editor": "^4.1.0",
     "@storybook/addon-actions": "^6.1.21",
     "@storybook/addon-docs": "^6.1.21",
     "@storybook/addon-knobs": "^6.1.21",
