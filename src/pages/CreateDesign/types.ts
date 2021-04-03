@@ -19,3 +19,21 @@ export const PATTERN = {
 } as const;
 
 export type PATTERN_TYPE = typeof PATTERN[keyof typeof PATTERN];
+
+export type DetailInputs = {
+  name: string;
+  designType: DESIGN_TYPE;
+  patternType: PATTERN_TYPE;
+  stitches: number;
+  rows: number;
+  totalLength: number;
+  retailLength: number;
+  shoulderLength: number;
+  bottomLength: number;
+  armLength: number;
+  needle: string;
+  yarn: string | null;
+  extra: string | null;
+  price: number;
+  pattern: string;
+};
