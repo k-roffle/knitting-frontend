@@ -1,14 +1,14 @@
 import { atom } from 'recoil';
 
-import { DESIGN, DesignInputs, PAGE, PAGE_TYPE, PATTERN } from './types';
+import { DESIGN, DesignInput, PAGE, PAGE_TYPE, PATTERN } from './types';
 
 export const currentStepAtom = atom<PAGE_TYPE>({
   key: 'currentStep',
   default: PAGE.DETAIL,
 });
 
-export const currentDesignInputsAtom = atom<DesignInputs>({
-  key: 'currentDesignInputs',
+export const currentDesignInputAtom = atom<DesignInput>({
+  key: 'currentDesignInput',
   default: {
     name: '',
     designType: DESIGN.SWEATER,

@@ -14,7 +14,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 
-import { currentDesignInputsAtom } from '../recoils';
+import { currentDesignInputAtom } from '../recoils';
 import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
 
 const fullWidth = css`
@@ -59,8 +59,8 @@ const DesignImageWrapper = styled.div`
 `;
 
 const Detail = (): React.ReactElement => {
-  const [currentDesignInputs, setCurrentDesignInputsAtom] = useRecoilState(
-    currentDesignInputsAtom,
+  const [currentDesignInput, setCurrentDesignInputAtom] = useRecoilState(
+    currentDesignInputAtom,
   );
 
   const renderPattern = (pattern: PATTERN_TYPE): string => {
@@ -77,86 +77,86 @@ const Detail = (): React.ReactElement => {
   };
 
   const onChangeName: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       name: event.target?.value,
     });
   };
   const onChangeStitches: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       stitches: Number(event.target?.value),
     });
   };
   const onChangeRows: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       rows: Number(event.target?.value),
     });
   };
   const onChangeTotalLength: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       totalLength: Number(event.target?.value),
     });
   };
   const onChangeSleeveLength: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       sleeveLength: Number(event.target?.value),
     });
   };
   const onChangeShoulderWidth: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       shoulderWidth: Number(event.target?.value),
     });
   };
   const onChangeBottomWidth: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       bottomWidth: Number(event.target?.value),
     });
   };
   const onChangeArmholeDepth: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       armholeDepth: Number(event.target?.value),
     });
   };
   const onChangeNeedle: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       needle: event.target?.value,
     });
   };
   const onChangeYarn: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       yarn: event.target?.value,
     });
   };
   const onChangeExtra: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       extra: event.target?.value,
     });
   };
   const onChangePrice: InputProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       price: Number(event.target?.value),
     });
   };
   const onChangeDesignType: SelectProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       designType: event.target?.value as DESIGN_TYPE,
     });
   };
   const onChangePatternType: SelectProps['onChange'] = (event) => {
-    setCurrentDesignInputsAtom({
-      ...currentDesignInputs,
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
       patternType: event.target?.value as PATTERN_TYPE,
     });
   };
@@ -171,7 +171,7 @@ const Detail = (): React.ReactElement => {
               id="name"
               aria-describedby="name"
               placeholder="예) 토니 캔디 라운드넥 니트"
-              value={currentDesignInputs.name}
+              value={currentDesignInput.name}
               onChange={onChangeName}
               required
             />
@@ -184,7 +184,7 @@ const Detail = (): React.ReactElement => {
                 placeholder="종류 선택"
                 required
                 defaultValue={DESIGN.SWEATER}
-                value={currentDesignInputs.designType}
+                value={currentDesignInput.designType}
                 onChange={onChangeDesignType}
               >
                 <ListSubheader>상의</ListSubheader>
@@ -197,7 +197,7 @@ const Detail = (): React.ReactElement => {
                 id="pattern-type"
                 required
                 defaultValue={PATTERN.TEXT}
-                value={currentDesignInputs.patternType}
+                value={currentDesignInput.patternType}
                 onChange={onChangePatternType}
               >
                 <MenuItem value={PATTERN.TEXT}>
@@ -226,7 +226,7 @@ const Detail = (): React.ReactElement => {
                   endAdornment={
                     <InputAdornment position="end">코</InputAdornment>
                   }
-                  value={currentDesignInputs.stitches}
+                  value={currentDesignInput.stitches}
                   onChange={onChangeStitches}
                 />
               </Grid>
@@ -240,7 +240,7 @@ const Detail = (): React.ReactElement => {
                   endAdornment={
                     <InputAdornment position="end">단</InputAdornment>
                   }
-                  value={currentDesignInputs.rows}
+                  value={currentDesignInput.rows}
                   onChange={onChangeRows}
                 />
               </Grid>
@@ -265,7 +265,7 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
-                    value={currentDesignInputs.totalLength}
+                    value={currentDesignInput.totalLength}
                     onChange={onChangeTotalLength}
                   />
                 </Grid>
@@ -279,7 +279,7 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
-                    value={currentDesignInputs.sleeveLength}
+                    value={currentDesignInput.sleeveLength}
                     onChange={onChangeSleeveLength}
                   />
                 </Grid>
@@ -293,7 +293,7 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
-                    value={currentDesignInputs.shoulderWidth}
+                    value={currentDesignInput.shoulderWidth}
                     onChange={onChangeShoulderWidth}
                   />
                 </Grid>
@@ -306,7 +306,7 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
-                    value={currentDesignInputs.bottomWidth}
+                    value={currentDesignInput.bottomWidth}
                     onChange={onChangeBottomWidth}
                   />
                 </Grid>
@@ -319,7 +319,7 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
-                    value={currentDesignInputs.armholeDepth}
+                    value={currentDesignInput.armholeDepth}
                     onChange={onChangeArmholeDepth}
                   />
                 </Grid>
@@ -332,7 +332,7 @@ const Detail = (): React.ReactElement => {
               id="yarn"
               aria-describedby="yarn"
               placeholder="예) 티파니 100g 4볼"
-              value={currentDesignInputs.yarn}
+              value={currentDesignInput.yarn}
               onChange={onChangeYarn}
             />
           </Row>
@@ -343,7 +343,7 @@ const Detail = (): React.ReactElement => {
               aria-describedby="needle"
               required
               placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
-              value={currentDesignInputs.needle}
+              value={currentDesignInput.needle}
               onChange={onChangeNeedle}
             />
           </Row>
@@ -353,7 +353,7 @@ const Detail = (): React.ReactElement => {
               id="extra"
               aria-describedby="extra"
               placeholder="예) 18mm 단추 3개, 돗바늘, 지퍼 10개, 마커 10개"
-              value={currentDesignInputs.extra}
+              value={currentDesignInput.extra}
               onChange={onChangeExtra}
             />
           </Row>
@@ -364,7 +364,7 @@ const Detail = (): React.ReactElement => {
               type="number"
               aria-describedby="price"
               endAdornment={<InputAdornment position="end">원</InputAdornment>}
-              value={currentDesignInputs.price}
+              value={currentDesignInput.price}
               onChange={onChangePrice}
             />
           </Row>

@@ -20,7 +20,7 @@ export const PATTERN = {
 
 export type PATTERN_TYPE = typeof PATTERN[keyof typeof PATTERN];
 
-export type DesignInputs = {
+export type DesignInput = {
   name: string;
   designType: DESIGN_TYPE;
   patternType: PATTERN_TYPE;
