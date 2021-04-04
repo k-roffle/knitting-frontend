@@ -27,10 +27,10 @@ export type DesignInputs = {
   stitches: number;
   rows: number;
   totalLength: number;
-  retailLength: number;
-  shoulderLength: number;
-  bottomLength: number;
-  armLength: number;
+  sleeveLength: number;
+  shoulderWidth: number;
+  bottomWidth: number;
+  armholeDepth: number;
   needle: string;
   yarn: string | undefined;
   extra: string | undefined;

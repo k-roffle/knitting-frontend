@@ -100,28 +100,28 @@ const Detail = (): React.ReactElement => {
       totalLength: Number(event.target?.value),
     });
   };
-  const onChangeRetailLength: InputProps['onChange'] = (event) => {
+  const onChangeSleeveLength: InputProps['onChange'] = (event) => {
     setCurrentDesignInputsAtom({
       ...currentDesignInputs,
-      retailLength: Number(event.target?.value),
+      sleeveLength: Number(event.target?.value),
     });
   };
-  const onChangeShoulderLength: InputProps['onChange'] = (event) => {
+  const onChangeShoulderWidth: InputProps['onChange'] = (event) => {
     setCurrentDesignInputsAtom({
       ...currentDesignInputs,
-      shoulderLength: Number(event.target?.value),
+      shoulderWidth: Number(event.target?.value),
     });
   };
-  const onChangeBottomLength: InputProps['onChange'] = (event) => {
+  const onChangeBottomWidth: InputProps['onChange'] = (event) => {
     setCurrentDesignInputsAtom({
       ...currentDesignInputs,
-      bottomLength: Number(event.target?.value),
+      bottomWidth: Number(event.target?.value),
     });
   };
-  const onChangeArmLength: InputProps['onChange'] = (event) => {
+  const onChangeArmholeDepth: InputProps['onChange'] = (event) => {
     setCurrentDesignInputsAtom({
       ...currentDesignInputs,
-      armLength: Number(event.target?.value),
+      armholeDepth: Number(event.target?.value),
     });
   };
   const onChangeNeedle: InputProps['onChange'] = (event) => {
@@ -272,55 +272,55 @@ const Detail = (): React.ReactElement => {
                 <Grid>
                   <FormLabel variant="h6">소매 기장</FormLabel>
                   <NumberInput
-                    id="retail-length"
+                    id="sleeve-length"
                     type="number"
-                    aria-describedby="retail-length"
+                    aria-describedby="sleeve-length"
                     required
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
-                    value={currentDesignInputs.retailLength}
-                    onChange={onChangeRetailLength}
+                    value={currentDesignInputs.sleeveLength}
+                    onChange={onChangeSleeveLength}
                   />
                 </Grid>
                 <Grid>
                   <FormLabel variant="h6">어깨 너비</FormLabel>
                   <NumberInput
-                    id="shoulder-length"
+                    id="shoulder-width"
                     type="number"
-                    aria-describedby="shoulder-length"
+                    aria-describedby="shoulder-width"
                     required
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
-                    value={currentDesignInputs.shoulderLength}
-                    onChange={onChangeShoulderLength}
+                    value={currentDesignInputs.shoulderWidth}
+                    onChange={onChangeShoulderWidth}
                   />
                 </Grid>
                 <Grid>
                   <FormLabel variant="h6">밑단 너비</FormLabel>
                   <NumberInput
-                    id="bottom-length"
+                    id="bottom-width"
                     type="number"
-                    aria-describedby="bottom-length"
+                    aria-describedby="bottom-width"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
-                    value={currentDesignInputs.bottomLength}
-                    onChange={onChangeBottomLength}
+                    value={currentDesignInputs.bottomWidth}
+                    onChange={onChangeBottomWidth}
                   />
                 </Grid>
                 <Grid>
                   <FormLabel variant="h6">팔폭</FormLabel>
                   <NumberInput
-                    id="arm-width"
+                    id="arm-hole-depth"
                     type="number"
-                    aria-describedby="arm-width"
+                    aria-describedby="arm-hole-depth"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
-                    value={currentDesignInputs.armLength}
-                    onChange={onChangeArmLength}
+                    value={currentDesignInputs.armholeDepth}
+                    onChange={onChangeArmholeDepth}
                   />
                 </Grid>
               </Grid>
