@@ -313,9 +313,9 @@ const Detail = (): React.ReactElement => {
                 <Grid>
                   <FormLabel variant="h6">팔폭</FormLabel>
                   <NumberInput
-                    id="arm-hole-depth"
+                    id="armhole-depth"
                     type="number"
-                    aria-describedby="arm-hole-depth"
+                    aria-describedby="armhole-depth"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
