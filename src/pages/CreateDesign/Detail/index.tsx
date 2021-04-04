@@ -95,88 +95,102 @@ const Detail = (): React.ReactElement => {
     }
   };
 
-  const onChangeName: InputProps['onChange'] = (event) => {
+  const onChangeName: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      name: event.target?.value,
+      name: target.value,
     });
   };
-  const onChangeStitches: InputProps['onChange'] = (event) => {
+  const onChangeStitches: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      stitches: Number(event.target?.value),
+      stitches: Number(target.value),
     });
   };
-  const onChangeRows: InputProps['onChange'] = (event) => {
+  const onChangeRows: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      rows: Number(event.target?.value),
+      rows: Number(target.value),
     });
   };
-  const onChangeTotalLength: InputProps['onChange'] = (event) => {
+  const onChangeTotalLength: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      totalLength: Number(event.target?.value),
+      totalLength: Number(target.value),
     });
   };
-  const onChangeSleeveLength: InputProps['onChange'] = (event) => {
+  const onChangeSleeveLength: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      sleeveLength: Number(event.target?.value),
+      sleeveLength: Number(target.value),
     });
   };
-  const onChangeShoulderWidth: InputProps['onChange'] = (event) => {
+  const onChangeShoulderWidth: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      shoulderWidth: Number(event.target?.value),
+      shoulderWidth: Number(target.value),
     });
   };
-  const onChangeBottomWidth: InputProps['onChange'] = (event) => {
+  const onChangeBottomWidth: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      bottomWidth: Number(event.target?.value),
+      bottomWidth: Number(target.value),
     });
   };
-  const onChangeArmholeDepth: InputProps['onChange'] = (event) => {
+  const onChangeArmholeDepth: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      armholeDepth: Number(event.target?.value),
+      armholeDepth: Number(target.value),
     });
   };
-  const onChangeNeedle: InputProps['onChange'] = (event) => {
+  const onChangeNeedle: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      needle: event.target?.value,
+      needle: target.value,
     });
   };
-  const onChangeYarn: InputProps['onChange'] = (event) => {
+  const onChangeYarn: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      yarn: event.target?.value,
+      yarn: target.value,
     });
   };
-  const onChangeExtra: InputProps['onChange'] = (event) => {
+  const onChangeExtra: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      extra: event.target?.value,
+      extra: target.value,
     });
   };
-  const onChangePrice: InputProps['onChange'] = (event) => {
+  const onChangePrice: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      price: Number(event.target?.value),
+      price: Number(target.value),
     });
   };
-  const onChangeDesignType: SelectProps['onChange'] = (event) => {
+  const onChangeDesignType: SelectProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      designType: event.target?.value as DESIGN_TYPE,
+      designType: target.value as DESIGN_TYPE,
     });
   };
-  const onChangePatternType: SelectProps['onChange'] = (event) => {
+  const onChangePatternType: SelectProps['onChange'] = ({ target }) => {
+    if (target == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      patternType: event.target?.value as PATTERN_TYPE,
+      patternType: target.value as PATTERN_TYPE,
     });
   };
 
