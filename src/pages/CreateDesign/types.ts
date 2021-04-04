@@ -32,8 +32,8 @@ export type DesignInputs = {
   bottomWidth: number;
   armholeDepth: number;
   needle: string;
-  yarn: string | undefined;
-  extra: string | undefined;
+  yarn?: string;
+  extra?: string;
   price: number;
   pattern: string;
 };
