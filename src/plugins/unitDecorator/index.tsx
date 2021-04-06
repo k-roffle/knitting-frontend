@@ -13,7 +13,7 @@ export interface UnitDecoratorPluginConfig {
 
 export default (config: UnitDecoratorPluginConfig = {}): EditorPlugin => {
   const {
-    unit = '#',
+    unit = '코',
     unitDecoratorComponent: UnitDecoratorComponent = UnitDecorator,
   } = config;
   const DecoratedUnitDecorator = (props: UnitDecoratorProps): ReactElement => (
