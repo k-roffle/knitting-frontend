@@ -13,8 +13,7 @@ export interface UnitDecoratorProps {
 
   unit?: string;
   decoratedText?: string;
-  dir?: null;
-  entityKey?: string | null;
+  entityKey?: string;
   offsetKey?: string;
   contentState?: ContentState;
   blockKey?: string;
@@ -41,7 +40,6 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     children,
     unit,
     decoratedText,
-    dir,
     entityKey,
     getEditorState,
     offsetKey,
