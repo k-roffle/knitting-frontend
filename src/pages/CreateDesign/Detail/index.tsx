@@ -2,14 +2,20 @@ import {
   Grid,
   Input,
   InputAdornment,
+  InputProps,
   ListSubheader,
   MenuItem,
   Select,
+  SelectProps,
   Typography,
 } from '@material-ui/core';
 import KnitDesign from 'assets/designs/knit.png';
 import React from 'react';
+import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
+
+import { currentDesignInputAtom } from '../recoils';
+import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
 
 const fullWidth = css`
   width: 100%;
@@ -53,6 +59,141 @@ const DesignImageWrapper = styled.div`
 `;
 
 const Detail = (): React.ReactElement => {
+  const [currentDesignInput, setCurrentDesignInputAtom] = useRecoilState(
+    currentDesignInputAtom,
+  );
+  const {
+    name,
+    stitches,
+    rows,
+    totalLength,
+    sleeveLength,
+    shoulderWidth,
+    bottomWidth,
+    armholeDepth,
+    needle,
+    yarn,
+    extra,
+    price,
+    designType,
+    patternType,
+  } = currentDesignInput;
+
+  const { SWEATER } = DESIGN;
+  const { TEXT, IMAGE, VIDEO } = PATTERN;
+
+  const renderPattern = (pattern: PATTERN_TYPE): string => {
+    switch (pattern) {
+      case TEXT:
+        return '서술형 도안';
+      case IMAGE:
+        return '그림 도안';
+      case VIDEO:
+        return '영상 도안';
+      default:
+        return '서술형 도안';
+    }
+  };
+
+  const onChangeName: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      name: target.value,
+    });
+  };
+  const onChangeStitches: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      stitches: Number(target.value),
+    });
+  };
+  const onChangeRows: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      rows: Number(target.value),
+    });
+  };
+  const onChangeTotalLength: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      totalLength: Number(target.value),
+    });
+  };
+  const onChangeSleeveLength: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      sleeveLength: Number(target.value),
+    });
+  };
+  const onChangeShoulderWidth: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      shoulderWidth: Number(target.value),
+    });
+  };
+  const onChangeBottomWidth: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      bottomWidth: Number(target.value),
+    });
+  };
+  const onChangeArmholeDepth: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      armholeDepth: Number(target.value),
+    });
+  };
+  const onChangeNeedle: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      needle: target.value,
+    });
+  };
+  const onChangeYarn: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      yarn: target.value,
+    });
+  };
+  const onChangeExtra: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      extra: target.value,
+    });
+  };
+  const onChangePrice: InputProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      price: Number(target.value),
+    });
+  };
+  const onChangeDesignType: SelectProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      designType: target.value as DESIGN_TYPE,
+    });
+  };
+  const onChangePatternType: SelectProps['onChange'] = ({ target }) => {
+    if (target == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      patternType: target.value as PATTERN_TYPE,
+    });
+  };
+
   return (
     <>
       <form autoComplete="false">
@@ -63,6 +204,8 @@ const Detail = (): React.ReactElement => {
               id="name"
               aria-describedby="name"
               placeholder="예) 토니 캔디 라운드넥 니트"
+              value={name}
+              onChange={onChangeName}
               required
             />
           </Row>
@@ -73,29 +216,26 @@ const Detail = (): React.ReactElement => {
                 id="design-type"
                 placeholder="종류 선택"
                 required
-                defaultValue={1}
+                defaultValue={SWEATER}
+                value={designType}
+                onChange={onChangeDesignType}
               >
                 <ListSubheader>상의</ListSubheader>
-                <MenuItem value={1}>니트</MenuItem>
-                <MenuItem value={2} disabled={true}>
-                  원피스
-                </MenuItem>
-                <ListSubheader>악세서리</ListSubheader>
-                <MenuItem value={3} disabled={true}>
-                  목도리
-                </MenuItem>
-                <MenuItem value={4} disabled={true}>
-                  모자
-                </MenuItem>
+                <MenuItem value={SWEATER}>니트</MenuItem>
               </FullWithSelect>
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormLabel variant="h5">도안 종류</FormLabel>
-              <FullWithSelect id="pattern-type" required defaultValue={1}>
-                <MenuItem value={1}>서술형 도안</MenuItem>
-                <MenuItem value={2} disabled={true}>
-                  도식화 도안
-                </MenuItem>
+              <FullWithSelect
+                id="pattern-type"
+                required
+                defaultValue={TEXT}
+                value={patternType}
+                onChange={onChangePatternType}
+              >
+                <MenuItem value={TEXT}>{renderPattern(TEXT)}</MenuItem>
+                <MenuItem value={IMAGE}>{renderPattern(IMAGE)}</MenuItem>
+                <MenuItem value={VIDEO}>{renderPattern(VIDEO)}</MenuItem>
               </FullWithSelect>
             </Grid>
           </Row>
@@ -113,6 +253,8 @@ const Detail = (): React.ReactElement => {
                   endAdornment={
                     <InputAdornment position="end">코</InputAdornment>
                   }
+                  value={stitches}
+                  onChange={onChangeStitches}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -125,6 +267,8 @@ const Detail = (): React.ReactElement => {
                   endAdornment={
                     <InputAdornment position="end">단</InputAdornment>
                   }
+                  value={rows}
+                  onChange={onChangeRows}
                 />
               </Grid>
             </Grid>
@@ -148,52 +292,62 @@ const Detail = (): React.ReactElement => {
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={totalLength}
+                    onChange={onChangeTotalLength}
                   />
                 </Grid>
                 <Grid>
                   <FormLabel variant="h6">소매 기장</FormLabel>
                   <NumberInput
-                    id="retail-length"
+                    id="sleeve-length"
                     type="number"
-                    aria-describedby="retail-length"
+                    aria-describedby="sleeve-length"
                     required
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={sleeveLength}
+                    onChange={onChangeSleeveLength}
                   />
                 </Grid>
                 <Grid>
                   <FormLabel variant="h6">어깨 너비</FormLabel>
                   <NumberInput
-                    id="shoulder-length"
+                    id="shoulder-width"
                     type="number"
-                    aria-describedby="shoulder-length"
+                    aria-describedby="shoulder-width"
                     required
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={shoulderWidth}
+                    onChange={onChangeShoulderWidth}
                   />
                 </Grid>
                 <Grid>
                   <FormLabel variant="h6">밑단 너비</FormLabel>
                   <NumberInput
-                    id="bottom-length"
+                    id="bottom-width"
                     type="number"
-                    aria-describedby="bottom-length"
+                    aria-describedby="bottom-width"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={bottomWidth}
+                    onChange={onChangeBottomWidth}
                   />
                 </Grid>
                 <Grid>
                   <FormLabel variant="h6">팔폭</FormLabel>
                   <NumberInput
-                    id="arm-width"
+                    id="armhole-depth"
                     type="number"
-                    aria-describedby="arm-width"
+                    aria-describedby="armhole-depth"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
+                    value={armholeDepth}
+                    onChange={onChangeArmholeDepth}
                   />
                 </Grid>
               </Grid>
@@ -205,6 +359,8 @@ const Detail = (): React.ReactElement => {
               id="yarn"
               aria-describedby="yarn"
               placeholder="예) 티파니 100g 4볼"
+              value={yarn}
+              onChange={onChangeYarn}
             />
           </Row>
           <Row item xs={12}>
@@ -214,6 +370,8 @@ const Detail = (): React.ReactElement => {
               aria-describedby="needle"
               required
               placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
+              value={needle}
+              onChange={onChangeNeedle}
             />
           </Row>
           <Row item xs={12}>
@@ -222,6 +380,8 @@ const Detail = (): React.ReactElement => {
               id="extra"
               aria-describedby="extra"
               placeholder="예) 18mm 단추 3개, 돗바늘, 지퍼 10개, 마커 10개"
+              value={extra}
+              onChange={onChangeExtra}
             />
           </Row>
           <Row item xs={12}>
@@ -231,6 +391,8 @@ const Detail = (): React.ReactElement => {
               type="number"
               aria-describedby="price"
               endAdornment={<InputAdornment position="end">원</InputAdornment>}
+              value={price}
+              onChange={onChangePrice}
             />
           </Row>
         </Grid>
