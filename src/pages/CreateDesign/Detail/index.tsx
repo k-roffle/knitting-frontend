@@ -14,6 +14,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 
+import DesignImageWrapper from '../components/DesignImageWrapper';
 import { currentDesignInputAtom } from '../recoils';
 import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
 
@@ -43,19 +44,6 @@ const FormLabel = styled(Typography)`
 
 const Row = styled(Grid)`
   padding: 12px;
-`;
-
-const DesignImageWrapper = styled.div`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    max-width: 100%;
-    max-height: 400px;
-    margin-top: 8px;
-  }
 `;
 
 const Detail = (): React.ReactElement => {
