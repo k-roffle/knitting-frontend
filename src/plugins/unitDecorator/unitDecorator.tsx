@@ -26,11 +26,17 @@ export interface UnitDecoratorProps {
 
 const DecoratorWrapper = styled.span`
   > span {
-    background: ${palette.grey[400]};
+    background: ${palette.primary.main};
     margin: ${theme.spacing(0, 0.5)};
     padding: ${theme.spacing(0.5, 1)};
-    border-radius: ${theme.spacing(1)};
+    border-radius: ${theme.spacing(0.5)};
+    color: ${theme.palette.background.paper};
+    box-shadow: ${theme.shadows[2]};
     cursor: pointer;
+
+    &:hover {
+      box-shadow: ${theme.shadows[4]};
+    }
   }
 `;
 
