@@ -9,12 +9,11 @@ import {
   SelectProps,
   Typography,
 } from '@material-ui/core';
-import KnitDesign from 'assets/designs/knit.png';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 
-import DesignImageWrapper from '../components/DesignImageWrapper';
+import DesignSizeImage from '../components/DesignSizeImage';
 import { currentDesignInputAtom } from '../recoils';
 import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
 
@@ -265,9 +264,7 @@ const Detail = (): React.ReactElement => {
             <FormLabel variant="h5">사이즈</FormLabel>
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
-                <DesignImageWrapper>
-                  <img src={KnitDesign} />
-                </DesignImageWrapper>
+                <DesignSizeImage />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Grid>

@@ -1,10 +1,9 @@
 import { Grid, Typography } from '@material-ui/core';
-import KnitDesign from 'assets/designs/knit.png';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-import DesignImageWrapper from '../components/DesignImageWrapper';
+import DesignSizeImage from '../components/DesignSizeImage';
 import { currentDesignInputAtom } from '../recoils';
 import { PATTERN, PATTERN_TYPE } from '../types';
 
@@ -94,9 +93,7 @@ const Review = (): React.ReactElement => {
           <Label variant="h4">사이즈</Label>
           <Grid container spacing={6}>
             <Grid item xs={12} sm={6}>
-              <DesignImageWrapper>
-                <img src={KnitDesign} />
-              </DesignImageWrapper>
+              <DesignSizeImage />
             </Grid>
             <Grid item xs={12} sm={6}>
               <Row>
