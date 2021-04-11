@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import DesignSizeImage from '../components/DesignSizeImage';
 import { currentDesignInputAtom } from '../recoils';
 import { PATTERN, PATTERN_TYPE } from '../types';
+import { formatNumber } from '../utils';
 
 const Title = styled(Typography)`
   font-weight: 600;
@@ -63,7 +64,7 @@ const Review = (): React.ReactElement => {
     if (patternPrice === 0) {
       return '무료 나눔';
     } else {
-      return `${patternPrice}원`;
+      return `${formatNumber(patternPrice)}원`;
     }
   };
 
