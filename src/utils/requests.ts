@@ -5,7 +5,7 @@ import { getConfig } from './config';
 
 type Method = 'get' | 'post' | 'put' | 'delete' | 'patch';
 
-export const constructURL = (pathname: string): parse => {
+const constructURL = (pathname: string): parse => {
   const url = parse(getConfig('REACT_APP_SERVER_URL'));
 
   return url.set('pathname', pathname);
