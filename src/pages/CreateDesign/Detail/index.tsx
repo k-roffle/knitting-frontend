@@ -9,11 +9,11 @@ import {
   SelectProps,
   Typography,
 } from '@material-ui/core';
-import KnitDesign from 'assets/designs/knit.png';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 
+import DesignSizeImage from '../components/DesignSizeImage';
 import { currentDesignInputAtom } from '../recoils';
 import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
 
@@ -43,19 +43,6 @@ const FormLabel = styled(Typography)`
 
 const Row = styled(Grid)`
   padding: 12px;
-`;
-
-const DesignImageWrapper = styled.div`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    max-width: 100%;
-    max-height: 400px;
-    margin-top: 8px;
-  }
 `;
 
 const Detail = (): React.ReactElement => {
@@ -277,9 +264,7 @@ const Detail = (): React.ReactElement => {
             <FormLabel variant="h5">사이즈</FormLabel>
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
-                <DesignImageWrapper>
-                  <img src={KnitDesign} />
-                </DesignImageWrapper>
+                <DesignSizeImage />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Grid>
