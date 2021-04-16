@@ -14,8 +14,8 @@ const constructURL = (pathname: string): parse => {
 export async function request(
   pathname: string,
   method: Method,
-  data?: any, // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-  params?: any, // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
+  data?: unknown,
+  params?: unknown,
   accessToken?: string,
 ): Promise<AxiosResponse> {
   const url = constructURL(pathname);
