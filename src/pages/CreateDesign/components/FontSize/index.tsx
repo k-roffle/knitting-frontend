@@ -14,13 +14,13 @@ export const FontSize = ({
   fontSize,
 }: FontSizeProps): React.ReactElement => {
   const toggleFontSize = (newFontSize: number) => {
-    const newState = toggleCustomInlineStyle(
+    const newState = toggleCustomInlineStyle({
       editorState,
-      'fontSize',
-      newFontSize,
-      newFontSize === currentFontSize,
+      styleType: 'fontSize',
+      style: newFontSize,
+      isAlready: newFontSize === currentFontSize,
       onChageCustomStyleMap,
-    );
+    });
 
     if (newState) {
       onChange?.(newState);
