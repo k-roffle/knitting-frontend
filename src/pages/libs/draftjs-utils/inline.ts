@@ -34,12 +34,19 @@ type StyleMapType = {
   FONTSIZE?: any;
 };
 
-const addToCustomStyleMap = (
-  styleType: StyleKeyType,
-  styleKey: string,
-  style: string | number,
-  onChageCustomStyleMap: (customStyleMap: DraftStyleMap) => void,
-): void => {
+interface AddToCustomStyleMap {
+  styleType: StyleKeyType;
+  styleKey: string;
+  style: string | number;
+  onChageCustomStyleMap: (customStyleMap: DraftStyleMap) => void;
+}
+
+const addToCustomStyleMap = ({
+  styleType,
+  styleKey,
+  style,
+  onChageCustomStyleMap,
+}: AddToCustomStyleMap): void => {
   const newCustomInlineStylesMap = Object.assign(customInlineStylesMap, {
     [`${styleType.toLowerCase()}-${style}`]: {
       [`${styleKey}`]: style,
@@ -49,13 +56,21 @@ const addToCustomStyleMap = (
   onChageCustomStyleMap(newCustomInlineStylesMap);
 };
 
-export const toggleCustomInlineStyle = (
-  editorState: EditorState,
-  styleType: StyleKeyType,
-  style: string | number,
-  isAlready: boolean,
-  onChageCustomStyleMap: (customStyleMap: DraftStyleMap) => void,
-): EditorState => {
+interface ToggleCustomInlineStyle {
+  editorState: EditorState;
+  styleType: StyleKeyType;
+  style: string | number;
+  isAlready: boolean;
+  onChageCustomStyleMap: (customStyleMap: DraftStyleMap) => void;
+}
+
+export const toggleCustomInlineStyle = ({
+  editorState,
+  styleType,
+  style,
+  isAlready,
+  onChageCustomStyleMap,
+}: ToggleCustomInlineStyle): EditorState => {
   const selection = editorState.getSelection();
   const nextContentState = Object.keys(customInlineStylesMap[styleType]).reduce(
     (contentState, inlineStyle) =>
@@ -89,7 +104,12 @@ export const toggleCustomInlineStyle = (
       `${styleType.toLowerCase()}-${style}`,
     );
     if (!isAlready) {
-      addToCustomStyleMap(styleType, styleKey, style, onChageCustomStyleMap);
+      addToCustomStyleMap({
+        styleType,
+        styleKey,
+        style,
+        onChageCustomStyleMap,
+      });
     }
   }
 
