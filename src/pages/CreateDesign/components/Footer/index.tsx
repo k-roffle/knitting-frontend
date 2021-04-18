@@ -7,6 +7,10 @@ import { useRecoilState } from 'recoil';
 const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
 
+  const saveDesign = async (): Promise<void> => {
+    // TODO: 저장 기능 구현
+  };
+
   const handleOnClickPrevious = (): void => {
     switch (currentStep) {
       case PAGE.PATTERN:
@@ -29,7 +33,7 @@ const Footer = (): React.ReactElement => {
         setCurrentStep(PAGE.REVIEW);
         break;
       case PAGE.REVIEW:
-        // TODO: 저장 기능 구현
+        saveDesign();
         break;
       default:
         break;
