@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ContentState, EditorState, RichUtils } from 'draft-js';
-import { ReactElement, ReactNode } from 'react';
+import { ContentState, EditorState } from 'draft-js';
+import { changeOriginalStyleToNeweStyle } from 'pages/libs/draftjs-utils/inline';
+import { ReactElement, ReactNode, useEffect } from 'react';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palatte';
-
-import { CustomInline } from './types';
 
 export interface UnitDecoratorProps {
   className?: string;
@@ -57,30 +56,37 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     ...otherProps
   } = props;
 
-  const handleClick = (): void => {
-    const editorState = getEditorState?.();
+  const editorState = getEditorState?.();
 
+  useEffect(() => {
+    if (editorState != null && setEditorState != null) {
+      const currentStyle = editorState.getCurrentInlineStyle();
+      const canCalculate = !currentStyle.has('NOT_CALCULATE');
+
+      if (canCalculate) {
+        const newEeditorState = changeOriginalStyleToNeweStyle({
+          editorState,
+          originalStyle: 'CALCULATE',
+          startOffset: start,
+          endOffset: end,
+        });
+
+        setEditorState(newEeditorState);
+      }
+    }
+  }, []);
+
+  const handleClick = (): void => {
     if (editorState != null && children != null && setEditorState != null) {
-      const selectionState = editorState.getSelection();
-      const newSelection = selectionState.merge({
-        anchorOffset: start,
-        focusOffset: end,
+      const newEeditorState = changeOriginalStyleToNeweStyle({
+        editorState,
+        originalStyle: 'CALCULATE',
+        newStyle: 'NOT_CALCULATE',
+        startOffset: start,
+        endOffset: end,
       });
 
-      const editorStateWithNewSelection = EditorState.forceSelection(
-        editorState,
-        newSelection,
-      );
-      const editorStateWithStyles = RichUtils.toggleInlineStyle(
-        editorStateWithNewSelection,
-        CustomInline.NOT_CALCULATE,
-      );
-      const editorStateWithStylesAndPreviousSelection = EditorState.forceSelection(
-        editorStateWithStyles,
-        selectionState,
-      );
-
-      setEditorState(editorStateWithStylesAndPreviousSelection);
+      setEditorState(newEeditorState);
     }
   };
 

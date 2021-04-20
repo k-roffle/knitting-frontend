@@ -14,6 +14,7 @@ export type StyleKeyType =
   | 'fontSize'
   | 'fontFamily'
   | 'CODE'
+  | 'CALCULATE'
   | 'NOT_CALCULATE'
   | 'FONTSIZE';
 
@@ -28,6 +29,8 @@ type StyleMapType = {
   fontFamily?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   CODE?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  CALCULATE?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   NOT_CALCULATE?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -224,4 +227,54 @@ export const getSelectionCustomInlineStyle = (
     }
   }
   return {};
+};
+
+interface ChangeOriginalStyleToNeweStyle {
+  editorState: EditorState;
+  originalStyle: StyleKeyType;
+  newStyle?: StyleKeyType;
+  startOffset?: number;
+  endOffset?: number;
+}
+
+export const changeOriginalStyleToNeweStyle = ({
+  editorState,
+  originalStyle,
+  newStyle,
+  startOffset,
+  endOffset,
+}: ChangeOriginalStyleToNeweStyle): EditorState => {
+  const selectionState = editorState.getSelection();
+  const newSelection = selectionState.merge({
+    anchorOffset: startOffset,
+    focusOffset: endOffset,
+  });
+
+  const editorStateWithNewSelection = EditorState.forceSelection(
+    editorState,
+    newSelection,
+  );
+
+  const editorStateWithToggleOriginalStyle = RichUtils.toggleInlineStyle(
+    editorStateWithNewSelection,
+    originalStyle,
+  );
+
+  let editorStateWithNewStyle;
+
+  if (newStyle != null) {
+    editorStateWithNewStyle = RichUtils.toggleInlineStyle(
+      editorStateWithToggleOriginalStyle,
+      newStyle,
+    );
+  } else {
+    editorStateWithNewStyle = editorStateWithToggleOriginalStyle;
+  }
+
+  const editorStateWithNewStyleAndPreviousSelection = EditorState.forceSelection(
+    editorStateWithNewStyle,
+    selectionState,
+  );
+
+  return editorStateWithNewStyleAndPreviousSelection;
 };
