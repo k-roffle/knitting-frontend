@@ -16,9 +16,6 @@ export const getSelectedBlocksMap = (
     .concat([[endKey, blockMap.get(endKey)]]);
 };
 
-/**
- * Function returns collection of currently selected blocks.
- */
 export const getSelectedBlocksList = (
   editorState: EditorState,
 ): Immutable.List<ContentBlock> => {

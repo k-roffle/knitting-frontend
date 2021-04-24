@@ -147,10 +147,6 @@ const getCurrentInlineStyle = (
   return undefined;
 };
 
-/**
- * Function returns size at a offset.
- */
-
 const getStyleAtOffset = (
   block: ContentBlock,
   stylePrefix: string,
@@ -167,10 +163,6 @@ const getStyleAtOffset = (
 
   return undefined;
 };
-
-/**
- * Function returns an object of custom inline styles currently applicable.
- */
 
 export const getSelectionCustomInlineStyle = (
   editorState: EditorState,
