@@ -23,12 +23,10 @@ export const DropdownOption = ({
 }: Props): React.ReactElement => {
   const handleClick: MenuItemProps['onClick'] = (event): void => {
     if (!disabled) {
-      if (onSelect) {
-        onSelect?.(value);
-      }
+      onSelect?.(value);
       if (onClick) {
         event.stopPropagation();
-        onClick?.(value);
+        onClick(value);
       }
     }
   };

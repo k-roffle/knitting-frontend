@@ -18,7 +18,7 @@ export const FontSize = ({
       editorState,
       styleType: 'fontSize',
       style: newFontSize,
-      isAlready: newFontSize === currentFontSize,
+      isAlreadyApplyed: newFontSize === currentFontSize,
       onChageCustomStyleMap,
     });
 

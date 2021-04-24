@@ -63,7 +63,7 @@ interface ToggleCustomInlineStyle {
   editorState: EditorState;
   styleType: StyleKeyType;
   style: string | number;
-  isAlready: boolean;
+  isAlreadyApplyed: boolean;
   onChageCustomStyleMap: (customStyleMap: DraftStyleMap) => void;
 }
 
@@ -71,7 +71,7 @@ export const toggleCustomInlineStyle = ({
   editorState,
   styleType,
   style,
-  isAlready,
+  isAlreadyApplyed,
   onChageCustomStyleMap,
 }: ToggleCustomInlineStyle): EditorState => {
   const selection = editorState.getSelection();
@@ -106,7 +106,7 @@ export const toggleCustomInlineStyle = ({
       nextEditorState,
       `${styleType.toLowerCase()}-${style}`,
     );
-    if (!isAlready) {
+    if (!isAlreadyApplyed) {
       addToCustomStyleMap({
         styleType,
         styleKey,
