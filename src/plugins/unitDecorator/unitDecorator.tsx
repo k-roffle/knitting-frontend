@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ContentState, EditorState } from 'draft-js';
+import { ContentState, convertToRaw, EditorState, RichUtils } from 'draft-js';
 import { changeOriginalStyleToNeweStyle } from 'pages/libs/draftjs-utils/inline';
 import { ReactElement, ReactNode, useEffect } from 'react';
 import styled from 'styled-components';
@@ -20,7 +20,7 @@ export interface UnitDecoratorProps {
   end?: number;
 
   setEditorState?(editorState: EditorState): void;
-  getEditorState?(): EditorState;
+  getEditorState(): EditorState;
 }
 
 const DecoratorWrapper = styled.span`
@@ -58,11 +58,23 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
 
   const editorState = getEditorState?.();
 
-  useEffect(() => {
-    if (editorState != null && setEditorState != null) {
-      const currentStyle = editorState.getCurrentInlineStyle();
-      const canCalculate = !currentStyle.has('NOT_CALCULATE');
+  const selectionState = editorState.getSelection();
+  const newSelection = selectionState.merge({
+    anchorOffset: start,
+    focusOffset: end,
+  });
 
+  const editorStateWithNewSelection = EditorState.forceSelection(
+    editorState,
+    newSelection,
+  );
+
+  const currentStyle = editorStateWithNewSelection.getCurrentInlineStyle();
+  const canCalculate =
+    !currentStyle.has('NOT_CALCULATE') && !currentStyle.has('CALCULATE');
+
+  useEffect(() => {
+    if (setEditorState != null) {
       if (canCalculate) {
         const newEeditorState = changeOriginalStyleToNeweStyle({
           editorState,
@@ -74,7 +86,7 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
         setEditorState(newEeditorState);
       }
     }
-  }, []);
+  }, [canCalculate]);
 
   const handleClick = (): void => {
     if (editorState != null && children != null && setEditorState != null) {
