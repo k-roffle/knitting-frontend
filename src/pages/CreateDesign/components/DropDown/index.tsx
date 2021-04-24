@@ -86,14 +86,13 @@ export const DropDown = ({
       {isOpen && (
         <OptionWrapper onClick={stopPropagation}>
           {React.Children.map(childrens, (option, index) => {
-            const temp =
+            return (
               option &&
               React.cloneElement(option, {
                 onSelect: handleChange,
                 index,
-              });
-
-            return temp;
+              })
+            );
           })}
         </OptionWrapper>
       )}
