@@ -57,6 +57,8 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
   } = props;
 
   const editorState = getEditorState?.();
+  const calculateKey =
+    unit === '코' ? 'STITCH_CALCULATE_ROUND' : 'ROW_CALCULATE_ROUND';
 
   const selectionState = editorState.getSelection();
   const newSelection = selectionState.merge({
@@ -71,14 +73,14 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
 
   const currentStyle = editorStateWithNewSelection.getCurrentInlineStyle();
   const canCalculate =
-    !currentStyle.has('NOT_CALCULATE') && !currentStyle.has('CALCULATE');
+    !currentStyle.has('NOT_CALCULATE') && !currentStyle.has(calculateKey);
 
   useEffect(() => {
     if (setEditorState != null) {
       if (canCalculate) {
         const newEeditorState = changeOriginalStyleToNeweStyle({
           editorState,
-          originalStyle: 'CALCULATE',
+          originalStyle: calculateKey,
           startOffset: start,
           endOffset: end,
         });
@@ -92,7 +94,7 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     if (editorState != null && children != null && setEditorState != null) {
       const newEeditorState = changeOriginalStyleToNeweStyle({
         editorState,
-        originalStyle: 'CALCULATE',
+        originalStyle: calculateKey,
         newStyle: 'NOT_CALCULATE',
         startOffset: start,
         endOffset: end,

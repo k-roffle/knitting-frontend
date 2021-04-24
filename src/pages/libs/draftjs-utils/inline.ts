@@ -14,7 +14,8 @@ export type StyleKeyType =
   | 'fontSize'
   | 'fontFamily'
   | 'CODE'
-  | 'CALCULATE'
+  | 'STITCH_CALCULATE_ROUND'
+  | 'ROW_CALCULATE_ROUND'
   | 'NOT_CALCULATE'
   | 'FONTSIZE';
 
@@ -30,7 +31,9 @@ type StyleMapType = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   CODE?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  CALCULATE?: any;
+  STITCH_CALCULATE_ROUND?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ROW_CALCULATE_ROUND?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   NOT_CALCULATE?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
