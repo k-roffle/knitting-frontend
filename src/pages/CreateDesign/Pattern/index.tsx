@@ -104,6 +104,11 @@ const Pattern = (): React.ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
   const editor = useRef<Editor | null>(null);
 
+  stitcheDecoratorPlugin.onChange = (editState: EditorState): EditorState => {
+    setEditorState(editState);
+    return editState;
+  };
+
   const plugins = [stitcheDecoratorPlugin, rowDecoratorPlugin, toolbarPlugin];
 
   const focusEditor = (): void => {
