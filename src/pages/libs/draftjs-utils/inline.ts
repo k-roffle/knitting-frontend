@@ -224,7 +224,7 @@ export const getSelectionCustomInlineStyle = (
   return {};
 };
 
-interface ChangeOriginalStyleToNeweStyle {
+interface ChangeOriginalStyleToNewStyle {
   editorState: EditorState;
   originalStyle: StyleKeyType;
   newStyle?: StyleKeyType;
@@ -240,7 +240,7 @@ export const changeOriginalStyleToNeweStyle = ({
   newStyle,
   startOffset,
   endOffset,
-}: ChangeOriginalStyleToNeweStyle): EditorState => {
+}: ChangeOriginalStyleToNewStyle): EditorState => {
   const selectionState = editorState.getSelection();
   const originalSelection = selectionState.merge({
     anchorKey: selectionState.getAnchorKey(),
