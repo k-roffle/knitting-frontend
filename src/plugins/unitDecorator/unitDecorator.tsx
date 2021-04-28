@@ -31,6 +31,7 @@ const DecoratorWrapper = styled.span`
     border-radius: ${theme.spacing(0.5)};
     color: ${theme.palette.background.paper};
     box-shadow: ${theme.shadows[2]};
+    line-height: 210%;
     cursor: pointer;
 
     &:hover {
