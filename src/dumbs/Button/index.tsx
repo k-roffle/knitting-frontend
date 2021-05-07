@@ -13,15 +13,25 @@ export interface Props {
   side: SIDE_TYPE;
   label: string;
   onClick?(): void;
+  disabled?: boolean;
 }
 
 const StyledButton = styled(MaterialButton)<Pick<Props, 'side'>>`
   float: ${({ side }) => side};
 `;
 
-const Button = ({ label, ...other }: Props): React.ReactElement => {
+const Button = ({
+  label,
+  disabled = false,
+  ...other
+}: Props): React.ReactElement => {
   return (
-    <StyledButton color="primary" variant="contained" {...other}>
+    <StyledButton
+      color="primary"
+      variant="contained"
+      disabled={disabled}
+      {...other}
+    >
       {label}
     </StyledButton>
   );
