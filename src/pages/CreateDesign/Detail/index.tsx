@@ -242,6 +242,7 @@ const Detail = (): React.ReactElement => {
                   }
                   value={stitches}
                   onChange={onChangeStitches}
+                  inputProps={{ min: 1 }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -256,6 +257,7 @@ const Detail = (): React.ReactElement => {
                   }
                   value={rows}
                   onChange={onChangeRows}
+                  inputProps={{ min: 1 }}
                 />
               </Grid>
             </Grid>
@@ -279,6 +281,7 @@ const Detail = (): React.ReactElement => {
                     }
                     value={totalLength}
                     onChange={onChangeTotalLength}
+                    inputProps={{ min: 1 }}
                   />
                 </Grid>
                 <Grid>
@@ -293,6 +296,7 @@ const Detail = (): React.ReactElement => {
                     }
                     value={sleeveLength}
                     onChange={onChangeSleeveLength}
+                    inputProps={{ min: 1 }}
                   />
                 </Grid>
                 <Grid>
@@ -307,6 +311,7 @@ const Detail = (): React.ReactElement => {
                     }
                     value={shoulderWidth}
                     onChange={onChangeShoulderWidth}
+                    inputProps={{ min: 1 }}
                   />
                 </Grid>
                 <Grid>
@@ -320,6 +325,7 @@ const Detail = (): React.ReactElement => {
                     }
                     value={bottomWidth}
                     onChange={onChangeBottomWidth}
+                    inputProps={{ min: 1 }}
                   />
                 </Grid>
                 <Grid>
@@ -333,6 +339,7 @@ const Detail = (): React.ReactElement => {
                     }
                     value={armholeDepth}
                     onChange={onChangeArmholeDepth}
+                    inputProps={{ min: 1 }}
                   />
                 </Grid>
               </Grid>
@@ -378,6 +385,7 @@ const Detail = (): React.ReactElement => {
               endAdornment={<InputAdornment position="end">원</InputAdornment>}
               value={price}
               onChange={onChangePrice}
+              inputProps={{ min: 0 }}
             />
           </Row>
         </Grid>
