@@ -37,42 +37,45 @@ const Footer = (): React.ReactElement => {
   };
 
   const saveDesign = async (): Promise<void> => {
-    const createdAt = new Date();
-
     try {
-      await request('/design/', 'post', {
-        id: uuidv4(),
-        name,
-        gauge: {
-          stitches,
-          rows,
-        },
-        size: {
-          totalLength: serializeSize(totalLength),
-          sleeveLength: serializeSize(sleeveLength),
-          shoulderWidth: serializeSize(shoulderWidth),
-          bottomWidth: serializeSize(bottomWidth),
-          armholeDepth: serializeSize(armholeDepth),
-        },
-        needle,
-        yarn,
-        extra,
-        price: {
-          value: price,
-        },
-        designType,
-        patternType,
-        pattern: {
-          value: '',
-        },
-        createdAt: createdAt.toISOString(),
-      });
-
+      await requestSaveDesign();
       window.location.reload();
     } catch (e) {
       // eslint-disable-next-line no-alert
       alert('도안 저장에 실패했습니다.');
     }
+  };
+
+  const requestSaveDesign = async (): Promise<void> => {
+    const createdAt = new Date();
+
+    await request('/design/', 'post', {
+      id: uuidv4(),
+      name,
+      gauge: {
+        stitches,
+        rows,
+      },
+      size: {
+        totalLength: serializeSize(totalLength),
+        sleeveLength: serializeSize(sleeveLength),
+        shoulderWidth: serializeSize(shoulderWidth),
+        bottomWidth: serializeSize(bottomWidth),
+        armholeDepth: serializeSize(armholeDepth),
+      },
+      needle,
+      yarn,
+      extra,
+      price: {
+        value: price,
+      },
+      designType,
+      patternType,
+      pattern: {
+        value: '',
+      },
+      createdAt: createdAt.toISOString(),
+    });
   };
 
   const handleOnClickPrevious = (): void => {
