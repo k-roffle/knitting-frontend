@@ -105,6 +105,31 @@ const Footer = (): React.ReactElement => {
     return currentStep === PAGE.REVIEW ? '저장' : '다음';
   };
 
+  const disabledNextButton = (): boolean => {
+    switch (currentStep) {
+      case PAGE.DETAIL:
+        if (
+          name === '' ||
+          stitches < 1 ||
+          rows < 1 ||
+          totalLength < 1 ||
+          sleeveLength < 1 ||
+          shoulderWidth < 1 ||
+          bottomWidth < 1 ||
+          armholeDepth < 1 ||
+          price < 0
+        ) {
+          return true;
+        }
+        return false;
+      case PAGE.PATTERN:
+        // TODO: 도안 유효성 검사
+        return false;
+      default:
+        return false;
+    }
+  };
+
   return (
     <div>
       {currentStep !== PAGE.DETAIL && (
@@ -114,6 +139,7 @@ const Footer = (): React.ReactElement => {
         side={SIDE.RIGHT}
         label={renderNextLabel()}
         onClick={handleOnClickNext}
+        disabled={disabledNextButton()}
       />
     </div>
   );
