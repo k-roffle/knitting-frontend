@@ -10,7 +10,16 @@ import { request } from 'utils/requests';
 
 const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
-  const { name } = useRecoilValue(currentDesignInputAtom);
+  const {
+    name,
+    stitches,
+    rows,
+    totalLength,
+    sleeveLength,
+    shoulderWidth,
+    bottomWidth,
+    armholeDepth,
+  } = useRecoilValue(currentDesignInputAtom);
 
   const serializeSize = (value: number): Record<string, string | number> => {
     return {
@@ -93,7 +102,16 @@ const Footer = (): React.ReactElement => {
   const disabledNextButton = (): boolean => {
     switch (currentStep) {
       case PAGE.DETAIL:
-        if (name === '') {
+        if (
+          name === '' ||
+          stitches < 1 ||
+          rows < 1 ||
+          totalLength < 1 ||
+          sleeveLength < 1 ||
+          shoulderWidth < 1 ||
+          bottomWidth < 1 ||
+          armholeDepth < 1
+        ) {
           return true;
         }
         return false;
