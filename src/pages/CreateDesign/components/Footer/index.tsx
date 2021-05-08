@@ -6,8 +6,6 @@ import {
 import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { v4 as uuidv4 } from 'uuid';
-
 import { request } from 'utils/requests';
 
 const Footer = (): React.ReactElement => {
@@ -47,10 +45,7 @@ const Footer = (): React.ReactElement => {
   };
 
   const requestSaveDesign = async (): Promise<void> => {
-    const createdAt = new Date();
-
     await request('/design/', 'post', {
-      id: uuidv4(),
       name,
       gauge: {
         stitches,
@@ -74,7 +69,6 @@ const Footer = (): React.ReactElement => {
       pattern: {
         value: '',
       },
-      createdAt: createdAt.toISOString(),
     });
   };
 
