@@ -8,7 +8,7 @@ import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
-import { request } from '../../../../utils/requests';
+import { request } from 'utils/requests';
 
 const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
