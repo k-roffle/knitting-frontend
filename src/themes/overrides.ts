@@ -68,5 +68,19 @@ export const { overrides } = createMuiTheme({
         borderTopWidth: 5,
       },
     },
+    MuiTooltip: {
+      tooltip: {
+        color: palette.text.primary,
+        backgroundColor: palette.background.paper,
+        fontSize: 12,
+        boxShadow: defaultTheme.shadows[2],
+      },
+      arrow: {
+        color: palette.background.paper,
+        '&:before': {
+          boxShadow: defaultTheme.shadows[2],
+        },
+      },
+    },
   },
 });
