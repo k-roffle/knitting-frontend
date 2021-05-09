@@ -19,6 +19,12 @@ const Footer = (): React.ReactElement => {
     shoulderWidth,
     bottomWidth,
     armholeDepth,
+    needle,
+    yarn,
+    extra,
+    price,
+    designType,
+    patternType,
   } = useRecoilValue(currentDesignInputAtom);
 
   const serializeSize = (value: number): Record<string, string | number> => {
