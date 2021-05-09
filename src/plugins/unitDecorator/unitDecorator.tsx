@@ -49,7 +49,6 @@ type APPROXIMATION_TYPE = typeof APPROXIMATION[keyof typeof APPROXIMATION];
 
 const DecoratorWrapper = styled.span`
   > span {
-    background: ${palette.primary.main};
     margin: ${theme.spacing(0, 0.5)};
     padding: ${theme.spacing(0.5, 1)};
     border-radius: ${theme.spacing(0.5)};
