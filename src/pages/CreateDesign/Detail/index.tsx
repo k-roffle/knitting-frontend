@@ -82,6 +82,12 @@ const Detail = (): React.ReactElement => {
     }
   };
 
+  const validateValue = (
+    target: EventTarget & (HTMLTextAreaElement | HTMLInputElement),
+  ) => {
+    return target != null && Number(target.value) > 0;
+  };
+
   const onChangeName: InputProps['onChange'] = ({ target }) => {
     if (target == null) return;
     setCurrentDesignInputAtom({
@@ -90,56 +96,56 @@ const Detail = (): React.ReactElement => {
     });
   };
   const onChangeStitches: InputProps['onChange'] = ({ target }) => {
-    if (target == null || Number(target.value) < 1) return;
+    if (!validateValue(target)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       stitches: Number(target.value),
     });
   };
   const onChangeRows: InputProps['onChange'] = ({ target }) => {
-    if (target == null || Number(target.value) < 1) return;
+    if (!validateValue(target)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       rows: Number(target.value),
     });
   };
   const onChangeTotalLength: InputProps['onChange'] = ({ target }) => {
-    if (target == null || Number(target.value) < 1) return;
+    if (!validateValue(target)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       totalLength: Number(target.value),
     });
   };
   const onChangeSleeveLength: InputProps['onChange'] = ({ target }) => {
-    if (target == null || Number(target.value) < 1) return;
+    if (!validateValue(target)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       sleeveLength: Number(target.value),
     });
   };
   const onChangeShoulderWidth: InputProps['onChange'] = ({ target }) => {
-    if (target == null || Number(target.value) < 1) return;
+    if (!validateValue(target)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       shoulderWidth: Number(target.value),
     });
   };
   const onChangeBottomWidth: InputProps['onChange'] = ({ target }) => {
-    if (target == null || Number(target.value) < 1) return;
+    if (!validateValue(target)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       bottomWidth: Number(target.value),
     });
   };
   const onChangeArmholeDepth: InputProps['onChange'] = ({ target }) => {
-    if (target == null || Number(target.value) < 1) return;
+    if (!validateValue(target)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       armholeDepth: Number(target.value),
     });
   };
   const onChangeNeedle: InputProps['onChange'] = ({ target }) => {
-    if (target == null || Number(target.value) < 1) return;
+    if (!validateValue(target)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       needle: target.value,
