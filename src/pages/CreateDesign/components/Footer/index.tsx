@@ -106,18 +106,19 @@ const Footer = (): React.ReactElement => {
   };
 
   const disabledNextButton = (): boolean => {
+    const isInvalidNumberInput = [
+      stitches,
+      rows,
+      totalLength,
+      sleeveLength,
+      shoulderWidth,
+      bottomWidth,
+      armholeDepth,
+    ].some((value) => value < 1);
+
     switch (currentStep) {
       case PAGE.DETAIL:
-        if (
-          name === '' ||
-          stitches < 1 ||
-          rows < 1 ||
-          totalLength < 1 ||
-          sleeveLength < 1 ||
-          shoulderWidth < 1 ||
-          bottomWidth < 1 ||
-          armholeDepth < 1
-        ) {
+        if (name === '' || isInvalidNumberInput) {
           return true;
         }
         return false;
