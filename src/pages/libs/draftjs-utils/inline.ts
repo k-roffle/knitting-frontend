@@ -15,6 +15,8 @@ export type StyleKeyType =
   | 'fontFamily'
   | 'CODE'
   | 'STITCH_CALCULATE_ROUND'
+  | 'STITCH_CALCULATE_ROUND_UP'
+  | 'STITCH_CALCULATE_ROUND_DOWN'
   | 'ROW_CALCULATE_ROUND'
   | 'NOT_CALCULATE'
   | 'FONTSIZE';
@@ -30,6 +32,10 @@ type StyleMapType = {
   fontFamily?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   CODE?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  STITCH_CALCULATE_ROUND_UP?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  STITCH_CALCULATE_ROUND_DOWN?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   STITCH_CALCULATE_ROUND?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
