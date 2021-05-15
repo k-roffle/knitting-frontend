@@ -1,4 +1,5 @@
 import Button, { SIDE } from 'dumbs/Button';
+import Snackbar from 'dumbs/Snackbar';
 import {
   currentDesignInputAtom,
   currentStepAtom,
@@ -26,6 +27,11 @@ const Footer = (): React.ReactElement => {
     designType,
     patternType,
   } = useRecoilValue(currentDesignInputAtom);
+  const [openErrorSnackbar, setOpenErrorSnackbar] = React.useState(false);
+
+  const handleSnackbarClose = () => {
+    setOpenErrorSnackbar(false);
+  };
 
   const serializeSize = (value: number): Record<string, string | number> => {
     return {
@@ -39,8 +45,7 @@ const Footer = (): React.ReactElement => {
       await requestSaveDesign();
       window.location.reload();
     } catch (e) {
-      // eslint-disable-next-line no-alert
-      alert('도안 저장에 실패했습니다.');
+      setOpenErrorSnackbar(true);
     }
   };
 
@@ -140,6 +145,13 @@ const Footer = (): React.ReactElement => {
         label={renderNextLabel()}
         onClick={handleOnClickNext}
         disabled={disabledNextButton()}
+      />
+      <Snackbar
+        autoHideDuration={2000}
+        label={'도안 저장에 실패했습니다.'}
+        onClose={handleSnackbarClose}
+        open={openErrorSnackbar}
+        severity={'error'}
       />
     </div>
   );
