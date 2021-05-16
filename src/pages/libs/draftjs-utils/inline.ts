@@ -241,6 +241,7 @@ interface ChangeOriginalStyleToNewStyle {
   originalStyle: StyleKeyType;
   newStyle?: StyleKeyType;
   blockKey?: string;
+  originalOffset?: number;
   startOffset?: number;
   endOffset?: number;
 }
@@ -250,6 +251,7 @@ export const changeOriginalStyleToNeweStyle = ({
   editorState,
   originalStyle,
   newStyle,
+  originalOffset,
   startOffset,
   endOffset,
 }: ChangeOriginalStyleToNewStyle): EditorState => {
@@ -257,8 +259,8 @@ export const changeOriginalStyleToNeweStyle = ({
   const originalSelection = selectionState.merge({
     anchorKey: selectionState.getAnchorKey(),
     focusKey: selectionState.getFocusKey(),
-    anchorOffset: selectionState.getAnchorOffset(),
-    focusOffset: selectionState.getFocusOffset(),
+    anchorOffset: originalOffset ?? selectionState.getAnchorOffset(),
+    focusOffset: originalOffset ?? selectionState.getFocusOffset(),
   });
 
   const newSelection = selectionState.merge({

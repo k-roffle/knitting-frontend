@@ -5,14 +5,14 @@ import {
   changeOriginalStyleToNeweStyle,
   StyleKeyType,
 } from 'pages/libs/draftjs-utils/inline';
-import { ReactElement, ReactNode, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palatte';
 
 export interface UnitDecoratorProps {
   className?: string;
-  children?: ReactNode;
+  children?: ReactElement[];
 
   unit?: string;
   decoratedText?: string;
