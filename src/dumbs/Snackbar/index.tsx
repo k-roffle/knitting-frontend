@@ -3,7 +3,7 @@ import MuiAlert, { Color } from '@material-ui/lab/Alert';
 import React from 'react';
 
 interface Props {
-  autoHideDuration: number;
+  autoHideDuration?: number;
   label: string;
   onClose?(): void;
   open: boolean;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Snackbar = ({
-  autoHideDuration,
+  autoHideDuration = 2000,
   label,
   onClose,
   open,

@@ -147,7 +147,6 @@ const Footer = (): React.ReactElement => {
         disabled={disabledNextButton()}
       />
       <Snackbar
-        autoHideDuration={2000}
         label={'도안 저장에 실패했습니다.'}
         onClose={handleSnackbarClose}
         open={openErrorSnackbar}
