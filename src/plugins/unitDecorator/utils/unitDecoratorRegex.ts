@@ -1,4 +1,4 @@
-const numbers = '0-9';
+export const numbers = '0-9';
 
 export const getEndHashtagMatch = (unit: string): RegExp =>
   // eslint-disable-next-line no-useless-escape
