@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Tooltip } from '@material-ui/core';
 import { ContentState, EditorState } from 'draft-js';
 import {
@@ -98,12 +97,8 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     className,
     children,
     unit,
-    decoratedText,
-    entityKey,
     getEditorState,
-    offsetKey,
     setEditorState,
-    contentState,
     blockKey,
     start,
     end,
