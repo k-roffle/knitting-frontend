@@ -13,6 +13,7 @@ import createToolbarPlugin, {
   Separator,
 } from '@draft-js-plugins/static-toolbar';
 import { DraftStyleMap, EditorState } from 'draft-js';
+import createDeleteDecoratorPlugin from 'plugins/deleteDecorator';
 import createUnitDecoratorPlugin from 'plugins/unitDecorator';
 import { UnitDecoratorStyleMap } from 'plugins/unitDecorator/types';
 import { useRef, useState } from 'react';
@@ -27,6 +28,10 @@ import { getCurrentFontSize } from './utils';
 
 const stitcheDecoratorPlugin = createUnitDecoratorPlugin({ unit: '코' });
 const rowDecoratorPlugin = createUnitDecoratorPlugin({ unit: '단' });
+const deleteDecoratorPlugin = createDeleteDecoratorPlugin({
+  units: ['코', '단'],
+});
+
 const toolbarPlugin = createToolbarPlugin();
 const { Toolbar } = toolbarPlugin;
 
@@ -109,7 +114,12 @@ const Pattern = (): React.ReactElement => {
     return editState;
   };
 
-  const plugins = [stitcheDecoratorPlugin, rowDecoratorPlugin, toolbarPlugin];
+  const plugins = [
+    stitcheDecoratorPlugin,
+    rowDecoratorPlugin,
+    deleteDecoratorPlugin,
+    toolbarPlugin,
+  ];
 
   const focusEditor = (): void => {
     editor?.current?.focus();
