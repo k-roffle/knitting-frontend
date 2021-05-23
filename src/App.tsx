@@ -1,4 +1,4 @@
-import { StylesProvider } from '@material-ui/core/styles';
+import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
 import { Error404 } from 'pages';
 import Designs from 'pages/Designs';
 import React from 'react';
@@ -8,19 +8,22 @@ import {
   Route as NestedRoute,
   Switch,
 } from 'react-router-dom';
+import { theme } from 'themes';
 import { QueryParamProvider } from 'use-query-params';
 
 const App = (): React.ReactElement => {
   return (
     <BrowserRouter>
       <StylesProvider injectFirst>
-        <QueryParamProvider ReactRouterRoute={PublicRoute}>
-          <Switch>
-            <NestedRoute path="/designs/" component={Designs} />
-            <PublicRoute path="/error/" component={Error404} exact />
-            <PublicRoute path="*" component={Error404} />
-          </Switch>
-        </QueryParamProvider>
+        <ThemeProvider theme={theme}>
+          <QueryParamProvider ReactRouterRoute={PublicRoute}>
+            <Switch>
+              <NestedRoute path="/designs/" component={Designs} />
+              <PublicRoute path="/error/" component={Error404} exact />
+              <PublicRoute path="*" component={Error404} />
+            </Switch>
+          </QueryParamProvider>
+        </ThemeProvider>
       </StylesProvider>
     </BrowserRouter>
   );
