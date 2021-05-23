@@ -1,5 +1,5 @@
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
-import { Error404 } from 'pages';
+import { Error404, Login } from 'pages';
 import Designs from 'pages/Designs';
 import React from 'react';
 import {
@@ -19,6 +19,7 @@ const App = (): React.ReactElement => {
           <QueryParamProvider ReactRouterRoute={PublicRoute}>
             <Switch>
               <NestedRoute path="/designs/" component={Designs} />
+              <PublicRoute path="/login/" component={Login} />
               <PublicRoute path="/error/" component={Error404} exact />
               <PublicRoute path="*" component={Error404} />
             </Switch>
