@@ -28,8 +28,10 @@ import { getCurrentFontSize } from './utils';
 
 const stitcheDecoratorPlugin = createUnitDecoratorPlugin({ unit: '코' });
 const rowDecoratorPlugin = createUnitDecoratorPlugin({ unit: '단' });
+const repeatDecoratorPlugin = createUnitDecoratorPlugin({ unit: '번' });
+
 const deleteDecoratorPlugin = createDeleteDecoratorPlugin({
-  units: ['코', '단'],
+  units: ['코', '단', '번'],
 });
 
 const toolbarPlugin = createToolbarPlugin();
@@ -117,6 +119,7 @@ const Pattern = (): React.ReactElement => {
   const plugins = [
     stitcheDecoratorPlugin,
     rowDecoratorPlugin,
+    repeatDecoratorPlugin,
     deleteDecoratorPlugin,
     toolbarPlugin,
   ];
