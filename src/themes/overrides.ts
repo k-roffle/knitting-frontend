@@ -74,6 +74,7 @@ export const { overrides } = createMuiTheme({
         backgroundColor: palette.background.paper,
         fontSize: 12,
         boxShadow: defaultTheme.shadows[2],
+        display: 'table',
       },
       arrow: {
         color: palette.background.paper,
