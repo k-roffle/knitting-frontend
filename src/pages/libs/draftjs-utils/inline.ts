@@ -20,6 +20,12 @@ export type StyleKeyType =
   | 'ROW_CALCULATE_ROUND'
   | 'ROW_CALCULATE_ROUND_UP'
   | 'ROW_CALCULATE_ROUND_DOWN'
+  | 'STITCH_REPEAT_CALCULATE_ROUND'
+  | 'STITCH_REPEAT_CALCULATE_ROUND_UP'
+  | 'STITCH_REPEAT_CALCULATE_ROUND_DOWN'
+  | 'ROW_REPEAT_CALCULATE_ROUND'
+  | 'ROW_REPEAT_CALCULATE_ROUND_UP'
+  | 'ROW_REPEAT_CALCULATE_ROUND_DOWN'
   | 'NOT_CALCULATE'
   | 'FONTSIZE';
 
@@ -46,6 +52,18 @@ type StyleMapType = {
   ROW_CALCULATE_ROUND_DOWN?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ROW_CALCULATE_ROUND?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  STITCH_REPEAT_CALCULATE_ROUND?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  STITCH_REPEAT_CALCULATE_ROUND_UP?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  STITCH_REPEAT_CALCULATE_ROUND_DOWN?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ROW_REPEAT_CALCULATE_ROUND?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ROW_REPEAT_CALCULATE_ROUND_UP?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ROW_REPEAT_CALCULATE_ROUND_DOWN?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   NOT_CALCULATE?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
