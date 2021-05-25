@@ -9,11 +9,18 @@ import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palatte';
 
+import { UNIT_APPROXIMATION_TYPE, UNIT_TYPE } from './types';
+import {
+  getCalculateKey,
+  getOriginalStyle,
+  getDisplayedApproximations,
+} from './utils';
+
 export interface UnitDecoratorProps {
   className?: string;
   children?: ReactElement[];
 
-  unit?: string;
+  unit?: UNIT_TYPE;
   decoratedText?: string;
   entityKey?: string;
   offsetKey?: string;
@@ -29,22 +36,6 @@ export interface UnitDecoratorProps {
 interface TooltipMenuProps {
   isSelectedCalculateKey: boolean;
 }
-
-const APPROXIMATION = {
-  ROUND_DOWN: 'ROUND_DOWN',
-  ROUND: 'ROUND',
-  ROUND_UP: 'ROUND_UP',
-  NOT_CALCULATE: 'NOT_CALCULATE',
-} as const;
-
-const DISPLAY_APPROXIMATION = {
-  ROUND_DOWN: '내림',
-  ROUND: '반올림',
-  ROUND_UP: '올림',
-  NOT_CALCULATE: '계산 안함',
-} as const;
-
-type APPROXIMATION_TYPE = typeof APPROXIMATION[keyof typeof APPROXIMATION];
 
 const DecoratorWrapper = styled.span`
   > span {
@@ -106,13 +97,13 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
   } = props;
 
   const [showToolbar, setShowToolbar] = useState(false);
-  const [
-    currentCalculateKey,
-    setCurrentCalculateKey,
-  ] = useState<APPROXIMATION_TYPE>('ROUND');
+  const [currentCalculateKey, setCurrentCalculateKey] = useState<
+    UNIT_APPROXIMATION_TYPE | undefined
+  >(getOriginalStyle(unit));
 
   const editorState = getEditorState();
-  const calculateKey = unit === '코' ? 'STITCH_CALCULATE' : 'ROW_CALCULATE';
+  const calculateKey = getCalculateKey(unit);
+  const originalStyle = getOriginalStyle(unit);
 
   useEffect(() => {
     const selectionState = editorState.getSelection();
@@ -137,7 +128,7 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
       const newEeditorState = changeOriginalStyleToNeweStyle({
         editorState,
         blockKey,
-        originalStyle: `${calculateKey}_ROUND` as StyleKeyType,
+        originalStyle: originalStyle as StyleKeyType,
         startOffset: start,
         endOffset: end,
       });
@@ -146,31 +137,28 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     }
   }, [editorState]);
 
-  const handleClick = (approximation: APPROXIMATION_TYPE): void => {
+  const handleClick = (approximation: UNIT_APPROXIMATION_TYPE): void => {
     if (approximation === currentCalculateKey) {
       return;
     }
 
     const decoratorStyle = editorState.getCurrentInlineStyle();
-    let originalStyle = `${calculateKey}_ROUND`;
-    const newStyle = (approximation === 'NOT_CALCULATE'
-      ? 'NOT_CALCULATE'
-      : `${calculateKey}_${approximation}`) as StyleKeyType;
+    let currentOriginalStyle = getOriginalStyle(unit);
 
     decoratorStyle.forEach((style) => {
       if (
         style != null &&
         (style.includes(calculateKey) || style.includes('NOT_CALCULATE'))
       ) {
-        originalStyle = style;
+        currentOriginalStyle = style as UNIT_APPROXIMATION_TYPE;
       }
     });
 
     const newEeditorState = changeOriginalStyleToNeweStyle({
       editorState: getEditorState(),
       blockKey,
-      originalStyle: originalStyle as StyleKeyType,
-      newStyle,
+      originalStyle: currentOriginalStyle as StyleKeyType,
+      newStyle: approximation,
       startOffset: start,
       endOffset: end,
     });
@@ -197,28 +185,31 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     };
   }, [showToolbar]);
 
-  const renderTooltipMenu = (): React.ReactElement => (
-    <TooltipMenuContainer>
-      {Object.values(DISPLAY_APPROXIMATION).map(
-        (displayApproximatio, index): React.ReactElement => {
-          const menuKey =
-            APPROXIMATION[
-              Object.keys(DISPLAY_APPROXIMATION)[index] as APPROXIMATION_TYPE
-            ];
+  const renderTooltipMenu = (): React.ReactElement => {
+    const displayedApproximations = getDisplayedApproximations(unit);
 
-          return (
-            <TooltipMenu
-              key={menuKey}
-              onClick={(): void => handleClick(menuKey)}
-              isSelectedCalculateKey={currentCalculateKey === menuKey}
-            >
-              {displayApproximatio}
-            </TooltipMenu>
-          );
-        },
-      )}
-    </TooltipMenuContainer>
-  );
+    return (
+      <TooltipMenuContainer>
+        {Object.values(displayedApproximations).map(
+          (displayApproximatio, index): React.ReactElement => {
+            const menuKey = Object.keys(displayedApproximations)[
+              index
+            ] as UNIT_APPROXIMATION_TYPE;
+
+            return (
+              <TooltipMenu
+                key={menuKey}
+                onClick={(): void => handleClick(menuKey)}
+                isSelectedCalculateKey={currentCalculateKey === menuKey}
+              >
+                {displayApproximatio}
+              </TooltipMenu>
+            );
+          },
+        )}
+      </TooltipMenuContainer>
+    );
+  };
 
   return (
     <ToolTipWrapper>

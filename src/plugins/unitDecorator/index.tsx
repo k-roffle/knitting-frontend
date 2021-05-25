@@ -2,12 +2,13 @@ import { EditorPlugin } from '@draft-js-plugins/editor';
 import { ContentBlock } from 'draft-js';
 import { ComponentType, ReactElement } from 'react';
 
+import { UNIT_TYPE } from './types';
 import UnitDecorator, { UnitDecoratorProps } from './unitDecorator';
 import unitDecoratorStrategy from './unitDecoratorStrategy';
 
 export type { UnitDecoratorProps };
 export interface UnitDecoratorPluginConfig {
-  unit?: string;
+  unit?: UNIT_TYPE;
   unitDecoratorComponent?: ComponentType<UnitDecoratorProps>;
 }
 
