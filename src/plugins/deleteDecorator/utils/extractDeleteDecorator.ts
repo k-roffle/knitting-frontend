@@ -3,7 +3,7 @@ import { getUnitDecoratorBoundary } from 'plugins/unitDecorator/utils/unitDecora
 
 import {
   getUnitTotallyMatch,
-  getAllGroupesIntoSpace,
+  getAllGroupsIntoSpace,
 } from './deleteDecoratorRegex';
 
 interface UnitDecoratorIndice {
@@ -85,7 +85,7 @@ export function extractDeleteDecoratorsWithIndices({
     return '';
   }
 
-  text.replace(getAllGroupesIntoSpace(), replacer);
+  text.replace(getAllGroupsIntoSpace(), replacer);
 
   return tags;
 }
