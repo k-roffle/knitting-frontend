@@ -22,9 +22,7 @@ export const getCalculateKey = (unit?: UNIT_TYPE): string => {
   }
 };
 
-export const getOriginalStyle = (
-  unit: UNIT_TYPE | undefined,
-): UNIT_APPROXIMATION_TYPE => {
+export const getOriginalStyle = (unit?: UNIT_TYPE): UNIT_APPROXIMATION_TYPE => {
   switch (unit) {
     case '코':
       return STITCH_APPROXIMATION.STITCH_CALCULATE_ROUND;
