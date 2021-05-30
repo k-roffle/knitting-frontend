@@ -2,7 +2,7 @@ import { Button as MaterialButton } from '@material-ui/core';
 import Background from 'assets/designs/background_login.png';
 import React from 'react';
 import styled from 'styled-components';
-import { defaultShadow, flexCenterAlign } from 'styles/styleConstants';
+import { defaultShadow, flexCenterAlign } from 'styles/constants';
 import { theme } from 'themes';
 
 const MainWrapper = styled.div`
