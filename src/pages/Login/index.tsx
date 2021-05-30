@@ -2,24 +2,21 @@ import { Button as MaterialButton } from '@material-ui/core';
 import Background from 'assets/designs/background_login.png';
 import React from 'react';
 import styled from 'styled-components';
+import { flexCenterAlign } from 'styles/styleConstants';
 import { theme } from 'themes';
 
 const MainWrapper = styled.div`
   background-image: url(${Background});
   width: 100%;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${flexCenterAlign}
   background-size: cover;
   background-position: center center;
 `;
 
 const LoginContainer = styled.div`
   background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${flexCenterAlign}
   width: 45%;
   height: 50%;
   box-shadow: ${theme.shadows[8]};
