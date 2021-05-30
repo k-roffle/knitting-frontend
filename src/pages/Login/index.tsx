@@ -25,7 +25,7 @@ const LoginContainer = styled.div`
 
 const LoginButton = styled(MaterialButton)`
   width: 80%;
-  height: 10%;
+  height: 50px;
   text-transform: none;
 `;
 
