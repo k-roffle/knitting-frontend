@@ -17,15 +17,19 @@ const MainWrapper = styled.div`
 const LoginContainer = styled.div`
   background-color: white;
   ${flexCenterAlign}
-  width: 45%;
+  width: 100%;
+  max-width: 1000px;
   height: 50%;
+  margin: ${theme.spacing(4)};
   box-shadow: ${theme.shadows[8]};
   border-radius: ${theme.spacing(4)};
 `;
 
 const LoginButton = styled(MaterialButton)`
-  width: 80%;
+  width: 100%;
+  max-width: 800px;
   height: 50px;
+  margin: ${theme.spacing(4)};
   text-transform: none;
 `;
 
