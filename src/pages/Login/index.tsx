@@ -2,7 +2,7 @@ import { Button as MaterialButton } from '@material-ui/core';
 import Background from 'assets/designs/background_login.png';
 import React from 'react';
 import styled from 'styled-components';
-import { flexCenterAlign } from 'styles/styleConstants';
+import { defaultShadow, flexCenterAlign } from 'styles/styleConstants';
 import { theme } from 'themes';
 
 const MainWrapper = styled.div`
@@ -21,7 +21,7 @@ const LoginContainer = styled.div`
   max-width: 1000px;
   height: 50%;
   margin: ${theme.spacing(4)};
-  box-shadow: ${theme.shadows[8]};
+  box-shadow: ${defaultShadow};
   border-radius: ${theme.spacing(1)};
 `;
 
