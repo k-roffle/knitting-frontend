@@ -22,7 +22,7 @@ const LoginContainer = styled.div`
   height: 50%;
   margin: ${theme.spacing(4)};
   box-shadow: ${theme.shadows[8]};
-  border-radius: ${theme.spacing(4)};
+  border-radius: ${theme.spacing(1)};
 `;
 
 const LoginButton = styled(MaterialButton)`
