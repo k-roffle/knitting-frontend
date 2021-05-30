@@ -19,7 +19,8 @@ const LoginContainer = styled.div`
   ${flexCenterAlign}
   width: 100%;
   max-width: 1000px;
-  height: 50%;
+  height: 100%;
+  max-height: 600px;
   margin: ${theme.spacing(4)};
   box-shadow: ${defaultShadow};
   border-radius: ${theme.spacing(1)};
@@ -28,7 +29,7 @@ const LoginContainer = styled.div`
 const LoginButton = styled(MaterialButton)`
   width: 100%;
   max-width: 800px;
-  height: 50px;
+  height: ${theme.spacing(6)};
   margin: ${theme.spacing(4)};
   text-transform: none;
 `;
