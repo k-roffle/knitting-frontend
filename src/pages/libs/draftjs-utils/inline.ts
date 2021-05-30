@@ -29,46 +29,29 @@ export type StyleKeyType =
   | 'NOT_CALCULATE'
   | 'FONTSIZE';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type StyleMapType = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   color?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   bgcolor?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fontSize?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fontFamily?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   CODE?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   STITCH_CALCULATE_ROUND_UP?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   STITCH_CALCULATE_ROUND_DOWN?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   STITCH_CALCULATE_ROUND?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ROW_CALCULATE_ROUND_UP?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ROW_CALCULATE_ROUND_DOWN?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ROW_CALCULATE_ROUND?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   STITCH_REPEAT_CALCULATE_ROUND?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   STITCH_REPEAT_CALCULATE_ROUND_UP?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   STITCH_REPEAT_CALCULATE_ROUND_DOWN?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ROW_REPEAT_CALCULATE_ROUND?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ROW_REPEAT_CALCULATE_ROUND_UP?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ROW_REPEAT_CALCULATE_ROUND_DOWN?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   NOT_CALCULATE?: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   FONTSIZE?: any;
 };
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 interface AddToCustomStyleMap {
   styleType: StyleKeyType;
