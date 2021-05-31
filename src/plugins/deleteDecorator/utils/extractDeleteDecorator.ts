@@ -1,15 +1,46 @@
 import { ContentBlock } from 'draft-js';
-import { getUnitDecoratorBoundary } from 'plugins/unitDecorator/utils/unitDecoratorRegex';
 
 import {
   getUnitTotallyMatch,
   getAllGroupsIntoSpace,
+  getUnitIncludeMatch,
 } from './deleteDecoratorRegex';
 
 interface UnitDecoratorIndice {
   unitDecorator: string;
   indices: [number, number];
 }
+
+interface CalculatedPosition {
+  startPosition: number;
+  endPosition: number;
+  contentBlock: ContentBlock;
+}
+
+const getCanCalculated = ({
+  startPosition,
+  endPosition,
+  contentBlock,
+}: CalculatedPosition): boolean => {
+  let canCalculate = false;
+
+  for (
+    let currentPosition = startPosition;
+    currentPosition < endPosition;
+    currentPosition++
+  ) {
+    const hasCalculatedStyle = contentBlock
+      .getInlineStyleAt(currentPosition)
+      .some((style) => style?.includes('CALCULATE') ?? false);
+
+    if (hasCalculatedStyle) {
+      canCalculate = true;
+      break;
+    }
+  }
+
+  return canCalculate;
+};
 
 interface Props {
   units: string[];
@@ -37,51 +68,41 @@ export function extractDeleteDecoratorsWithIndices({
     _chunk: string,
   ): string {
     const unitTotallyMatch = match.match(getUnitTotallyMatch(unitsRegrex));
-    const unitProportionMatch = match.match(
-      getUnitDecoratorBoundary(unitsRegrex),
-    );
 
     if (unitTotallyMatch) {
       return '';
     }
 
-    const startPosition = offset;
-    let endPosition = startPosition + match.length;
-    let unitDecorator = match;
+    const unitProportionMatches = match.match(getUnitIncludeMatch(unitsRegrex));
+    const splitByUnits = match.split(getUnitIncludeMatch(unitsRegrex));
 
-    if (unitProportionMatch) {
-      unitDecorator = match.slice(
-        0,
-        match.length - unitProportionMatch[0].length + 1,
-      );
+    if (unitProportionMatches) {
+      splitByUnits.reduce((accumulator, currentValue) => {
+        if (unitProportionMatches.includes(currentValue)) {
+          return accumulator + currentValue;
+        }
 
-      endPosition = startPosition + unitDecorator.length;
+        const startPosition = offset + accumulator.length;
+        const endPosition = startPosition + currentValue.length;
+        const canCalculated = getCanCalculated({
+          startPosition,
+          endPosition,
+          contentBlock,
+        });
+
+        if (canCalculated) {
+          const unitDecorator = match.slice(startPosition, endPosition);
+
+          tags.push({
+            unitDecorator,
+            indices: [startPosition, endPosition],
+          });
+        }
+
+        return accumulator + currentValue;
+      }, '');
     }
 
-    let canCalculate = false;
-
-    for (
-      let currentPosition = startPosition;
-      currentPosition < endPosition;
-      currentPosition++
-    ) {
-      const hasCalculatedStyle = contentBlock
-        .getInlineStyleAt(currentPosition)
-        .some((style) => style?.includes('CALCULATE') ?? false);
-
-      if (hasCalculatedStyle) {
-        canCalculate = true;
-        break;
-      }
-    }
-    if (!canCalculate) {
-      return '';
-    }
-
-    tags.push({
-      unitDecorator,
-      indices: [startPosition, endPosition],
-    });
     return '';
   }
 
