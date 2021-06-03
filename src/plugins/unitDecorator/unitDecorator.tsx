@@ -105,21 +105,20 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
   const calculateKey = getCalculateKey(unit);
   const originalStyle = getOriginalStyle(unit);
 
+  const selectionState = editorState.getSelection();
+  const newSelection = selectionState.merge({
+    anchorKey: blockKey,
+    focusKey: blockKey,
+    anchorOffset: start,
+    focusOffset: end,
+  });
+  const editorStateWithDecoratorSelection = EditorState.forceSelection(
+    editorState,
+    newSelection,
+  );
+  const decoratorStyle = editorStateWithDecoratorSelection.getCurrentInlineStyle();
+
   useEffect(() => {
-    const selectionState = editorState.getSelection();
-    const newSelection = selectionState.merge({
-      anchorKey: blockKey,
-      focusKey: blockKey,
-      anchorOffset: start,
-      focusOffset: end,
-    });
-
-    const editorStateWithDecoratorSelection = EditorState.forceSelection(
-      editorState,
-      newSelection,
-    );
-
-    const decoratorStyle = editorStateWithDecoratorSelection.getCurrentInlineStyle();
     const canCalculate =
       !decoratorStyle.has('NOT_CALCULATE') &&
       !decoratorStyle.some((style) => style?.includes(calculateKey) ?? false);
@@ -127,10 +126,8 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     if (canCalculate) {
       const newEeditorState = changeOriginalStyleToNeweStyle({
         editorState,
-        blockKey,
         originalStyle: originalStyle as StyleKeyType,
-        startOffset: start,
-        endOffset: end,
+        newSelection,
       });
 
       setEditorState(newEeditorState);
@@ -142,7 +139,6 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
       return;
     }
 
-    const decoratorStyle = editorState.getCurrentInlineStyle();
     let currentOriginalStyle = getOriginalStyle(unit);
 
     decoratorStyle.forEach((style) => {
@@ -155,12 +151,10 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     });
 
     const newEeditorState = changeOriginalStyleToNeweStyle({
-      editorState: getEditorState(),
-      blockKey,
+      editorState,
       originalStyle: currentOriginalStyle as StyleKeyType,
       newStyle: approximation,
-      startOffset: start,
-      endOffset: end,
+      newSelection,
     });
 
     setEditorState(newEeditorState);
