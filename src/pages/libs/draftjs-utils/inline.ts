@@ -4,6 +4,7 @@ import {
   EditorState,
   Modifier,
   RichUtils,
+  SelectionState,
 } from 'draft-js';
 
 import { getSelectedBlocksList } from './block';
@@ -240,21 +241,17 @@ export const getSelectionCustomInlineStyle = (
 interface ChangeOriginalStyleToNewStyle {
   editorState: EditorState;
   originalStyle: StyleKeyType;
+  newSelection: SelectionState;
   newStyle?: StyleKeyType;
-  blockKey?: string;
   originalOffset?: number;
-  startOffset?: number;
-  endOffset?: number;
 }
 
 export const changeOriginalStyleToNeweStyle = ({
-  blockKey,
   editorState,
   originalStyle,
   newStyle,
+  newSelection,
   originalOffset,
-  startOffset,
-  endOffset,
 }: ChangeOriginalStyleToNewStyle): EditorState => {
   const selectionState = editorState.getSelection();
   const originalSelection = selectionState.merge({
@@ -262,12 +259,6 @@ export const changeOriginalStyleToNeweStyle = ({
     focusKey: selectionState.getFocusKey(),
     anchorOffset: originalOffset ?? selectionState.getAnchorOffset(),
     focusOffset: originalOffset ?? selectionState.getFocusOffset(),
-  });
-
-  const newSelection = selectionState.merge({
-    focusKey: blockKey,
-    anchorOffset: startOffset,
-    focusOffset: endOffset,
   });
 
   const editorStateWithNewSelection = EditorState.forceSelection(
