@@ -1,11 +1,13 @@
 import { DraftStyleMap, EditorState, SelectionState } from 'draft-js';
 
-export type StyleKeyType =
+type DefaultStyleKeyType =
   | 'color'
   | 'bgcolor'
   | 'fontSize'
   | 'fontFamily'
-  | 'CODE'
+  | 'CODE';
+
+type CustomStyleKeyType =
   | 'STITCH_CALCULATE_ROUND'
   | 'STITCH_CALCULATE_ROUND_UP'
   | 'STITCH_CALCULATE_ROUND_DOWN'
@@ -20,6 +22,8 @@ export type StyleKeyType =
   | 'ROW_REPEAT_CALCULATE_ROUND_DOWN'
   | 'NOT_CALCULATE'
   | 'FONTSIZE';
+
+export type StyleKeyType = DefaultStyleKeyType | CustomStyleKeyType;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type StyleMapType = {
