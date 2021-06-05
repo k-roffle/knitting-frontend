@@ -1,8 +1,4 @@
-import {
-  getEndHashtagMatch,
-  getHashSigns,
-  getUnitDecoratorBoundary,
-} from './unitDecoratorRegex';
+import { getHashSigns, getUnitDecoratorBoundary } from './unitDecoratorRegex';
 
 interface UnitDecoratorIndice {
   unitDecorator: string;
@@ -21,24 +17,16 @@ export function extractUnitDecoratorsWithIndices(
 
   function replacer(
     match: string,
-    before: string,
-    _hash: string,
-    hashText: string,
+    _before: string,
     offset: number,
-    chunk: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _chunk: string,
   ): string {
-    const after = chunk.slice(offset + match.length);
-
-    if (after.match(getEndHashtagMatch(unit))) {
-      return '';
-    }
-
-    const startPosition = offset + before.length;
-    const endPosition =
-      startPosition + (offset === 0 ? match.length : match.length - 1);
+    const startPosition = offset;
+    const endPosition = startPosition + match.length;
 
     tags.push({
-      unitDecorator: hashText,
+      unitDecorator: match,
       indices: [startPosition, endPosition],
     });
     return '';
