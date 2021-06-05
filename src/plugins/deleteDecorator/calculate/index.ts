@@ -1,56 +1,9 @@
 import { ContentBlock } from 'draft-js';
 import { getUnitDecoratorBoundary } from 'plugins/unitDecorator/utils/unitDecoratorRegex';
 
-import {
-  getUnitTotallyMatch,
-  getAllGroupsIntoSpace,
-} from './deleteDecoratorRegex';
-
-interface UnitDecoratorIndice {
-  unitDecorator: string;
-  indices: [number, number];
-}
-
-interface CalculatedPosition {
-  startPosition: number;
-  endPosition: number;
-  contentBlock: ContentBlock;
-}
-
-const gethasCalculatedStyle = (
-  index: number,
-  contentBlock: ContentBlock,
-): boolean => {
-  return contentBlock
-    .getInlineStyleAt(index)
-    .some((style) => style?.includes('CALCULATE') ?? false);
-};
-
-const getCanCalculated = ({
-  startPosition,
-  endPosition,
-  contentBlock,
-}: CalculatedPosition): boolean => {
-  let canCalculate = false;
-
-  for (
-    let currentPosition = startPosition;
-    currentPosition < endPosition;
-    currentPosition++
-  ) {
-    const hasCalculatedStyle = gethasCalculatedStyle(
-      currentPosition,
-      contentBlock,
-    );
-
-    if (hasCalculatedStyle) {
-      canCalculate = true;
-      break;
-    }
-  }
-
-  return canCalculate;
-};
+import { getUnitTotallyMatch, getAllGroupsIntoSpace } from './regex';
+import { UnitDecoratorIndice } from './types';
+import { getMatchSplitByDecorators, getCanCalculated } from './utils';
 
 interface Props {
   units: string[];
@@ -58,11 +11,11 @@ interface Props {
   contentBlock: ContentBlock;
 }
 
-export function extractDeleteDecoratorsWithIndices({
+export const extractDeleteDecoratorsWithIndices = ({
   units,
   text,
   contentBlock,
-}: Props): UnitDecoratorIndice[] {
+}: Props): UnitDecoratorIndice[] => {
   if (!text) {
     return [];
   }
@@ -91,28 +44,11 @@ export function extractDeleteDecoratorsWithIndices({
     if (unitProportionMatches) {
       splitByDecorators = match.split(getUnitDecoratorBoundary(unitsRegrex));
     } else {
-      let accumulatorIndex = 0;
-      let hasPrevCalculatedStyle = false;
-
-      splitByDecorators = match.split('').reduce(
-        (accumulator, currentValue, charIndex) => {
-          const hasCalculatedStyle = gethasCalculatedStyle(
-            offset + charIndex,
-            contentBlock,
-          );
-
-          if (hasPrevCalculatedStyle !== hasCalculatedStyle) {
-            accumulatorIndex += 1;
-          }
-          hasPrevCalculatedStyle = hasCalculatedStyle;
-
-          accumulator[accumulatorIndex] = (
-            accumulator[accumulatorIndex] ?? ''
-          ).concat(currentValue);
-          return accumulator;
-        },
-        [''],
-      );
+      splitByDecorators = getMatchSplitByDecorators({
+        match,
+        offset,
+        contentBlock,
+      });
     }
 
     splitByDecorators.reduce((accumulator, currentValue) => {
@@ -146,4 +82,4 @@ export function extractDeleteDecoratorsWithIndices({
   text.replace(getAllGroupsIntoSpace(), replacer);
 
   return tags;
-}
+};
