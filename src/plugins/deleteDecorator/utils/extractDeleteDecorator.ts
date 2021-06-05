@@ -17,6 +17,15 @@ interface CalculatedPosition {
   contentBlock: ContentBlock;
 }
 
+const gethasCalculatedStyle = (
+  index: number,
+  contentBlock: ContentBlock,
+): boolean => {
+  return contentBlock
+    .getInlineStyleAt(index)
+    .some((style) => style?.includes('CALCULATE') ?? false);
+};
+
 const getCanCalculated = ({
   startPosition,
   endPosition,
@@ -29,9 +38,10 @@ const getCanCalculated = ({
     currentPosition < endPosition;
     currentPosition++
   ) {
-    const hasCalculatedStyle = contentBlock
-      .getInlineStyleAt(currentPosition)
-      .some((style) => style?.includes('CALCULATE') ?? false);
+    const hasCalculatedStyle = gethasCalculatedStyle(
+      currentPosition,
+      contentBlock,
+    );
 
     if (hasCalculatedStyle) {
       canCalculate = true;
@@ -74,34 +84,59 @@ export function extractDeleteDecoratorsWithIndices({
     }
 
     const unitProportionMatches = match.match(getUnitIncludeMatch(unitsRegrex));
-    const splitByUnits = match.split(getUnitIncludeMatch(unitsRegrex));
+    let splitByDecorators: string[] = [];
 
     if (unitProportionMatches) {
-      splitByUnits.reduce((accumulator, currentValue) => {
-        if (unitProportionMatches.includes(currentValue)) {
-          return accumulator + currentValue;
-        }
+      splitByDecorators = match.split(getUnitIncludeMatch(unitsRegrex));
+    } else {
+      let accumulatorIndex = 0;
+      let hasPrevCalculatedStyle = false;
 
-        const startPosition = offset + accumulator.length;
-        const endPosition = startPosition + currentValue.length;
-        const canCalculated = getCanCalculated({
-          startPosition,
-          endPosition,
-          contentBlock,
-        });
+      splitByDecorators = match.split('').reduce(
+        (accumulator, currentValue, charIndex) => {
+          const hasCalculatedStyle = gethasCalculatedStyle(
+            offset + charIndex,
+            contentBlock,
+          );
 
-        if (canCalculated) {
-          const unitDecorator = match.slice(startPosition, endPosition);
+          if (hasPrevCalculatedStyle !== hasCalculatedStyle) {
+            accumulatorIndex += 1;
+          }
+          hasPrevCalculatedStyle = hasCalculatedStyle;
 
-          tags.push({
-            unitDecorator,
-            indices: [startPosition, endPosition],
-          });
-        }
-
-        return accumulator + currentValue;
-      }, '');
+          accumulator[accumulatorIndex] = (
+            accumulator[accumulatorIndex] ?? ''
+          ).concat(currentValue);
+          return accumulator;
+        },
+        [''],
+      );
     }
+
+    splitByDecorators.reduce((accumulator, currentValue) => {
+      if (unitProportionMatches?.includes(currentValue)) {
+        return accumulator + currentValue;
+      }
+
+      const startPosition = offset + accumulator.length;
+      const endPosition = startPosition + currentValue.length;
+      const canCalculated = getCanCalculated({
+        startPosition,
+        endPosition,
+        contentBlock,
+      });
+
+      if (canCalculated) {
+        const unitDecorator = match.slice(startPosition, endPosition);
+
+        tags.push({
+          unitDecorator,
+          indices: [startPosition, endPosition],
+        });
+      }
+
+      return accumulator + currentValue;
+    }, '');
 
     return '';
   }
