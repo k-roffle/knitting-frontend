@@ -1,5 +1,5 @@
 import { ContentBlock } from 'draft-js';
-import { getUnitDecoratorBoundary } from 'plugins/unitDecorator/utils/unitDecoratorRegex';
+import { getUnitDecoratorBoundary } from 'plugins/unitDecorator/calculate/regex';
 
 import { getUnitTotallyMatch, getAllGroupsIntoSpace } from './regex';
 import { UnitDecoratorIndice } from './types';

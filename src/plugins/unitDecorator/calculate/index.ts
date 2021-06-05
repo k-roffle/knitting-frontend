@@ -1,14 +1,11 @@
-import { getHashSigns, getUnitDecoratorBoundary } from './unitDecoratorRegex';
+import { UnitDecoratorIndice } from 'plugins/deleteDecorator/calculate/types';
 
-interface UnitDecoratorIndice {
-  unitDecorator: string;
-  indices: [number, number];
-}
+import { getHashSigns, getUnitDecoratorBoundary } from './regex';
 
-export function extractUnitDecoratorsWithIndices(
+export const extractUnitDecoratorsWithIndices = (
   unit: string,
   text: string,
-): UnitDecoratorIndice[] {
+): UnitDecoratorIndice[] => {
   if (!text || !text.match(getHashSigns(unit))) {
     return [];
   }
@@ -35,4 +32,4 @@ export function extractUnitDecoratorsWithIndices(
   text.replace(getUnitDecoratorBoundary(unit), replacer);
 
   return tags;
-}
+};
