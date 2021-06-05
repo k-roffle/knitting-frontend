@@ -1,9 +1,9 @@
 import { ContentBlock } from 'draft-js';
+import { getUnitDecoratorBoundary } from 'plugins/unitDecorator/utils/unitDecoratorRegex';
 
 import {
   getUnitTotallyMatch,
   getAllGroupsIntoSpace,
-  getUnitIncludeMatch,
 } from './deleteDecoratorRegex';
 
 interface UnitDecoratorIndice {
@@ -83,11 +83,13 @@ export function extractDeleteDecoratorsWithIndices({
       return '';
     }
 
-    const unitProportionMatches = match.match(getUnitIncludeMatch(unitsRegrex));
+    const unitProportionMatches = match.match(
+      getUnitDecoratorBoundary(unitsRegrex),
+    );
     let splitByDecorators: string[] = [];
 
     if (unitProportionMatches) {
-      splitByDecorators = match.split(getUnitIncludeMatch(unitsRegrex));
+      splitByDecorators = match.split(getUnitDecoratorBoundary(unitsRegrex));
     } else {
       let accumulatorIndex = 0;
       let hasPrevCalculatedStyle = false;
