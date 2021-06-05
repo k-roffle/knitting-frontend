@@ -1,6 +1,6 @@
 import { ContentBlock } from 'draft-js';
 
-import { extractUnitDecoratorsWithIndices } from './utils/extractUnitDecorator';
+import { extractUnitDecoratorsWithIndices } from './calculate';
 
 export default (
   unit: string,
