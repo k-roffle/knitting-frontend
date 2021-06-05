@@ -1,4 +1,4 @@
-import { DraftInlineStyle, EditorState } from 'draft-js';
+import { EditorState } from 'draft-js';
 import {
   changeOriginalStyleToNeweStyle,
   StyleKeyType,
@@ -10,64 +10,50 @@ import { UnitDecoratorProps } from '../unitDecorator';
 export default function DeleteDecorator(
   props: UnitDecoratorProps,
 ): ReactElement {
-  const { children, getEditorState, setEditorState, blockKey, end } = props;
+  const {
+    children,
+    getEditorState,
+    setEditorState,
+    blockKey,
+    start,
+    end,
+  } = props;
+
   const editorState = getEditorState();
-
-  const getDecoratorStyle = (startOffset: number): DraftInlineStyle => {
-    const selectionState = editorState.getSelection();
-    const newSelection = selectionState.merge({
-      anchorKey: blockKey,
-      focusKey: blockKey,
-      anchorOffset: startOffset,
-      focusOffset: end,
-    });
-
-    const editorStateWithDecoratorSelection = EditorState.forceSelection(
-      editorState,
-      newSelection,
-    );
-
-    return editorStateWithDecoratorSelection.getCurrentInlineStyle();
-  };
+  const selectionState = editorState.getSelection();
+  const newSelection = selectionState.merge({
+    anchorKey: blockKey,
+    focusKey: blockKey,
+    anchorOffset: start,
+    focusOffset: end,
+  });
+  const editorStateWithDecoratorSelection = EditorState.forceSelection(
+    editorState,
+    newSelection,
+  );
+  const decoratorStyle = editorStateWithDecoratorSelection.getCurrentInlineStyle();
 
   useEffect(() => {
-    children?.some((element) => {
-      const startOffset = element?.props?.start;
+    if (start == null) {
+      return;
+    }
 
-      if (startOffset == null) {
-        return false;
-      }
+    let newEeditorState;
 
-      const decoratorStyle = getDecoratorStyle(startOffset);
-
-      const canCalculate = decoratorStyle.some(
-        (style) => style?.includes('CALCULATE') ?? false,
-      );
-
-      if (canCalculate) {
-        let newEeditorState;
-
-        decoratorStyle.forEach((style) => {
-          if (style?.includes('CALCULATE')) {
-            newEeditorState = changeOriginalStyleToNeweStyle({
-              editorState,
-              blockKey,
-              originalStyle: style as StyleKeyType,
-              originalOffset: end,
-              startOffset,
-              endOffset: end,
-            });
-          }
+    decoratorStyle.forEach((style) => {
+      if (style?.includes('CALCULATE')) {
+        newEeditorState = changeOriginalStyleToNeweStyle({
+          editorState,
+          originalStyle: style as StyleKeyType,
+          newSelection,
         });
-
-        if (newEeditorState != null) {
-          setEditorState(newEeditorState);
-          return true;
-        }
       }
-      return false;
     });
-  }, [editorState]);
+
+    if (newEeditorState != null) {
+      setEditorState(newEeditorState);
+    }
+  }, []);
 
   return <>{children}</>;
 }
