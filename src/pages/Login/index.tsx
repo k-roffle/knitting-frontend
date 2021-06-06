@@ -41,7 +41,9 @@ const Login = (): React.ReactElement => {
 
   const handleOnClickLogin = async (): Promise<void> => {
     try {
-      await request('/auth/google/code', 'post');
+      const response = await request('/auth/google/code', 'post');
+      // response.data.
+      window.localStorage.setItem('access-token', 'todo');
     } catch (e) {
       history.push('/error/');
     }
