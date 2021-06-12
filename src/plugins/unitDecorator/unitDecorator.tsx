@@ -7,7 +7,12 @@ import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palatte';
 
-import { UNIT_APPROXIMATION_TYPE, UNIT_TYPE } from './types';
+import {
+  REPEAT_APPROXIMATION,
+  REPEAT_APPROXIMATION_TYPE,
+  UNIT_APPROXIMATION_TYPE,
+  UNIT_TYPE,
+} from './types';
 import {
   getCalculateKey,
   getOriginalStyle,
@@ -95,6 +100,10 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
   } = props;
 
   const [showToolbar, setShowToolbar] = useState(false);
+  const [showRepeatDetailToolbar, setShowRepeatDetailToolbar] = useState<
+    Exclude<UNIT_TYPE, '번'> | undefined
+  >();
+
   const [currentCalculateKey, setCurrentCalculateKey] = useState<
     UNIT_APPROXIMATION_TYPE | undefined
   >(getOriginalStyle(unit));
@@ -161,6 +170,10 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
   };
 
   useEffect(() => {
+    setShowRepeatDetailToolbar(undefined);
+  }, [showToolbar]);
+
+  useEffect(() => {
     const handleShowToolbar = (): void => {
       setShowToolbar(false);
     };
@@ -177,9 +190,75 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     };
   }, [showToolbar]);
 
-  const renderTooltipMenu = (): React.ReactElement => {
-    const displayedApproximations = getDisplayedApproximations(unit);
+  const stopClickEvent = (event: React.MouseEvent): void => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
 
+  const handleRepeatToolbarClick = (
+    event: React.MouseEvent,
+    key: REPEAT_APPROXIMATION_TYPE,
+    // eslint-disable-next-line consistent-return
+  ): void => {
+    const { STITCH_REPEAT, ROW_REPEAT, NOT_CALCULATE } = REPEAT_APPROXIMATION;
+
+    switch (key) {
+      case STITCH_REPEAT:
+        stopClickEvent(event);
+        return setShowRepeatDetailToolbar('코');
+      case ROW_REPEAT:
+        stopClickEvent(event);
+        return setShowRepeatDetailToolbar('단');
+      case NOT_CALCULATE:
+        return handleClick(key as UNIT_APPROXIMATION_TYPE);
+      default:
+    }
+  };
+
+  const renderTooltipMenu = (): React.ReactElement => {
+    const displayedApproximations = getDisplayedApproximations(
+      unit,
+      showRepeatDetailToolbar,
+    );
+
+    return showRepeatDetailToolbar == null
+      ? renderRePeatTooltipMenu(displayedApproximations)
+      : renderDetailTooltipMenu(displayedApproximations);
+  };
+
+  const renderRePeatTooltipMenu = (
+    displayedApproximations: Record<string, string>,
+  ): React.ReactElement => {
+    return (
+      <TooltipMenuContainer>
+        {Object.values(displayedApproximations).map(
+          (displayApproximatio, index): React.ReactElement => {
+            const menuKey = Object.keys(displayedApproximations)[
+              index
+            ] as REPEAT_APPROXIMATION_TYPE;
+            const isSelectedCalculateKey =
+              menuKey === 'NOT_CALCULATE' && currentCalculateKey === menuKey;
+
+            return (
+              <TooltipMenu
+                key={menuKey}
+                onClick={(event): void =>
+                  handleRepeatToolbarClick(event, menuKey)
+                }
+                isSelectedCalculateKey={isSelectedCalculateKey}
+              >
+                {displayApproximatio}
+              </TooltipMenu>
+            );
+          },
+        )}
+      </TooltipMenuContainer>
+    );
+  };
+
+  const renderDetailTooltipMenu = (
+    displayedApproximations: Record<string, string>,
+  ): React.ReactElement => {
     return (
       <TooltipMenuContainer>
         {Object.values(displayedApproximations).map(
