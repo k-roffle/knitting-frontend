@@ -19,7 +19,7 @@ const UNITS = {
   REPEAT: '번',
 } as const;
 
-export const NOT_CALCULATE = 'NOT_CALCULATE';
+const NOT_CALCULATE = 'NOT_CALCULATE';
 
 export type UNIT_TYPE = typeof UNITS[keyof typeof UNITS];
 
