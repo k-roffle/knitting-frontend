@@ -4,7 +4,7 @@ const UNIT_DISPLAY_APPROXIMATION = {
   ROUND_DOWN: '내림',
   ROUND: '반올림',
   ROUND_UP: '올림',
-  NOT_CALCULATE: '계산 안함',
+  NOT_CALCULATE: '계산 안 함',
 } as const;
 
 export const STITCH_APPROXIMATION = {
