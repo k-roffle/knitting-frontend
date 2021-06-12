@@ -1,8 +1,6 @@
 import { EditorState } from 'draft-js';
-import {
-  changeOriginalStyleToNeweStyle,
-  StyleKeyType,
-} from 'pages/libs/draftjs-utils/inline';
+import { changeOriginalStyleToNeweStyle } from 'pages/libs/draftjs-utils/inline';
+import { StyleKeyType } from 'pages/libs/draftjs-utils/types';
 import { ReactElement, useEffect } from 'react';
 
 import { UnitDecoratorProps } from '../unitDecorator';
