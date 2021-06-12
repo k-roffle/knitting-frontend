@@ -3,10 +3,11 @@ import { ContentState, EditorState } from 'draft-js';
 import { changeOriginalStyleToNeweStyle } from 'pages/libs/draftjs-utils/inline';
 import { StyleKeyType } from 'pages/libs/draftjs-utils/types';
 import { ReactElement, useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { theme } from 'themes';
-import { palette } from 'themes/palatte';
 
+import { DetailTooltipMenu } from './components/DetailTooltipMenu';
+import { RepeatTooltipMenu } from './components/RepeatTooltipMenu';
 import {
   REPEAT_APPROXIMATION,
   REPEAT_APPROXIMATION_TYPE,
@@ -36,10 +37,6 @@ export interface UnitDecoratorProps {
   getEditorState(): EditorState;
 }
 
-interface TooltipMenuProps {
-  isSelectedCalculateKey: boolean;
-}
-
 const DecoratorWrapper = styled.span`
   > span {
     margin: ${theme.spacing(0, 0.5)};
@@ -63,27 +60,6 @@ const ToolTipWrapper = styled.div`
   > div {
     pointer-events: auto;
   }
-`;
-
-const TooltipMenuContainer = styled.div`
-  display: flex;
-`;
-
-const TooltipMenu = styled.span<TooltipMenuProps>`
-  padding: ${theme.spacing(0.8)};
-  margin: ${theme.spacing(0.2)};
-  white-space: nowrap;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${palette.action.hover};
-  }
-
-  ${({ isSelectedCalculateKey }) =>
-    isSelectedCalculateKey &&
-    css`
-      background-color: ${palette.action.selected};
-    `}
 `;
 
 export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
@@ -221,64 +197,18 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
       showRepeatDetailToolbar,
     );
 
-    return showRepeatDetailToolbar == null
-      ? renderRePeatTooltipMenu(displayedApproximations)
-      : renderDetailTooltipMenu(displayedApproximations);
-  };
-
-  const renderRePeatTooltipMenu = (
-    displayedApproximations: Record<string, string>,
-  ): React.ReactElement => {
-    return (
-      <TooltipMenuContainer>
-        {Object.values(displayedApproximations).map(
-          (displayApproximatio, index): React.ReactElement => {
-            const menuKey = Object.keys(displayedApproximations)[
-              index
-            ] as REPEAT_APPROXIMATION_TYPE;
-            const isSelectedCalculateKey =
-              menuKey === 'NOT_CALCULATE' && currentCalculateKey === menuKey;
-
-            return (
-              <TooltipMenu
-                key={menuKey}
-                onClick={(event): void =>
-                  handleRepeatToolbarClick(event, menuKey)
-                }
-                isSelectedCalculateKey={isSelectedCalculateKey}
-              >
-                {displayApproximatio}
-              </TooltipMenu>
-            );
-          },
-        )}
-      </TooltipMenuContainer>
-    );
-  };
-
-  const renderDetailTooltipMenu = (
-    displayedApproximations: Record<string, string>,
-  ): React.ReactElement => {
-    return (
-      <TooltipMenuContainer>
-        {Object.values(displayedApproximations).map(
-          (displayApproximatio, index): React.ReactElement => {
-            const menuKey = Object.keys(displayedApproximations)[
-              index
-            ] as UNIT_APPROXIMATION_TYPE;
-
-            return (
-              <TooltipMenu
-                key={menuKey}
-                onClick={(): void => handleClick(menuKey)}
-                isSelectedCalculateKey={currentCalculateKey === menuKey}
-              >
-                {displayApproximatio}
-              </TooltipMenu>
-            );
-          },
-        )}
-      </TooltipMenuContainer>
+    return showRepeatDetailToolbar == null ? (
+      <RepeatTooltipMenu
+        currentCalculateKey={currentCalculateKey}
+        displayedApproximations={displayedApproximations}
+        onClick={handleRepeatToolbarClick}
+      />
+    ) : (
+      <DetailTooltipMenu
+        currentCalculateKey={currentCalculateKey}
+        displayedApproximations={displayedApproximations}
+        onClick={handleClick}
+      />
     );
   };
 
