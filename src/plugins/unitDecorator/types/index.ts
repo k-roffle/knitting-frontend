@@ -3,6 +3,7 @@ import {
   REPEAT_APPROXIMATION_TYPE,
   REPEAT_DISPLAY_APPROXIMATION,
 } from './repeats';
+import { UnitDecoratorStyleMap } from './styles';
 import {
   STITCH_APPROXIMATION_TYPE,
   ROW_APPROXIMATION_TYPE,
@@ -35,4 +36,5 @@ export {
   ROW_DISPLAY_APPROXIMATION,
   REPEAT_APPROXIMATION,
   REPEAT_DISPLAY_APPROXIMATION,
+  UnitDecoratorStyleMap,
 };

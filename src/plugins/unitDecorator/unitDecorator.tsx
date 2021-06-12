@@ -1,9 +1,7 @@
 import { Tooltip } from '@material-ui/core';
 import { ContentState, EditorState } from 'draft-js';
-import {
-  changeOriginalStyleToNeweStyle,
-  StyleKeyType,
-} from 'pages/libs/draftjs-utils/inline';
+import { changeOriginalStyleToNeweStyle } from 'pages/libs/draftjs-utils/inline';
+import { StyleKeyType } from 'pages/libs/draftjs-utils/types';
 import { ReactElement, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
