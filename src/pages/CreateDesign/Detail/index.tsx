@@ -280,7 +280,7 @@ const Detail = (): React.ReactElement => {
                   <NumberInput
                     id="total-length"
                     type="number"
-                    aria-describedby="total-lengt"
+                    aria-describedby="total-length"
                     required
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>

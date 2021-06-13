@@ -13,7 +13,7 @@ const addToCustomStyleMap = ({
   styleType,
   styleKey,
   style,
-  onChageCustomStyleMap,
+  onChangeCustomStyleMap,
 }: AddToCustomStyleMap): void => {
   const newCustomInlineStylesMap = Object.assign(customInlineStylesMap, {
     [`${styleType.toLowerCase()}-${style}`]: {
@@ -21,15 +21,15 @@ const addToCustomStyleMap = ({
     },
   });
 
-  onChageCustomStyleMap(newCustomInlineStylesMap);
+  onChangeCustomStyleMap(newCustomInlineStylesMap);
 };
 
 export const toggleCustomInlineStyle = ({
   editorState,
   styleType,
   style,
-  isAlreadyApplyed,
-  onChageCustomStyleMap,
+  isAlreadyApplied,
+  onChangeCustomStyleMap,
 }: ToggleCustomInlineStyle): EditorState => {
   const selection = editorState.getSelection();
   const nextContentState = Object.keys(customInlineStylesMap[styleType]).reduce(
@@ -63,12 +63,12 @@ export const toggleCustomInlineStyle = ({
       nextEditorState,
       `${styleType.toLowerCase()}-${style}`,
     );
-    if (!isAlreadyApplyed) {
+    if (!isAlreadyApplied) {
       addToCustomStyleMap({
         styleType,
         styleKey,
         style,
-        onChageCustomStyleMap,
+        onChangeCustomStyleMap,
       });
     }
   }
@@ -178,7 +178,7 @@ export const getSelectionCustomInlineStyle = (
   return {};
 };
 
-export const changeOriginalStyleToNeweStyle = ({
+export const changeOriginalStyleToNewStyle = ({
   editorState,
   originalStyle,
   newStyle,

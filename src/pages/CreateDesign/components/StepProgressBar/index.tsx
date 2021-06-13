@@ -5,7 +5,7 @@ import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
-import { palette } from 'themes/palatte';
+import { palette } from 'themes/palette';
 import { zIndex } from 'themes/zIndex';
 
 interface StepIconProps {

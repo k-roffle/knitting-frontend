@@ -2,7 +2,7 @@ import { ContentBlock } from 'draft-js';
 import { getUnitDecoratorBoundary } from 'plugins/unitDecorator/calculate/regex';
 
 import { getUnitTotallyMatch, getAllGroupsIntoSpace } from './regex';
-import { UnitDecoratorIndice } from './types';
+import { UnitDecoratorIndices } from './types';
 import { getMatchSplitByDecorators, getCanCalculated } from './utils';
 
 interface Props {
@@ -15,13 +15,13 @@ export const extractDeleteDecoratorsWithIndices = ({
   units,
   text,
   contentBlock,
-}: Props): UnitDecoratorIndice[] => {
+}: Props): UnitDecoratorIndices[] => {
   if (!text) {
     return [];
   }
 
-  const tags: UnitDecoratorIndice[] = [];
-  const unitsRegrex = units.join('|');
+  const tags: UnitDecoratorIndices[] = [];
+  const unitsRegex = units.join('|');
 
   function replacer(
     match: string,
@@ -30,19 +30,19 @@ export const extractDeleteDecoratorsWithIndices = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _chunk: string,
   ): string {
-    const unitTotallyMatch = match.match(getUnitTotallyMatch(unitsRegrex));
+    const unitTotallyMatch = match.match(getUnitTotallyMatch(unitsRegex));
 
     if (unitTotallyMatch) {
       return '';
     }
 
     const unitProportionMatches = match.match(
-      getUnitDecoratorBoundary(unitsRegrex),
+      getUnitDecoratorBoundary(unitsRegex),
     );
     let splitByDecorators: string[] = [];
 
     if (unitProportionMatches) {
-      splitByDecorators = match.split(getUnitDecoratorBoundary(unitsRegrex));
+      splitByDecorators = match.split(getUnitDecoratorBoundary(unitsRegex));
     } else {
       splitByDecorators = getMatchSplitByDecorators({
         match,

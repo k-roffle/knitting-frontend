@@ -2,7 +2,7 @@ import { UNIT_APPROXIMATION_TYPE } from 'plugins/unitDecorator/types';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
-import { palette } from 'themes/palatte';
+import { palette } from 'themes/palette';
 
 export interface TooltipMenuProps {
   isSelectedCalculateKey: boolean;
@@ -43,7 +43,7 @@ export const DetailTooltipMenu = ({
 }: Props): React.ReactElement => (
   <TooltipMenuContainer>
     {Object.values(displayedApproximations).map(
-      (displayApproximatio, index): React.ReactElement => {
+      (displayApproximation, index): React.ReactElement => {
         const menuKey = Object.keys(displayedApproximations)[
           index
         ] as UNIT_APPROXIMATION_TYPE;
@@ -56,7 +56,7 @@ export const DetailTooltipMenu = ({
             onClick={(): void => onClick(menuKey)}
             isSelectedCalculateKey={isSelectedCalculateKey}
           >
-            {displayApproximatio}
+            {displayApproximation}
           </TooltipMenu>
         );
       },

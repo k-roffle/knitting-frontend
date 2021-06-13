@@ -1,6 +1,6 @@
 import { Tooltip } from '@material-ui/core';
 import { ContentState, EditorState } from 'draft-js';
-import { changeOriginalStyleToNeweStyle } from 'pages/libs/draftjs-utils/inline';
+import { changeOriginalStyleToNewStyle } from 'pages/libs/draftjs-utils/inline';
 import { StyleKeyType } from 'pages/libs/draftjs-utils/types';
 import { ReactElement, useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -107,13 +107,13 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
       !decoratorStyle.some((style) => style?.includes(calculateKey) ?? false);
 
     if (canCalculate) {
-      const newEeditorState = changeOriginalStyleToNeweStyle({
+      const newEditorState = changeOriginalStyleToNewStyle({
         editorState,
         originalStyle: originalStyle as StyleKeyType,
         newSelection,
       });
 
-      setEditorState(newEeditorState);
+      setEditorState(newEditorState);
     }
   }, [editorState]);
 
@@ -133,14 +133,14 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
       }
     });
 
-    const newEeditorState = changeOriginalStyleToNeweStyle({
+    const newEditorState = changeOriginalStyleToNewStyle({
       editorState,
       originalStyle: currentOriginalStyle as StyleKeyType,
       newStyle: approximation,
       newSelection,
     });
 
-    setEditorState(newEeditorState);
+    setEditorState(newEditorState);
     setShowToolbar(false);
     setCurrentCalculateKey(approximation);
   };

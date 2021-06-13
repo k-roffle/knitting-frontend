@@ -19,14 +19,14 @@ import { UnitDecoratorStyleMap } from 'plugins/unitDecorator/types';
 import { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
-import { palette } from 'themes/palatte';
+import { palette } from 'themes/palette';
 
 import { FontSize } from '../components/FontSize';
 
 import { defaultFontSize } from './types';
 import { getCurrentFontSize } from './utils';
 
-const stitcheDecoratorPlugin = createUnitDecoratorPlugin({ unit: '코' });
+const stitchDecoratorPlugin = createUnitDecoratorPlugin({ unit: '코' });
 const rowDecoratorPlugin = createUnitDecoratorPlugin({ unit: '단' });
 const repeatDecoratorPlugin = createUnitDecoratorPlugin({ unit: '번' });
 
@@ -111,13 +111,13 @@ const Pattern = (): React.ReactElement => {
   const [isFocused, setIsFocused] = useState(false);
   const editor = useRef<Editor | null>(null);
 
-  stitcheDecoratorPlugin.onChange = (editState: EditorState): EditorState => {
+  stitchDecoratorPlugin.onChange = (editState: EditorState): EditorState => {
     setEditorState(editState);
     return editState;
   };
 
   const plugins = [
-    stitcheDecoratorPlugin,
+    stitchDecoratorPlugin,
     rowDecoratorPlugin,
     repeatDecoratorPlugin,
     deleteDecoratorPlugin,
@@ -153,7 +153,7 @@ const Pattern = (): React.ReactElement => {
               fontSize={currentFontSize}
               editorState={editorState}
               onChange={setEditorState}
-              onChageCustomStyleMap={changeFontSize}
+              onChangeCustomStyleMap={changeFontSize}
             />
           </ToolbarContentWrapper>
         )}

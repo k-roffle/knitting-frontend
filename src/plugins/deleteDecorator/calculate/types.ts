@@ -1,6 +1,6 @@
 import { ContentBlock } from 'draft-js';
 
-export interface UnitDecoratorIndice {
+export interface UnitDecoratorIndices {
   unitDecorator: string;
   indices: [number, number];
 }

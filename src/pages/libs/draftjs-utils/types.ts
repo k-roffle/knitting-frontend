@@ -53,15 +53,15 @@ export interface AddToCustomStyleMap {
   styleType: StyleKeyType;
   styleKey: string;
   style: string | number;
-  onChageCustomStyleMap: (customStyleMap: DraftStyleMap) => void;
+  onChangeCustomStyleMap: (customStyleMap: DraftStyleMap) => void;
 }
 
 export interface ToggleCustomInlineStyle {
   editorState: EditorState;
   styleType: StyleKeyType;
   style: string | number;
-  isAlreadyApplyed: boolean;
-  onChageCustomStyleMap: (customStyleMap: DraftStyleMap) => void;
+  isAlreadyApplied: boolean;
+  onChangeCustomStyleMap: (customStyleMap: DraftStyleMap) => void;
 }
 
 export interface ChangeOriginalStyleToNewStyle {

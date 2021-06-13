@@ -1,5 +1,5 @@
 import { EditorState } from 'draft-js';
-import { changeOriginalStyleToNeweStyle } from 'pages/libs/draftjs-utils/inline';
+import { changeOriginalStyleToNewStyle } from 'pages/libs/draftjs-utils/inline';
 import { StyleKeyType } from 'pages/libs/draftjs-utils/types';
 import { ReactElement, useEffect } from 'react';
 
@@ -36,11 +36,11 @@ export default function DeleteDecorator(
       return;
     }
 
-    let newEeditorState;
+    let newEditorState;
 
     decoratorStyle.forEach((style) => {
       if (style?.includes('CALCULATE')) {
-        newEeditorState = changeOriginalStyleToNeweStyle({
+        newEditorState = changeOriginalStyleToNewStyle({
           editorState,
           originalStyle: style as StyleKeyType,
           newSelection,
@@ -48,8 +48,8 @@ export default function DeleteDecorator(
       }
     });
 
-    if (newEeditorState != null) {
-      setEditorState(newEeditorState);
+    if (newEditorState != null) {
+      setEditorState(newEditorState);
     }
   }, []);
 

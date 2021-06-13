@@ -8,7 +8,7 @@ import { fontSizeOptions, FontSizeProps } from './types';
 
 export const FontSize = ({
   onChange,
-  onChageCustomStyleMap,
+  onChangeCustomStyleMap,
   editorState,
   defaultFontSize,
   fontSize,
@@ -18,8 +18,8 @@ export const FontSize = ({
       editorState,
       styleType: 'fontSize',
       style: newFontSize,
-      isAlreadyApplyed: newFontSize === currentFontSize,
-      onChageCustomStyleMap,
+      isAlreadyApplied: newFontSize === currentFontSize,
+      onChangeCustomStyleMap,
     });
 
     if (newState) {
