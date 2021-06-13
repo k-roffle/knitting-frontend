@@ -6,7 +6,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { palette } from 'themes/palatte';
+import { palette } from 'themes/palette';
 
 const DropDownWrapper = styled.div`
   height: ${theme.spacing(4)};

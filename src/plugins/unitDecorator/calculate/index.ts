@@ -1,16 +1,16 @@
-import { UnitDecoratorIndice } from 'plugins/deleteDecorator/calculate/types';
+import { UnitDecoratorIndices } from 'plugins/deleteDecorator/calculate/types';
 
 import { getHashSigns, getUnitDecoratorBoundary } from './regex';
 
 export const extractUnitDecoratorsWithIndices = (
   unit: string,
   text: string,
-): UnitDecoratorIndice[] => {
+): UnitDecoratorIndices[] => {
   if (!text || !text.match(getHashSigns(unit))) {
     return [];
   }
 
-  const tags: UnitDecoratorIndice[] = [];
+  const tags: UnitDecoratorIndices[] = [];
 
   function replacer(
     match: string,

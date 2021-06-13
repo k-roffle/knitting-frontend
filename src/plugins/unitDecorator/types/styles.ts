@@ -1,5 +1,5 @@
 import { deepOrange, blue } from '@material-ui/core/colors';
-import { palette } from 'themes/palatte';
+import { palette } from 'themes/palette';
 
 import { REPEAT_DETAIL_APPROXIMATION } from './repeats';
 import { STITCH_APPROXIMATION, ROW_APPROXIMATION } from './units';
