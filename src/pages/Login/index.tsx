@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { defaultShadow, flexCenterAlign } from 'styles/constants';
 import { theme } from 'themes';
-import { request } from 'utils/requests';
+import { constructURL } from 'utils/requests';
 
 const MainWrapper = styled.div`
   background-image: url(${Background});
@@ -41,7 +41,9 @@ const Login = (): React.ReactElement => {
 
   const handleOnClickLogin = async (): Promise<void> => {
     try {
-      await request('/auth/google/code', 'post');
+      const loginUrl = constructURL('/auth/google/code');
+
+      window.location.href = loginUrl.toString();
     } catch (e) {
       history.push('/error/');
     }

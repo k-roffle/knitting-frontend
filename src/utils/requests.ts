@@ -5,7 +5,7 @@ import { getConfig } from './config';
 
 type Method = 'get' | 'post' | 'put' | 'delete' | 'patch';
 
-const constructURL = (pathname: string): parse => {
+export const constructURL = (pathname: string): parse => {
   const url = parse(getConfig('REACT_APP_SERVER_URL'));
 
   return url.set('pathname', pathname);
@@ -19,6 +19,8 @@ export async function request(
   accessToken?: string,
 ): Promise<AxiosResponse> {
   const url = constructURL(pathname);
+
+  console.log(url);
   const payload: AxiosRequestConfig = {
     method,
     url: url.toString(),
