@@ -1,4 +1,5 @@
 import {
+  NOT_CALCULATE,
   REPEAT_APPROXIMATION_TYPE,
   UNIT_APPROXIMATION_TYPE,
 } from 'plugins/unitDecorator/types';
@@ -25,7 +26,7 @@ export const RepeatTooltipMenu = ({
           index
         ] as REPEAT_APPROXIMATION_TYPE;
         const isSelectedCalculateKey =
-          menuKey === 'NOT_CALCULATE' && currentCalculateKey === menuKey;
+          menuKey === NOT_CALCULATE && currentCalculateKey === menuKey;
 
         return (
           <TooltipMenu
