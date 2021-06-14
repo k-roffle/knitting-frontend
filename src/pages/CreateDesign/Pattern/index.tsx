@@ -17,11 +17,13 @@ import createDeleteDecoratorPlugin from 'plugins/deleteDecorator';
 import createUnitDecoratorPlugin from 'plugins/unitDecorator';
 import { UnitDecoratorStyleMap } from 'plugins/unitDecorator/types';
 import { useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
 
 import { FontSize } from '../components/FontSize';
+import { editorStateAtom } from '../recoils';
 
 import { defaultFontSize } from './types';
 import { getCurrentFontSize } from './utils';
@@ -89,9 +91,7 @@ const ToolbarContentWrapper = styled.div`
 `;
 
 const Pattern = (): React.ReactElement => {
-  const [editorState, setEditorState] = useState<EditorState>(
-    EditorState.createEmpty(),
-  );
+  const [editorState, setEditorState] = useRecoilState(editorStateAtom);
 
   const [customStyleMap, setCustomStyleMap] = useState<DraftStyleMap>({
     CODE: {
