@@ -1,3 +1,4 @@
+import { EditorState } from 'draft-js';
 import { atom } from 'recoil';
 
 import { DESIGN, DesignInput, PAGE, PAGE_TYPE, PATTERN } from './types';
@@ -26,4 +27,9 @@ export const currentDesignInputAtom = atom<DesignInput>({
     price: 0,
     pattern: '',
   },
+});
+
+export const editorStateAtom = atom<EditorState>({
+  key: 'editorState',
+  default: EditorState.createEmpty(),
 });
