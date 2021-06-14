@@ -5,7 +5,7 @@ import {
   currentStepAtom,
 } from 'pages/CreateDesign/recoils';
 import { PAGE } from 'pages/CreateDesign/types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { request } from 'utils/requests';
 
@@ -27,7 +27,7 @@ const Footer = (): React.ReactElement => {
     designType,
     patternType,
   } = useRecoilValue(currentDesignInputAtom);
-  const [openErrorSnackbar, setOpenErrorSnackbar] = React.useState(false);
+  const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false);
 
   const handleSnackbarClose = () => {
     setOpenErrorSnackbar(false);
