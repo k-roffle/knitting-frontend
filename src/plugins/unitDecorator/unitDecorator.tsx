@@ -1,9 +1,12 @@
 import { Tooltip } from '@material-ui/core';
 import { ContentState, EditorState } from 'draft-js';
+import { currentStepAtom } from 'pages/CreateDesign/recoils';
+import { PAGE } from 'pages/CreateDesign/types';
 import { changeOriginalStyleToNewStyle } from 'pages/libs/draftjs-utils/inline';
 import { StyleKeyType } from 'pages/libs/draftjs-utils/types';
 import { ReactElement, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
+import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 
 import { DetailTooltipMenu } from './components/DetailTooltipMenu';
@@ -37,7 +40,7 @@ export interface UnitDecoratorProps {
   getEditorState(): EditorState;
 }
 
-const DecoratorWrapper = styled.span`
+const DecoratorWrapper = styled.span<{ isReadOnly?: boolean }>`
   > span {
     margin: ${theme.spacing(0, 0.5)};
     padding: ${theme.spacing(0.5, 1)};
@@ -45,11 +48,16 @@ const DecoratorWrapper = styled.span`
     color: ${theme.palette.background.paper};
     box-shadow: ${theme.shadows[2]};
     line-height: 210%;
-    cursor: pointer;
 
-    &:hover {
-      box-shadow: ${theme.shadows[4]};
-    }
+    ${({ isReadOnly }) =>
+      !isReadOnly &&
+      css`
+        cursor: pointer;
+
+        &:hover {
+          box-shadow: ${theme.shadows[4]};
+        }
+      `};
   }
 `;
 
@@ -62,19 +70,17 @@ const ToolTipWrapper = styled.div`
   }
 `;
 
-export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
-  const {
-    className,
-    children,
-    unit,
-    getEditorState,
-    setEditorState,
-    blockKey,
-    start,
-    end,
-    ...otherProps
-  } = props;
-
+export default function UnitDecorator({
+  className,
+  children,
+  unit,
+  getEditorState,
+  setEditorState,
+  blockKey,
+  start,
+  end,
+  ...otherProps
+}: UnitDecoratorProps): ReactElement {
   const [showToolbar, setShowToolbar] = useState(false);
   const [showRepeatDetailToolbar, setShowRepeatDetailToolbar] = useState<
     Exclude<UNIT_TYPE, '번'> | undefined
@@ -83,6 +89,9 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
   const [currentCalculateKey, setCurrentCalculateKey] = useState<
     UNIT_APPROXIMATION_TYPE | undefined
   >(getOriginalStyle(unit));
+
+  const currentStep = useRecoilValue(currentStepAtom);
+  const isReadOnly = currentStep === PAGE.REVIEW;
 
   const editorState = getEditorState();
   const calculateKey = getCalculateKey(unit);
@@ -212,6 +221,13 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
     );
   };
 
+  const handleShowToolbar = (): void => {
+    if (isReadOnly) {
+      return;
+    }
+    setShowToolbar(!showToolbar);
+  };
+
   return (
     <ToolTipWrapper>
       <Tooltip
@@ -229,7 +245,8 @@ export default function UnitDecorator(props: UnitDecoratorProps): ReactElement {
         <DecoratorWrapper
           {...otherProps}
           className={className}
-          onClick={(): void => setShowToolbar(!showToolbar)}
+          onClick={handleShowToolbar}
+          isReadOnly={isReadOnly}
         >
           {children}
         </DecoratorWrapper>
