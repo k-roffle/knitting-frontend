@@ -1,10 +1,12 @@
+import Editor from '@draft-js-plugins/editor';
 import { Grid, Typography } from '@material-ui/core';
+import { customInlineStylesMap } from 'pages/libs/draftjs-utils/inline';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import DesignSizeImage from '../components/DesignSizeImage';
-import { currentDesignInputAtom } from '../recoils';
+import { currentDesignInputAtom, editorStateAtom } from '../recoils';
 import { PATTERN, PATTERN_TYPE } from '../types';
 import { formatNumber } from '../utils';
 
@@ -44,6 +46,8 @@ const Review = (): React.ReactElement => {
     designType,
     patternType,
   } = currentDesignInput;
+
+  const editorState = useRecoilValue(editorStateAtom);
 
   const { TEXT, IMAGE, VIDEO } = PATTERN;
 
@@ -135,6 +139,16 @@ const Review = (): React.ReactElement => {
         <Row item xs={12}>
           <Label variant="h4">판매 가격</Label>
           <Contents>{renderPrice(price)}</Contents>
+        </Row>
+        <Row item xs={12}>
+          <Label variant="h4">도안</Label>
+          <Contents>
+            <Editor
+              customStyleMap={customInlineStylesMap}
+              editorState={editorState}
+              readOnly={true}
+            />
+          </Contents>
         </Row>
       </Grid>
     </>
