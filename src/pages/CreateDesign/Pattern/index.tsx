@@ -13,9 +13,9 @@ import createToolbarPlugin, {
   Separator,
 } from '@draft-js-plugins/static-toolbar';
 import { DraftStyleMap, EditorState } from 'draft-js';
+import { customInlineStylesMap } from 'pages/libs/draftjs-utils/inline';
 import createDeleteDecoratorPlugin from 'plugins/deleteDecorator';
 import createUnitDecoratorPlugin from 'plugins/unitDecorator';
-import { UnitDecoratorStyleMap } from 'plugins/unitDecorator/types';
 import { useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
@@ -93,17 +93,9 @@ const ToolbarContentWrapper = styled.div`
 const Pattern = (): React.ReactElement => {
   const [editorState, setEditorState] = useRecoilState(editorStateAtom);
 
-  const [customStyleMap, setCustomStyleMap] = useState<DraftStyleMap>({
-    CODE: {
-      fontFamily: 'monospace',
-      wordWrap: 'break-word',
-      background: palette.grey[300],
-      color: palette.primary.main,
-      borderRadius: theme.spacing(1),
-      padding: theme.spacing(0.3, 0.7),
-    },
-    ...UnitDecoratorStyleMap,
-  });
+  const [customStyleMap, setCustomStyleMap] = useState<DraftStyleMap>(
+    customInlineStylesMap,
+  );
 
   const [currentFontSize, setCurrentFontSize] = useState(
     getCurrentFontSize(editorState, customStyleMap),

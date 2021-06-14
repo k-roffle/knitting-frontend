@@ -1,4 +1,7 @@
 import { ContentBlock, EditorState, Modifier, RichUtils } from 'draft-js';
+import { UnitDecoratorStyleMap } from 'plugins/unitDecorator/types';
+import { theme } from 'themes';
+import { palette } from 'themes/palette';
 
 import { getSelectedBlocksList } from './block';
 import {
@@ -81,7 +84,15 @@ export const customInlineStylesMap: StyleMapType = {
   bgcolor: {},
   fontSize: {},
   fontFamily: {},
-  CODE: {},
+  CODE: {
+    fontFamily: 'monospace',
+    wordWrap: 'break-word',
+    background: palette.grey[300],
+    color: palette.primary.main,
+    borderRadius: theme.spacing(1),
+    padding: theme.spacing(0.3, 0.7),
+  },
+  ...UnitDecoratorStyleMap,
 };
 
 const getCurrentInlineStyle = (
