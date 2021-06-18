@@ -1,8 +1,10 @@
+import { convertToRaw } from 'draft-js';
 import Button, { SIDE } from 'dumbs/Button';
 import Snackbar from 'dumbs/Snackbar';
 import {
   currentDesignInputAtom,
   currentStepAtom,
+  editorStateAtom,
 } from 'pages/CreateDesign/recoils';
 import { PAGE } from 'pages/CreateDesign/types';
 import React, { useState } from 'react';
@@ -27,6 +29,8 @@ const Footer = (): React.ReactElement => {
     designType,
     patternType,
   } = useRecoilValue(currentDesignInputAtom);
+  const editorState = useRecoilValue(editorStateAtom);
+
   const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false);
 
   const handleSnackbarClose = () => {
@@ -71,9 +75,7 @@ const Footer = (): React.ReactElement => {
       },
       designType,
       patternType,
-      pattern: {
-        value: '',
-      },
+      pattern: convertToRaw(editorState.getCurrentContent()),
     });
   };
 
