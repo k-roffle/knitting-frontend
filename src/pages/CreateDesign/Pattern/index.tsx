@@ -12,6 +12,7 @@ import Editor from '@draft-js-plugins/editor';
 import createToolbarPlugin, {
   Separator,
 } from '@draft-js-plugins/static-toolbar';
+import { Typography } from '@material-ui/core';
 import { DraftHandleValue, DraftStyleMap, EditorState } from 'draft-js';
 import Snackbar from 'dumbs/Snackbar';
 import { customInlineStylesMap } from 'pages/libs/draftjs-utils/inline';
@@ -45,10 +46,14 @@ interface EditorWrapperProps {
   isFocused: boolean;
 }
 
+const PatternContainer = styled.div`
+  margin: ${theme.spacing(1.5)};
+`;
+
 const EditorWrapper = styled.div<EditorWrapperProps>`
-  min-height: 50%;
+  min-height: 40vh;
   padding: ${theme.spacing(1.5)};
-  margin: ${theme.spacing(1, 1.5, 4, 1.5)};
+  margin-top: ${theme.spacing(1)};
   border: 1.5px solid transparent;
   border-radius: ${theme.spacing(1)};
   background: ${palette.grey[200]};
@@ -74,7 +79,7 @@ const EditorWrapper = styled.div<EditorWrapperProps>`
 
 const ToolbarContentWrapper = styled.div`
   display: flex;
-  margin: ${theme.spacing(4, 1.5, 0, 1.5)};
+  margin-top: ${theme.spacing(4)};
   padding: ${theme.spacing(0.5)};
   background: ${palette.grey[200]};
   border-radius: ${theme.spacing(1)};
@@ -90,6 +95,13 @@ const ToolbarContentWrapper = styled.div`
       background: ${palette.grey[300]};
     }
   }
+`;
+
+const CurrentLengthInfo = styled(Typography)`
+  display: block;
+  margin: ${theme.spacing(1, 0)};
+  text-align: right;
+  color: ${palette.text.secondary};
 `;
 
 const Pattern = (): React.ReactElement => {
@@ -167,7 +179,7 @@ const Pattern = (): React.ReactElement => {
   };
 
   return (
-    <>
+    <PatternContainer>
       <Toolbar>
         {(externalProps) => (
           <ToolbarContentWrapper>
@@ -205,16 +217,16 @@ const Pattern = (): React.ReactElement => {
           placeholder="도안을 입력하세요"
         />
       </EditorWrapper>
-      <span>
+      <CurrentLengthInfo variant="caption">
         {currentPatternLength} / {MAX_PATTERN_LENGTH}
-      </span>
+      </CurrentLengthInfo>
       <Snackbar
         label={FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH}
         onClose={handleSnackbarClose}
         open={openErrorSnackbar}
         severity="error"
       />
-    </>
+    </PatternContainer>
   );
 };
 
