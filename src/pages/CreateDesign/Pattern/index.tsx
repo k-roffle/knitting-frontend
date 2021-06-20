@@ -22,6 +22,7 @@ import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
+import { FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH } from 'utils/errors';
 
 import { FontSize } from '../components/FontSize';
 import { editorStateAtom } from '../recoils';
@@ -208,7 +209,7 @@ const Pattern = (): React.ReactElement => {
         {currentPatternLength} / {MAX_PATTERN_LENGTH}
       </span>
       <Snackbar
-        label="최대 글자 수를 초과해 붙여넣기에 실패했습니다"
+        label={FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH}
         onClose={handleSnackbarClose}
         open={openErrorSnackbar}
         severity="error"

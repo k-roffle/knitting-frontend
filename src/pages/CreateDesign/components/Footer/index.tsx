@@ -9,6 +9,7 @@ import {
 import { PAGE } from 'pages/CreateDesign/types';
 import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { FAILED_TO_SAVE_DESIGN } from 'utils/errors';
 import { request } from 'utils/requests';
 
 const Footer = (): React.ReactElement => {
@@ -149,10 +150,10 @@ const Footer = (): React.ReactElement => {
         disabled={disabledNextButton()}
       />
       <Snackbar
-        label={'도안 저장에 실패했습니다.'}
+        label={FAILED_TO_SAVE_DESIGN}
         onClose={handleSnackbarClose}
         open={openErrorSnackbar}
-        severity={'error'}
+        severity="error"
       />
     </div>
   );
