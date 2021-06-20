@@ -39,6 +39,10 @@ const StepIcon = styled.div<StepIconProps>`
   }
 `;
 
+const StyledStepLabel = styled(StepLabel)`
+  word-break: keep-all;
+`;
+
 const renderStepIcon = (props: StepIconProps): React.ReactElement => {
   return (
     <StepIcon {...props}>
@@ -55,7 +59,9 @@ const StepProgressBar = (): React.ReactElement => {
     <Stepper alternativeLabel activeStep={currentStep}>
       {steps.map((label) => (
         <Step key={label}>
-          <StepLabel StepIconComponent={renderStepIcon}>{label}</StepLabel>
+          <StyledStepLabel StepIconComponent={renderStepIcon}>
+            {label}
+          </StyledStepLabel>
         </Step>
       ))}
     </Stepper>

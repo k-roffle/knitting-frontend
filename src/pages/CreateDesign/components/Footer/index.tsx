@@ -1,5 +1,6 @@
+import { Button as MaterialButton } from '@material-ui/core';
 import { convertToRaw } from 'draft-js';
-import Button, { SIDE } from 'dumbs/Button';
+import Button from 'dumbs/Button';
 import Snackbar from 'dumbs/Snackbar';
 import {
   currentDesignInputAtom,
@@ -9,8 +10,16 @@ import {
 import { PAGE } from 'pages/CreateDesign/types';
 import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import styled from 'styled-components';
+import { theme } from 'themes';
 import { FAILED_TO_SAVE_DESIGN } from 'utils/errors';
 import { request } from 'utils/requests';
+
+const FooterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: ${theme.spacing(6, 0, 4)};
+`;
 
 const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
@@ -139,12 +148,17 @@ const Footer = (): React.ReactElement => {
   };
 
   return (
-    <div>
-      {currentStep !== PAGE.DETAIL && (
-        <Button side={SIDE.LEFT} label="이전" onClick={handleOnClickPrevious} />
+    <FooterContainer>
+      {currentStep === PAGE.DETAIL ? (
+        <MaterialButton variant="contained" onClick={handleOnClickPrevious}>
+          취소
+        </MaterialButton>
+      ) : (
+        <MaterialButton variant="contained" onClick={handleOnClickPrevious}>
+          이전
+        </MaterialButton>
       )}
       <Button
-        side={SIDE.RIGHT}
         label={renderNextLabel()}
         onClick={handleOnClickNext}
         disabled={disabledNextButton()}
@@ -155,7 +169,7 @@ const Footer = (): React.ReactElement => {
         open={openErrorSnackbar}
         severity="error"
       />
-    </div>
+    </FooterContainer>
   );
 };
 

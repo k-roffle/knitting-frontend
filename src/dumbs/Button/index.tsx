@@ -1,6 +1,6 @@
 import { Button as MaterialButton } from '@material-ui/core';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const SIDE = {
   LEFT: 'LEFT',
@@ -10,14 +10,18 @@ export const SIDE = {
 export type SIDE_TYPE = typeof SIDE[keyof typeof SIDE];
 
 export interface Props {
-  side: SIDE_TYPE;
+  side?: SIDE_TYPE;
   label: string;
   onClick?(): void;
   disabled?: boolean;
 }
 
 const StyledButton = styled(MaterialButton)<Pick<Props, 'side'>>`
-  float: ${({ side }) => side.toLowerCase()};
+  ${({ side }) =>
+    side != null &&
+    css`
+      float: ${side.toLowerCase()};
+    `};
 `;
 
 const Button = ({

@@ -13,7 +13,7 @@ const Content = styled.section`
   margin: auto;
 
   > div {
-    margin: ${theme.spacing(4)} 0;
+    margin: ${theme.spacing(4, 2)};
     width: 100%;
   }
 `;
