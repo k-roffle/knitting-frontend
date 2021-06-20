@@ -17,7 +17,7 @@ export interface Props {
 }
 
 const StyledButton = styled(MaterialButton)<Pick<Props, 'side'>>`
-  float: ${({ side }) => side};
+  float: ${({ side }) => side.toLowerCase()};
 `;
 
 const Button = ({
