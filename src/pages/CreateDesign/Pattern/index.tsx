@@ -12,11 +12,12 @@ import Editor from '@draft-js-plugins/editor';
 import createToolbarPlugin, {
   Separator,
 } from '@draft-js-plugins/static-toolbar';
-import { DraftStyleMap, EditorState } from 'draft-js';
+import { DraftHandleValue, DraftStyleMap, EditorState } from 'draft-js';
+import Snackbar from 'dumbs/Snackbar';
 import { customInlineStylesMap } from 'pages/libs/draftjs-utils/inline';
 import createDeleteDecoratorPlugin from 'plugins/deleteDecorator';
 import createUnitDecoratorPlugin from 'plugins/unitDecorator';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
@@ -25,7 +26,7 @@ import { palette } from 'themes/palette';
 import { FontSize } from '../components/FontSize';
 import { editorStateAtom } from '../recoils';
 
-import { defaultFontSize } from './types';
+import { defaultFontSize, MAX_PATTERN_LENGTH } from './types';
 import { getCurrentFontSize } from './utils';
 
 const stitchDecoratorPlugin = createUnitDecoratorPlugin({ unit: '코' });
@@ -101,6 +102,8 @@ const Pattern = (): React.ReactElement => {
     getCurrentFontSize(editorState, customStyleMap),
   );
   const [isFocused, setIsFocused] = useState(false);
+  const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false);
+
   const editor = useRef<Editor | null>(null);
 
   stitchDecoratorPlugin.onChange = (editState: EditorState): EditorState => {
@@ -115,6 +118,43 @@ const Pattern = (): React.ReactElement => {
     deleteDecoratorPlugin,
     toolbarPlugin,
   ];
+
+  const currentPatternLength = editorState.getCurrentContent().getPlainText('')
+    .length;
+
+  const handleBeforeInput = (
+    _chars: string,
+    newEditorState: EditorState,
+  ): DraftHandleValue => {
+    const currentContent = newEditorState.getCurrentContent();
+    const currentContentLength = currentContent.getPlainText('').length;
+
+    if (currentContentLength > MAX_PATTERN_LENGTH - 1) {
+      return 'handled';
+    }
+
+    return 'not-handled';
+  };
+
+  const handlePastedText = (
+    pastedText: string,
+    _html: string | undefined,
+    newEditorState: EditorState,
+  ): DraftHandleValue => {
+    const currentContent = newEditorState.getCurrentContent();
+    const currentContentLength = currentContent.getPlainText('').length;
+
+    if (currentContentLength + pastedText.length > MAX_PATTERN_LENGTH) {
+      setOpenErrorSnackbar(true);
+      return 'handled';
+    }
+
+    return 'not-handled';
+  };
+
+  const handleSnackbarClose = () => {
+    setOpenErrorSnackbar(false);
+  };
 
   const focusEditor = (): void => {
     editor?.current?.focus();
@@ -157,11 +197,22 @@ const Pattern = (): React.ReactElement => {
           plugins={plugins}
           customStyleMap={customStyleMap}
           onChange={setEditorState}
+          handleBeforeInput={handleBeforeInput}
+          handlePastedText={handlePastedText}
           onFocus={(): void => setIsFocused(true)}
           onBlur={(): void => setIsFocused(false)}
           placeholder="도안을 입력하세요"
         />
       </EditorWrapper>
+      <span>
+        {currentPatternLength} / {MAX_PATTERN_LENGTH}
+      </span>
+      <Snackbar
+        label="최대 글자 수를 초과해 붙여넣기에 실패했습니다"
+        onClose={handleSnackbarClose}
+        open={openErrorSnackbar}
+        severity="error"
+      />
     </>
   );
 };
