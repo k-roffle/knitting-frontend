@@ -10,7 +10,7 @@ const DesignImageWrapper = styled.div`
 
   img {
     max-width: 100%;
-    max-height: 400px;
+    max-height: 450px;
     margin-top: 8px;
   }
 `;
