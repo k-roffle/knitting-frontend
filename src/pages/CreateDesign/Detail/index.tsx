@@ -89,108 +89,115 @@ const Detail = (): React.ReactElement => {
     }
   };
 
-  const checkIfValueInvalid = (
-    target: EventTarget & (HTMLTextAreaElement | HTMLInputElement),
-  ) => {
-    return target == null || Number(target.value) < 1;
+  const checkPositiveNumber = ({
+    value,
+  }: EventTarget & (HTMLTextAreaElement | HTMLInputElement)) => {
+    return value.length > 1 && Number(value) < 1;
   };
 
-  const onChangeName: InputProps['onChange'] = ({ target }) => {
-    if (target == null) return;
+  const getNumberToChange = ({
+    value,
+  }: EventTarget & (HTMLTextAreaElement | HTMLInputElement)) => {
+    const valueToNumber = Number(value);
+
+    return isNaN(valueToNumber) ? 0 : valueToNumber;
+  };
+
+  const onChangeName: InputProps['onChange'] = ({ currentTarget }) => {
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      name: target.value,
+      name: currentTarget.value,
     });
   };
-  const onChangeStitches: InputProps['onChange'] = ({ target }) => {
-    if (checkIfValueInvalid(target)) return;
+  const onChangeStitches: InputProps['onChange'] = ({ currentTarget }) => {
+    if (checkPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      stitches: Number(target.value),
+      stitches: getNumberToChange(currentTarget),
     });
   };
-  const onChangeRows: InputProps['onChange'] = ({ target }) => {
-    if (checkIfValueInvalid(target)) return;
+  const onChangeRows: InputProps['onChange'] = ({ currentTarget }) => {
+    if (checkPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      rows: Number(target.value),
+      rows: getNumberToChange(currentTarget),
     });
   };
-  const onChangeTotalLength: InputProps['onChange'] = ({ target }) => {
-    if (checkIfValueInvalid(target)) return;
+  const onChangeTotalLength: InputProps['onChange'] = ({ currentTarget }) => {
+    if (checkPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      totalLength: Number(target.value),
+      totalLength: getNumberToChange(currentTarget),
     });
   };
-  const onChangeSleeveLength: InputProps['onChange'] = ({ target }) => {
-    if (checkIfValueInvalid(target)) return;
+  const onChangeSleeveLength: InputProps['onChange'] = ({ currentTarget }) => {
+    if (checkPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      sleeveLength: Number(target.value),
+      sleeveLength: getNumberToChange(currentTarget),
     });
   };
-  const onChangeShoulderWidth: InputProps['onChange'] = ({ target }) => {
-    if (checkIfValueInvalid(target)) return;
+  const onChangeShoulderWidth: InputProps['onChange'] = ({ currentTarget }) => {
+    if (checkPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      shoulderWidth: Number(target.value),
+      shoulderWidth: getNumberToChange(currentTarget),
     });
   };
-  const onChangeBottomWidth: InputProps['onChange'] = ({ target }) => {
-    if (checkIfValueInvalid(target)) return;
+  const onChangeBottomWidth: InputProps['onChange'] = ({ currentTarget }) => {
+    if (checkPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      bottomWidth: Number(target.value),
+      bottomWidth: getNumberToChange(currentTarget),
     });
   };
-  const onChangeArmholeDepth: InputProps['onChange'] = ({ target }) => {
-    if (checkIfValueInvalid(target)) return;
+  const onChangeArmholeDepth: InputProps['onChange'] = ({ currentTarget }) => {
+    if (checkPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      armholeDepth: Number(target.value),
+      armholeDepth: getNumberToChange(currentTarget),
     });
   };
-  const onChangeNeedle: InputProps['onChange'] = ({ target }) => {
-    if (checkIfValueInvalid(target)) return;
+  const onChangeNeedle: InputProps['onChange'] = ({ currentTarget }) => {
+    if (checkPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      needle: target.value,
+      needle: currentTarget.value,
     });
   };
-  const onChangeYarn: InputProps['onChange'] = ({ target }) => {
-    if (target == null) return;
+  const onChangeYarn: InputProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      yarn: target.value,
+      yarn: currentTarget.value,
     });
   };
-  const onChangeExtra: InputProps['onChange'] = ({ target }) => {
-    if (target == null) return;
+  const onChangeExtra: InputProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      extra: target.value,
+      extra: currentTarget.value,
     });
   };
-  const onChangePrice: InputProps['onChange'] = ({ target }) => {
-    if (target == null) return;
+  const onChangePrice: InputProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      price: Number(target.value),
+      price: getNumberToChange(currentTarget),
     });
   };
-  const onChangeDesignType: SelectProps['onChange'] = ({ target }) => {
-    if (target == null) return;
+  const onChangeDesignType: SelectProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      designType: target.value as DESIGN_TYPE,
+      designType: currentTarget.value as DESIGN_TYPE,
     });
   };
-  const onChangePatternType: SelectProps['onChange'] = ({ target }) => {
-    if (target == null) return;
+  const onChangePatternType: SelectProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      patternType: target.value as PATTERN_TYPE,
+      patternType: currentTarget.value as PATTERN_TYPE,
     });
   };
 
