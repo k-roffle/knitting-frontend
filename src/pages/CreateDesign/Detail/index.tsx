@@ -12,10 +12,17 @@ import {
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
+import { palette } from 'themes/palette';
 
 import DesignSizeImage from '../components/DesignSizeImage';
 import { currentDesignInputAtom } from '../recoils';
 import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
+
+const Required = styled(Typography)`
+  display: inline;
+  font-weight: normal;
+  color: ${palette.primary.main};
+`;
 
 const fullWidth = css`
   width: 100%;
@@ -187,24 +194,33 @@ const Detail = (): React.ReactElement => {
     });
   };
 
+  const RequiredChar = (): React.ReactElement => (
+    <Required variant="h4"> *</Required>
+  );
+
   return (
     <>
       <form autoComplete="false">
         <Grid container>
           <Row item xs={12}>
-            <FormLabel variant="h5">이름</FormLabel>
+            <FormLabel variant="h5">
+              이름
+              <RequiredChar />
+            </FormLabel>
             <FullWithInput
               id="name"
               aria-describedby="name"
               placeholder="예) 토니 캔디 라운드넥 니트"
               value={name}
               onChange={onChangeName}
-              required
+              required={true}
             />
           </Row>
           <Row container spacing={6}>
             <Grid item xs={12} sm={6}>
-              <FormLabel variant="h5">편물 종류</FormLabel>
+              <FormLabel variant="h5">
+                편물 종류 <RequiredChar />
+              </FormLabel>
               <FullWithSelect
                 id="design-type"
                 placeholder="종류 선택"
@@ -218,7 +234,9 @@ const Detail = (): React.ReactElement => {
               </FullWithSelect>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <FormLabel variant="h5">도안 종류</FormLabel>
+              <FormLabel variant="h5">
+                도안 종류 <RequiredChar />
+              </FormLabel>
               <FullWithSelect
                 id="pattern-type"
                 required
@@ -237,7 +255,9 @@ const Detail = (): React.ReactElement => {
             <FormLabel>10 x 10(cm) 편물의 코와 단을 공유해주세요.</FormLabel>
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
-                <FormLabel variant="h6">코</FormLabel>
+                <FormLabel variant="h6">
+                  코 <RequiredChar />
+                </FormLabel>
                 <NumberInput
                   id="stitches"
                   type="number"
@@ -252,7 +272,9 @@ const Detail = (): React.ReactElement => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel variant="h6">단</FormLabel>
+                <FormLabel variant="h6">
+                  단 <RequiredChar />
+                </FormLabel>
                 <NumberInput
                   id="rows"
                   type="number"
@@ -276,7 +298,9 @@ const Detail = (): React.ReactElement => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Grid>
-                  <FormLabel variant="h6">총기장</FormLabel>
+                  <FormLabel variant="h6">
+                    총기장 <RequiredChar />
+                  </FormLabel>
                   <NumberInput
                     id="total-length"
                     type="number"
@@ -291,7 +315,9 @@ const Detail = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid>
-                  <FormLabel variant="h6">소매 기장</FormLabel>
+                  <FormLabel variant="h6">
+                    소매 기장 <RequiredChar />
+                  </FormLabel>
                   <NumberInput
                     id="sleeve-length"
                     type="number"
@@ -306,7 +332,9 @@ const Detail = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid>
-                  <FormLabel variant="h6">어깨 너비</FormLabel>
+                  <FormLabel variant="h6">
+                    어깨 너비 <RequiredChar />
+                  </FormLabel>
                   <NumberInput
                     id="shoulder-width"
                     type="number"
@@ -321,7 +349,9 @@ const Detail = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid>
-                  <FormLabel variant="h6">밑단 너비</FormLabel>
+                  <FormLabel variant="h6">
+                    밑단 너비 <RequiredChar />
+                  </FormLabel>
                   <NumberInput
                     id="bottom-width"
                     type="number"
@@ -335,7 +365,9 @@ const Detail = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid>
-                  <FormLabel variant="h6">팔폭</FormLabel>
+                  <FormLabel variant="h6">
+                    팔폭 <RequiredChar />
+                  </FormLabel>
                   <NumberInput
                     id="armhole-depth"
                     type="number"
@@ -352,17 +384,9 @@ const Detail = (): React.ReactElement => {
             </Grid>
           </Row>
           <Row item xs={12}>
-            <FormLabel variant="h5">사용한 실</FormLabel>
-            <FullWithInput
-              id="yarn"
-              aria-describedby="yarn"
-              placeholder="예) 티파니 100g 4볼"
-              value={yarn}
-              onChange={onChangeYarn}
-            />
-          </Row>
-          <Row item xs={12}>
-            <FormLabel variant="h5">사용한 바늘</FormLabel>
+            <FormLabel variant="h5">
+              사용한 바늘 <RequiredChar />
+            </FormLabel>
             <FullWithInput
               id="needle"
               aria-describedby="needle"
@@ -370,6 +394,16 @@ const Detail = (): React.ReactElement => {
               placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
               value={needle}
               onChange={onChangeNeedle}
+            />
+          </Row>
+          <Row item xs={12}>
+            <FormLabel variant="h5">사용한 실</FormLabel>
+            <FullWithInput
+              id="yarn"
+              aria-describedby="yarn"
+              placeholder="예) 티파니 100g 4볼"
+              value={yarn}
+              onChange={onChangeYarn}
             />
           </Row>
           <Row item xs={12}>
