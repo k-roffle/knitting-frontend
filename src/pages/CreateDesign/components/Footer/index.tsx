@@ -131,6 +131,7 @@ const Footer = (): React.ReactElement => {
       shoulderWidth,
       bottomWidth,
       armholeDepth,
+      needle,
     ].some((value) => value < 1);
 
     switch (currentStep) {
