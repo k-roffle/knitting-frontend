@@ -28,7 +28,7 @@ import { FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH } from 'utils/errors';
 import { FontSize } from '../components/FontSize';
 import { editorStateAtom } from '../recoils';
 
-import { defaultFontSize, MAX_PATTERN_LENGTH } from './types';
+import { DEFAULT_FONT_SIZE, MAX_PATTERN_LENGTH } from './constants';
 import { getCurrentFontSize } from './utils';
 
 const stitchDecoratorPlugin = createUnitDecoratorPlugin({ unit: '코' });
@@ -194,7 +194,7 @@ const Pattern = (): React.ReactElement => {
             <CodeBlockButton {...externalProps} />
             <Separator />
             <FontSize
-              defaultFontSize={defaultFontSize}
+              defaultFontSize={DEFAULT_FONT_SIZE}
               fontSize={currentFontSize}
               editorState={editorState}
               onChange={setEditorState}

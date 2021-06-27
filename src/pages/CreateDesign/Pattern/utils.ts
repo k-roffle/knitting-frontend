@@ -1,7 +1,7 @@
 import { DraftStyleMap, EditorState } from 'draft-js';
 import { getSelectionCustomInlineStyle } from 'pages/libs/draftjs-utils/inline';
 
-import { defaultFontSize } from './types';
+import { DEFAULT_FONT_SIZE } from './constants';
 
 export const getCurrentFontSize = (
   editorState: EditorState,
@@ -15,7 +15,7 @@ export const getCurrentFontSize = (
   return Object.keys(selectionCustomInlineStyle).includes('FONTSIZE')
     ? Number(
         customStyleMap[selectionCustomInlineStyle.FONTSIZE]?.fontSize ??
-          defaultFontSize,
+          DEFAULT_FONT_SIZE,
       )
     : undefined;
 };
