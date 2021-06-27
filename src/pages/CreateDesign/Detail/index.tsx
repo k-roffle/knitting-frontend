@@ -5,51 +5,33 @@ import {
   InputProps,
   ListSubheader,
   MenuItem,
-  Select,
   SelectProps,
-  Typography,
 } from '@material-ui/core';
+import RequiredInput, { FormLabel } from 'dumbs/RequiredInput';
+import RequiredSelect from 'dumbs/RequiredSelect';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import styled, { css } from 'styled-components';
-import { palette } from 'themes/palette';
+import styled from 'styled-components';
+import { theme } from 'themes';
 
 import DesignSizeImage from '../components/DesignSizeImage';
 import { currentDesignInputAtom } from '../recoils';
 import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
 
-const Required = styled(Typography)`
-  display: inline;
-  font-weight: normal;
-  color: ${palette.primary.main};
-`;
-
-const fullWidth = css`
+const FullWithInput = styled(Input)`
   width: 100%;
 `;
 
-const FullWithSelect = styled(Select)`
-  ${fullWidth}
-`;
-
-const FullWithInput = styled(Input)`
-  ${fullWidth}
-`;
-
 const NumberInput = styled(Input)`
-  ${fullWidth}
+  width: 100%;
+
   input {
     text-align: right;
   }
 `;
 
-const FormLabel = styled(Typography)`
-  ${fullWidth}
-  padding: 8px;
-`;
-
 const Row = styled(Grid)`
-  padding: 12px;
+  padding: ${theme.spacing(1.5)};
 `;
 
 const Detail = (): React.ReactElement => {
@@ -201,52 +183,41 @@ const Detail = (): React.ReactElement => {
     });
   };
 
-  const RequiredChar = (): React.ReactElement => (
-    <Required variant="h4"> *</Required>
-  );
-
   return (
     <>
       <form autoComplete="false">
         <Grid container>
           <Row item xs={12}>
-            <FormLabel variant="h5">
-              이름
-              <RequiredChar />
-            </FormLabel>
-            <FullWithInput
+            <RequiredInput
               id="name"
-              aria-describedby="name"
+              variant="h5"
+              label="이름"
               placeholder="예) 토니 캔디 라운드넥 니트"
               value={name}
               onChange={onChangeName}
-              required={true}
             />
           </Row>
           <Row container spacing={6}>
             <Grid item xs={12} sm={6}>
-              <FormLabel variant="h5">
-                편물 종류 <RequiredChar />
-              </FormLabel>
-              <FullWithSelect
+              <RequiredSelect
                 id="design-type"
+                variant="h5"
+                label="편물 종류"
                 placeholder="종류 선택"
-                required
                 defaultValue={SWEATER}
                 value={designType}
                 onChange={onChangeDesignType}
               >
                 <ListSubheader>상의</ListSubheader>
                 <MenuItem value={SWEATER}>니트</MenuItem>
-              </FullWithSelect>
+              </RequiredSelect>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <FormLabel variant="h5">
-                도안 종류 <RequiredChar />
-              </FormLabel>
-              <FullWithSelect
+              <RequiredSelect
                 id="pattern-type"
-                required
+                variant="h5"
+                label="도안 종류"
+                placeholder="종류 선택"
                 defaultValue={TEXT}
                 value={patternType}
                 onChange={onChangePatternType}
@@ -254,7 +225,7 @@ const Detail = (): React.ReactElement => {
                 <MenuItem value={TEXT}>{renderPattern(TEXT)}</MenuItem>
                 <MenuItem value={IMAGE}>{renderPattern(IMAGE)}</MenuItem>
                 <MenuItem value={VIDEO}>{renderPattern(VIDEO)}</MenuItem>
-              </FullWithSelect>
+              </RequiredSelect>
             </Grid>
           </Row>
           <Row container>
@@ -262,14 +233,11 @@ const Detail = (): React.ReactElement => {
             <FormLabel>10 x 10(cm) 편물의 코와 단을 공유해주세요.</FormLabel>
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
-                <FormLabel variant="h6">
-                  코 <RequiredChar />
-                </FormLabel>
-                <NumberInput
+                <RequiredInput
                   id="stitches"
                   type="number"
-                  aria-describedby="stitches"
-                  required
+                  variant="h6"
+                  label="코"
                   endAdornment={
                     <InputAdornment position="end">코</InputAdornment>
                   }
@@ -279,14 +247,11 @@ const Detail = (): React.ReactElement => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormLabel variant="h6">
-                  단 <RequiredChar />
-                </FormLabel>
-                <NumberInput
+                <RequiredInput
                   id="rows"
                   type="number"
-                  aria-describedby="rows"
-                  required
+                  variant="h6"
+                  label="단"
                   endAdornment={
                     <InputAdornment position="end">단</InputAdornment>
                   }
@@ -305,14 +270,11 @@ const Detail = (): React.ReactElement => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Grid>
-                  <FormLabel variant="h6">
-                    총기장 <RequiredChar />
-                  </FormLabel>
-                  <NumberInput
+                  <RequiredInput
                     id="total-length"
                     type="number"
-                    aria-describedby="total-length"
-                    required
+                    variant="h6"
+                    label="총기장"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
@@ -322,14 +284,11 @@ const Detail = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid>
-                  <FormLabel variant="h6">
-                    소매 기장 <RequiredChar />
-                  </FormLabel>
-                  <NumberInput
-                    id="sleeve-length"
+                  <RequiredInput
+                    id="sleeve-width"
                     type="number"
-                    aria-describedby="sleeve-length"
-                    required
+                    variant="h6"
+                    label="소매 기장"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
@@ -339,14 +298,11 @@ const Detail = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid>
-                  <FormLabel variant="h6">
-                    어깨 너비 <RequiredChar />
-                  </FormLabel>
-                  <NumberInput
+                  <RequiredInput
                     id="shoulder-width"
                     type="number"
-                    aria-describedby="shoulder-width"
-                    required
+                    variant="h6"
+                    label="어깨 너비"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
@@ -356,13 +312,11 @@ const Detail = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid>
-                  <FormLabel variant="h6">
-                    밑단 너비 <RequiredChar />
-                  </FormLabel>
-                  <NumberInput
+                  <RequiredInput
                     id="bottom-width"
                     type="number"
-                    aria-describedby="bottom-width"
+                    variant="h6"
+                    label="밑단 너비"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
@@ -372,13 +326,11 @@ const Detail = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid>
-                  <FormLabel variant="h6">
-                    팔폭 <RequiredChar />
-                  </FormLabel>
-                  <NumberInput
+                  <RequiredInput
                     id="armhole-depth"
                     type="number"
-                    aria-describedby="armhole-depth"
+                    variant="h6"
+                    label="팔폭"
                     endAdornment={
                       <InputAdornment position="end">cm</InputAdornment>
                     }
@@ -391,13 +343,10 @@ const Detail = (): React.ReactElement => {
             </Grid>
           </Row>
           <Row item xs={12}>
-            <FormLabel variant="h5">
-              사용한 바늘 <RequiredChar />
-            </FormLabel>
-            <FullWithInput
+            <RequiredInput
               id="needle"
-              aria-describedby="needle"
-              required
+              variant="h5"
+              label="사용한 바늘"
               placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
               value={needle}
               onChange={onChangeNeedle}
