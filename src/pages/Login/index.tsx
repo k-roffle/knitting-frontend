@@ -1,10 +1,14 @@
 import { Button as MaterialButton } from '@material-ui/core';
 import Background from 'assets/designs/background_login.png';
+import Snackbar from 'dumbs/Snackbar';
 import React from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { defaultShadow, flexCenterAlign } from 'styles/constants';
 import { theme } from 'themes';
 import { constructURL } from 'utils/requests';
+
+import { errorSnackbarMessageAtom } from './recoils';
 
 const MainWrapper = styled.div`
   background-image: url(${Background});
@@ -42,18 +46,39 @@ const Login = (): React.ReactElement => {
     window.location.href = loginUrl.toString();
   };
 
+  const [errorSnackbarMessage, setErrorSnackbarMessage] = useRecoilState(
+    errorSnackbarMessageAtom,
+  );
+
+  const showErrorSnackbar = errorSnackbarMessage !== undefined;
+
+  const handleSnackbarClose = () => {
+    setErrorSnackbarMessage(undefined);
+  };
+
   return (
-    <MainWrapper>
-      <LoginContainer>
-        <LoginButton
-          color="primary"
-          variant="contained"
-          onClick={handleOnClickLogin}
-        >
-          Google 계정으로 계속하기
-        </LoginButton>
-      </LoginContainer>
-    </MainWrapper>
+    <>
+      <MainWrapper>
+        <LoginContainer>
+          <LoginButton
+            color="primary"
+            variant="contained"
+            onClick={handleOnClickLogin}
+          >
+            Google 계정으로 계속하기
+          </LoginButton>
+        </LoginContainer>
+      </MainWrapper>
+
+      {showErrorSnackbar && errorSnackbarMessage && (
+        <Snackbar
+          label={errorSnackbarMessage}
+          onClose={handleSnackbarClose}
+          open={showErrorSnackbar}
+          severity="error"
+        />
+      )}
+    </>
   );
 };
 
