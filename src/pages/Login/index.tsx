@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { defaultShadow, flexCenterAlign } from 'styles/constants';
 import { theme } from 'themes';
+import { constructURL } from 'utils/requests';
 
 const MainWrapper = styled.div`
   background-image: url(${Background});
@@ -35,10 +36,20 @@ const LoginButton = styled(MaterialButton)`
 `;
 
 const Login = (): React.ReactElement => {
+  const handleOnClickLogin = async (): Promise<void> => {
+    const loginUrl = constructURL('/auth/google/code');
+
+    window.location.href = loginUrl.toString();
+  };
+
   return (
     <MainWrapper>
       <LoginContainer>
-        <LoginButton color="primary" variant="contained">
+        <LoginButton
+          color="primary"
+          variant="contained"
+          onClick={handleOnClickLogin}
+        >
           Google 계정으로 계속하기
         </LoginButton>
       </LoginContainer>
