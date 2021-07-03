@@ -71,10 +71,10 @@ const Detail = (): React.ReactElement => {
     }
   };
 
-  const checkNegativeNumber = ({
+  const checkNotPositiveNumber = ({
     value,
   }: EventTarget & (HTMLTextAreaElement | HTMLInputElement)) => {
-    return value.length >= 1 && Number(value) < 0;
+    return value.length >= 1 && Number(value) < 1;
   };
 
   const getNumberToChange = ({
@@ -92,56 +92,56 @@ const Detail = (): React.ReactElement => {
     });
   };
   const onChangeStitches: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNegativeNumber(currentTarget)) return;
+    if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       stitches: getNumberToChange(currentTarget),
     });
   };
   const onChangeRows: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNegativeNumber(currentTarget)) return;
+    if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       rows: getNumberToChange(currentTarget),
     });
   };
   const onChangeTotalLength: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNegativeNumber(currentTarget)) return;
+    if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       totalLength: getNumberToChange(currentTarget),
     });
   };
   const onChangeSleeveLength: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNegativeNumber(currentTarget)) return;
+    if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       sleeveLength: getNumberToChange(currentTarget),
     });
   };
   const onChangeShoulderWidth: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNegativeNumber(currentTarget)) return;
+    if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       shoulderWidth: getNumberToChange(currentTarget),
     });
   };
   const onChangeBottomWidth: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNegativeNumber(currentTarget)) return;
+    if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       bottomWidth: getNumberToChange(currentTarget),
     });
   };
   const onChangeArmholeDepth: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNegativeNumber(currentTarget)) return;
+    if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       armholeDepth: getNumberToChange(currentTarget),
     });
   };
   const onChangeNeedle: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNegativeNumber(currentTarget)) return;
+    if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       needle: currentTarget.value,
