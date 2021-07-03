@@ -1,9 +1,9 @@
-import { Error404 } from 'pages';
 import CreateDesign from 'pages/CreateDesign';
+import Error404 from 'pages/Error404';
 import React from 'react';
 import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 
-const Designs = ({
+const DesignRouter = ({
   match: { url },
 }: RouteComponentProps): React.ReactElement => {
   return (
@@ -14,4 +14,4 @@ const Designs = ({
   );
 };
 
-export default Designs;
+export default DesignRouter;

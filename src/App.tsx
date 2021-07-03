@@ -1,6 +1,5 @@
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
 import { Error404, Login, LoginRedirected } from 'pages';
-import Designs from 'pages/Designs';
 import React from 'react';
 import {
   BrowserRouter,
@@ -8,6 +7,7 @@ import {
   Route as NestedRoute,
   Switch,
 } from 'react-router-dom';
+import Designs from 'routers/DesignRouter';
 import { theme } from 'themes';
 import { QueryParamProvider } from 'use-query-params';
 
