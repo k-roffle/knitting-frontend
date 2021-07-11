@@ -8,7 +8,7 @@ export const ProtectedRoute = (props: RouteProps): React.ReactElement => {
   ) : (
     <Redirect
       to={{
-        pathname: '/login',
+        pathname: '/login/',
       }}
     />
   );
@@ -18,7 +18,7 @@ export const LoginRoute = (props: RouteProps): React.ReactElement => {
   return isAuthenticated() ? (
     <Redirect
       to={{
-        pathname: '/designs/create',
+        pathname: '/designs/create/',
       }}
     />
   ) : (
