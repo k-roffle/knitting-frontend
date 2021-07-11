@@ -13,3 +13,15 @@ export const ProtectedRoute = (props: RouteProps): React.ReactElement => {
     />
   );
 };
+
+export const LoginRoute = (props: RouteProps): React.ReactElement => {
+  return isAuthenticated() ? (
+    <Redirect
+      to={{
+        pathname: '/designs/create',
+      }}
+    />
+  ) : (
+    <Route {...props} />
+  );
+};
