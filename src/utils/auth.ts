@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import decodeJwtToken from 'jwt-decode';
 import { request } from 'utils/requests';
 
@@ -9,15 +8,11 @@ interface TokenPayload {
 
 const REFRESH_DELTA = 60 * 60;
 
-export const setAccessToken = (token: string): void => {
-  window.localStorage.setItem('token', token);
-};
-
 const refreshAccessToken = async (token: string): Promise<void> => {
   request('/auth/refresh', 'post', null, null, token)
-    .then((res: AxiosResponse) => {
-      if (res.status === 200) {
-        setAccessToken(res.data.token);
+    .then(({ status, data }) => {
+      if (status === 200) {
+        setAccessToken(data.token);
       }
     })
     .catch(() => deleteAccessToken());
@@ -44,10 +39,14 @@ const getAccessToken = (): string | undefined => {
   return token;
 };
 
-export const isAuthenticated = (): boolean => {
-  return getAccessToken() !== undefined;
+export const setAccessToken = (token: string): void => {
+  window.localStorage.setItem('token', token);
 };
 
 const deleteAccessToken = (): void => {
   window.localStorage.removeItem('token');
+};
+
+export const isAuthenticated = (): boolean => {
+  return getAccessToken() !== undefined;
 };
