@@ -1,4 +1,4 @@
-import { Header } from 'components';
+import { Header, Footer } from 'components';
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from 'themes';
@@ -9,7 +9,6 @@ interface Props {
 
 const Content = styled.section`
   max-width: 1100px;
-  height: 100vh;
   display: flex;
   margin: ${theme.spacing(8, 'auto', 'auto')};
 
@@ -26,6 +25,7 @@ const Layout = ({ children }: Props): React.ReactElement => {
       <Content>
         <div>{children}</div>
       </Content>
+      <Footer />
     </>
   );
 };
