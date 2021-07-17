@@ -1,3 +1,4 @@
+import { Logo } from 'dumbs';
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from 'themes';
@@ -16,14 +17,6 @@ const FooterContent = styled.ul`
   font-size: 0.85rem;
   color: ${palette.grey[500]};
   list-style: none;
-`;
-
-const Logo = styled.li`
-  text-align: right;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -0.9px;
-  color: ${palette.grey[600]};
 `;
 
 const Info = styled.li`
@@ -62,7 +55,7 @@ const Footer = (): React.ReactElement => {
           <span>이용약관</span>
           <span>개인정보 처리방침</span>
         </Terms>
-        <Logo>🧶knitting</Logo>
+        <Logo size="small" align="right" />
       </FooterContent>
     </footer>
   );
