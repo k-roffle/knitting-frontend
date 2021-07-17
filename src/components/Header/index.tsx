@@ -1,5 +1,5 @@
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core';
-import { AccountCircle } from '@material-ui/icons';
+import { AccountCircle, ArrowDropDown } from '@material-ui/icons';
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from 'themes';
@@ -15,16 +15,22 @@ const LogoIcon = styled.span`
   margin-right: ${theme.spacing(1)};
 `;
 
+const StyledIconButton = styled(IconButton)`
+  border-radius: ${theme.spacing(6)};
+`;
+
 const Header = (): React.ReactElement => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | undefined>();
-  const open = Boolean(anchorEl);
+  const [anchorElement, setAnchorElement] = React.useState<
+    HTMLElement | undefined
+  >();
+  const open = Boolean(anchorElement);
 
   const handleMenu = ({ currentTarget }: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(currentTarget);
+    setAnchorElement(currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(undefined);
+    setAnchorElement(undefined);
   };
 
   return (
@@ -34,12 +40,13 @@ const Header = (): React.ReactElement => {
           <LogoIcon>🧶</LogoIcon>knitting
         </Logo>
         <div>
-          <IconButton onClick={handleMenu} color="inherit">
+          <StyledIconButton onClick={handleMenu} color="inherit">
             {/* TODO: 구글 로그인시 구글 프로필이 있는 경우 프로필을 보여줍니다 */}
             <AccountCircle />
-          </IconButton>
+            <ArrowDropDown />
+          </StyledIconButton>
           <Menu
-            anchorEl={anchorEl}
+            anchorEl={anchorElement}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'right',

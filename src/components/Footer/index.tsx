@@ -9,15 +9,16 @@ const Divider = styled.div`
   background-color: ${palette.grey[300]};
 `;
 
-const FooterContent = styled.div`
+const FooterContent = styled.ul`
   max-width: 1100px;
   padding: ${theme.spacing(4)};
   margin: auto;
   font-size: 0.85rem;
   color: ${palette.grey[500]};
+  list-style: none;
 `;
 
-const Logo = styled.div`
+const Logo = styled.li`
   text-align: right;
   font-size: 1.2rem;
   font-weight: 700;
@@ -25,12 +26,17 @@ const Logo = styled.div`
   color: ${palette.grey[600]};
 `;
 
-const Info = styled.div`
+const Info = styled.li`
   color: ${palette.grey[500]};
   margin-bottom: ${theme.spacing(0.5)};
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
-const Terms = styled.div`
+const Terms = styled.li`
   margin: ${theme.spacing(2, 0)};
 
   span:first-child {
@@ -48,7 +54,10 @@ const Footer = (): React.ReactElement => {
       <Divider />
       <FooterContent>
         <Info>© 2021 knitting, Inc. All rights reserved.</Info>
-        <Info>고객센터 | yurilee9696@gmail.com</Info>
+        <Info>
+          고객센터 |
+          <a href="mailto:yurilee9696@gmail.com"> yurilee9696@gmail.com</a>
+        </Info>
         <Terms>
           <span>이용약관</span>
           <span>개인정보 처리방침</span>
