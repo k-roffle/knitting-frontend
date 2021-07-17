@@ -1,7 +1,6 @@
 import { Button as MaterialButton } from '@material-ui/core';
 import { convertToRaw } from 'draft-js';
-import Button from 'dumbs/Button';
-import Snackbar from 'dumbs/Snackbar';
+import { Button, Snackbar } from 'dumbs';
 import {
   currentDesignInputAtom,
   currentStepAtom,

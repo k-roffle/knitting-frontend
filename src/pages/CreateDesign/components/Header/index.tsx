@@ -39,7 +39,7 @@ const Header = (): React.ReactElement => {
   return (
     <Grid container>
       <Grid item xs={12} sm={8}>
-        <Title variant="h3">🧶 새로운 도안 작성하기</Title>
+        <Title variant="h3">✏️ 새로운 도안 작성</Title>
         <Contents>{renderContents()}</Contents>
       </Grid>
       <Grid item xs={12} sm={4}>
