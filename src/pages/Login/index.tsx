@@ -1,6 +1,6 @@
 import { Button as MaterialButton, Typography } from '@material-ui/core';
 import { ReactComponent as GoogleIcon } from 'assets/icn/google.svg';
-import Snackbar from 'dumbs/Snackbar';
+import { Snackbar } from 'dumbs';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';

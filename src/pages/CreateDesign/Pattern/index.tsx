@@ -14,7 +14,7 @@ import createToolbarPlugin, {
 } from '@draft-js-plugins/static-toolbar';
 import { Typography } from '@material-ui/core';
 import { DraftHandleValue, DraftStyleMap, EditorState } from 'draft-js';
-import Snackbar from 'dumbs/Snackbar';
+import { Snackbar } from 'dumbs';
 import { customInlineStylesMap } from 'libs/draftjs-utils/inline';
 import createDeleteDecoratorPlugin from 'plugins/deleteDecorator';
 import createUnitDecoratorPlugin from 'plugins/unitDecorator';
