@@ -10,7 +10,7 @@ import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 
 import { DetailTooltipMenu } from './components/DetailTooltipMenu';
-import { RepeatTooltipMenu } from './components/RepeatTooltipMenu';
+import { RepeatTooltipMenu } from './components/RePeatTooltipMenu';
 import {
   REPEAT_APPROXIMATION,
   REPEAT_APPROXIMATION_TYPE,

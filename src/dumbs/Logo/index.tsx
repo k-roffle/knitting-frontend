@@ -35,11 +35,16 @@ const LogoIcon = styled.span<Props>`
 interface Props {
   size: 'small' | 'large';
   align?: 'left' | 'center' | 'right';
+  className?: string;
 }
 
-const Logo = ({ size, align = 'left' }: Props): React.ReactElement => {
+const Logo = ({
+  size,
+  align = 'left',
+  className,
+}: Props): React.ReactElement => {
   return (
-    <LogoWrapper size={size} align={align}>
+    <LogoWrapper size={size} align={align} className={className}>
       <LogoIcon size={size}>🧶</LogoIcon>knitting
     </LogoWrapper>
   );

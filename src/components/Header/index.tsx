@@ -1,19 +1,9 @@
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core';
 import { AccountCircle, ArrowDropDown } from '@material-ui/icons';
+import { Logo } from 'dumbs';
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from 'themes';
-
-const Logo = styled.div`
-  width: 100%;
-  font-size: 1.7rem;
-  font-weight: 700;
-  letter-spacing: -2px;
-`;
-
-const LogoIcon = styled.span`
-  margin-right: ${theme.spacing(1)};
-`;
 
 const StyledIconButton = styled(IconButton)`
   border-radius: ${theme.spacing(6)};
@@ -36,9 +26,7 @@ const Header = (): React.ReactElement => {
   return (
     <AppBar color="inherit">
       <Toolbar>
-        <Logo>
-          <LogoIcon>🧶</LogoIcon>knitting
-        </Logo>
+        <Logo size="large" />
         <div>
           <StyledIconButton onClick={handleMenu} color="inherit">
             {/* TODO: 구글 로그인시 구글 프로필이 있는 경우 프로필을 보여줍니다 */}
