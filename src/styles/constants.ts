@@ -7,4 +7,9 @@ export const flexCenterAlign = css`
   justify-content: center;
 `;
 
+export const flexVerticalAlign = css`
+  display: flex;
+  align-items: center;
+`;
+
 export const defaultShadow = theme.shadows[8];
