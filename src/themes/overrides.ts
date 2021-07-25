@@ -89,5 +89,10 @@ export const { overrides } = createMuiTheme({
         },
       },
     },
+    MuiTab: {
+      wrapper: {
+        fontSize: 15,
+      },
+    },
   },
 });
