@@ -3,12 +3,19 @@ import { errorSnackbarMessageAtom } from 'pages/Login/recoils';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 import { useQueryParam, StringParam } from 'use-query-params';
 import { setAccessToken } from 'utils/auth';
 import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'utils/errors';
 import { request } from 'utils/requests';
 
-const LoginReirected = (): React.ReactElement => {
+const StyledCircularProgress = styled(CircularProgress)`
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+`;
+
+const LoginRedirected = (): React.ReactElement => {
   const [code] = useQueryParam('code', StringParam);
   const history = useHistory();
 
@@ -48,7 +55,7 @@ const LoginReirected = (): React.ReactElement => {
     fetchAccessToken();
   });
 
-  return <CircularProgress />;
+  return <StyledCircularProgress />;
 };
 
-export default LoginReirected;
+export default LoginRedirected;
