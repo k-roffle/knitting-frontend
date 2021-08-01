@@ -17,7 +17,7 @@ const StepIcon = styled.div<StepIconProps>`
   color: ${palette.grey[200]};
   display: flex;
   height: 22px;
-  z-index: ${zIndex.drawer};
+  z-index: ${zIndex.mobileStepper};
   align-items: center;
   ${(props) =>
     props.active &&

@@ -1,3 +1,4 @@
+import { Header, Footer } from 'components';
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from 'themes';
@@ -8,9 +9,8 @@ interface Props {
 
 const Content = styled.section`
   max-width: 1100px;
-  height: 100vh;
   display: flex;
-  margin: auto;
+  margin: ${theme.spacing(8, 'auto', 'auto')};
 
   > div {
     margin: ${theme.spacing(4, 2)};
@@ -20,9 +20,13 @@ const Content = styled.section`
 
 const Layout = ({ children }: Props): React.ReactElement => {
   return (
-    <Content>
-      <div>{children}</div>
-    </Content>
+    <>
+      <Header />
+      <Content>
+        <div>{children}</div>
+      </Content>
+      <Footer />
+    </>
   );
 };
 

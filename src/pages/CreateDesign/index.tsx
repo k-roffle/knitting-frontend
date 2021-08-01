@@ -1,4 +1,4 @@
-import Layout from 'dumbs/Layout';
+import { Layout } from 'dumbs';
 import { Detail } from 'pages';
 import Pattern from 'pages/CreateDesign/Pattern';
 import Review from 'pages/CreateDesign/Review';

@@ -7,8 +7,7 @@ import {
   MenuItem,
   SelectProps,
 } from '@material-ui/core';
-import RequiredInput, { FormLabel } from 'dumbs/RequiredInput';
-import RequiredSelect from 'dumbs/RequiredSelect';
+import { RequiredSelect, RequiredInput, FormLabel } from 'dumbs';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
