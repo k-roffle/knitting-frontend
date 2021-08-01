@@ -129,6 +129,7 @@ const Footer = (): React.ReactElement => {
       bottomWidth,
       armholeDepth,
       needle,
+      yarn,
     ].some((value) => value < 1);
 
     switch (currentStep) {

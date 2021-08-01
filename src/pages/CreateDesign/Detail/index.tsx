@@ -352,10 +352,10 @@ const Detail = (): React.ReactElement => {
             />
           </Row>
           <Row item xs={12}>
-            <FormLabel variant="h5">사용한 실</FormLabel>
-            <FullWithInput
+            <RequiredInput
               id="yarn"
-              aria-describedby="yarn"
+              variant="h5"
+              label="사용한 실"
               placeholder="예) 티파니 100g 4볼"
               value={yarn}
               onChange={onChangeYarn}
