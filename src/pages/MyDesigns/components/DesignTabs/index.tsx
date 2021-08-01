@@ -1,7 +1,32 @@
-import { Tab, Tabs } from '@material-ui/core';
+import { List, Tab, Tabs } from '@material-ui/core';
 import React from 'react';
+import styled from 'styled-components';
+import { theme } from 'themes';
+import { v4 as uuidv4 } from 'uuid';
 
+import DesignItem from '../DesignItem';
 import DesignTabPanel from '../DesignTabPanel';
+
+const Mock = [
+  {
+    id: uuidv4(),
+    name: '토니 캔디 라운드넥 니트',
+    yarn: '패션아란 400g 1볼',
+    tags: ['니트', '서술형 도안'],
+  },
+  {
+    id: uuidv4(),
+    name: '토니 캔디 라운드넥 니트',
+    yarn: '패션아란 400g 1볼',
+    tags: ['니트', '서술형 도안'],
+  },
+  {
+    id: uuidv4(),
+    name: '토니 캔디 라운드넥 니트',
+    yarn: '패션아란 400g 1볼',
+    tags: ['니트', '서술형 도안'],
+  },
+];
 
 export const DESIGN_MENU = {
   CREATED_DESIGN: 'created_design',
@@ -10,6 +35,10 @@ export const DESIGN_MENU = {
 } as const;
 
 export type DESIGN_MENU_TYPE = typeof DESIGN_MENU[keyof typeof DESIGN_MENU];
+
+const StyledList = styled(List)`
+  margin-top: ${theme.spacing(2)};
+`;
 
 const DesignTabs = (): React.ReactElement => {
   const [value, setValue] = React.useState<DESIGN_MENU_TYPE>(
@@ -44,7 +73,15 @@ const DesignTabs = (): React.ReactElement => {
         />
       </Tabs>
       <DesignTabPanel selectedValue={value} value={DESIGN_MENU.CREATED_DESIGN}>
-        내가 만든 도안 리스트
+        <StyledList>
+          {Mock.map((data, index) => (
+            <DesignItem
+              key={data.id}
+              {...data}
+              showDivider={Mock.length - 1 !== index}
+            />
+          ))}
+        </StyledList>
       </DesignTabPanel>
       <DesignTabPanel selectedValue={value} value={DESIGN_MENU.DESIGN_ON_SALE}>
         판매 중인 도안 리스트
