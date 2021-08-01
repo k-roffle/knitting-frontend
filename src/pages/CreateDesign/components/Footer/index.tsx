@@ -11,6 +11,7 @@ import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
+import { getAccessToken } from 'utils/auth';
 import { FAILED_TO_SAVE_DESIGN } from 'utils/errors';
 import { request } from 'utils/requests';
 
@@ -46,13 +47,6 @@ const Footer = (): React.ReactElement => {
     setOpenErrorSnackbar(false);
   };
 
-  const serializeSize = (value: number): Record<string, string | number> => {
-    return {
-      value,
-      unit: 'Cm',
-    };
-  };
-
   const saveDesign = async (): Promise<void> => {
     try {
       await requestSaveDesign();
@@ -63,29 +57,33 @@ const Footer = (): React.ReactElement => {
   };
 
   const requestSaveDesign = async (): Promise<void> => {
-    await request('/design/', 'post', {
-      name,
-      gauge: {
+    await request(
+      '/design/',
+      'post',
+      {
+        name,
+        design_type: designType,
+        pattern_type: patternType,
         stitches,
         rows,
+        size: {
+          total_length: totalLength,
+          sleeve_length: sleeveLength,
+          shoulder_width: shoulderWidth,
+          bottom_width: bottomWidth,
+          armhole_depth: armholeDepth,
+        },
+        needle,
+        yarn,
+        extra,
+        price,
+        pattern: `${JSON.stringify(
+          convertToRaw(editorState.getCurrentContent()),
+        )}`,
       },
-      size: {
-        totalLength: serializeSize(totalLength),
-        sleeveLength: serializeSize(sleeveLength),
-        shoulderWidth: serializeSize(shoulderWidth),
-        bottomWidth: serializeSize(bottomWidth),
-        armholeDepth: serializeSize(armholeDepth),
-      },
-      needle,
-      yarn,
-      extra,
-      price: {
-        value: price,
-      },
-      designType,
-      patternType,
-      pattern: convertToRaw(editorState.getCurrentContent()),
-    });
+      null,
+      getAccessToken(),
+    );
   };
 
   const handleOnClickPrevious = (): void => {
