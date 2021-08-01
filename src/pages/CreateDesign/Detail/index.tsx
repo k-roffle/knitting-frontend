@@ -12,6 +12,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
+import { renderDesign, renderPattern } from 'utils/renderText';
 
 import DesignSizeImage from '../components/DesignSizeImage';
 import { currentDesignInputAtom } from '../recoils';
@@ -56,19 +57,6 @@ const Detail = (): React.ReactElement => {
 
   const { SWEATER } = DESIGN;
   const { TEXT, IMAGE, VIDEO } = PATTERN;
-
-  const renderPattern = (pattern: PATTERN_TYPE): string => {
-    switch (pattern) {
-      case TEXT:
-        return '서술형 도안';
-      case IMAGE:
-        return '그림 도안';
-      case VIDEO:
-        return '영상 도안';
-      default:
-        return '서술형 도안';
-    }
-  };
 
   const checkNotPositiveNumber = ({
     value,
@@ -208,7 +196,7 @@ const Detail = (): React.ReactElement => {
                 onChange={onChangeDesignType}
               >
                 <ListSubheader>상의</ListSubheader>
-                <MenuItem value={SWEATER}>니트</MenuItem>
+                <MenuItem value={SWEATER}>{renderDesign(SWEATER)}</MenuItem>
               </RequiredSelect>
             </Grid>
             <Grid item xs={12} sm={6}>
