@@ -1,4 +1,5 @@
 import { Typography, ListItem } from '@material-ui/core';
+import { Ellipsis } from 'components';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
@@ -53,7 +54,9 @@ const DesignItem = ({
   return (
     <StyledListItem button>
       <div>
-        <Name variant="h4">{name}</Name>
+        <Name variant="h4">
+          <Ellipsis text={name} />
+        </Name>
         <Information variant="subtitle2">{yarn}</Information>
         {tags.map((tag) => (
           <DesignType key={tag}>{tag}</DesignType>
