@@ -1,5 +1,7 @@
 import { Button, Typography } from '@material-ui/core';
+import { itemLengthAtom } from 'pages/MyInformation/recoils';
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { flexVerticalAlign } from 'styles/constants';
 import { theme } from 'themes';
@@ -57,8 +59,21 @@ const CreateButton = styled(Button)`
   margin-top: ${theme.spacing((10 - 4.5) / 2)};
 `;
 
+const mock = {
+  number_of_designs_on_sales: 2,
+  number_of_designs_sold: 18,
+};
+
 const MyProfile = (): React.ReactElement => {
-  const [createdButtonText, handleButtonClick] = useRenderButtonText();
+  const [createButtonText, handleButtonClick] = useRenderButtonText();
+  const itemLength = useRecoilValue(itemLengthAtom);
+
+  const {
+    number_of_designs_on_sales: numberOfDesignsOnSales,
+    number_of_designs_sold: numberOfDesignsSold,
+  } = mock;
+
+  const emptyList = itemLength === 0;
 
   return (
     <MyProfileContainer>
@@ -72,22 +87,26 @@ const MyProfile = (): React.ReactElement => {
           <MySalesSummary>
             <div>
               <Typography variant="caption">판매중인 상품</Typography>
-              <SalesSummaryCount variant="h5">2</SalesSummaryCount>
+              <SalesSummaryCount variant="h5">
+                {numberOfDesignsOnSales}
+              </SalesSummaryCount>
             </div>
             <div>
               <Typography variant="caption">판매 수</Typography>
-              <SalesSummaryCount variant="h5">18</SalesSummaryCount>
+              <SalesSummaryCount variant="h5">
+                {numberOfDesignsSold}
+              </SalesSummaryCount>
             </div>
           </MySalesSummary>
         </div>
       </ProfileContainer>
-      {createdButtonText != null && handleButtonClick != null && (
+      {createButtonText != null && handleButtonClick != null && !emptyList && (
         <CreateButton
           variant="outlined"
           color="primary"
           onClick={handleButtonClick}
         >
-          {createdButtonText}
+          {createButtonText}
         </CreateButton>
       )}
     </MyProfileContainer>
