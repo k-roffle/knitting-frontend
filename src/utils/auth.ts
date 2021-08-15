@@ -18,7 +18,7 @@ const refreshAccessToken = async (token: string): Promise<void> => {
     .catch(() => deleteAccessToken());
 };
 
-const getAccessToken = (): string | undefined => {
+export const getAccessToken = (): string | undefined => {
   const now = new Date().getTime() / 1000;
   const token = window.localStorage.getItem('token');
 
