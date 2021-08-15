@@ -1,17 +1,21 @@
-import { DESIGN_MENU_TYPE } from '../InformationTabs';
+import { selectedTabAtom } from 'pages/MyInformation/recoils';
+import { DESIGN_MENU_TYPE } from 'pages/MyInformation/types';
+import { useRecoilValue } from 'recoil';
 
 interface Props {
   children?: React.ReactNode;
-  selectedValue: DESIGN_MENU_TYPE;
   value: DESIGN_MENU_TYPE;
 }
 
-const InformationTabPanel = (props: Props): React.ReactElement => {
-  const { children, value, selectedValue } = props;
+const InformationTabPanel = ({
+  children,
+  value,
+}: Props): React.ReactElement => {
+  const selectedTab = useRecoilValue(selectedTabAtom);
 
   return (
-    <div role="tabpanel" hidden={value !== selectedValue}>
-      {value === selectedValue && <section>{children}</section>}
+    <div role="tabpanel" hidden={value !== selectedTab}>
+      {value === selectedTab && <section>{children}</section>}
     </div>
   );
 };
