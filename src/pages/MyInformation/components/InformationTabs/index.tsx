@@ -66,12 +66,12 @@ const MyInformationTabs = (): React.ReactElement => {
         <Tab value={DESIGN_MENU.CREATED_DESIGN} label="내가 만든 도안" />
         <Tab
           value={DESIGN_MENU.DESIGN_ON_SALE}
-          label="판매 중인 도안"
+          label="판매 중인 상품"
           disabled
         />
         <Tab
           value={DESIGN_MENU.PURCHASED_DESIGN}
-          label="구매한 도안"
+          label="구매한 상품"
           disabled
         />
       </Tabs>
