@@ -5,6 +5,8 @@ import { flexVerticalAlign } from 'styles/constants';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
 
+import { useRenderButtonText } from './useRenderButtonText';
+
 const MyProfileContainer = styled.section`
   display: inline-block;
   width: 100%;
@@ -56,6 +58,8 @@ const CreateButton = styled(Button)`
 `;
 
 const MyProfile = (): React.ReactElement => {
+  const [createdButtonText, handleButtonClick] = useRenderButtonText();
+
   return (
     <MyProfileContainer>
       <ProfileContainer>
@@ -77,9 +81,15 @@ const MyProfile = (): React.ReactElement => {
           </MySalesSummary>
         </div>
       </ProfileContainer>
-      <CreateButton variant="outlined" color="primary">
-        새로운 도안 만들기
-      </CreateButton>
+      {createdButtonText != null && handleButtonClick != null && (
+        <CreateButton
+          variant="outlined"
+          color="primary"
+          onClick={handleButtonClick}
+        >
+          {createdButtonText}
+        </CreateButton>
+      )}
     </MyProfileContainer>
   );
 };
