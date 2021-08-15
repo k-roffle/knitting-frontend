@@ -1,14 +1,17 @@
 import { List, Tab, Tabs } from '@material-ui/core';
-import { selectedTabAtom } from 'pages/MyInformation/recoils';
+import EmptyContent from 'dumbs/EmptyContent';
+import { itemLengthAtom, selectedTabAtom } from 'pages/MyInformation/recoils';
 import { DESIGN_MENU_TYPE, DESIGN_MENU } from 'pages/MyInformation/types';
-import React from 'react';
-import { useRecoilState } from 'recoil';
+import React, { useEffect } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { v4 as uuidv4 } from 'uuid';
 
 import DesignItem from '../DesignItem';
 import InformationTabPanel from '../InformationTabPanel';
+
+import { useRenderEmptyContent } from './useRenderEmptyContent';
 
 const Mock = [
   {
@@ -37,6 +40,9 @@ const StyledList = styled(List)`
 
 const MyInformationTabs = (): React.ReactElement => {
   const [selectedTab, setSelectedTab] = useRecoilState(selectedTabAtom);
+  const setItemLength = useSetRecoilState(itemLengthAtom);
+
+  const emptyContent = useRenderEmptyContent();
 
   const handleChange = (
     _event: React.ChangeEvent<Record<string, never>>,
@@ -44,6 +50,10 @@ const MyInformationTabs = (): React.ReactElement => {
   ) => {
     setSelectedTab(newValue);
   };
+
+  useEffect(() => {
+    setItemLength(Mock.length);
+  }, [Mock]);
 
   return (
     <div>
@@ -74,6 +84,9 @@ const MyInformationTabs = (): React.ReactElement => {
               showDivider={Mock.length - 1 !== index}
             />
           ))}
+          {Mock.length === 0 && emptyContent != null && (
+            <EmptyContent {...emptyContent} />
+          )}
         </StyledList>
       </InformationTabPanel>
       <InformationTabPanel value={DESIGN_MENU.DESIGN_ON_SALE}>
