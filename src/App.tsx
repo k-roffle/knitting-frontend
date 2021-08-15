@@ -8,8 +8,8 @@ import {
   Switch,
 } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import Designs from 'routers/DesignRouter';
 import Login from 'routers/LoginRouter';
+import MyInformation from 'routers/MyInformationRouter';
 import { theme } from 'themes';
 import { QueryParamProvider } from 'use-query-params';
 
@@ -21,7 +21,7 @@ const App = (): React.ReactElement => {
           <ThemeProvider theme={theme}>
             <QueryParamProvider ReactRouterRoute={PublicRoute}>
               <Switch>
-                <NestedRoute path="/designs/" component={Designs} />
+                <NestedRoute path="/my/" component={MyInformation} />
                 <NestedRoute path="/login/" component={Login} />
                 <PublicRoute path="/error/" component={Error404} exact />
                 <PublicRoute path="*" component={Error404} />

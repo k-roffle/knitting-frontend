@@ -5,7 +5,7 @@ import { theme } from 'themes';
 import { v4 as uuidv4 } from 'uuid';
 
 import DesignItem from '../DesignItem';
-import DesignTabPanel from '../DesignTabPanel';
+import InformationTabPanel from '../InformationTabPanel';
 
 const Mock = [
   {
@@ -40,7 +40,7 @@ const StyledList = styled(List)`
   margin-top: ${theme.spacing(2)};
 `;
 
-const DesignTabs = (): React.ReactElement => {
+const MyInformationTabs = (): React.ReactElement => {
   const [value, setValue] = React.useState<DESIGN_MENU_TYPE>(
     DESIGN_MENU.CREATED_DESIGN,
   );
@@ -72,7 +72,10 @@ const DesignTabs = (): React.ReactElement => {
           disabled
         />
       </Tabs>
-      <DesignTabPanel selectedValue={value} value={DESIGN_MENU.CREATED_DESIGN}>
+      <InformationTabPanel
+        selectedValue={value}
+        value={DESIGN_MENU.CREATED_DESIGN}
+      >
         <StyledList>
           {Mock.map((data, index) => (
             <DesignItem
@@ -82,18 +85,21 @@ const DesignTabs = (): React.ReactElement => {
             />
           ))}
         </StyledList>
-      </DesignTabPanel>
-      <DesignTabPanel selectedValue={value} value={DESIGN_MENU.DESIGN_ON_SALE}>
+      </InformationTabPanel>
+      <InformationTabPanel
+        selectedValue={value}
+        value={DESIGN_MENU.DESIGN_ON_SALE}
+      >
         판매 중인 도안 리스트
-      </DesignTabPanel>
-      <DesignTabPanel
+      </InformationTabPanel>
+      <InformationTabPanel
         selectedValue={value}
         value={DESIGN_MENU.PURCHASED_DESIGN}
       >
         구매한 도안 리스트
-      </DesignTabPanel>
+      </InformationTabPanel>
     </div>
   );
 };
 
-export default DesignTabs;
+export default MyInformationTabs;

@@ -5,7 +5,7 @@ import { flexVerticalAlign } from 'styles/constants';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
 
-const MyInfoContainer = styled.section`
+const MyProfileContainer = styled.section`
   ${flexVerticalAlign};
   display: flex;
   margin-bottom: ${theme.spacing(8)};
@@ -29,16 +29,16 @@ const Email = styled.span`
   color: ${palette.text.secondary};
 `;
 
-const MyInfo = (): React.ReactElement => {
+const MyProfile = (): React.ReactElement => {
   return (
-    <MyInfoContainer>
+    <MyProfileContainer>
       <EmptyProfile />
       <div>
         <Name variant="h5">홍길동</Name>
         <Email>red.road@gmail.com</Email>
       </div>
-    </MyInfoContainer>
+    </MyProfileContainer>
   );
 };
 
-export default MyInfo;
+export default MyProfile;

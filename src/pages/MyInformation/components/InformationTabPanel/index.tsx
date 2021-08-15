@@ -1,4 +1,4 @@
-import { DESIGN_MENU_TYPE } from '../DesignTabs';
+import { DESIGN_MENU_TYPE } from '../InformationTabs';
 
 interface Props {
   children?: React.ReactNode;
@@ -6,7 +6,7 @@ interface Props {
   value: DESIGN_MENU_TYPE;
 }
 
-const DesignTabPanel = (props: Props): React.ReactElement => {
+const InformationTabPanel = (props: Props): React.ReactElement => {
   const { children, value, selectedValue } = props;
 
   return (
@@ -16,4 +16,4 @@ const DesignTabPanel = (props: Props): React.ReactElement => {
   );
 };
 
-export default DesignTabPanel;
+export default InformationTabPanel;
