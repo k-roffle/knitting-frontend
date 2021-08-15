@@ -1,5 +1,8 @@
 import { List, Tab, Tabs } from '@material-ui/core';
+import { selectedTabAtom } from 'pages/MyInformation/recoils';
+import { DESIGN_MENU_TYPE, DESIGN_MENU } from 'pages/MyInformation/types';
 import React from 'react';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { v4 as uuidv4 } from 'uuid';
@@ -28,34 +31,24 @@ const Mock = [
   },
 ];
 
-export const DESIGN_MENU = {
-  CREATED_DESIGN: 'created_design',
-  DESIGN_ON_SALE: 'design_on_sale',
-  PURCHASED_DESIGN: 'purchased_design',
-} as const;
-
-export type DESIGN_MENU_TYPE = typeof DESIGN_MENU[keyof typeof DESIGN_MENU];
-
 const StyledList = styled(List)`
   margin-top: ${theme.spacing(2)};
 `;
 
 const MyInformationTabs = (): React.ReactElement => {
-  const [value, setValue] = React.useState<DESIGN_MENU_TYPE>(
-    DESIGN_MENU.CREATED_DESIGN,
-  );
+  const [selectedTab, setSelectedTab] = useRecoilState(selectedTabAtom);
 
   const handleChange = (
     _event: React.ChangeEvent<Record<string, never>>,
     newValue: DESIGN_MENU_TYPE,
   ) => {
-    setValue(newValue);
+    setSelectedTab(newValue);
   };
 
   return (
     <div>
       <Tabs
-        value={value}
+        value={selectedTab}
         onChange={handleChange}
         textColor="primary"
         indicatorColor="primary"
@@ -72,10 +65,7 @@ const MyInformationTabs = (): React.ReactElement => {
           disabled
         />
       </Tabs>
-      <InformationTabPanel
-        selectedValue={value}
-        value={DESIGN_MENU.CREATED_DESIGN}
-      >
+      <InformationTabPanel value={DESIGN_MENU.CREATED_DESIGN}>
         <StyledList>
           {Mock.map((data, index) => (
             <DesignItem
@@ -86,16 +76,10 @@ const MyInformationTabs = (): React.ReactElement => {
           ))}
         </StyledList>
       </InformationTabPanel>
-      <InformationTabPanel
-        selectedValue={value}
-        value={DESIGN_MENU.DESIGN_ON_SALE}
-      >
+      <InformationTabPanel value={DESIGN_MENU.DESIGN_ON_SALE}>
         판매 중인 도안 리스트
       </InformationTabPanel>
-      <InformationTabPanel
-        selectedValue={value}
-        value={DESIGN_MENU.PURCHASED_DESIGN}
-      >
+      <InformationTabPanel value={DESIGN_MENU.PURCHASED_DESIGN}>
         구매한 도안 리스트
       </InformationTabPanel>
     </div>
