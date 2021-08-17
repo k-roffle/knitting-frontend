@@ -7,7 +7,7 @@ export const selectedTabAtom = atom<DESIGN_MENU_TYPE>({
   default: DESIGN_MENU.CREATED_DESIGN,
 });
 
-export const itemLengthAtom = atom<number>({
-  key: 'itemLength',
+export const tabItemLengthAtom = atom<number>({
+  key: 'tebItemLength',
   default: 0,
 });

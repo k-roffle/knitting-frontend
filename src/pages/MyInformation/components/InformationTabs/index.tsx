@@ -1,6 +1,9 @@
 import { List, Tab, Tabs } from '@material-ui/core';
 import EmptyContent from 'dumbs/EmptyContent';
-import { itemLengthAtom, selectedTabAtom } from 'pages/MyInformation/recoils';
+import {
+  selectedTabAtom,
+  tabItemLengthAtom,
+} from 'pages/MyInformation/recoils';
 import { DESIGN_MENU_TYPE, DESIGN_MENU } from 'pages/MyInformation/types';
 import React, { useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -40,7 +43,7 @@ const StyledList = styled(List)`
 
 const MyInformationTabs = (): React.ReactElement => {
   const [selectedTab, setSelectedTab] = useRecoilState(selectedTabAtom);
-  const setItemLength = useSetRecoilState(itemLengthAtom);
+  const setTabItemLength = useSetRecoilState(tabItemLengthAtom);
 
   const emptyContent = useRenderEmptyContent();
 
@@ -52,7 +55,7 @@ const MyInformationTabs = (): React.ReactElement => {
   };
 
   useEffect(() => {
-    setItemLength(Mock.length);
+    setTabItemLength(Mock.length);
   }, [Mock]);
 
   return (
