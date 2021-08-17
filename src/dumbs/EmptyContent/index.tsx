@@ -12,7 +12,7 @@ const EmptyContentContainer = styled.div`
   padding: ${theme.spacing(7)};
 `;
 
-const Subtitle = styled(Typography)`
+const Description = styled(Typography)`
   display: block;
   color: ${palette.text.secondary};
   margin-top: ${theme.spacing(1)};
@@ -24,21 +24,23 @@ const CreateButton = styled(Button)`
 
 export interface EmptyContentProps {
   title: string;
-  subtitle?: string;
+  description?: string;
   buttonText: string;
   onClick: () => void;
 }
 
 const EmptyContent = ({
   title,
-  subtitle,
+  description,
   buttonText,
   onClick,
 }: EmptyContentProps): React.ReactElement => {
   return (
     <EmptyContentContainer>
       <Typography variant="h5">{title}</Typography>
-      {subtitle != null && <Subtitle variant="caption">{subtitle}</Subtitle>}
+      {description != null && (
+        <Description variant="caption">{description}</Description>
+      )}
       <CreateButton variant="contained" color="primary" onClick={onClick}>
         {buttonText}
       </CreateButton>

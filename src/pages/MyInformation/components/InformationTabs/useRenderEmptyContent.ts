@@ -20,7 +20,7 @@ export const useRenderEmptyContent = (): EmptyContentProps | null => {
         // TODO: 상품 등록하기 페이지 추가되면 url 변경하기
         return {
           title: '아직 판매 중인 상품이 없어요! 😢',
-          subtitle:
+          description:
             '다른 사람이 도안을 구매하기 위해서는 판매 상품으로 등록해야 해요!',
           buttonText: '지금 상품 판매하기',
           onClick: () => history.push('/my/designs/create'),
