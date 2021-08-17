@@ -1,5 +1,5 @@
 import { Button, Typography } from '@material-ui/core';
-import { itemLengthAtom } from 'pages/MyInformation/recoils';
+import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
@@ -66,14 +66,14 @@ const mock = {
 
 const MyProfile = (): React.ReactElement => {
   const [createButtonText, handleButtonClick] = useRenderButtonText();
-  const itemLength = useRecoilValue(itemLengthAtom);
+  const tabItemLength = useRecoilValue(tabItemLengthAtom);
 
   const {
     number_of_designs_on_sales: numberOfDesignsOnSales,
     number_of_designs_sold: numberOfDesignsSold,
   } = mock;
 
-  const emptyList = itemLength === 0;
+  const emptyList = tabItemLength === 0;
 
   return (
     <MyProfileContainer>
