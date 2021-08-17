@@ -9,7 +9,11 @@ interface TokenPayload {
 const REFRESH_DELTA = 60 * 60;
 
 const refreshAccessToken = async (token: string): Promise<void> => {
-  request('/auth/refresh', 'post', null, null, token)
+  request({
+    pathname: '/auth/refresh',
+    method: 'post',
+    accessToken: token,
+  })
     .then(({ status, data }) => {
       if (status === 200) {
         setAccessToken(data.token);

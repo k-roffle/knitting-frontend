@@ -44,8 +44,12 @@ const LoginRedirected = (): React.ReactElement => {
   };
 
   const requestFetchAccessToken = async () => {
-    const response = await request('/auth/google/authorized', 'get', null, {
-      code,
+    const response = await request({
+      pathname: '/auth/google/authorized',
+      method: 'get',
+      params: {
+        code,
+      },
     });
     const token = response.data.token;
 

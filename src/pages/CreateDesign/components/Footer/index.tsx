@@ -57,10 +57,10 @@ const Footer = (): React.ReactElement => {
   };
 
   const requestSaveDesign = async (): Promise<void> => {
-    await request(
-      '/design/',
-      'post',
-      {
+    await request({
+      pathname: '/design/',
+      method: 'post',
+      data: {
         name,
         design_type: designType,
         pattern_type: patternType,
@@ -81,9 +81,8 @@ const Footer = (): React.ReactElement => {
           convertToRaw(editorState.getCurrentContent()),
         )}`,
       },
-      null,
-      getAccessToken(),
-    );
+      accessToken: getAccessToken(),
+    });
   };
 
   const handleOnClickPrevious = (): void => {
