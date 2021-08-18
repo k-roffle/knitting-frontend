@@ -1,4 +1,5 @@
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
+import CommonSnackbar from 'components/CommonSnackbar';
 import { Error404 } from 'pages';
 import React from 'react';
 import {
@@ -29,6 +30,7 @@ const App = (): React.ReactElement => {
             </QueryParamProvider>
           </ThemeProvider>
         </StylesProvider>
+        <CommonSnackbar />
       </RecoilRoot>
     </BrowserRouter>
   );
