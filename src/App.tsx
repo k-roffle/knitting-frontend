@@ -1,3 +1,5 @@
+import { MY_INFORMATION_ROUTER_ROOT } from 'constants/path';
+
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
 import CommonSnackbar from 'components/CommonSnackbar';
 import { Error404 } from 'pages';
@@ -22,7 +24,10 @@ const App = (): React.ReactElement => {
           <ThemeProvider theme={theme}>
             <QueryParamProvider ReactRouterRoute={PublicRoute}>
               <Switch>
-                <NestedRoute path="/my/" component={MyInformation} />
+                <NestedRoute
+                  path={MY_INFORMATION_ROUTER_ROOT}
+                  component={MyInformation}
+                />
                 <NestedRoute path="/login/" component={Login} />
                 <PublicRoute path="/error/" component={Error404} exact />
                 <PublicRoute path="*" component={Error404} />

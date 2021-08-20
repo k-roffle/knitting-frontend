@@ -1,3 +1,8 @@
+import {
+  MY_INFORMATION_PROFILE_PATH,
+  MY_INFORMATION_CREATE_DESIGN_PATH,
+} from 'constants/path';
+
 import CreateDesign from 'pages/CreateDesign';
 import Error404 from 'pages/Error404';
 import MyInformation from 'pages/MyInformation';
@@ -10,9 +15,13 @@ const MyInformationRouter = ({
 }: RouteComponentProps): React.ReactElement => {
   return (
     <Switch>
-      <ProtectedRoute path={`${url}`} component={MyInformation} exact />
       <ProtectedRoute
-        path={`${url}/designs/create/`}
+        path={MY_INFORMATION_PROFILE_PATH}
+        component={MyInformation}
+        exact
+      />
+      <ProtectedRoute
+        path={MY_INFORMATION_CREATE_DESIGN_PATH}
         component={CreateDesign}
         exact
       />

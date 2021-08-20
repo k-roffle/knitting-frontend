@@ -1,3 +1,5 @@
+import { MY_INFORMATION_PROFILE_PATH } from 'constants/path';
+
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core';
 import { AccountCircle, ArrowDropDown } from '@material-ui/icons';
 import { Logo } from 'dumbs';
@@ -5,7 +7,6 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { MY_PROFILE_PATH } from 'constants/path';
 import { deleteAccessToken } from 'utils/auth';
 
 const StyledIconButton = styled(IconButton)`
@@ -30,10 +31,10 @@ const Header = (): React.ReactElement => {
 
   const onClickMyProfile = () => {
     handleClose();
-    if (location.pathname === MY_PROFILE_PATH) {
+    if (location.pathname === MY_INFORMATION_PROFILE_PATH) {
       window.location.reload();
     } else {
-      history.push(MY_PROFILE_PATH);
+      history.push(MY_INFORMATION_PROFILE_PATH);
     }
   };
 
