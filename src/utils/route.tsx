@@ -18,7 +18,7 @@ export const LoginRoute = (props: RouteProps): React.ReactElement => {
   return isAuthenticated() ? (
     <Redirect
       to={{
-        pathname: '/designs/create/',
+        pathname: '/',
       }}
     />
   ) : (
