@@ -11,8 +11,8 @@ import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
+import { FAILED_TO_SAVE_DESIGN } from 'constants/errors';
 import { getAccessToken } from 'utils/auth';
-import { FAILED_TO_SAVE_DESIGN } from 'utils/errors';
 import { request } from 'utils/requests';
 
 const FooterContainer = styled.div`

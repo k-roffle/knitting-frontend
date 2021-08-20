@@ -6,8 +6,8 @@ import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { useQueryParam, StringParam } from 'use-query-params';
+import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'constants/errors';
 import { setAccessToken } from 'utils/auth';
-import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'utils/errors';
 import { request } from 'utils/requests';
 
 const ProgressWrapper = styled.div`

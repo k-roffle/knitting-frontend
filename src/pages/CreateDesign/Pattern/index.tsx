@@ -23,7 +23,7 @@ import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
-import { FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH } from 'utils/errors';
+import { FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH } from 'constants/errors';
 
 import { FontSize } from '../components/FontSize';
 import { editorStateAtom } from '../recoils';

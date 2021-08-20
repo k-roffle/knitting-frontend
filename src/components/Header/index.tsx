@@ -5,8 +5,8 @@ import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'themes';
+import { MY_PROFILE_PATH } from 'constants/path';
 import { deleteAccessToken } from 'utils/auth';
-import { MY_PROFILE_PATH } from 'utils/path';
 
 const StyledIconButton = styled(IconButton)`
   border-radius: ${theme.spacing(6)};
