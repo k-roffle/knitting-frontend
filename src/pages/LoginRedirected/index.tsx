@@ -34,8 +34,7 @@ const LoginRedirected = (): React.ReactElement => {
   const setErrorSnackbarMessage = useSetRecoilState(errorSnackbarMessageAtom);
   const onLoginSuccess = (accessToken: string) => {
     setAccessToken(accessToken);
-    // TODO 메인페이지 개발 후 메인페이지로 이동하도록 수정
-    history.replace('/designs/create');
+    history.replace('/');
   };
 
   const onLoginFailed = () => {
