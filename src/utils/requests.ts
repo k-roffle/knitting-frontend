@@ -29,17 +29,22 @@ export async function request({
   const payload: AxiosRequestConfig = {
     method,
     url,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: {},
     params,
-    data: JSON.stringify(data),
   };
 
   if (accessToken != null) {
     payload.headers.Authorization = `Bearer ${accessToken}`;
   }
-
+  switch (method) {
+    case 'post':
+    case 'put':
+      payload.headers['Content-Type'] = 'application/json';
+      payload.data = JSON.stringify(data);
+      break;
+    default:
+      break;
+  }
   const response = await axios(payload);
 
   return response;
