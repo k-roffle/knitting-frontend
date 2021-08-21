@@ -1,3 +1,5 @@
+import { FAILED_TO_SAVE_DESIGN } from 'constants/errors';
+
 import { Button as MaterialButton } from '@material-ui/core';
 import { convertToRaw } from 'draft-js';
 import { Button, Snackbar } from 'dumbs';
@@ -11,7 +13,6 @@ import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { FAILED_TO_SAVE_DESIGN } from 'constants/errors';
 import { getAccessToken } from 'utils/auth';
 import { request } from 'utils/requests';
 

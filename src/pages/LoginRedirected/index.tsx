@@ -1,3 +1,5 @@
+import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'constants/errors';
+
 import { CircularProgress, Typography } from '@material-ui/core';
 import { errorSnackbarMessageAtom } from 'pages/Login/recoils';
 import React, { useEffect } from 'react';
@@ -6,7 +8,6 @@ import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { useQueryParam, StringParam } from 'use-query-params';
-import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'constants/errors';
 import { setAccessToken } from 'utils/auth';
 import { request } from 'utils/requests';
 

@@ -7,12 +7,10 @@ import CreateDesign from 'pages/CreateDesign';
 import Error404 from 'pages/Error404';
 import MyInformation from 'pages/MyInformation';
 import React from 'react';
-import { Switch, Route, RouteComponentProps } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { ProtectedRoute } from 'utils/route';
 
-const MyInformationRouter = ({
-  match: { url },
-}: RouteComponentProps): React.ReactElement => {
+const MyInformationRouter = (): React.ReactElement => {
   return (
     <Switch>
       <ProtectedRoute
