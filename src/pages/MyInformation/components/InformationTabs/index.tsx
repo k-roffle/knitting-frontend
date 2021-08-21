@@ -1,5 +1,7 @@
 import { List, Tab, Tabs } from '@material-ui/core';
+import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import EmptyContent from 'dumbs/EmptyContent';
+import { useGetMyDesigns } from 'pages/MyInformation/hooks/useGetMyDesigns';
 import {
   selectedTabAtom,
   tabItemLengthAtom,
@@ -9,33 +11,13 @@ import React, { useEffect } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { v4 as uuidv4 } from 'uuid';
+import { FAILED_TO_GET_MY_DESIGNS } from 'utils/errors';
+import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
 
 import DesignItem from '../DesignItem';
 import InformationTabPanel from '../InformationTabPanel';
 
 import { useRenderEmptyContent } from './useRenderEmptyContent';
-
-const Mock = [
-  {
-    id: uuidv4(),
-    name: '토니 캔디 라운드넥 니트',
-    yarn: '패션아란 400g 1볼',
-    tags: ['니트', '서술형 도안'],
-  },
-  {
-    id: uuidv4(),
-    name: '토니 캔디 라운드넥 니트',
-    yarn: '패션아란 400g 1볼',
-    tags: ['니트', '서술형 도안'],
-  },
-  {
-    id: uuidv4(),
-    name: '토니 캔디 라운드넥 니트',
-    yarn: '패션아란 400g 1볼',
-    tags: ['니트', '서술형 도안'],
-  },
-];
 
 const StyledList = styled(List)`
   margin-top: ${theme.spacing(2)};
@@ -43,6 +25,18 @@ const StyledList = styled(List)`
 
 const MyInformationTabs = (): React.ReactElement => {
   const [selectedTab, setSelectedTab] = useRecoilState(selectedTabAtom);
+  const { data, error } = useGetMyDesigns();
+
+  useCommonSnackbar({
+    message: FAILED_TO_GET_MY_DESIGNS,
+    severity: 'error',
+    dependencies: [error],
+  });
+
+  const designs = data?.payload ?? [];
+  const isLoading = data == null;
+  const isEmpty = !isLoading && designs.length === 0;
+
   const setTabItemLength = useSetRecoilState(tabItemLengthAtom);
 
   const emptyContent = useRenderEmptyContent();
@@ -55,8 +49,8 @@ const MyInformationTabs = (): React.ReactElement => {
   };
 
   useEffect(() => {
-    setTabItemLength(Mock.length);
-  }, [Mock]);
+    setTabItemLength(designs.length);
+  }, [designs]);
 
   return (
     <div>
@@ -80,14 +74,17 @@ const MyInformationTabs = (): React.ReactElement => {
       </Tabs>
       <InformationTabPanel value={DESIGN_MENU.CREATED_DESIGN}>
         <StyledList>
-          {Mock.map((data, index) => (
-            <DesignItem
-              key={data.id}
-              {...data}
-              showDivider={Mock.length - 1 !== index}
-            />
-          ))}
-          {Mock.length === 0 && emptyContent != null && (
+          {(isLoading ? [...Array(DEFAULT_LIST_LENGTH)] : designs).map(
+            (design, index) => (
+              <DesignItem
+                isLoading={data == null}
+                key={isLoading ? index : design.id}
+                {...design}
+                showDivider={designs.length - 1 !== index}
+              />
+            ),
+          )}
+          {isEmpty && emptyContent != null && (
             <EmptyContent {...emptyContent} />
           )}
         </StyledList>
