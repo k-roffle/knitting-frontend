@@ -1,45 +1,14 @@
-import { List, Tab, Tabs } from '@material-ui/core';
-import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
-import EmptyContent from 'dumbs/EmptyContent';
-import { useGetMyDesigns } from 'pages/MyInformation/hooks/useGetMyDesigns';
-import {
-  selectedTabAtom,
-  tabItemLengthAtom,
-} from 'pages/MyInformation/recoils';
+import { Tab, Tabs } from '@material-ui/core';
+import { selectedTabAtom } from 'pages/MyInformation/recoils';
 import { DESIGN_MENU_TYPE, DESIGN_MENU } from 'pages/MyInformation/types';
-import React, { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
-import { theme } from 'themes';
-import { FAILED_TO_GET_MY_DESIGNS } from 'utils/errors';
-import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
+import React from 'react';
+import { useRecoilState } from 'recoil';
 
-import DesignItem from '../DesignItem';
+import Designs from '../Designs';
 import InformationTabPanel from '../InformationTabPanel';
-
-import { useRenderEmptyContent } from './useRenderEmptyContent';
-
-const StyledList = styled(List)`
-  margin-top: ${theme.spacing(2)};
-`;
 
 const MyInformationTabs = (): React.ReactElement => {
   const [selectedTab, setSelectedTab] = useRecoilState(selectedTabAtom);
-  const { data, error } = useGetMyDesigns();
-
-  useCommonSnackbar({
-    message: FAILED_TO_GET_MY_DESIGNS,
-    severity: 'error',
-    dependencies: [error],
-  });
-
-  const designs = data?.payload ?? [];
-  const isLoading = data == null;
-  const isEmpty = !isLoading && designs.length === 0;
-
-  const setTabItemLength = useSetRecoilState(tabItemLengthAtom);
-
-  const emptyContent = useRenderEmptyContent();
 
   const handleChange = (
     _event: React.ChangeEvent<Record<string, never>>,
@@ -47,10 +16,6 @@ const MyInformationTabs = (): React.ReactElement => {
   ) => {
     setSelectedTab(newValue);
   };
-
-  useEffect(() => {
-    setTabItemLength(designs.length);
-  }, [designs]);
 
   return (
     <div>
@@ -73,21 +38,7 @@ const MyInformationTabs = (): React.ReactElement => {
         />
       </Tabs>
       <InformationTabPanel value={DESIGN_MENU.CREATED_DESIGN}>
-        <StyledList>
-          {(isLoading ? [...Array(DEFAULT_LIST_LENGTH)] : designs).map(
-            (design, index) => (
-              <DesignItem
-                isLoading={data == null}
-                key={isLoading ? index : design.id}
-                {...design}
-                showDivider={designs.length - 1 !== index}
-              />
-            ),
-          )}
-          {isEmpty && emptyContent != null && (
-            <EmptyContent {...emptyContent} />
-          )}
-        </StyledList>
+        <Designs />
       </InformationTabPanel>
       <InformationTabPanel value={DESIGN_MENU.DESIGN_ON_SALE}>
         판매 중인 도안 리스트
