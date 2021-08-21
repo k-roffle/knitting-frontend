@@ -4,4 +4,5 @@ export type DesignItemResponse = {
   yarn: string;
   cover_image_url: string;
   tags: string[];
+  created_at: string;
 };
