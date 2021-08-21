@@ -4,12 +4,14 @@ import Skeleton from 'dumbs/Skeleton';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
+import { formatDate } from 'utils/format';
 
 interface Props {
   name?: string;
   yarn?: string;
   cover_image_url?: string;
   tags?: string[];
+  created_at?: string;
   showDivider?: boolean;
   isLoading?: boolean;
 }
@@ -50,7 +52,13 @@ const DesignType = styled.span`
 
 const Information = styled(Typography)`
   color: ${palette.grey[800]};
-  margin-bottom: ${theme.spacing(1)};
+  margin-bottom: ${theme.spacing(0.5)};
+`;
+
+const CreatedDate = styled(Typography)`
+  display: block;
+  color: ${palette.text.secondary};
+  margin-bottom: ${theme.spacing(2)};
 `;
 
 const ThumbNail = styled.img`
@@ -74,6 +82,7 @@ const DesignItem = ({
   cover_image_url: coverImageUrl,
   yarn = '',
   tags = [],
+  created_at: createdAt,
   showDivider = true,
   isLoading = false,
 }: Props): React.ReactElement => {
@@ -103,6 +112,12 @@ const DesignItem = ({
               {yarn}
             </Skeleton>
           </Information>
+          {createdAt != null && (
+            <CreatedDate variant="caption">
+              {isLoading ? <Skeleton variant="text" /> : formatDate(createdAt)}
+            </CreatedDate>
+          )}
+
           {tags.map((tag) => (
             <DesignType key={tag}>
               <Skeleton
