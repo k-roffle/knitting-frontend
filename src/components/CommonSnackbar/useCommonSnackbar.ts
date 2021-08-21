@@ -17,10 +17,12 @@ export const useCommonSnackbar = ({
   const setErrorSnackbarMessage = useSetRecoilState(snackbarAtom);
 
   useEffect(() => {
-    setErrorSnackbarMessage({ message, severity });
+    if (dependencies.every((dependency) => dependency)) {
+      setErrorSnackbarMessage({ message, severity });
 
-    setTimeout(() => {
-      setErrorSnackbarMessage(undefined);
-    }, SNACKBAR_DURATION_TIME);
+      setTimeout(() => {
+        setErrorSnackbarMessage(undefined);
+      }, SNACKBAR_DURATION_TIME);
+    }
   }, dependencies);
 };
