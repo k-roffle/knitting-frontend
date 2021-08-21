@@ -17,9 +17,7 @@ const getMyDesigns = async (pathname: string): Promise<VendorQueryResult> => {
     accessToken: getAccessToken(),
   });
 
-  const { data: payload, meta } = data;
-
-  return { payload, meta };
+  return data;
 };
 
 export const useGetMyDesigns = (): SWRResponse<VendorQueryResult, unknown> => {
