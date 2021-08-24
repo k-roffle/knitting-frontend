@@ -17,11 +17,15 @@ const MyInformationRouter = (): React.ReactElement => {
         path={MY_INFORMATION_PROFILE_PATH}
         component={MyInformation}
         exact
+        strict
+        sensitive
       />
       <ProtectedRoute
         path={MY_INFORMATION_CREATE_DESIGN_PATH}
         component={CreateDesign}
         exact
+        strict
+        sensitive
       />
       <Route path="*" component={Error404} />
     </Switch>
