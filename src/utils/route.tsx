@@ -6,7 +6,7 @@ import { isAuthenticated } from 'utils/auth';
 
 export const ProtectedRoute = (props: RouteProps): React.ReactElement => {
   return isAuthenticated() ? (
-    <Route {...props} />
+    <RouteWithoutTrailigSlash {...props} />
   ) : (
     <Redirect
       to={{
@@ -24,6 +24,27 @@ export const LoginRoute = (props: RouteProps): React.ReactElement => {
       }}
     />
   ) : (
+    <RouteWithoutTrailigSlash {...props} />
+  );
+};
+
+export const RouteWithoutTrailigSlash = (
+  props: RouteProps,
+): React.ReactElement => {
+  const pathname = props.location?.pathname;
+  const pathnameWithoutTrailingSlash = pathname?.replace(/\/$/, '');
+
+  if (pathname === '/') {
+    return <Route {...props} />;
+  }
+
+  return pathname === pathnameWithoutTrailingSlash ? (
     <Route {...props} />
+  ) : (
+    <Redirect
+      to={{
+        pathname: pathnameWithoutTrailingSlash,
+      }}
+    />
   );
 };

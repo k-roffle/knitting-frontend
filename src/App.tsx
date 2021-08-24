@@ -4,17 +4,16 @@ import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
 import CommonSnackbar from 'components/CommonSnackbar';
 import { Error404 } from 'pages';
 import React from 'react';
-import {
-  BrowserRouter,
-  Route as PublicRoute,
-  Route as NestedRoute,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import Login from 'routers/LoginRouter';
 import MyInformation from 'routers/MyInformationRouter';
 import { theme } from 'themes';
 import { QueryParamProvider } from 'use-query-params';
+import {
+  RouteWithoutTrailigSlash as PublicRoute,
+  RouteWithoutTrailigSlash as NestedRoute,
+} from 'utils/route';
 
 const App = (): React.ReactElement => {
   return (
