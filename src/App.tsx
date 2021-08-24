@@ -1,4 +1,8 @@
-import { MY_INFORMATION_ROUTER_ROOT, LOGIN_ROUTER_ROOT } from 'constants/path';
+import {
+  MY_INFORMATION_ROUTER_ROOT,
+  LOGIN_ROUTER_ROOT,
+  ERROR_PATH,
+} from 'constants/path';
 
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
 import CommonSnackbar from 'components/CommonSnackbar';
@@ -29,7 +33,7 @@ const App = (): React.ReactElement => {
                 />
                 <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
                 <PublicRoute
-                  path="/error"
+                  path={ERROR_PATH}
                   component={Error404}
                   exact
                   strict
