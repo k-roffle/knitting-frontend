@@ -51,7 +51,7 @@ const LoginRedirected = (): React.ReactElement => {
         code,
       },
     });
-    const token = response.data.token;
+    const token = response.data.payload.token;
 
     if (response.status === 200 && token != null) {
       onLoginSuccess(token);
