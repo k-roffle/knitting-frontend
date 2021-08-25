@@ -34,6 +34,11 @@
         ],
         "pathGroups": [
           {
+            "pattern": "constants/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
             "pattern": "types/**",
             "group": "internal",
             "position": "before"

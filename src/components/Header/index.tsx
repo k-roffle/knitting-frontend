@@ -1,9 +1,13 @@
+import { MY_INFORMATION_PROFILE_PATH } from 'constants/path';
+
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core';
 import { AccountCircle, ArrowDropDown } from '@material-ui/icons';
 import { Logo } from 'dumbs';
 import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'themes';
+import { deleteAccessToken } from 'utils/auth';
 
 const StyledIconButton = styled(IconButton)`
   border-radius: ${theme.spacing(6)};
@@ -14,6 +18,8 @@ const Header = (): React.ReactElement => {
     HTMLElement | undefined
   >();
   const open = Boolean(anchorElement);
+  const history = useHistory();
+  const location = useLocation();
 
   const handleMenu = ({ currentTarget }: React.MouseEvent<HTMLElement>) => {
     setAnchorElement(currentTarget);
@@ -21,6 +27,21 @@ const Header = (): React.ReactElement => {
 
   const handleClose = () => {
     setAnchorElement(undefined);
+  };
+
+  const onClickMyProfile = () => {
+    handleClose();
+    if (location.pathname === MY_INFORMATION_PROFILE_PATH) {
+      window.location.reload();
+    } else {
+      history.push(MY_INFORMATION_PROFILE_PATH);
+    }
+  };
+
+  const onClickLogout = () => {
+    deleteAccessToken();
+    handleClose();
+    window.location.reload();
   };
 
   return (
@@ -47,8 +68,8 @@ const Header = (): React.ReactElement => {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>내 정보</MenuItem>
-            <MenuItem onClick={handleClose}>로그아웃</MenuItem>
+            <MenuItem onClick={onClickMyProfile}>내 정보</MenuItem>
+            <MenuItem onClick={onClickLogout}>로그아웃</MenuItem>
           </Menu>
         </div>
       </Toolbar>

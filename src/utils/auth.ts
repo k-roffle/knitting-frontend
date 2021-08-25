@@ -47,7 +47,7 @@ export const setAccessToken = (token: string): void => {
   window.localStorage.setItem('token', token);
 };
 
-const deleteAccessToken = (): void => {
+export const deleteAccessToken = (): void => {
   window.localStorage.removeItem('token');
 };
 

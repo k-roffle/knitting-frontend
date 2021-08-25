@@ -1,3 +1,5 @@
+import { FAILED_TO_SAVE_DESIGN } from 'constants/errors';
+
 import { Button as MaterialButton } from '@material-ui/core';
 import { convertToRaw } from 'draft-js';
 import { Button, Snackbar } from 'dumbs';
@@ -12,7 +14,6 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { getAccessToken } from 'utils/auth';
-import { FAILED_TO_SAVE_DESIGN } from 'utils/errors';
 import { request } from 'utils/requests';
 
 const FooterContainer = styled.div`
