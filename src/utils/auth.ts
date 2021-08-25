@@ -16,7 +16,7 @@ const refreshAccessToken = async (token: string): Promise<void> => {
   })
     .then(({ status, data }) => {
       if (status === 200) {
-        setAccessToken(data.token);
+        setAccessToken(data.payload.token);
       }
     })
     .catch(() => deleteAccessToken());
