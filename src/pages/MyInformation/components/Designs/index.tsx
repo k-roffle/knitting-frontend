@@ -67,8 +67,7 @@ const Designs = (): React.ReactElement => {
           (design, index) => (
             <DesignItem
               isLoading={data == null}
-              id={index}
-              key={isLoading ? index : design.id}
+              key={index}
               {...design}
               showDivider={designs.length - 1 !== index}
             />

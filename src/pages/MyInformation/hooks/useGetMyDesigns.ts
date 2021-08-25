@@ -33,8 +33,12 @@ export const useGetMyDesigns = (): SWRInfiniteResponse<
 
     const isFirstCursor = pageIndex === 0;
     const lastCursor = previousPageData?.meta?.last_cursor;
-    const afterValue =
-      isFirstCursor || lastCursor == null ? `` : `&after=${lastCursor}`;
+
+    let afterValue = '';
+
+    if (!isFirstCursor && lastCursor != null) {
+      afterValue = `&after=${lastCursor}`;
+    }
 
     return `designs/my?count=${DEFAULT_LIST_LENGTH}${afterValue}`;
   }
