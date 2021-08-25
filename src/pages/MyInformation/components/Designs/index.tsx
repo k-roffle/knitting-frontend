@@ -1,3 +1,5 @@
+import { FAILED_TO_GET_MY_DESIGNS } from 'constants/errors';
+
 import { List } from '@material-ui/core';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import EmptyContent from 'dumbs/EmptyContent';
@@ -7,7 +9,6 @@ import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { FAILED_TO_GET_MY_DESIGNS } from 'utils/errors';
 import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
 
 import DesignItem from '../DesignItem';
