@@ -1,6 +1,6 @@
 import { Typography, ListItem } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
 import { Ellipsis } from 'components';
+import Skeleton from 'dumbs/Skeleton';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
@@ -82,26 +82,36 @@ const DesignItem = ({
       <ListItemContainer>
         {(isLoading || coverImageUrl) && (
           <ImageWrapper>
-            {isLoading && (
-              <Skeleton variant="rect" width="100%" height="100%" />
-            )}
-            {coverImageUrl && <ThumbNail src={coverImageUrl} />}
+            <Skeleton
+              isLoading={isLoading}
+              variant="rect"
+              width="100%"
+              height="100%"
+            >
+              {coverImageUrl && <ThumbNail src={coverImageUrl} />}
+            </Skeleton>
           </ImageWrapper>
         )}
         <Content>
           <Name variant="h4">
-            {isLoading ? <Skeleton variant="text" /> : <Ellipsis text={name} />}
+            <Skeleton isLoading={isLoading} variant="text">
+              <Ellipsis text={name} />
+            </Skeleton>
           </Name>
           <Information variant="subtitle2">
-            {isLoading ? <Skeleton variant="text" /> : yarn}
+            <Skeleton isLoading={isLoading} variant="text">
+              {yarn}
+            </Skeleton>
           </Information>
           {tags.map((tag) => (
             <DesignType key={tag}>
-              {isLoading ? (
-                <Skeleton variant="text" width={theme.spacing(5)} />
-              ) : (
-                tag
-              )}
+              <Skeleton
+                isLoading={isLoading}
+                variant="text"
+                width={theme.spacing(5)}
+              >
+                {tag}
+              </Skeleton>
             </DesignType>
           ))}
         </Content>
