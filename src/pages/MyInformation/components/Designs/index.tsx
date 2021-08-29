@@ -64,14 +64,18 @@ const Designs = (): React.ReactElement => {
         }
       >
         {(isLoading ? [...Array(DEFAULT_LIST_LENGTH)] : designs).map(
-          (design, index) => (
-            <DesignItem
-              isLoading={data == null}
-              key={index}
-              {...design}
-              showDivider={designs.length - 1 !== index}
-            />
-          ),
+          (design, index) => {
+            const showDivider = designs.length - 1 !== index;
+
+            return (
+              <DesignItem
+                isLoading={data == null}
+                key={index}
+                {...design}
+                showDivider={showDivider}
+              />
+            );
+          },
         )}
       </InfiniteScroll>
       {isEmpty && emptyContent != null && <EmptyContent {...emptyContent} />}
