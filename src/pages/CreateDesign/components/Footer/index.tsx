@@ -13,7 +13,6 @@ import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { getAccessToken } from 'utils/auth';
 import { request } from 'utils/requests';
 
 const FooterContainer = styled.div`
@@ -82,7 +81,7 @@ const Footer = (): React.ReactElement => {
           convertToRaw(editorState.getCurrentContent()),
         )}`,
       },
-      accessToken: getAccessToken(),
+      useCurrentToken: true,
     });
   };
 

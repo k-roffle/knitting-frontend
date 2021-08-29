@@ -1,7 +1,9 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import parse from 'url-parse';
 
+import { getAccessToken } from './auth';
 import { getConfig } from './config';
+import { notFoundExpected } from './errors';
 
 type Method = 'get' | 'post' | 'put' | 'delete' | 'patch';
 interface RequestProps {
@@ -10,6 +12,7 @@ interface RequestProps {
   data?: unknown;
   params?: unknown;
   accessToken?: string;
+  useCurrentToken?: boolean;
 }
 
 export const constructURL = (pathname: string): parse => {
@@ -24,6 +27,7 @@ export async function request({
   data,
   params,
   accessToken,
+  useCurrentToken = false,
 }: RequestProps): Promise<AxiosResponse> {
   const url = constructURL(pathname).toString();
   const payload: AxiosRequestConfig = {
@@ -36,6 +40,17 @@ export async function request({
   if (accessToken != null) {
     payload.headers.Authorization = `Bearer ${accessToken}`;
   }
+
+  if (accessToken == null && useCurrentToken) {
+    const currentAccessToken = getAccessToken();
+
+    if (currentAccessToken == null) {
+      notFoundExpected('access token');
+    }
+
+    payload.headers.Authorization = `Bearer ${currentAccessToken}`;
+  }
+
   switch (method) {
     case 'post':
     case 'put':
