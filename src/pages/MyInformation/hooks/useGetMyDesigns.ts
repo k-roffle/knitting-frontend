@@ -1,5 +1,4 @@
 import { SWRInfiniteResponse, useSWRInfinite } from 'swr';
-import { getAccessToken } from 'utils/auth';
 import { DEFAULT_LIST_LENGTH, ListResponse } from 'utils/requestType';
 import { request } from 'utils/requests';
 
@@ -11,7 +10,7 @@ const getMyDesigns = async (pathname: string): Promise<VendorQueryResult> => {
   const { data } = await request({
     pathname,
     method: 'get',
-    accessToken: getAccessToken(),
+    useCurrentToken: true,
   });
 
   return data;
