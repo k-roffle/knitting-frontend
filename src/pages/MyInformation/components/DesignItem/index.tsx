@@ -114,7 +114,9 @@ const DesignItem = ({
           </Information>
           {createdAt != null && (
             <CreatedDate variant="caption">
-              {isLoading ? <Skeleton variant="text" /> : formatDate(createdAt)}
+              <Skeleton isLoading={isLoading} variant="text">
+                {formatDate(createdAt)}
+              </Skeleton>
             </CreatedDate>
           )}
 
