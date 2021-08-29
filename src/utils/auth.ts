@@ -26,7 +26,7 @@ export const getAccessToken = (): string | undefined => {
   const now = new Date().getTime() / 1000;
   const token = window.localStorage.getItem('token');
 
-  if (token == null) {
+  if (token == null || token === 'undefined') {
     return undefined;
   }
   const tokenPayload: TokenPayload = decodeJwtToken(token);
