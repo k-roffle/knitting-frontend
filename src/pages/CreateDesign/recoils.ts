@@ -24,7 +24,6 @@ export const currentDesignInputAtom = atom<DesignInput>({
     needle: '',
     yarn: '',
     extra: undefined,
-    price: 0,
     pattern: '',
   },
 });

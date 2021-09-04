@@ -35,7 +35,6 @@ const Footer = (): React.ReactElement => {
     needle,
     yarn,
     extra,
-    price,
     designType,
     patternType,
   } = useRecoilValue(currentDesignInputAtom);
@@ -76,7 +75,6 @@ const Footer = (): React.ReactElement => {
         needle,
         yarn,
         extra,
-        price,
         pattern: `${JSON.stringify(
           convertToRaw(editorState.getCurrentContent()),
         )}`,
