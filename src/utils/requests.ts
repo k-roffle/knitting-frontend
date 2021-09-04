@@ -52,6 +52,10 @@ const requestApi = async ({
     const currentAccessToken = getAccessToken();
 
     if (currentAccessToken == null) {
+      const loginUrl = constructURL('/login');
+
+      window.location.href = loginUrl.toString();
+
       notFoundExpected('access token');
     }
 
