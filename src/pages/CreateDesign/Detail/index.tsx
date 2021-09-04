@@ -1,22 +1,35 @@
 import {
+  FormControlLabel,
   Grid,
   Input,
   InputAdornment,
   InputProps,
   ListSubheader,
   MenuItem,
+  Radio,
+  RadioGroup,
   SelectProps,
+  Typography,
 } from '@material-ui/core';
 import { RequiredSelect, RequiredInput, FormLabel } from 'dumbs';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { flexVerticalAlign } from 'styles/constants';
 import { theme } from 'themes';
+import { palette } from 'themes/palette';
 import { renderDesign, renderPattern } from 'utils/renderText';
 
 import DesignSizeImage from '../components/DesignSizeImage';
 import { currentDesignInputAtom } from '../recoils';
-import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
+import {
+  DESIGN,
+  DESIGN_TYPE,
+  LevelKind,
+  LEVEL_TYPE,
+  PATTERN,
+  PATTERN_TYPE,
+} from '../types';
 
 const FullWithInput = styled(Input)`
   width: 100%;
@@ -24,6 +37,19 @@ const FullWithInput = styled(Input)`
 
 const Row = styled(Grid)`
   padding: ${theme.spacing(1.5)};
+`;
+
+const LevelLabel = styled.div`
+  ${flexVerticalAlign}
+
+  span {
+    margin-right: ${theme.spacing(1.5)};
+  }
+
+  h6 {
+    font-weight: 400;
+    color: ${palette.text.secondary};
+  }
 `;
 
 const Detail = (): React.ReactElement => {
@@ -44,6 +70,9 @@ const Detail = (): React.ReactElement => {
     extra,
     designType,
     patternType,
+    description,
+    techniques,
+    targetLevel,
   } = currentDesignInput;
 
   const { SWEATER } = DESIGN;
@@ -154,6 +183,30 @@ const Detail = (): React.ReactElement => {
     });
   };
 
+  const onChangeDescription: InputProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      description: currentTarget.value,
+    });
+  };
+
+  const onChangeTechniques: InputProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      techniques: currentTarget.value,
+    });
+  };
+
+  const onChangeLevelType: SelectProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      targetLevel: currentTarget.value as LEVEL_TYPE,
+    });
+  };
+
   return (
     <>
       <form autoComplete="false">
@@ -198,6 +251,48 @@ const Detail = (): React.ReactElement => {
                 <MenuItem value={VIDEO}>{renderPattern(VIDEO)}</MenuItem>
               </RequiredSelect>
             </Grid>
+          </Row>
+          <Row item xs={12}>
+            <FormLabel variant="h5">도안 한 줄 소개</FormLabel>
+            <FullWithInput
+              id="description"
+              aria-describedby="description"
+              placeholder="예) 어디서나 잘 어울리는 기본 니트 도안"
+              value={description}
+              onChange={onChangeDescription}
+            />
+          </Row>
+          <Row item xs={12}>
+            <FormLabel variant="h5">뜨개 기법</FormLabel>
+            <FullWithInput
+              id="techniques"
+              aria-describedby="techniques"
+              placeholder="예) 겉뜨기, 안뜨기, 원통뜨기"
+              value={techniques}
+              onChange={onChangeTechniques}
+            />
+          </Row>
+          <Row item xs={12}>
+            <FormLabel variant="h5">난이도</FormLabel>
+            <RadioGroup value={targetLevel} onChange={onChangeLevelType}>
+              {LevelKind.map(
+                ({ value, label, description: levelDescription }) => (
+                  <FormControlLabel
+                    key={value}
+                    value={value}
+                    control={<Radio color="primary" />}
+                    label={
+                      <LevelLabel>
+                        <span>{label}</span>
+                        <Typography variant="subtitle2">
+                          {levelDescription}
+                        </Typography>
+                      </LevelLabel>
+                    }
+                  />
+                ),
+              )}
+            </RadioGroup>
           </Row>
           <Row container>
             <FormLabel variant="h5">게이지</FormLabel>
