@@ -1,5 +1,5 @@
 import decodeJwtToken from 'jwt-decode';
-import { request } from 'utils/requests';
+import { requestWithToken } from 'utils/requests';
 
 interface TokenPayload {
   id: string;
@@ -9,7 +9,7 @@ interface TokenPayload {
 const REFRESH_DELTA = 60 * 60;
 
 const refreshAccessToken = async (token: string): Promise<void> => {
-  request({
+  requestWithToken({
     pathname: '/auth/refresh',
     method: 'post',
     accessToken: token,

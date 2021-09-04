@@ -6,14 +6,21 @@ import { getConfig } from './config';
 import { notFoundExpected } from './errors';
 
 type Method = 'get' | 'post' | 'put' | 'delete' | 'patch';
-interface RequestProps {
+
+interface DefaultRequestProps {
   pathname: string;
   method: Method;
   data?: unknown;
   params?: unknown;
-  accessToken?: string;
-  useCurrentToken?: boolean;
 }
+
+type RequestProps = DefaultRequestProps & {
+  useCurrentToken?: boolean;
+};
+
+type RequestWithTokenProps = DefaultRequestProps & {
+  accessToken?: string;
+};
 
 export const constructURL = (pathname: string): parse => {
   const url = parse(getConfig('REACT_APP_SERVER_URL'));
@@ -21,14 +28,14 @@ export const constructURL = (pathname: string): parse => {
   return url.set('pathname', pathname);
 };
 
-export async function request({
+const requestApi = async ({
   pathname,
   method,
   data,
   params,
   accessToken,
   useCurrentToken = false,
-}: RequestProps): Promise<AxiosResponse> {
+}: RequestProps & RequestWithTokenProps): Promise<AxiosResponse> => {
   const url = constructURL(pathname).toString();
   const payload: AxiosRequestConfig = {
     method,
@@ -63,4 +70,14 @@ export async function request({
   const response = await axios(payload);
 
   return response;
-}
+};
+
+export const request = (props: RequestProps): Promise<AxiosResponse> => {
+  return requestApi(props);
+};
+
+export const requestWithToken = (
+  props: RequestWithTokenProps,
+): Promise<AxiosResponse> => {
+  return requestApi(props);
+};
