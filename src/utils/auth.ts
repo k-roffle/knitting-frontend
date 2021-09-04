@@ -15,8 +15,10 @@ const refreshAccessToken = async (token: string): Promise<void> => {
     accessToken: token,
   })
     .then(({ status, data }) => {
-      if (status === 200) {
-        setAccessToken(data.payload.token);
+      const newToken = data.payload.token;
+
+      if (status === 200 && newToken != null) {
+        setAccessToken(newToken);
       }
     })
     .catch(() => deleteAccessToken());
@@ -26,7 +28,7 @@ export const getAccessToken = (): string | undefined => {
   const now = new Date().getTime() / 1000;
   const token = window.localStorage.getItem('token');
 
-  if (token == null || token === 'undefined') {
+  if (token == null) {
     return undefined;
   }
   const tokenPayload: TokenPayload = decodeJwtToken(token);
