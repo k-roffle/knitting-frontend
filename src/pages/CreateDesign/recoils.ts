@@ -1,7 +1,7 @@
 import { EditorState } from 'draft-js';
 import { atom } from 'recoil';
 
-import { DESIGN, DesignInput, PAGE, PAGE_TYPE, PATTERN } from './types';
+import { DESIGN, DesignInput, LEVEL, PAGE, PAGE_TYPE, PATTERN } from './types';
 
 export const currentStepAtom = atom<PAGE_TYPE>({
   key: 'currentStep',
@@ -14,6 +14,9 @@ export const currentDesignInputAtom = atom<DesignInput>({
     name: '',
     designType: DESIGN.SWEATER,
     patternType: PATTERN.TEXT,
+    description: '',
+    techniques: '',
+    targetLevel: LEVEL.NORMAL,
     stitches: 0,
     rows: 0,
     totalLength: 0,
