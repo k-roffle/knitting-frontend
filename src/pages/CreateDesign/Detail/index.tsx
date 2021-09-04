@@ -22,14 +22,6 @@ const FullWithInput = styled(Input)`
   width: 100%;
 `;
 
-const NumberInput = styled(Input)`
-  width: 100%;
-
-  input {
-    text-align: right;
-  }
-`;
-
 const Row = styled(Grid)`
   padding: ${theme.spacing(1.5)};
 `;
@@ -50,7 +42,6 @@ const Detail = (): React.ReactElement => {
     needle,
     yarn,
     extra,
-    price,
     designType,
     patternType,
   } = currentDesignInput;
@@ -146,13 +137,6 @@ const Detail = (): React.ReactElement => {
     setCurrentDesignInputAtom({
       ...currentDesignInput,
       extra: currentTarget.value,
-    });
-  };
-  const onChangePrice: InputProps['onChange'] = ({ currentTarget }) => {
-    if (currentTarget == null) return;
-    setCurrentDesignInputAtom({
-      ...currentDesignInput,
-      price: getNumberToChange(currentTarget),
     });
   };
   const onChangeDesignType: SelectProps['onChange'] = ({ currentTarget }) => {
@@ -357,18 +341,6 @@ const Detail = (): React.ReactElement => {
               placeholder="예) 18mm 단추 3개, 돗바늘, 지퍼 10개, 마커 10개"
               value={extra}
               onChange={onChangeExtra}
-            />
-          </Row>
-          <Row item xs={12}>
-            <FormLabel variant="h5">판매 가격</FormLabel>
-            <NumberInput
-              id="price"
-              type="number"
-              aria-describedby="price"
-              endAdornment={<InputAdornment position="end">원</InputAdornment>}
-              value={price}
-              onChange={onChangePrice}
-              inputProps={{ min: 0 }}
             />
           </Row>
         </Grid>

@@ -34,6 +34,5 @@ export type DesignInput = {
   needle: string;
   yarn: string;
   extra?: string;
-  price: number;
   pattern: string;
 };
