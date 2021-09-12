@@ -10,6 +10,7 @@ export const FAILED_TO_GET_MY_DESIGNS =
   '내가 만든 도안 목록을 불러오는데 실패했습니다.';
 export const FAILED_TO_GET_MY_SALE_SUMMARY =
   '내 상품 요약 정보를 불러오는데 실패했습니다.';
+export const FAILED_TO_GET_MY_PROFILE = '내 정보를 불러오는데 실패했습니다.';
 export const FAILED_TO_SAVE_PRODUCT = '상품 저장에 실패했습니다.';
 export const ONLY_UPLOAD_FILES_BELOW_10MB =
   '10MB 이하에 파일만 업로드할 수 있습니다';

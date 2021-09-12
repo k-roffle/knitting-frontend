@@ -1,15 +1,20 @@
+import { FAILED_TO_GET_MY_PROFILE } from 'constants/errors';
 import { FAILED_TO_GET_MY_SALE_SUMMARY } from 'constants/errors';
 
 import { Button, Typography } from '@material-ui/core';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import { useGetMySalesSummary } from 'pages/MyInformation/hooks/useGetMySalesSummary';
+import { useGetMyProfile } from 'pages/MyInformation/hooks/useGetMyProfile';
 import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { flexVerticalAlign } from 'styles/constants';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
+
+import EmptyContent from '../../../../dumbs/EmptyContent';
 
 import { useRenderButtonText } from './useRenderButtonText';
 
@@ -34,6 +39,14 @@ const EmptyProfile = styled.span`
   border-radius: ${theme.spacing(5)};
   margin-right: ${theme.spacing(3)};
   background-color: ${palette.grey[300]};
+`;
+
+const Profile = styled.img`
+  display: inline-block;
+  min-width: ${theme.spacing(10)};
+  min-height: ${theme.spacing(10)};
+  border-radius: ${theme.spacing(5)};
+  margin-right: ${theme.spacing(3)};
 `;
 
 const Name = styled(Typography)`
@@ -67,6 +80,14 @@ const MyProfile = (): React.ReactElement => {
   const [createButtonText, handleButtonClick] = useRenderButtonText();
   const tabItemLength = useRecoilValue(tabItemLengthAtom);
   const { data, error } = useGetMySalesSummary();
+  const { data, error } = useGetMyProfile();
+  const history = useHistory();
+
+  const emptyContent = {
+    title: '사용자 정보를 불러올 수 없어요! 😢',
+    buttonText: '메인으로 돌아가기',
+    onClick: () => history.push('/'),
+  };
 
   useCommonSnackbar({
     message: FAILED_TO_GET_MY_SALE_SUMMARY,
@@ -74,6 +95,11 @@ const MyProfile = (): React.ReactElement => {
     dependencies: [error],
   });
 
+  if (data == null) {
+    return <EmptyContent {...emptyContent} />;
+  }
+
+  const { email, profile_image_url, name } = data.payload;
   const isLoading = data == null;
   const {
     number_of_products_on_sales: numberOfProductsOnSales,
@@ -87,11 +113,15 @@ const MyProfile = (): React.ReactElement => {
   return (
     <MyProfileContainer>
       <ProfileContainer>
-        <EmptyProfile />
+        {profile_image_url ? (
+          <Profile src={profile_image_url} />
+        ) : (
+          <EmptyProfile />
+        )}
         <div>
           <div>
-            <Name variant="h5">홍길동</Name>
-            <Email>red.road@gmail.com</Email>
+            {name && <Name variant="h5">{name}</Name>}
+            <Email>{email}</Email>
           </div>
           <MySalesSummary>
             <div>
