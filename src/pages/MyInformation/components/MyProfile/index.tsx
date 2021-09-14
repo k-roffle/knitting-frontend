@@ -1,4 +1,7 @@
+import { FAILED_TO_GET_MY_SALE_SUMMARY } from 'constants/errors';
+
 import { Button, Typography } from '@material-ui/core';
+import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
@@ -6,6 +9,8 @@ import styled from 'styled-components';
 import { flexVerticalAlign } from 'styles/constants';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
+
+import { useGetMySalesSummary } from '../../hooks/useGetMySalesSummary';
 
 import { useRenderButtonText } from './useRenderButtonText';
 
@@ -59,20 +64,25 @@ const CreateButton = styled(Button)`
   margin-top: ${theme.spacing((10 - 4.5) / 2)};
 `;
 
-const mock = {
-  number_of_designs_on_sales: 2,
-  number_of_designs_sold: 18,
-};
-
 const MyProfile = (): React.ReactElement => {
   const [createButtonText, handleButtonClick] = useRenderButtonText();
   const tabItemLength = useRecoilValue(tabItemLengthAtom);
+  const { data, error } = useGetMySalesSummary();
 
+  useCommonSnackbar({
+    message: FAILED_TO_GET_MY_SALE_SUMMARY,
+    severity: 'error',
+    dependencies: [error],
+  });
+
+  const isLoading = data == null;
   const {
-    number_of_designs_on_sales: numberOfDesignsOnSales,
-    number_of_designs_sold: numberOfDesignsSold,
-  } = mock;
-
+    number_of_products_on_sales: numberOfProductsOnSales,
+    number_of_products_sold: numberOfProductsSold,
+  } = data?.payload ?? {
+    number_of_products_on_sales: 0,
+    number_of_products_sold: 0,
+  };
   const emptyList = tabItemLength === 0;
 
   return (
@@ -88,13 +98,13 @@ const MyProfile = (): React.ReactElement => {
             <div>
               <Typography variant="caption">판매중인 상품</Typography>
               <SalesSummaryCount variant="h5">
-                {numberOfDesignsOnSales}
+                {numberOfProductsOnSales}
               </SalesSummaryCount>
             </div>
             <div>
               <Typography variant="caption">판매 수</Typography>
               <SalesSummaryCount variant="h5">
-                {numberOfDesignsSold}
+                {numberOfProductsSold}
               </SalesSummaryCount>
             </div>
           </MySalesSummary>
