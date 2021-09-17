@@ -11,8 +11,8 @@ import {
   SelectProps,
   Typography,
 } from '@material-ui/core';
+import FileUploader from 'components/FileUploader';
 import { RequiredSelect, RequiredInput, FormLabel } from 'dumbs';
-import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { flexVerticalAlign } from 'styles/constants';
@@ -21,7 +21,7 @@ import { palette } from 'themes/palette';
 import { renderDesign, renderPattern } from 'utils/renderText';
 
 import DesignSizeImage from '../components/DesignSizeImage';
-import { currentDesignInputAtom } from '../recoils';
+import { currentDesignInputAtom, localCoverImageAtom } from '../recoils';
 import {
   DESIGN,
   DESIGN_TYPE,
@@ -74,6 +74,10 @@ const Detail = (): React.ReactElement => {
     techniques,
     targetLevel,
   } = currentDesignInput;
+
+  const [localCoverImage, setLocalCoverImage] = useRecoilState(
+    localCoverImageAtom,
+  );
 
   const { SWEATER } = DESIGN;
   const { TEXT, IMAGE, VIDEO } = PATTERN;
@@ -219,6 +223,12 @@ const Detail = (): React.ReactElement => {
               placeholder="예) 토니 캔디 라운드넥 니트"
               value={name}
               onChange={onChangeName}
+            />
+          </Row>
+          <Row item xs={12}>
+            <FileUploader
+              selectedFiles={localCoverImage}
+              onChange={setLocalCoverImage}
             />
           </Row>
           <Row container spacing={6}>
