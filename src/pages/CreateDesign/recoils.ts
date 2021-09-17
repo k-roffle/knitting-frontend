@@ -1,3 +1,4 @@
+import { FileInformation } from 'components/FileUploader';
 import { EditorState } from 'draft-js';
 import { atom } from 'recoil';
 
@@ -29,6 +30,11 @@ export const currentDesignInputAtom = atom<DesignInput>({
     extra: undefined,
     pattern: '',
   },
+});
+
+export const localCoverImageAtom = atom<FileInformation[] | undefined>({
+  key: 'localCoverImage',
+  default: undefined,
 });
 
 export const editorStateAtom = atom<EditorState>({

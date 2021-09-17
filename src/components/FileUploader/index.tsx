@@ -15,9 +15,10 @@ type FileMetadata = {
   type: string;
 };
 
-type FileInformation = {
+export type FileInformation = {
   url: string;
   metadata: FileMetadata;
+  file: File;
 };
 
 type ImageAccept = 'png' | 'jpeg' | 'jpg' | 'gif';
@@ -28,6 +29,8 @@ interface Props {
   imageAccepts?: ImageAccept[];
   width?: number;
   height?: number;
+  selectedFiles?: FileInformation[];
+  onChange(files: FileInformation[]): void;
 }
 
 const FileUploader = ({
@@ -36,11 +39,12 @@ const FileUploader = ({
   imageAccepts = ['png', 'jpeg', 'jpg', 'gif'],
   width = theme.spacing(40),
   height = theme.spacing(30),
+  selectedFiles = [],
+  onChange,
 }: Props): React.ReactElement | null => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const types = imageAccepts.map((accept) => `image/${accept}`);
 
-  const [selectedFiles, setSelectedFiles] = useState<FileInformation[]>([]);
   const [isOversized, setIsOversized] = useState(false);
 
   useCommonSnackbar({
@@ -72,7 +76,7 @@ const FileUploader = ({
         const metadata = getFileMetadata(file);
         const url = URL.createObjectURL(file);
 
-        return { url, metadata };
+        return { url, metadata, file };
       },
     );
 
@@ -85,7 +89,7 @@ const FileUploader = ({
       return;
     }
 
-    setSelectedFiles(mappingFiles);
+    onChange(mappingFiles);
   };
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
