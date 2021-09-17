@@ -6,6 +6,7 @@ import { atom, useRecoilValue } from 'recoil';
 export type SnackbarParams = {
   message: string;
   severity: Color;
+  callbackAfterReset?(): void;
 };
 
 export const snackbarAtom = atom<SnackbarParams | undefined>({
