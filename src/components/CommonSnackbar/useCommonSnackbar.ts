@@ -13,6 +13,7 @@ export const useCommonSnackbar = ({
   message,
   severity,
   dependencies,
+  callbackAfterReset,
 }: Props & SnackbarParams): void => {
   const setErrorSnackbarMessage = useSetRecoilState(snackbarAtom);
 
@@ -22,6 +23,7 @@ export const useCommonSnackbar = ({
 
       setTimeout(() => {
         setErrorSnackbarMessage(undefined);
+        callbackAfterReset?.();
       }, SNACKBAR_DURATION_TIME);
     }
   }, dependencies);
