@@ -4,9 +4,11 @@ import { request } from 'utils/requests';
 
 import { DesignItemResponse } from './types';
 
-type VendorQueryResult = ListResponse<DesignItemResponse>;
+type MyDesignsQueryResult = ListResponse<DesignItemResponse>;
 
-const getMyDesigns = async (pathname: string): Promise<VendorQueryResult> => {
+const getMyDesigns = async (
+  pathname: string,
+): Promise<MyDesignsQueryResult> => {
   const { data } = await request({
     pathname,
     method: 'get',
@@ -16,13 +18,10 @@ const getMyDesigns = async (pathname: string): Promise<VendorQueryResult> => {
   return data;
 };
 
-export const useGetMyDesigns = (): SWRInfiniteResponse<
-  VendorQueryResult,
-  ListResponse<DesignItemResponse>
-> => {
+export const useGetMyDesigns = (): SWRInfiniteResponse<MyDesignsQueryResult> => {
   function getKey(
     pageIndex: number,
-    previousPageData: VendorQueryResult | null,
+    previousPageData: MyDesignsQueryResult | null,
   ) {
     const isLastCursor = previousPageData && !previousPageData.payload;
 
@@ -42,9 +41,7 @@ export const useGetMyDesigns = (): SWRInfiniteResponse<
     return `designs/my?count=${DEFAULT_LIST_LENGTH}${afterValue}`;
   }
 
-  const response = useSWRInfinite(getKey, (pathname: string) =>
-    getMyDesigns(pathname),
-  );
+  const response = useSWRInfinite(getKey, getMyDesigns);
 
   return response;
 };
