@@ -7,7 +7,7 @@ export type DesignItemResponse = {
   created_at: string;
 };
 
-export type SalesSummeryResponse = {
+export type SalesSummaryResponse = {
   number_of_products_on_sales: number;
   number_of_products_sold: number;
 };
