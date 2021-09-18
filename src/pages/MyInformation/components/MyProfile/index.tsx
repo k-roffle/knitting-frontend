@@ -3,6 +3,7 @@ import { FAILED_TO_GET_MY_SALE_SUMMARY } from 'constants/errors';
 
 import { Button, Typography } from '@material-ui/core';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
+import EmptyContent from 'dumbs/EmptyContent';
 import { useGetMySalesSummary } from 'pages/MyInformation/hooks/useGetMySalesSummary';
 import { useGetMyProfile } from 'pages/MyInformation/hooks/useGetMyProfile';
 import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
@@ -13,8 +14,6 @@ import styled from 'styled-components';
 import { flexVerticalAlign } from 'styles/constants';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
-
-import EmptyContent from '../../../../dumbs/EmptyContent';
 
 import { useRenderButtonText } from './useRenderButtonText';
 
