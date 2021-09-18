@@ -1,6 +1,6 @@
 import { SWRInfiniteResponse, useSWRInfinite } from 'swr';
 import { DEFAULT_LIST_LENGTH, ListResponse } from 'utils/requestType';
-import { getData } from 'utils/requests';
+import { getRequest } from 'utils/requests';
 
 import { DesignItemResponse } from './types';
 
@@ -29,7 +29,7 @@ export const useGetMyDesigns = (): SWRInfiniteResponse<MyDesignsQueryResult> => 
     return `designs/my?count=${DEFAULT_LIST_LENGTH}${afterValue}`;
   }
 
-  const response = useSWRInfinite(getKey, getData);
+  const response = useSWRInfinite(getKey, getRequest);
 
   return response;
 };
