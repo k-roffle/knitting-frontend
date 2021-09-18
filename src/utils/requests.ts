@@ -83,7 +83,7 @@ export const requestWithToken = (
   return requestApi(props);
 };
 
-export const getData = async <T extends ListResponse<unknown>>(
+export const getRequest = async <T extends ListResponse<unknown>>(
   pathname: string,
 ): Promise<T> => {
   const { data } = await request({
