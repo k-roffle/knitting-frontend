@@ -1,22 +1,10 @@
 import { SWRInfiniteResponse, useSWRInfinite } from 'swr';
 import { DEFAULT_LIST_LENGTH, ListResponse } from 'utils/requestType';
-import { request } from 'utils/requests';
+import { getData } from 'utils/requests';
 
 import { DesignItemResponse } from './types';
 
 type MyDesignsQueryResult = ListResponse<DesignItemResponse>;
-
-const getMyDesigns = async (
-  pathname: string,
-): Promise<MyDesignsQueryResult> => {
-  const { data } = await request({
-    pathname,
-    method: 'get',
-    useCurrentToken: true,
-  });
-
-  return data;
-};
 
 export const useGetMyDesigns = (): SWRInfiniteResponse<MyDesignsQueryResult> => {
   function getKey(
@@ -41,7 +29,7 @@ export const useGetMyDesigns = (): SWRInfiniteResponse<MyDesignsQueryResult> => 
     return `designs/my?count=${DEFAULT_LIST_LENGTH}${afterValue}`;
   }
 
-  const response = useSWRInfinite(getKey, getMyDesigns);
+  const response = useSWRInfinite(getKey, getData);
 
   return response;
 };

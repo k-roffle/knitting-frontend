@@ -4,6 +4,7 @@ import parse from 'url-parse';
 import { getAccessToken } from './auth';
 import { getConfig } from './config';
 import { notFoundExpected } from './errors';
+import { ListResponse } from './requestType';
 
 type Method = 'get' | 'post' | 'put' | 'delete' | 'patch';
 
@@ -80,4 +81,16 @@ export const requestWithToken = (
   props: RequestWithTokenProps,
 ): Promise<AxiosResponse> => {
   return requestApi(props);
+};
+
+export const getData = async <T extends ListResponse<unknown>>(
+  pathname: string,
+): Promise<T> => {
+  const { data } = await request({
+    pathname,
+    method: 'get',
+    useCurrentToken: true,
+  });
+
+  return data;
 };
