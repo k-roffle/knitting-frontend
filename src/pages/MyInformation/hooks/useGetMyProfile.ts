@@ -1,14 +1,15 @@
 import useSWR, { SWRResponse } from 'swr';
-
-import { getAccessToken } from '../../../utils/auth';
-import { SingleResponse } from '../../../utils/requestType';
-import { request } from '../../../utils/requests';
+import { getAccessToken } from 'utils/auth';
+import { ObjectResponse } from 'utils/requestType';
+import { request } from 'utils/requests';
 
 import { ProfileResponse } from './types';
 
-type VendorQueryResult = SingleResponse<ProfileResponse>;
+type MyProfileQueryResult = ObjectResponse<ProfileResponse>;
 
-const getMyProfile = async (pathname: string): Promise<VendorQueryResult> => {
+const getMyProfile = async (
+  pathname: string,
+): Promise<MyProfileQueryResult> => {
   const { data } = await request({
     pathname,
     method: 'get',
@@ -19,6 +20,6 @@ const getMyProfile = async (pathname: string): Promise<VendorQueryResult> => {
 };
 
 export const useGetMyProfile = (): SWRResponse<
-  VendorQueryResult,
-  SingleResponse<ProfileResponse>
+  MyProfileQueryResult,
+  MyProfileQueryResult
 > => useSWR('/me/profile', getMyProfile);
