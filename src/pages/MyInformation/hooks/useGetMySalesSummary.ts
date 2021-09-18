@@ -3,13 +3,13 @@ import { getAccessToken } from 'utils/auth';
 import { SingleResponse } from 'utils/requestType';
 import { request } from 'utils/requests';
 
-import { SalesSummeryResponse } from './types';
+import { SalesSummaryResponse } from './types';
 
-type VendorQueryResult = SingleResponse<SalesSummeryResponse>;
+type MySalesSummaryQueryResult = SingleResponse<SalesSummaryResponse>;
 
 const getMySalesSummary = async (
   pathname: string,
-): Promise<VendorQueryResult> => {
+): Promise<MySalesSummaryQueryResult> => {
   const { data } = await request({
     pathname,
     method: 'get',
@@ -20,8 +20,8 @@ const getMySalesSummary = async (
 };
 
 export const useGetMySalesSummary = (): SWRResponse<
-  VendorQueryResult,
-  SingleResponse<SalesSummeryResponse>
+  MySalesSummaryQueryResult,
+  MySalesSummaryQueryResult
 > => {
   const response = useSWR('/me/sales-summary', getMySalesSummary);
 
