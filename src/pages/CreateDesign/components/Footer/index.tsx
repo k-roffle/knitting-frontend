@@ -11,15 +11,8 @@ import {
 import { PAGE } from 'pages/CreateDesign/types';
 import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import { theme } from 'themes';
+import { FooterContainer } from 'styles/constants';
 import { request } from 'utils/requests';
-
-const FooterContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: ${theme.spacing(6, 0, 4)};
-`;
 
 const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
