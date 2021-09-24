@@ -4,8 +4,7 @@ import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-
-import { FooterContainer } from './Footer.css';
+import { FooterContainer } from 'styles/constants';
 import { useStepController } from './hooks/useStepController';
 
 const Footer = (): React.ReactElement => {

@@ -23,3 +23,9 @@ export const Title = styled(Typography)`
 export const Contents = styled(Typography)`
   white-space: pre-line;
 `;
+
+export const FooterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: ${theme.spacing(6, 0, 4)};
+`;
