@@ -23,6 +23,10 @@ import { formatDate } from 'utils/format';
 
 import { currentProductInputAtom } from '../recoils';
 
+const Row = styled(Grid)`
+  margin-top: ${theme.spacing(2)};
+`;
+
 const FullWidthInput = styled(Input)`
   width: 100%;
 `;
@@ -34,7 +38,12 @@ const Rate = styled.span`
 `;
 
 const SalesDateInfo = styled(Typography)<{ isInvalid?: boolean }>`
+  margin-top: ${theme.spacing(1)};
   color: ${(props) => (props.isInvalid ? '#ff0000' : '#808080')};
+`;
+
+const Wave = styled.span`
+  margin: 0 ${theme.spacing(1)};
 `;
 
 const Package = (): React.ReactElement => {
@@ -146,7 +155,7 @@ const Package = (): React.ReactElement => {
   return (
     <form>
       <Grid container>
-        <Grid item xs={12}>
+        <Row item xs={12}>
           <RequiredInput
             id="name"
             variant="h5"
@@ -155,8 +164,8 @@ const Package = (): React.ReactElement => {
             value={name}
             onChange={onChangeName}
           />
-        </Grid>
-        <Grid item xs={12}>
+        </Row>
+        <Row item xs={12}>
           <FormLabel variant="h5">
             판매가
             <RequiredMark />
@@ -171,7 +180,7 @@ const Package = (): React.ReactElement => {
             endAdornment={<InputAdornment position="end">원</InputAdornment>}
             onChange={onChangeFullPrice}
           />
-          <Grid container>
+          <Row container>
             <InlineInput
               id="discountPrice"
               type="number"
@@ -187,26 +196,29 @@ const Package = (): React.ReactElement => {
                 <b>{getRate()}%</b> 할인
               </Rate>
             )}
-          </Grid>
-          <InputLabel>판매가</InputLabel>
-          {getSalePrice()}원
-        </Grid>
-        <Grid item xs={12}>
+          </Row>
+          <Row alignItems="center" container item>
+            <Grid item>
+              <FormLabel variant="h6">판매가</FormLabel>
+            </Grid>
+            <Grid item>{getSalePrice()}원</Grid>
+          </Row>
+        </Row>
+        <Row item xs={12}>
           <FormLabel variant="h5">
             대표 이미지
             <RequiredMark />
           </FormLabel>
           <img src="//via.placeholder.com/100x100" loading="lazy" />
-        </Grid>
-        <Grid item xs={12}>
+        </Row>
+        <Row item xs={12}>
           <FormLabel variant="h5">판매 기간</FormLabel>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container>
+            <Grid alignItems="center" container>
               <KeyboardDatePicker
                 disableToolbar
                 variant="inline"
                 format="yyyy/MM/dd"
-                margin="normal"
                 id="date-picker-inline"
                 value={specifiedSalesStartDate}
                 onChange={onChangeSpecifiedSalesStartDate}
@@ -215,12 +227,11 @@ const Package = (): React.ReactElement => {
                 }}
                 invalidDateMessage=""
               />
-              ~
+              <Wave>~</Wave>
               <KeyboardDatePicker
                 disableToolbar
                 variant="inline"
                 format="yyyy/MM/dd"
-                margin="normal"
                 id="date-picker-inline"
                 value={specifiedSalesEndDate}
                 onChange={onChangeSpecifiedSalesEndDate}
@@ -231,11 +242,11 @@ const Package = (): React.ReactElement => {
               />
             </Grid>
           </MuiPickersUtilsProvider>
-        </Grid>
+        </Row>
         <Grid item xs={12}>
           {renderSalesDateInfoMessage()}
         </Grid>
-        <Grid item xs={12}>
+        <Row item xs={12}>
           <FormLabel variant="h5">검색 태그</FormLabel>
           <FullWidthInput
             id="tags"
@@ -243,44 +254,7 @@ const Package = (): React.ReactElement => {
             value={tags}
             onChange={onChangeTags}
           />
-        </Grid>
-        {/* <Grid item xs={12}>*/}
-        {/*  <RequiredInput*/}
-        {/*    id="name"*/}
-        {/*    variant="h5"*/}
-        {/*    label="상품명"*/}
-        {/*    placeholder="예) 이름이 아주 길고 기다란 엄청 길고 긴 무척이나 길고 길었던 도안 외 1종"*/}
-        {/*    value={name}*/}
-        {/*    onChange={onChangeName}*/}
-        {/*  />*/}
-        {/* </Grid>*/}
-        {/* <Grid item xs={12}>*/}
-        {/*  <h4>판매가</h4>*/}
-        {/*  <RequiredMark />*/}
-        {/* </Grid>*/}
-        {/* <Grid item xs={12}>*/}
-        {/*  <FormLabel>정가</FormLabel>*/}
-        {/*  <Input*/}
-        {/*    id="fullPrice"*/}
-        {/*    type="number"*/}
-        {/*    aria-describedby="fullPrice"*/}
-        {/*    endAdornment={<InputAdornment position="end">원</InputAdornment>}*/}
-        {/*    value={fullPrice}*/}
-        {/*    onChange={onChangeFullPrice}*/}
-        {/*  />*/}
-        {/* </Grid>*/}
-        {/* <Grid item xs={12}>*/}
-        {/*  <FormLabel>할인</FormLabel>*/}
-        {/*  <Input*/}
-        {/*    id="discountPrice"*/}
-        {/*    type="number"*/}
-        {/*    aria-describedby="discountPrice"*/}
-        {/*    endAdornment={<InputAdornment position="end">원</InputAdornment>}*/}
-        {/*    value={discountPrice}*/}
-        {/*    onChange={onChangeFullPrice}*/}
-        {/*  />*/}
-        {/*  <span>{getRate}%</span>*/}
-        {/* </Grid>*/}
+        </Row>
       </Grid>
     </form>
   );
