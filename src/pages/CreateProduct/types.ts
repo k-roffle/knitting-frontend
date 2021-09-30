@@ -12,8 +12,8 @@ export type ProductInput = {
   fullPrice: number;
   discountPrice: number;
   representativeImageUrl: string;
-  specifiedSalesStartDate: string | null;
-  specifiedSalesEndDate: string | null;
-  tags: string[];
+  specifiedSalesStartDate?: string | null;
+  specifiedSalesEndDate?: string | null;
+  tags: string;
   designIds: number[];
 };

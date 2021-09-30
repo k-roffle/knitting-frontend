@@ -12,19 +12,18 @@ const CreateProduct = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
 
   const renderContent = (): React.ReactElement => {
-    return <Package />;
-    // switch (currentStep) {
-    //   case PAGE.DESIGN:
-    //     return <div />;
-    //   case PAGE.PACKAGE:
-    //     return <Package />;
-    //   case PAGE.INTRODUCTION:
-    //     return <Package />;
-    //   case PAGE.CONFIRM:
-    //     return <Package />;
-    //   default:
-    //     return <div />;
-    // }
+    switch (currentStep) {
+      case PAGE.DESIGN:
+        return <div />;
+      case PAGE.PACKAGE:
+        return <Package />;
+      case PAGE.INTRODUCTION:
+        return <div />;
+      case PAGE.CONFIRM:
+        return <div />;
+      default:
+        return <div />;
+    }
   };
 
   return (
