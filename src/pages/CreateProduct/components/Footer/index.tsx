@@ -1,13 +1,16 @@
+import { FAILED_TO_SAVE_PRODUCT } from 'constants/errors';
+
 import { Button as MaterialButton } from '@material-ui/core';
-import { Button } from 'dumbs';
+import { Button, Snackbar } from 'dumbs';
 import {
   currentProductInputAtom,
   currentStepAtom,
 } from 'pages/CreateProduct/recoils';
 import { PAGE } from 'pages/CreateProduct/types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { FooterContainer } from 'styles/constants';
+import { request } from 'utils/requests';
 
 const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
@@ -22,8 +25,41 @@ const Footer = (): React.ReactElement => {
     designIds,
   } = useRecoilValue(currentProductInputAtom);
 
-  const saveProduct = () => {
-    console.log('저장');
+  const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false);
+
+  const handleSnackbarClose = () => {
+    setOpenErrorSnackbar(false);
+  };
+
+  const saveProduct = async (): Promise<void> => {
+    try {
+      await requestSaveProduct();
+      window.location.reload();
+    } catch (e) {
+      setOpenErrorSnackbar(true);
+    }
+  };
+
+  const requestSaveProduct = async (): Promise<void> => {
+    await request({
+      pathname: '/product/package',
+      method: 'post',
+      data: {
+        id: null,
+        name,
+        full_price: fullPrice,
+        discount_price: discountPrice,
+        representative_image_url: representativeImageUrl,
+        specified_sales_start_date: specifiedSalesStartDate,
+        specified_sales_end_date: specifiedSalesEndDate,
+        tags: tags
+          .split('#')
+          .map((tag) => tag.trim())
+          .filter((value) => value),
+        design_ids: designIds,
+      },
+      useCurrentToken: true,
+    });
   };
 
   const handleOnClickPrevious = (): void => {
@@ -84,6 +120,12 @@ const Footer = (): React.ReactElement => {
         </MaterialButton>
       )}
       <Button label={renderNextLabel()} onClick={handleOnClickNext} />
+      <Snackbar
+        label={FAILED_TO_SAVE_PRODUCT}
+        onClose={handleSnackbarClose}
+        open={openErrorSnackbar}
+        severity="error"
+      />
     </FooterContainer>
   );
 };
