@@ -3,7 +3,6 @@ import {
   Grid,
   Input,
   InputAdornment,
-  InputLabel,
   InputProps,
   Typography,
 } from '@material-ui/core';
@@ -37,9 +36,9 @@ const Rate = styled.span`
   font-size: ${theme.spacing(1.75)};
 `;
 
-const SalesDateInfo = styled(Typography)<{ isInvalid?: boolean }>`
+const SalesDateInfo = styled(Typography)<{ fontcolor?: string }>`
   margin-top: ${theme.spacing(1)};
-  color: ${(props) => (props.isInvalid ? '#ff0000' : '#808080')};
+  color: ${({ fontcolor }) => fontcolor};
 `;
 
 const Wave = styled.span`
@@ -58,7 +57,6 @@ const Package = (): React.ReactElement => {
     specifiedSalesStartDate,
     specifiedSalesEndDate,
     tags,
-    designIds,
   } = currentProductInput;
 
   const getRate = (): string => {
@@ -74,7 +72,7 @@ const Package = (): React.ReactElement => {
   };
 
   const renderSalesDateInfoMessage = (): ReactNode => {
-    let isInvalid = false;
+    let fontColor = '#808080';
     let message = '상품이 등록된 이후부터 계속해서 판매됩니다.';
 
     if (specifiedSalesStartDate && specifiedSalesEndDate) {
@@ -82,7 +80,7 @@ const Package = (): React.ReactElement => {
         dayjs(specifiedSalesStartDate).valueOf() >
         dayjs(specifiedSalesEndDate).valueOf()
       ) {
-        isInvalid = true;
+        fontColor = '#ff0000';
         message = '종료일은 시작일보다 커야 합니다.';
       } else {
         message = `
@@ -102,7 +100,7 @@ const Package = (): React.ReactElement => {
     }
 
     return (
-      <SalesDateInfo variant="h5" isInvalid={isInvalid}>
+      <SalesDateInfo variant="h5" fontcolor={fontColor}>
         {message}
       </SalesDateInfo>
     );
@@ -132,7 +130,7 @@ const Package = (): React.ReactElement => {
   const onChangeTags: InputProps['onChange'] = ({ currentTarget }) => {
     setCurrentProductInput({
       ...currentProductInput,
-      tags: currentTarget.value.split('#').map((tag) => tag.trim()),
+      tags: currentTarget.value,
     });
   };
 
@@ -141,14 +139,14 @@ const Package = (): React.ReactElement => {
   ) => {
     setCurrentProductInput({
       ...currentProductInput,
-      specifiedSalesStartDate: date?.toString() || '',
+      specifiedSalesStartDate: date?.toISOString(),
     });
   };
 
   const onChangeSpecifiedSalesEndDate: DatePickerProps['onChange'] = (date) => {
     setCurrentProductInput({
       ...currentProductInput,
-      specifiedSalesEndDate: date?.toString() || '',
+      specifiedSalesEndDate: date?.toISOString(),
     });
   };
 
@@ -209,7 +207,7 @@ const Package = (): React.ReactElement => {
             대표 이미지
             <RequiredMark />
           </FormLabel>
-          <img src="//via.placeholder.com/100x100" loading="lazy" />
+          <img src={representativeImageUrl} loading="lazy" alt="대표 이미지" />
         </Row>
         <Row item xs={12}>
           <FormLabel variant="h5">판매 기간</FormLabel>
