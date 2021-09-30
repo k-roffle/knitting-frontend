@@ -1,8 +1,8 @@
-import { Grid, Input, Typography } from '@material-ui/core';
+import { Grid, Input as BaseInput, Typography } from '@material-ui/core';
 import { InputBaseComponentProps } from '@material-ui/core/InputBase';
 import { Variant } from '@material-ui/core/styles/createTypography';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 
 interface Props {
@@ -27,6 +27,16 @@ export const FormLabel = styled(Typography)`
 
 const InputGrid = styled(Grid)`
   width: auto;
+`;
+
+const Input = styled(BaseInput)<{ type?: string }>`
+  ${({ type }) =>
+    type === 'number' &&
+    css`
+      input {
+        text-align: right;
+      }
+    `}
 `;
 
 const InlineInput = ({
