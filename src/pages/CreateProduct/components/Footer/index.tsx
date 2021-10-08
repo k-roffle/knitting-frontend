@@ -12,6 +12,7 @@ import { PAGE } from 'pages/CreateProduct/types';
 import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { FooterContainer } from 'styles/constants';
+import { request } from 'utils/requests';
 
 const Footer = (): React.ReactElement => {
   const { DESIGN, PACKAGE, INTRODUCTION, CONFIRM } = PAGE;
@@ -59,6 +60,17 @@ const Footer = (): React.ReactElement => {
     };
 
     mutate(postProductData);
+  };
+
+  const requestStartSale = async (): Promise<void> => {
+    await request({
+      pathname: '/product',
+      method: 'post',
+      data: {
+        id: 1,
+      },
+      useCurrentToken: true,
+    });
   };
 
   const handleOnClickPrevious = (): void => {
