@@ -6,6 +6,7 @@ import {
   InputProps,
   Typography,
 } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -15,6 +16,8 @@ import dayjs from 'dayjs';
 import { FormLabel, RequiredInput, RequiredMark } from 'dumbs';
 import InlineInput from 'dumbs/InlineInput';
 import React, { ReactNode } from 'react';
+import ImageUploading from 'react-images-uploading';
+import { ImageListType } from 'react-images-uploading/dist/typings';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
@@ -45,6 +48,41 @@ const Wave = styled.span`
   margin: 0 ${theme.spacing(1)};
 `;
 
+const ImageWrapper = styled(Grid)`
+  margin: ${theme.spacing(-1)};
+`;
+
+const ImageItem = styled(Grid)`
+  margin: ${theme.spacing(1)};
+  position: relative;
+`;
+
+const CloseButton = styled(Close)`
+  position: absolute;
+  top: ${theme.spacing(1)};
+  right: ${theme.spacing(1)};
+`;
+
+const ImageUploader = styled.button`
+  margin: ${theme.spacing(1)};
+  border-radius: ${theme.spacing(5)};
+  background: none;
+  color: inherit;
+  border: ${theme.spacing(0.25)} solid ${theme.palette.grey[200]};
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  width: ${theme.spacing(20)};
+  height: ${theme.spacing(20)};
+`;
+
+const ImagePreview = styled.img`
+  border-radius: ${theme.spacing(5)};
+  width: ${theme.spacing(20)};
+  height: ${theme.spacing(20)};
+`;
+
 const Package = (): React.ReactElement => {
   const [currentProductInput, setCurrentProductInput] = useRecoilState(
     currentProductInputAtom,
@@ -53,11 +91,11 @@ const Package = (): React.ReactElement => {
     name,
     fullPrice,
     discountPrice,
-    representativeImageUrl,
     specifiedSalesStartDate,
     specifiedSalesEndDate,
     tags,
   } = currentProductInput;
+  const [images, setImages] = React.useState<ImageListType>([]);
 
   const getRate = (): string => {
     const rate = Math.round(
@@ -150,6 +188,10 @@ const Package = (): React.ReactElement => {
     });
   };
 
+  const onChangeImages = (imageList: ImageListType) => {
+    setImages(imageList);
+  };
+
   return (
     <form>
       <Grid container>
@@ -207,7 +249,27 @@ const Package = (): React.ReactElement => {
             대표 이미지
             <RequiredMark />
           </FormLabel>
-          <img src={representativeImageUrl} loading="lazy" alt="대표 이미지" />
+          <ImageUploading
+            multiple
+            value={images}
+            onChange={onChangeImages}
+            maxNumber={3}
+            dataURLKey="data_url"
+          >
+            {({ imageList, onImageUpload, onImageRemove }) => (
+              <ImageWrapper container>
+                {imageList.map((image, index) => (
+                  <ImageItem key={index} item>
+                    <ImagePreview src={image.data_url} alt="" />
+                    <CloseButton onClick={() => onImageRemove(index)} />
+                  </ImageItem>
+                ))}
+                <ImageUploader onClick={onImageUpload}>
+                  새로 업로드하기
+                </ImageUploader>
+              </ImageWrapper>
+            )}
+          </ImageUploading>
         </Row>
         <Row item xs={12}>
           <FormLabel variant="h5">판매 기간</FormLabel>
@@ -259,13 +321,3 @@ const Package = (): React.ReactElement => {
 };
 
 export default Package;
-
-// "id": null,
-//   "name": "대충 살자",
-//   "full_price": 10000,
-//   "discount_price": 1000,
-//   "representative_image_url": "https://t1.daumcdn.net/cfile/tistory/9904134E5CA5480229",
-//   "specified_sales_start_date": null,
-//   "specified_sales_end_date": null,
-//   "tags": ["서술형 도안"],
-//   "design_ids": [1, 2, 3]
