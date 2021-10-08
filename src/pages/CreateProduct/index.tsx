@@ -3,11 +3,18 @@ import Package from 'pages/CreateProduct/Package';
 import SelectDesigns from 'pages/CreateProduct/SelectDesigns';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
+import styled from 'styled-components';
+import { theme } from 'themes';
 
+import Confirm from './Confirm';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { currentStepAtom } from './recoils';
 import { PAGE } from './types';
+
+const Container = styled.section`
+  margin-top: ${theme.spacing(1)};
+`;
 
 const CreateProduct = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
@@ -21,7 +28,7 @@ const CreateProduct = (): React.ReactElement => {
       case PAGE.INTRODUCTION:
         return <div />;
       case PAGE.CONFIRM:
-        return <div />;
+        return <Confirm />;
       default:
         return <div />;
     }
@@ -30,7 +37,7 @@ const CreateProduct = (): React.ReactElement => {
   return (
     <Layout>
       <Header />
-      {renderContent()}
+      <Container>{renderContent()}</Container>
       <Footer />
     </Layout>
   );
