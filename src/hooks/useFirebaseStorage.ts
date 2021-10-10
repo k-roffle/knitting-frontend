@@ -1,7 +1,7 @@
 import { FAILED_TO_UPLOAD_IMAGE } from 'constants/errors';
 
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
-import { FileInformation } from 'components/FileUploader';
+import { FileInformation } from 'components/FileUploader/hooks/useFileUploader';
 import {
   ref,
   getDownloadURL,
