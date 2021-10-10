@@ -1,7 +1,7 @@
 import { FAILED_TO_UPLOAD_IMAGE } from 'constants/errors';
 
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
-import { FileInformation } from 'components/FileUploader/hooks/useFileUploader';
+import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
 import {
   ref,
   getDownloadURL,
@@ -22,11 +22,11 @@ type UploadStorage = {
   url?: string;
 };
 
-type FirebaseStorage = Omit<UploadStorage, 'error'> & {
-  uploadFile?(fileInformation: FileInformation): void;
+type FirebaseImageStorage = Omit<UploadStorage, 'error'> & {
+  uploadFile?(fileInformation: ImageInformation): void;
 };
 
-const useFirebaseStorage = (path: string): FirebaseStorage => {
+const useFirebaseImageStorage = (path: string): FirebaseImageStorage => {
   const token = getAccessToken();
 
   if (token == null) {
@@ -65,7 +65,7 @@ const useFirebaseStorage = (path: string): FirebaseStorage => {
   };
 
   const uploadFile = async (
-    fileInformation: FileInformation,
+    fileInformation: ImageInformation,
   ): Promise<void> => {
     const { metadata, file } = fileInformation;
     const extension = metadata.type.split('/')[1];
@@ -81,4 +81,4 @@ const useFirebaseStorage = (path: string): FirebaseStorage => {
   return { progress, url, uploadFile };
 };
 
-export default useFirebaseStorage;
+export default useFirebaseImageStorage;

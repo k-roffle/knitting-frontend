@@ -3,32 +3,32 @@ import { ONLY_UPLOAD_FILES_BELOW_10MB } from 'constants/errors';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import { ChangeEvent, DragEvent, useState } from 'react';
 
-type FileMetadata = {
+type ImageMetadata = {
   name: string;
   size: number;
   type: string;
 };
 
-export type FileInformation = {
+export type ImageInformation = {
   url: string;
-  metadata: FileMetadata;
+  metadata: ImageMetadata;
   file: File;
 };
 
 interface Props {
   maximumSize: number;
-  onChange(files: FileInformation[]): void;
+  onChange(files: ImageInformation[]): void;
 }
 
-type FileUploader = {
+type ImageFileUploader = {
   onFileChange(event: ChangeEvent<HTMLInputElement>): void;
   onFileDrop(event: DragEvent<HTMLDivElement>): void;
 };
 
-export const useFileUploader = ({
+export const useImageFileUploader = ({
   maximumSize,
   onChange,
-}: Props): FileUploader => {
+}: Props): ImageFileUploader => {
   const [isOversized, setIsOversized] = useState(false);
 
   useCommonSnackbar({
@@ -73,7 +73,7 @@ export const useFileUploader = ({
     }
 
     const mappingFiles = Array.from(files ?? []).map(
-      (file): FileInformation => {
+      (file): ImageInformation => {
         const metadata = getFileMetadata(file);
         const url = URL.createObjectURL(file);
 

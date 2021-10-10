@@ -11,7 +11,7 @@ import {
   SelectProps,
   Typography,
 } from '@material-ui/core';
-import FileUploader from 'components/FileUploader';
+import FileUploader from 'components/ImageFileUploader';
 import { RequiredSelect, RequiredInput, FormLabel } from 'dumbs';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
