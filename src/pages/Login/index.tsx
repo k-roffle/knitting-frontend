@@ -106,7 +106,7 @@ const Login = (): React.ReactElement => {
   const handleOnClickLogin = async (): Promise<void> => {
     const loginUrl = constructURL('/auth/google/code');
 
-    window.location.href = loginUrl.toString();
+    location.href = loginUrl.toString();
   };
 
   const [errorSnackbarMessage, setErrorSnackbarMessage] = useRecoilState(
