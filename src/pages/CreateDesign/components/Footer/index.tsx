@@ -1,8 +1,6 @@
-import { FAILED_TO_SAVE_DESIGN } from 'constants/errors';
-
 import { Button as MaterialButton } from '@material-ui/core';
 import { convertToRaw } from 'draft-js';
-import { Button, Snackbar } from 'dumbs';
+import { Button } from 'dumbs';
 import { usePost } from 'hooks/usePost';
 import {
   currentDesignInputAtom,
@@ -10,7 +8,7 @@ import {
   editorStateAtom,
 } from 'pages/CreateDesign/recoils';
 import { PAGE, PostDesignInput } from 'pages/CreateDesign/types';
-import React, { useState } from 'react';
+import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
@@ -51,11 +49,6 @@ const Footer = (): React.ReactElement => {
   const { mutate } = usePost({
     pathname: '/design/',
   });
-  const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false);
-
-  const handleSnackbarClose = () => {
-    setOpenErrorSnackbar(false);
-  };
 
   const saveDesign = (): void => {
     const pattern = `${JSON.stringify(
@@ -171,12 +164,6 @@ const Footer = (): React.ReactElement => {
         label={renderNextLabel()}
         onClick={handleOnClickNext}
         disabled={disabledNextButton()}
-      />
-      <Snackbar
-        label={FAILED_TO_SAVE_DESIGN}
-        onClose={handleSnackbarClose}
-        open={openErrorSnackbar}
-        severity="error"
       />
     </FooterContainer>
   );
