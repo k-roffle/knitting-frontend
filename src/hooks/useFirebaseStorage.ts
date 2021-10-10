@@ -49,7 +49,7 @@ const useFirebaseStorage = (path: string): FirebaseStorage => {
   });
 
   const storage = getStorage(firebaseInit());
-  const { id }: TokenPayload = decodeJwtToken(token);
+  const { id: userId }: TokenPayload = decodeJwtToken(token);
 
   const onLoading = ({ bytesTransferred, totalBytes }: UploadTaskSnapshot) => {
     const percentage = Math.floor((bytesTransferred / totalBytes) * 100);
@@ -72,7 +72,10 @@ const useFirebaseStorage = (path: string): FirebaseStorage => {
   ): Promise<void> => {
     const { metadata, file } = fileInformation;
     const extension = metadata.type.split('/')[1];
-    const storageRef = ref(storage, `${path}/${id}/${Date.now()}.${extension}`);
+    const storageRef = ref(
+      storage,
+      `${path}/${userId}/${Date.now()}.${extension}`,
+    );
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on('state_changed', onLoading, onError, onComplete(uploadTask));
