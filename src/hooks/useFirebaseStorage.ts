@@ -23,25 +23,22 @@ interface Props {
 }
 
 type UploadStorage = {
-  progress: number;
+  progress?: number;
   error?: StorageError;
   url?: string;
 };
 
-const useFirebaseStorage = ({
-  folder,
-  subFolder,
-}: Props):
-  | (Pick<UploadStorage, 'progress' | 'url'> & {
-      uploadFile(fileInformation: FileInformation): void;
-    })
-  | undefined => {
+type FirebaseStorage = Omit<UploadStorage, 'error'> & {
+  uploadFile?(fileInformation: FileInformation): void;
+};
+
+const useFirebaseStorage = ({ folder, subFolder }: Props): FirebaseStorage => {
   const history = useHistory();
   const token = getAccessToken();
 
   if (token == null) {
     history.push('/login');
-    return;
+    return {};
   }
 
   const [uploadResult, setUploadResult] = useState<UploadStorage>({
@@ -75,7 +72,9 @@ const useFirebaseStorage = ({
     );
   };
 
-  const uploadFile = async (fileInformation: FileInformation) => {
+  const uploadFile = async (
+    fileInformation: FileInformation,
+  ): Promise<void> => {
     const { metadata, file } = fileInformation;
     const extension = metadata.type.split('/')[1];
     const storageRef = ref(
