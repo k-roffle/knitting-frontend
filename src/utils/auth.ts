@@ -1,7 +1,7 @@
 import decodeJwtToken from 'jwt-decode';
 import { requestWithToken } from 'utils/requests';
 
-interface TokenPayload {
+export interface TokenPayload {
   id: string;
   exp: number;
 }
