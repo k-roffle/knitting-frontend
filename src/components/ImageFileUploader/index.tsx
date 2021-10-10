@@ -49,9 +49,9 @@ const ImageFileUploader = ({
 
   return (
     <ImagesContainer>
-      {selectedFiles.map((file) => {
+      {selectedFiles.map((file, index) => {
         return (
-          <DropZone width={width} height={height}>
+          <DropZone key={index} width={width} height={height}>
             <img
               src={file.url}
               alt="업로드한 이미지"

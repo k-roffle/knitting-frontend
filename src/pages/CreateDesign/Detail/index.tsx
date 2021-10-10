@@ -11,7 +11,7 @@ import {
   SelectProps,
   Typography,
 } from '@material-ui/core';
-import FileUploader from 'components/ImageFileUploader';
+import ImageFileUploader from 'components/ImageFileUploader';
 import { RequiredSelect, RequiredInput, FormLabel } from 'dumbs';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
@@ -243,7 +243,7 @@ const Detail = (): React.ReactElement => {
             />
           </Row>
           <Row item xs={12}>
-            <FileUploader
+            <ImageFileUploader
               selectedFiles={localCoverImage}
               onChange={setLocalCoverImage}
             />
