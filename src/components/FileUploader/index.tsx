@@ -66,8 +66,25 @@ const FileUploader = ({
     };
   };
 
-  const uploadFile = (files: FileList | null) => {
+  const isInvalidFiles = (files: FileList | null): boolean => {
     if (files == null || files.length < 1) {
+      return false;
+    }
+
+    const hasOversized = Array.from(files).some(
+      ({ size }) => !validFileSize(size),
+    );
+
+    if (hasOversized) {
+      setIsOversized(true);
+      return false;
+    }
+
+    return true;
+  };
+
+  const uploadFile = (files: FileList | null) => {
+    if (isInvalidFiles(files)) {
       return;
     }
 
@@ -80,15 +97,6 @@ const FileUploader = ({
       },
     );
 
-    const file = Array.from(files)[0];
-
-    const fileSize = file.size;
-
-    if (!validFileSize(fileSize)) {
-      setIsOversized(true);
-      return;
-    }
-
     onChange(mappingFiles);
   };
 
@@ -98,7 +106,7 @@ const FileUploader = ({
     uploadFile(files);
   };
 
-  const handleOnDropZonClick = (): void => {
+  const handleOnDropZoneClick = (): void => {
     hiddenFileInput?.current?.click();
   };
 
@@ -113,7 +121,7 @@ const FileUploader = ({
     <ImagesContainer>
       {selectedFiles.map((file) => {
         return (
-          <DropZoon width={width} height={height}>
+          <DropZone width={width} height={height}>
             <img
               src={file.url}
               alt="업로드한 이미지"
@@ -121,11 +129,11 @@ const FileUploader = ({
               width={width}
               height={height}
             />
-          </DropZoon>
+          </DropZone>
         );
       })}
-      <DropZoon
-        onClick={handleOnDropZonClick}
+      <DropZone
+        onClick={handleOnDropZoneClick}
         onDrop={handleOnDrop}
         onDragOver={(event) => event.preventDefault()}
         width={width}
@@ -145,7 +153,7 @@ const FileUploader = ({
           onChange={handleFileChange}
           multiple={isMultiple}
         />
-      </DropZoon>
+      </DropZone>
     </ImagesContainer>
   );
 };
@@ -160,7 +168,7 @@ const ImagesContainer = styled.div`
   display: flex;
 `;
 
-const DropZoon = styled.div<{ width: number; height: number }>`
+const DropZone = styled.div<{ width: number; height: number }>`
   cursor: pointer;
   border: 1px solid ${palette.grey[300]};
   border-radius: ${theme.spacing(1)};
