@@ -14,7 +14,6 @@ import {
 import firebaseInit from 'firebaseInit';
 import decodeJwtToken from 'jwt-decode';
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { getAccessToken, TokenPayload } from 'utils/auth';
 
 type UploadStorage = {
@@ -28,11 +27,9 @@ type FirebaseStorage = Omit<UploadStorage, 'error'> & {
 };
 
 const useFirebaseStorage = (path: string): FirebaseStorage => {
-  const history = useHistory();
   const token = getAccessToken();
 
   if (token == null) {
-    history.push('/login');
     return {};
   }
 
