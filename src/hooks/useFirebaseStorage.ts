@@ -17,11 +17,6 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getAccessToken, TokenPayload } from 'utils/auth';
 
-interface Props {
-  folder: string;
-  subFolder: string;
-}
-
 type UploadStorage = {
   progress?: number;
   error?: StorageError;
@@ -32,7 +27,7 @@ type FirebaseStorage = Omit<UploadStorage, 'error'> & {
   uploadFile?(fileInformation: FileInformation): void;
 };
 
-const useFirebaseStorage = ({ folder, subFolder }: Props): FirebaseStorage => {
+const useFirebaseStorage = (path: string): FirebaseStorage => {
   const history = useHistory();
   const token = getAccessToken();
 
@@ -77,10 +72,7 @@ const useFirebaseStorage = ({ folder, subFolder }: Props): FirebaseStorage => {
   ): Promise<void> => {
     const { metadata, file } = fileInformation;
     const extension = metadata.type.split('/')[1];
-    const storageRef = ref(
-      storage,
-      `${folder}/${subFolder}/${id}/${Date.now()}.${extension}`,
-    );
+    const storageRef = ref(storage, `${path}/${id}/${Date.now()}.${extension}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on('state_changed', onLoading, onError, onComplete(uploadTask));
