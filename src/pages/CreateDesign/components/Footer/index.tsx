@@ -1,3 +1,5 @@
+import { MY_INFORMATION_ROUTER_ROOT } from 'constants/path';
+
 import { Button as MaterialButton } from '@material-ui/core';
 import { convertToRaw } from 'draft-js';
 import { Button } from 'dumbs';
@@ -11,6 +13,7 @@ import {
 } from 'pages/CreateDesign/recoils';
 import { PAGE, PostDesignInput } from 'pages/CreateDesign/types';
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
@@ -46,7 +49,6 @@ const Footer = (): React.ReactElement => {
     armholeDepth,
   } = size;
   const editorState = useRecoilValue(editorStateAtom);
-
   const localCoverImage = useRecoilValue(localCoverImageAtom);
 
   const { uploadResults, uploadFile } = useFirebaseImageStorage({
@@ -56,7 +58,10 @@ const Footer = (): React.ReactElement => {
 
   const { mutate } = usePost({
     pathname: '/design/',
+    onSuccess: () => history.push(MY_INFORMATION_ROUTER_ROOT),
   });
+
+  const history = useHistory();
 
   useEffect(() => {
     const coverImageUrl = uploadResults.map(({ url }) => url)[0];
