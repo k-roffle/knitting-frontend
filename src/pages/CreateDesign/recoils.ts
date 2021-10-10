@@ -1,4 +1,4 @@
-import { FileInformation } from 'components/FileUploader';
+import { FileInformation } from 'components/FileUploader/hooks/useFileUploader';
 import { EditorState } from 'draft-js';
 import { atom } from 'recoil';
 
