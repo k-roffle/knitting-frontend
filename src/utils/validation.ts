@@ -1,7 +1,7 @@
 export const isEmptyString = (value?: string): boolean =>
   value == null || value.trim().length === 0;
 
-export const hasEmptyValue = (values: string[]): boolean =>
+export const hasEmptyValue = (values: (string | undefined)[]): boolean =>
   values.some((value) => isEmptyString(value));
 
 export const isNegativeNumber = (value?: number): boolean =>
