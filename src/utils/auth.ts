@@ -1,5 +1,5 @@
 import decodeJwtToken from 'jwt-decode';
-import { requestWithToken } from 'utils/requests';
+import { constructURL, requestWithToken } from 'utils/requests';
 
 export interface TokenPayload {
   id: string;
@@ -24,18 +24,18 @@ const refreshAccessToken = async (token: string): Promise<void> => {
     .catch(() => deleteAccessToken());
 };
 
-export const getAccessToken = (): string | undefined => {
+export const getAccessToken = (): string | void => {
   const now = new Date().getTime() / 1000;
   const token = window.localStorage.getItem('token');
 
   if (token == null) {
-    return undefined;
+    return redirectToLogin();
   }
   const tokenPayload: TokenPayload = decodeJwtToken(token);
 
   if (now > tokenPayload.exp) {
     deleteAccessToken();
-    return undefined;
+    return redirectToLogin();
   }
 
   if (tokenPayload.exp - now < REFRESH_DELTA) {
@@ -43,6 +43,12 @@ export const getAccessToken = (): string | undefined => {
   }
 
   return token;
+};
+
+export const redirectToLogin = (): void => {
+  const loginUrl = constructURL('/login');
+
+  window.location.href = loginUrl.toString();
 };
 
 export const setAccessToken = (token: string): void => {
