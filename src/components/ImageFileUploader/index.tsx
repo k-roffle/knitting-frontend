@@ -8,8 +8,11 @@ import {
   DropZone,
   UploadContainer,
   FileInput,
-} from './FileUploader.css';
-import { FileInformation, useFileUploader } from './hooks/useFileUploader';
+} from './ImageFileUploader.css';
+import {
+  ImageInformation,
+  useImageFileUploader,
+} from './hooks/useImageFileUploader';
 
 type ImageAccept = 'png' | 'jpeg' | 'jpg' | 'gif';
 
@@ -19,11 +22,11 @@ interface Props {
   imageAccepts?: ImageAccept[];
   width?: number;
   height?: number;
-  selectedFiles?: FileInformation[];
-  onChange(files: FileInformation[]): void;
+  selectedFiles?: ImageInformation[];
+  onChange(files: ImageInformation[]): void;
 }
 
-const FileUploader = ({
+const ImageFileUploader = ({
   isMultiple = false,
   maximumSize = 10000000,
   imageAccepts = ['png', 'jpeg', 'jpg', 'gif'],
@@ -35,7 +38,7 @@ const FileUploader = ({
   const hiddenFileInput = useRef<HTMLInputElement>(null);
   const types = imageAccepts.map((accept) => `image/${accept}`);
 
-  const { onFileChange, onFileDrop } = useFileUploader({
+  const { onFileChange, onFileDrop } = useImageFileUploader({
     maximumSize,
     onChange,
   });
@@ -85,4 +88,4 @@ const FileUploader = ({
   );
 };
 
-export default FileUploader;
+export default ImageFileUploader;
