@@ -4,10 +4,14 @@ import { Typography } from '@material-ui/core';
 import { Image } from '@material-ui/icons';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
-import styled from 'styled-components';
-import { flexCenterAlign } from 'styles/constants';
 import { theme } from 'themes';
-import { palette } from 'themes/palette';
+
+import {
+  ImagesContainer,
+  DropZone,
+  UploadContainer,
+  FileInput,
+} from './FileUploader.css';
 
 type FileMetadata = {
   name: string;
@@ -159,37 +163,3 @@ const FileUploader = ({
 };
 
 export default FileUploader;
-
-const FileInput = styled.input`
-  display: none;
-`;
-
-const ImagesContainer = styled.div`
-  display: flex;
-`;
-
-const DropZone = styled.div<{ width: number; height: number }>`
-  cursor: pointer;
-  border: 1px solid ${palette.grey[300]};
-  border-radius: ${theme.spacing(1)};
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
-  margin-right: ${theme.spacing(2)};
-
-  img {
-    object-fit: contain;
-  }
-`;
-
-const UploadContainer = styled.div`
-  ${flexCenterAlign}
-
-  height: 100%;
-  color: ${palette.text.secondary};
-  flex-direction: column;
-
-  svg {
-    font-size: 3rem;
-    margin-bottom: ${theme.spacing(2)};
-  }
-`;
