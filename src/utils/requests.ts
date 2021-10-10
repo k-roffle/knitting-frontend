@@ -98,11 +98,13 @@ export const getRequest = async <T extends ListResponse<unknown>>(
 export const postRequest = async <T extends unknown>(
   pathname: string,
   postData: T,
+  useCurrentToken = true,
 ): Promise<void> => {
   const { data } = await request({
     pathname,
     method: 'post',
     data: postData,
+    useCurrentToken,
   });
 
   return data;

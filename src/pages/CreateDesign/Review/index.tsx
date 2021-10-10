@@ -33,18 +33,20 @@ const Review = (): React.ReactElement => {
     name,
     stitches,
     rows,
-    totalLength,
-    sleeveLength,
-    shoulderWidth,
-    bottomWidth,
-    armholeDepth,
+    size,
     needle,
     yarn,
     extra,
     designType,
     patternType,
   } = currentDesignInput;
-
+  const {
+    totalLength,
+    sleeveLength,
+    shoulderWidth,
+    bottomWidth,
+    armholeDepth,
+  } = size;
   const editorState = useRecoilValue(editorStateAtom);
 
   const { TEXT, IMAGE, VIDEO } = PATTERN;
