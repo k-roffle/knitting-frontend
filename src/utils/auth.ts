@@ -1,5 +1,7 @@
+import { LOGIN_ROUTER_ROOT } from 'constants/path';
+
 import decodeJwtToken from 'jwt-decode';
-import { constructURL, requestWithToken } from 'utils/requests';
+import { requestWithToken } from 'utils/requests';
 
 export interface TokenPayload {
   id: string;
@@ -46,9 +48,9 @@ export const getAccessToken = (): string | void => {
 };
 
 export const redirectToLogin = (): void => {
-  const loginUrl = constructURL('/login');
-
-  window.location.href = loginUrl.toString();
+  if (!location.pathname.includes(LOGIN_ROUTER_ROOT)) {
+    window.location.href = LOGIN_ROUTER_ROOT;
+  }
 };
 
 export const setAccessToken = (token: string): void => {
