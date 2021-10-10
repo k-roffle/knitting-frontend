@@ -4,14 +4,19 @@ import { atom } from 'recoil';
 
 import { DESIGN, DesignInput, LEVEL, PAGE, PAGE_TYPE, PATTERN } from './types';
 
+type CurrentDesignInput = Omit<
+  DesignInput,
+  'pattern' | 'techniques' | 'coverImageUrl'
+> & {
+  techniques: string;
+};
+
 export const currentStepAtom = atom<PAGE_TYPE>({
   key: 'currentStep',
   default: PAGE.DETAIL,
 });
 
-export const currentDesignInputAtom = atom<
-  Omit<DesignInput, 'pattern' | 'techniques'> & { techniques: string }
->({
+export const currentDesignInputAtom = atom<CurrentDesignInput>({
   key: 'currentDesignInput',
   default: {
     name: '',
@@ -20,7 +25,6 @@ export const currentDesignInputAtom = atom<
     description: '',
     techniques: '',
     targetLevel: LEVEL.NORMAL,
-    coverImageUrl: '',
     stitches: 0,
     rows: 0,
     size: {
@@ -36,9 +40,9 @@ export const currentDesignInputAtom = atom<
   },
 });
 
-export const localCoverImageAtom = atom<ImageInformation[] | undefined>({
+export const localCoverImageAtom = atom<ImageInformation[]>({
   key: 'localCoverImage',
-  default: undefined,
+  default: [],
 });
 
 export const editorStateAtom = atom<EditorState>({

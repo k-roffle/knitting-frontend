@@ -1,14 +1,16 @@
 import { Button as MaterialButton } from '@material-ui/core';
 import { convertToRaw } from 'draft-js';
 import { Button } from 'dumbs';
+import useFirebaseImageStorage from 'hooks/useFirebaseImageStorage';
 import { usePost } from 'hooks/usePost';
 import {
   currentDesignInputAtom,
   currentStepAtom,
   editorStateAtom,
+  localCoverImageAtom,
 } from 'pages/CreateDesign/recoils';
 import { PAGE, PostDesignInput } from 'pages/CreateDesign/types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
@@ -34,7 +36,6 @@ const Footer = (): React.ReactElement => {
     extra,
     description,
     targetLevel,
-    coverImageUrl,
     techniques,
   } = useRecoilValue(currentDesignInputAtom);
   const {
@@ -46,11 +47,26 @@ const Footer = (): React.ReactElement => {
   } = size;
   const editorState = useRecoilValue(editorStateAtom);
 
+  const localCoverImage = useRecoilValue(localCoverImageAtom);
+
+  const { uploadResults, uploadFile } = useFirebaseImageStorage({
+    path: 'designs/cover-image',
+    fileInformationList: localCoverImage,
+  });
+
   const { mutate } = usePost({
     pathname: '/design/',
   });
 
-  const saveDesign = (): void => {
+  useEffect(() => {
+    const coverImageUrl = uploadResults.map(({ url }) => url)[0];
+
+    if (coverImageUrl != null) {
+      saveDesign(coverImageUrl);
+    }
+  }, [uploadResults]);
+
+  const saveDesign = (coverImageUrl: string): void => {
     const pattern = `${JSON.stringify(
       convertToRaw(editorState.getCurrentContent()),
     )}`;
@@ -104,7 +120,7 @@ const Footer = (): React.ReactElement => {
         setCurrentStep(PAGE.REVIEW);
         break;
       case PAGE.REVIEW:
-        saveDesign();
+        uploadFile?.();
         break;
       default:
         break;
@@ -130,9 +146,9 @@ const Footer = (): React.ReactElement => {
       name,
       description,
       techniques,
-      coverImageUrl,
       needle,
       yarn,
+      localCoverImage[0]?.url,
     ]);
 
     switch (currentStep) {
