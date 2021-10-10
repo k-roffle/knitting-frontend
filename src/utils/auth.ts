@@ -28,7 +28,7 @@ const refreshAccessToken = async (token: string): Promise<void> => {
 
 export const getAccessToken = (): string | void => {
   const now = new Date().getTime() / 1000;
-  const token = window.localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   if (token == null) {
     return redirectToLogin();
@@ -49,16 +49,16 @@ export const getAccessToken = (): string | void => {
 
 export const redirectToLogin = (): void => {
   if (!location.pathname.includes(LOGIN_ROUTER_ROOT)) {
-    window.location.href = LOGIN_ROUTER_ROOT;
+    location.href = LOGIN_ROUTER_ROOT;
   }
 };
 
 export const setAccessToken = (token: string): void => {
-  window.localStorage.setItem('token', token);
+  localStorage.setItem('token', token);
 };
 
 export const deleteAccessToken = (): void => {
-  window.localStorage.removeItem('token');
+  localStorage.removeItem('token');
 };
 
 export const isAuthenticated = (): boolean => {

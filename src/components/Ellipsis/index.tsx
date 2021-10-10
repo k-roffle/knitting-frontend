@@ -26,9 +26,7 @@ const Ellipsis = ({
   useLayoutEffect(() => {
     const tooltipTarget = ellipsisRef?.current;
     const lineHeight =
-      tooltipTarget == null
-        ? null
-        : window.getComputedStyle(tooltipTarget).lineHeight;
+      tooltipTarget == null ? null : getComputedStyle(tooltipTarget).lineHeight;
 
     const lineHeightNumber = Number(lineHeight?.replace(/[^-\\.0-9]/g, ''));
     const newMaxHeight = lineHeightNumber * maxLine + lineHeightNumber / 2;
