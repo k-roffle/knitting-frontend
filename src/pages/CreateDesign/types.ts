@@ -47,20 +47,25 @@ export const LevelKind = [
   },
 ];
 
-export type PostDesignInput = {
-  name: string;
-  design_type: DESIGN_TYPE;
-  pattern_type: PATTERN_TYPE;
-  description: string;
-  techniques: string;
-  target_level: LEVEL_TYPE;
-  stitches: number;
-  rows: number;
+type NewDesignSize = {
   total_length: number;
   sleeve_length: number;
   shoulder_width: number;
   bottom_width: number;
   armhole_depth: number;
+};
+
+export type PostDesignInput = {
+  name: string;
+  design_type: DESIGN_TYPE;
+  pattern_type: PATTERN_TYPE;
+  description: string;
+  techniques: string[];
+  target_level: LEVEL_TYPE;
+  cover_image_url: string;
+  stitches: number;
+  rows: number;
+  size: NewDesignSize;
   needle: string;
   yarn: string;
   extra?: string;

@@ -3,17 +3,18 @@ import { FAILED_TO_SAVE_DESIGN } from 'constants/errors';
 import { Button as MaterialButton } from '@material-ui/core';
 import { convertToRaw } from 'draft-js';
 import { Button, Snackbar } from 'dumbs';
+import { usePost } from 'hooks/usePost';
 import {
   currentDesignInputAtom,
   currentStepAtom,
   editorStateAtom,
 } from 'pages/CreateDesign/recoils';
-import { PAGE } from 'pages/CreateDesign/types';
+import { PAGE, PostDesignInput } from 'pages/CreateDesign/types';
 import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { request } from 'utils/requests';
+import { hasEmptyValue, hasNegativeNumber } from 'utils/invalid';
 
 const FooterContainer = styled.div`
   display: flex;
@@ -25,62 +26,67 @@ const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
   const {
     name,
+    designType,
+    patternType,
     stitches,
     rows,
+    size,
+    needle,
+    yarn,
+    extra,
+    description,
+    targetLevel,
+    coverImageUrl,
+    techniques,
+  } = useRecoilValue(currentDesignInputAtom);
+  const {
     totalLength,
     sleeveLength,
     shoulderWidth,
     bottomWidth,
     armholeDepth,
-    needle,
-    yarn,
-    extra,
-    designType,
-    patternType,
-  } = useRecoilValue(currentDesignInputAtom);
+  } = size;
   const editorState = useRecoilValue(editorStateAtom);
 
+  const { mutate } = usePost({
+    pathname: '/design/',
+  });
   const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false);
 
   const handleSnackbarClose = () => {
     setOpenErrorSnackbar(false);
   };
 
-  const saveDesign = async (): Promise<void> => {
-    try {
-      await requestSaveDesign();
-      window.location.reload();
-    } catch (e) {
-      setOpenErrorSnackbar(true);
-    }
-  };
+  const saveDesign = (): void => {
+    const pattern = `${JSON.stringify(
+      convertToRaw(editorState.getCurrentContent()),
+    )}`;
 
-  const requestSaveDesign = async (): Promise<void> => {
-    await request({
-      pathname: '/design/',
-      method: 'post',
-      data: {
-        name,
-        design_type: designType,
-        pattern_type: patternType,
-        stitches,
-        rows,
-        size: {
-          total_length: totalLength,
-          sleeve_length: sleeveLength,
-          shoulder_width: shoulderWidth,
-          bottom_width: bottomWidth,
-          armhole_depth: armholeDepth,
-        },
-        needle,
-        yarn,
-        extra,
-        pattern: `${JSON.stringify(
-          convertToRaw(editorState.getCurrentContent()),
-        )}`,
+    const separatedTechniques = techniques.split(',');
+    const postDesignData: PostDesignInput = {
+      name,
+      cover_image_url: coverImageUrl,
+      design_type: designType,
+      pattern_type: patternType,
+      stitches,
+      rows,
+      size: {
+        total_length: totalLength,
+        sleeve_length: sleeveLength,
+        shoulder_width: shoulderWidth,
+        bottom_width: bottomWidth,
+        armhole_depth: armholeDepth,
       },
-      useCurrentToken: true,
-    });
+      needle,
+      yarn,
+      extra,
+      description,
+      target_level: targetLevel,
+      pattern,
+      techniques: separatedTechniques,
+    };
+
+    mutate(postDesignData);
   };
 
   const handleOnClickPrevious = (): void => {
@@ -117,7 +123,7 @@ const Footer = (): React.ReactElement => {
   };
 
   const disabledNextButton = (): boolean => {
-    const isInvalidNumberInput = [
+    const isInvalidNumberInput = hasNegativeNumber([
       stitches,
       rows,
       totalLength,
@@ -125,13 +131,20 @@ const Footer = (): React.ReactElement => {
       shoulderWidth,
       bottomWidth,
       armholeDepth,
+    ]);
+
+    const isInvalidRequiredValue = hasEmptyValue([
+      name,
+      description,
+      techniques,
+      coverImageUrl,
       needle,
       yarn,
-    ].some((value) => value < 1);
+    ]);
 
     switch (currentStep) {
       case PAGE.DETAIL:
-        if (name === '' || isInvalidNumberInput) {
+        if (isInvalidRequiredValue || isInvalidNumberInput) {
           return true;
         }
         return false;
