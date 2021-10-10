@@ -52,7 +52,7 @@ export const useImageFileUploader = ({
 
   const isInvalidFiles = (files: FileList | null): boolean => {
     if (files == null || files.length < 1) {
-      return false;
+      return true;
     }
 
     const hasOversized = Array.from(files).some(
@@ -61,10 +61,10 @@ export const useImageFileUploader = ({
 
     if (hasOversized) {
       setIsOversized(true);
-      return false;
+      return true;
     }
 
-    return true;
+    return false;
   };
 
   const uploadFile = (files: FileList | null) => {
