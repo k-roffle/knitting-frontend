@@ -14,7 +14,7 @@ import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { hasEmptyValue, hasNegativeNumber } from 'utils/invalid';
+import { hasEmptyValue, hasNegativeNumber } from 'utils/validation';
 
 const FooterContainer = styled.div`
   display: flex;
