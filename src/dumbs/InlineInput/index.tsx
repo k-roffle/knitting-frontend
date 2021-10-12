@@ -50,7 +50,7 @@ const InlineInput = ({
   onChange,
 }: Props): React.ReactElement => {
   return (
-    <InputGrid container item alignItems={'center'}>
+    <InputGrid container item alignItems="center">
       <Grid item>
         <FormLabel variant={variant}>{label}</FormLabel>
       </Grid>
