@@ -2,6 +2,7 @@ import { FAILED_TO_GET_MY_SALE_SUMMARY } from 'constants/errors';
 
 import { Button, Typography } from '@material-ui/core';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
+import { useGetMySalesSummary } from 'pages/MyInformation/hooks/useGetMySalesSummary';
 import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
@@ -9,8 +10,6 @@ import styled from 'styled-components';
 import { flexVerticalAlign } from 'styles/constants';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
-
-import { useGetMySalesSummary } from '../../hooks/useGetMySalesSummary';
 
 import { useRenderButtonText } from './useRenderButtonText';
 
