@@ -107,6 +107,8 @@ const Package = (): React.ReactElement => {
     return isNaN(rate) ? '' : rate.toString();
   };
 
+  const rate = getRate();
+
   const getSalePrice = (): number => {
     return currentProductInput.fullPrice - currentProductInput.discountPrice;
   };
@@ -238,9 +240,9 @@ const Package = (): React.ReactElement => {
               endAdornment={<InputAdornment position="end">원</InputAdornment>}
               onChange={onChangeDiscountPrice}
             />
-            {getRate() && (
+            {rate && (
               <Rate>
-                <b>{getRate()}%</b> 할인
+                <b>{rate}%</b> 할인
               </Rate>
             )}
           </Row>
