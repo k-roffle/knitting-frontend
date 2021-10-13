@@ -110,31 +110,36 @@ const Package = (): React.ReactElement => {
   };
 
   const renderSalesDateInfoMessage = (): ReactNode => {
+    const invalidDateRange =
+      dayjs(specifiedSalesStartDate).valueOf() >
+      dayjs(specifiedSalesEndDate).valueOf();
+
     let fontColor = '#808080';
     let message = '상품이 등록된 이후부터 계속해서 판매됩니다.';
 
-    if (specifiedSalesStartDate && specifiedSalesEndDate) {
-      if (
-        dayjs(specifiedSalesStartDate).valueOf() >
-        dayjs(specifiedSalesEndDate).valueOf()
-      ) {
-        fontColor = '#ff0000';
-        message = '종료일은 시작일보다 커야 합니다.';
-      } else {
-        message = `
+    if (specifiedSalesStartDate || specifiedSalesEndDate) {
+      if (specifiedSalesStartDate) {
+        message = `${formatDate(
+          specifiedSalesStartDate,
+        )} 이후부터 계속해서 판매됩니다.`;
+      }
+      if (specifiedSalesEndDate) {
+        message = `상품이 등록된 이후부터 ${formatDate(
+          specifiedSalesEndDate,
+        )} 까지
+          판매됩니다.`;
+      }
+      if (specifiedSalesStartDate && specifiedSalesEndDate) {
+        if (invalidDateRange) {
+          fontColor = '#ff0000';
+          message = '종료일은 시작일보다 커야 합니다.';
+        } else {
+          message = `
           ${formatDate(specifiedSalesStartDate)} 이후부터
           ${formatDate(specifiedSalesEndDate)}까지 판매됩니다.
         `;
+        }
       }
-    } else if (specifiedSalesStartDate) {
-      message = `${formatDate(
-        specifiedSalesStartDate,
-      )} 이후부터 계속해서 판매됩니다.`;
-    } else if (specifiedSalesEndDate) {
-      message = `상품이 등록된 이후부터 ${formatDate(
-        specifiedSalesEndDate,
-      )} 까지
-          판매됩니다.`;
     }
 
     return (
