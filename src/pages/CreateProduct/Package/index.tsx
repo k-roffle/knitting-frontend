@@ -294,7 +294,6 @@ const Package = (): React.ReactElement => {
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}
-                invalidDateMessage=""
               />
               <Wave>~</Wave>
               <KeyboardDatePicker
@@ -307,7 +306,6 @@ const Package = (): React.ReactElement => {
                 KeyboardButtonProps={{
                   'aria-label': 'change date',
                 }}
-                invalidDateMessage=""
               />
             </Grid>
           </MuiPickersUtilsProvider>
