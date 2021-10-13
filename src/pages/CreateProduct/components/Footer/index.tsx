@@ -99,13 +99,12 @@ const Footer = (): React.ReactElement => {
         setCurrentStep(PAGE.PACKAGE);
         break;
       case PAGE.PACKAGE:
-        setCurrentStep(PAGE.INTRODUCTION);
+        saveProduct();
         break;
       case PAGE.INTRODUCTION:
         setCurrentStep(PAGE.CONFIRM);
         break;
       case PAGE.CONFIRM:
-        saveProduct();
         break;
       default:
         break;
