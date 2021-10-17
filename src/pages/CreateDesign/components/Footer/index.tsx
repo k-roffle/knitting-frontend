@@ -1,23 +1,18 @@
-import { MY_INFORMATION_ROUTER_ROOT } from 'constants/path';
-
 import { Button as MaterialButton } from '@material-ui/core';
-import { convertToRaw } from 'draft-js';
 import { Button } from 'dumbs';
-import useFirebaseImageStorage from 'hooks/useFirebaseImageStorage';
-import { usePost } from 'hooks/usePost';
 import {
   currentDesignInputAtom,
   currentStepAtom,
-  editorStateAtom,
   localCoverImageAtom,
 } from 'pages/CreateDesign/recoils';
-import { PAGE, PostDesignInput } from 'pages/CreateDesign/types';
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { PAGE } from 'pages/CreateDesign/types';
+import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { hasEmptyValue, hasNegativeNumber } from 'utils/validation';
+
+import { useSaveDesign } from './hooks/useSaveDesign';
 
 const FooterContainer = styled.div`
   display: flex;
@@ -29,16 +24,12 @@ const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
   const {
     name,
-    designType,
-    patternType,
     stitches,
     rows,
     size,
     needle,
     yarn,
-    extra,
     description,
-    targetLevel,
     techniques,
   } = useRecoilValue(currentDesignInputAtom);
   const {
@@ -48,61 +39,9 @@ const Footer = (): React.ReactElement => {
     bottomWidth,
     armholeDepth,
   } = size;
-  const editorState = useRecoilValue(editorStateAtom);
   const localCoverImage = useRecoilValue(localCoverImageAtom);
 
-  const { uploadResults, uploadFile } = useFirebaseImageStorage({
-    path: 'designs/cover-image',
-    fileInformationList: localCoverImage,
-  });
-
-  const { mutate } = usePost({
-    pathname: '/design',
-    onSuccess: () => history.push(MY_INFORMATION_ROUTER_ROOT),
-  });
-
-  const history = useHistory();
-
-  useEffect(() => {
-    const coverImageUrl = uploadResults.map(({ url }) => url)[0];
-
-    if (coverImageUrl != null) {
-      saveDesign(coverImageUrl);
-    }
-  }, [uploadResults]);
-
-  const saveDesign = (coverImageUrl: string): void => {
-    const pattern = `${JSON.stringify(
-      convertToRaw(editorState.getCurrentContent()),
-    )}`;
-
-    const separatedTechniques = techniques.split(',');
-    const postDesignData: PostDesignInput = {
-      name,
-      cover_image_url: coverImageUrl,
-      design_type: designType,
-      pattern_type: patternType,
-      stitches,
-      rows,
-      size: {
-        total_length: totalLength,
-        sleeve_length: sleeveLength,
-        shoulder_width: shoulderWidth,
-        bottom_width: bottomWidth,
-        armhole_depth: armholeDepth,
-      },
-      needle,
-      yarn,
-      extra,
-      description,
-      target_level: targetLevel,
-      pattern,
-      techniques: separatedTechniques,
-    };
-
-    mutate(postDesignData);
-  };
-
+  const saveDesign = useSaveDesign();
   const handleOnClickPrevious = (): void => {
     switch (currentStep) {
       case PAGE.PATTERN:
@@ -125,7 +64,7 @@ const Footer = (): React.ReactElement => {
         setCurrentStep(PAGE.REVIEW);
         break;
       case PAGE.REVIEW:
-        uploadFile?.();
+        saveDesign?.();
         break;
       default:
         break;
