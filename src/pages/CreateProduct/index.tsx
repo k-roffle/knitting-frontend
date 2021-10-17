@@ -1,5 +1,6 @@
 import { Layout } from 'dumbs';
 import Package from 'pages/CreateProduct/Package';
+import SelectDesigns from 'pages/CreateProduct/SelectDesigns';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
@@ -14,7 +15,7 @@ const CreateProduct = (): React.ReactElement => {
   const renderContent = (): React.ReactElement => {
     switch (currentStep) {
       case PAGE.DESIGN:
-        return <div />;
+        return <SelectDesigns />;
       case PAGE.PACKAGE:
         return <Package />;
       case PAGE.INTRODUCTION:
