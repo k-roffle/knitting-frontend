@@ -47,7 +47,7 @@ export const LevelKind = [
   },
 ];
 
-type NewDesignSize = {
+type DesignSize = {
   total_length: number;
   sleeve_length: number;
   shoulder_width: number;
@@ -65,7 +65,7 @@ export type PostDesignInput = {
   cover_image_url: string;
   stitches: number;
   rows: number;
-  size: NewDesignSize;
+  size: DesignSize;
   needle: string;
   yarn: string;
   extra?: string;
