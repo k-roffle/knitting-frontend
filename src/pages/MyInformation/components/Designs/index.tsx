@@ -1,16 +1,16 @@
-import { List, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import EmptyContent from 'dumbs/EmptyContent';
 import { useMyDesigns } from 'pages/MyInformation/hooks/useMyDesigns';
 import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
-import { theme } from 'themes';
 import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
 
 import DesignItem from '../DesignItem';
 import { useRenderEmptyContent } from '../InformationTabs/useRenderEmptyContent';
+
+import { StyledList, Loader } from './Designs.css';
 
 const Designs = (): React.ReactElement => {
   const { isLoading, hasLastCursor, designs, roadMore } = useMyDesigns();
@@ -57,13 +57,3 @@ const Designs = (): React.ReactElement => {
 };
 
 export default Designs;
-
-const StyledList = styled(List)`
-  margin-top: ${theme.spacing(2)};
-`;
-
-const Loader = styled.div`
-  width: 100%;
-  text-align: center;
-  padding: ${theme.spacing(7, 0)};
-`;
