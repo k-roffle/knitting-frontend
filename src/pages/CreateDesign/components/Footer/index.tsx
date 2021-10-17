@@ -1,18 +1,13 @@
 import { Button as MaterialButton } from '@material-ui/core';
 import { Button } from 'dumbs';
-import {
-  currentDesignInputAtom,
-  currentStepAtom,
-  localCoverImageAtom,
-} from 'pages/CreateDesign/recoils';
+import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { hasEmptyValue, hasNegativeNumber } from 'utils/validation';
 
-import { useSaveDesign } from './hooks/useSaveDesign';
+import { useStepController } from './hooks/useStepController';
 
 const FooterContainer = styled.div`
   display: flex;
@@ -21,109 +16,24 @@ const FooterContainer = styled.div`
 `;
 
 const Footer = (): React.ReactElement => {
-  const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
+  const currentStep = useRecoilValue(currentStepAtom);
+
   const {
-    name,
-    stitches,
-    rows,
-    size,
-    needle,
-    yarn,
-    description,
-    techniques,
-  } = useRecoilValue(currentDesignInputAtom);
-  const {
-    totalLength,
-    sleeveLength,
-    shoulderWidth,
-    bottomWidth,
-    armholeDepth,
-  } = size;
-  const localCoverImage = useRecoilValue(localCoverImageAtom);
-
-  const saveDesign = useSaveDesign();
-  const handleOnClickPrevious = (): void => {
-    switch (currentStep) {
-      case PAGE.PATTERN:
-        setCurrentStep(PAGE.DETAIL);
-        break;
-      case PAGE.REVIEW:
-        setCurrentStep(PAGE.PATTERN);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleOnClickNext = (): void => {
-    switch (currentStep) {
-      case PAGE.DETAIL:
-        setCurrentStep(PAGE.PATTERN);
-        break;
-      case PAGE.PATTERN:
-        setCurrentStep(PAGE.REVIEW);
-        break;
-      case PAGE.REVIEW:
-        saveDesign?.();
-        break;
-      default:
-        break;
-    }
-  };
-
-  const renderNextLabel = (): string => {
-    return currentStep === PAGE.REVIEW ? '저장' : '다음';
-  };
-
-  const disabledNextButton = (): boolean => {
-    const isInvalidNumberInput = hasNegativeNumber([
-      stitches,
-      rows,
-      totalLength,
-      sleeveLength,
-      shoulderWidth,
-      bottomWidth,
-      armholeDepth,
-    ]);
-
-    const isInvalidRequiredValue = hasEmptyValue([
-      name,
-      description,
-      techniques,
-      needle,
-      yarn,
-      localCoverImage[0]?.url,
-    ]);
-
-    switch (currentStep) {
-      case PAGE.DETAIL:
-        if (isInvalidRequiredValue || isInvalidNumberInput) {
-          return true;
-        }
-        return false;
-      case PAGE.PATTERN:
-        // TODO: 도안 유효성 검사
-        return false;
-      default:
-        return false;
-    }
-  };
+    onPreviousClick,
+    onNextClick,
+    renderNextLabel,
+    isNextDisabled,
+  } = useStepController();
 
   return (
     <FooterContainer>
-      {currentStep === PAGE.DETAIL ? (
-        <MaterialButton variant="contained" onClick={handleOnClickPrevious}>
-          취소
-        </MaterialButton>
-      ) : (
-        <MaterialButton variant="contained" onClick={handleOnClickPrevious}>
-          이전
-        </MaterialButton>
-      )}
+      <MaterialButton variant="contained" onClick={onPreviousClick}>
+        {currentStep === PAGE.DETAIL ? '취소' : '이전'}
+      </MaterialButton>
       <Button
+        onClick={onNextClick}
         label={renderNextLabel()}
-        onClick={handleOnClickNext}
-        disabled={disabledNextButton()}
+        disabled={isNextDisabled()}
       />
     </FooterContainer>
   );
