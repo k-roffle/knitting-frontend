@@ -57,7 +57,7 @@ const Footer = (): React.ReactElement => {
   });
 
   const { mutate } = usePost({
-    pathname: '/design/',
+    pathname: '/design',
     onSuccess: () => history.push(MY_INFORMATION_ROUTER_ROOT),
   });
 
