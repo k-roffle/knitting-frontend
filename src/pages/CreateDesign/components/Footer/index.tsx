@@ -4,16 +4,9 @@ import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import { theme } from 'themes';
 
+import { FooterContainer } from './Footer.css';
 import { useStepController } from './hooks/useStepController';
-
-const FooterContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: ${theme.spacing(6, 0, 4)};
-`;
 
 const Footer = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
