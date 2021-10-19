@@ -1,7 +1,9 @@
 import { FAILED_TO_SAVE_PRODUCT } from 'constants/errors';
 
 import { Button as MaterialButton } from '@material-ui/core';
-import { Button, Snackbar } from 'dumbs';
+import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
+import { Button } from 'dumbs';
+import { usePost } from 'hooks/usePost';
 import {
   currentProductInputAtom,
   currentStepAtom,
@@ -10,9 +12,9 @@ import { PAGE } from 'pages/CreateProduct/types';
 import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { FooterContainer } from 'styles/constants';
-import { request } from 'utils/requests';
 
 const Footer = (): React.ReactElement => {
+  const { DESIGN, PACKAGE, INTRODUCTION, CONFIRM } = PAGE;
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
   const {
     name,
@@ -25,53 +27,50 @@ const Footer = (): React.ReactElement => {
     designIds,
   } = useRecoilValue(currentProductInputAtom);
 
-  const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false);
+  const [showError, setShowError] = useState(false);
 
-  const handleSnackbarClose = () => {
-    setOpenErrorSnackbar(false);
-  };
+  const { mutate } = usePost({
+    pathname: '/product/package',
+    errorMessage: FAILED_TO_SAVE_PRODUCT,
+    onSuccess: () => setCurrentStep(INTRODUCTION),
+    onError: () => setShowError(true),
+  });
 
-  const saveProduct = async (): Promise<void> => {
-    try {
-      await requestSaveProduct();
-      window.location.reload();
-    } catch (e) {
-      setOpenErrorSnackbar(true);
-    }
-  };
+  useCommonSnackbar({
+    message: FAILED_TO_SAVE_PRODUCT,
+    severity: 'error',
+    dependencies: [showError],
+  });
 
-  const requestSaveProduct = async (): Promise<void> => {
-    await request({
-      pathname: '/product/package',
-      method: 'post',
-      data: {
-        id: null,
-        name,
-        full_price: fullPrice,
-        discount_price: discountPrice,
-        representative_image_url: representativeImageUrl,
-        specified_sales_start_date: specifiedSalesStartDate,
-        specified_sales_end_date: specifiedSalesEndDate,
-        tags: tags
-          .split('#')
-          .map((tag) => tag.trim())
-          .filter((value) => value),
-        design_ids: designIds,
-      },
-      useCurrentToken: true,
-    });
+  const saveProduct = (): void => {
+    const postProductData = {
+      id: null,
+      name,
+      full_price: fullPrice,
+      discount_price: discountPrice,
+      representative_image_url: representativeImageUrl,
+      specified_sales_start_date: specifiedSalesStartDate,
+      specified_sales_end_date: specifiedSalesEndDate,
+      tags: tags
+        .split('#')
+        .map((tag) => tag.trim())
+        .filter((value) => value),
+      design_ids: designIds,
+    };
+
+    mutate(postProductData);
   };
 
   const handleOnClickPrevious = (): void => {
     switch (currentStep) {
-      case PAGE.PACKAGE:
-        setCurrentStep(PAGE.DESIGN);
+      case PACKAGE:
+        setCurrentStep(DESIGN);
         break;
-      case PAGE.INTRODUCTION:
-        setCurrentStep(PAGE.PACKAGE);
+      case INTRODUCTION:
+        setCurrentStep(PACKAGE);
         break;
-      case PAGE.CONFIRM:
-        setCurrentStep(PAGE.INTRODUCTION);
+      case CONFIRM:
+        setCurrentStep(INTRODUCTION);
         break;
       default:
         break;
@@ -80,13 +79,13 @@ const Footer = (): React.ReactElement => {
 
   const renderNextLabel = (): string => {
     switch (currentStep) {
-      case PAGE.DESIGN:
+      case DESIGN:
         return '도안 선택 완료';
-      case PAGE.PACKAGE:
+      case PACKAGE:
         return '상품 구성 완료';
-      case PAGE.INTRODUCTION:
+      case INTRODUCTION:
         return '상품 소개 완료';
-      case PAGE.CONFIRM:
+      case CONFIRM:
         return '판매 시작';
       default:
         return '도안 선택 완료';
@@ -95,16 +94,16 @@ const Footer = (): React.ReactElement => {
 
   const handleOnClickNext = (): void => {
     switch (currentStep) {
-      case PAGE.DESIGN:
-        setCurrentStep(PAGE.PACKAGE);
+      case DESIGN:
+        setCurrentStep(PACKAGE);
         break;
-      case PAGE.PACKAGE:
+      case PACKAGE:
         saveProduct();
         break;
-      case PAGE.INTRODUCTION:
-        setCurrentStep(PAGE.CONFIRM);
+      case INTRODUCTION:
+        setCurrentStep(CONFIRM);
         break;
-      case PAGE.CONFIRM:
+      case CONFIRM:
         break;
       default:
         break;
@@ -113,18 +112,12 @@ const Footer = (): React.ReactElement => {
 
   return (
     <FooterContainer>
-      {currentStep !== PAGE.DESIGN && (
+      {currentStep !== DESIGN && (
         <MaterialButton variant="contained" onClick={handleOnClickPrevious}>
           이전
         </MaterialButton>
       )}
       <Button label={renderNextLabel()} onClick={handleOnClickNext} />
-      <Snackbar
-        label={FAILED_TO_SAVE_PRODUCT}
-        onClose={handleSnackbarClose}
-        open={openErrorSnackbar}
-        severity="error"
-      />
     </FooterContainer>
   );
 };
