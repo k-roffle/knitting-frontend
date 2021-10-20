@@ -1,63 +1,20 @@
 import { Box, Grid, Typography } from '@material-ui/core';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import { theme } from 'themes';
 
 import { currentProductInputAtom } from '../recoils';
 
-const ProductLink = styled(Link)`
-  color: #000;
-  text-decoration: none;
-`;
-
-const ProductCard = styled.div`
-  width: ${theme.spacing(55)};
-  border: 5px solid ${theme.palette.grey[200]};
-  border-radius: ${theme.spacing(6)};
-`;
-
-const RepresentativeImage = styled.img`
-  width: ${theme.spacing(55)};
-  height: ${theme.spacing(46)};
-  border-radius: ${theme.spacing(6)};
-`;
-
-const ProductDetail = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: ${theme.spacing(4)};
-`;
-
-const PriceContainer = styled.div`
-  display: flex;
-`;
-
-const Tag = styled.div`
-  display: inline-block;
-  background: ${theme.palette.grey[300]};
-  padding: ${theme.spacing(0.6)};
-  margin: ${theme.spacing(0.4)};
-  border-radius: ${theme.spacing(2)};
-`;
-
-const Price = styled(Typography)`
-  margin-left: ${theme.spacing(1)};
-`;
-
-const InfoMessage = styled.li`
-  margin-top: ${theme.spacing(1)};
-`;
+import {
+  ProductCard,
+  RepresentativeImage,
+  InfoMessage,
+  Price,
+  Tag,
+} from './index.css';
 
 const Confirm = (): React.ReactElement => {
-  const {
-    name,
-    fullPrice,
-    discountPrice,
-    representativeImageUrl,
-    tags,
-  } = useRecoilValue(currentProductInputAtom);
+  const { name, fullPrice, discountPrice, representativeImageUrl, tags } =
+    useRecoilValue(currentProductInputAtom);
 
   const splitTags = (): string[] => {
     return tags
@@ -81,32 +38,30 @@ const Confirm = (): React.ReactElement => {
   return (
     <>
       <Grid container justifyContent="center">
-        <ProductLink to="/product/1">
-          <ProductCard>
-            {representativeImageUrl && (
-              <RepresentativeImage
-                src="//via.placeholder.com/500x300"
-                alt="상품 대표 이미지"
-              />
-            )}
-            <Box px={4} py={2}>
-              <Typography variant="h4">{name}</Typography>
-              <ProductDetail>
-                <div>
-                  {splitTags().map((tag: string) => (
-                    <Tag>#{tag}</Tag>
-                  ))}
-                </div>
-                <PriceContainer>
-                  <Typography color="primary">
-                    <b>{getRate()}%</b>
-                  </Typography>
-                  <Price variant="h4">{getPrice()}원</Price>
-                </PriceContainer>
-              </ProductDetail>
+        <ProductCard to="/product/1">
+          {representativeImageUrl && (
+            <RepresentativeImage
+              src="//via.placeholder.com/500x300"
+              alt="상품 대표 이미지"
+            />
+          )}
+          <Box px={4} py={2}>
+            <Typography variant="h4">{name}</Typography>
+            <Box display="flex" justifyContent="space-between" mt={4}>
+              <div>
+                {splitTags().map((tag: string) => (
+                  <Tag>#{tag}</Tag>
+                ))}
+              </div>
+              <Box display="flex">
+                <Typography color="primary">
+                  <b>{getRate()}%</b>
+                </Typography>
+                <Price variant="h4">{getPrice()}원</Price>
+              </Box>
             </Box>
-          </ProductCard>
-        </ProductLink>
+          </Box>
+        </ProductCard>
       </Grid>
       <ul>
         <InfoMessage>
@@ -115,7 +70,7 @@ const Confirm = (): React.ReactElement => {
         <InfoMessage>클릭하면 상세도 확인해볼 수 있어요!</InfoMessage>
         <InfoMessage>
           노출되는 기간은 "
-          <Typography color="primary">
+          <Typography display="inline" color="primary">
             상품이 등록된 이후부터 계속해서
           </Typography>
           " 노출됩니다.
