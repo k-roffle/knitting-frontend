@@ -1,4 +1,5 @@
 import { FAILED_TO_SAVE_PRODUCT } from 'constants/errors';
+import { MY_INFORMATION_ROUTER_ROOT } from 'constants/path';
 
 import { Button as MaterialButton } from '@material-ui/core';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
@@ -62,18 +63,7 @@ const Footer = (): React.ReactElement => {
     mutate(postProductData);
   };
 
-  const requestStartSale = async (): Promise<void> => {
-    await request({
-      pathname: '/product',
-      method: 'post',
-      data: {
-        id: 1,
-      },
-      useCurrentToken: true,
-    });
-  };
-
-  const handleOnClickPrevious = (): void => {
+  const handleOnClickPrevious = async (): Promise<void> => {
     switch (currentStep) {
       case PACKAGE:
         setCurrentStep(DESIGN);
