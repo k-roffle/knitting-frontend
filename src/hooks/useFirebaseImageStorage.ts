@@ -35,12 +35,12 @@ interface Props {
 
 const getUpdatedUploadResult = (
   localFileId: string,
-  uploadResult: UploadStorage,
-  updatedResult: UploadStorage,
+  updatedUploadResult: UploadStorage,
+  originUploadResult: UploadStorage,
 ): UploadStorage => {
-  return uploadResult.localFileId === localFileId
-    ? updatedResult
-    : uploadResult;
+  return updatedUploadResult.localFileId === localFileId
+    ? originUploadResult
+    : updatedUploadResult;
 };
 
 const useFirebaseImageStorage = ({
