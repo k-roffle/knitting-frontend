@@ -10,7 +10,7 @@ import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
 import { Loader, StyledList } from './SelectDesigns.css';
 
 const SelectDesigns = (): React.ReactElement => {
-  const { isLoading, hasLastCursor, designs, roadMore } = useMyDesigns();
+  const { isLoading, hasLastCursor, designs, loadMore } = useMyDesigns();
   const history = useHistory();
 
   const isEmpty = !isLoading && designs.length === 0;
@@ -19,7 +19,7 @@ const SelectDesigns = (): React.ReactElement => {
     <StyledList>
       <InfiniteScroll
         dataLength={designs.length}
-        next={roadMore}
+        next={loadMore}
         hasMore={hasLastCursor}
         loader={
           <Loader>

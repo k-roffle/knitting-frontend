@@ -10,7 +10,7 @@ type MyDesigns = {
   isLoading: boolean;
   hasLastCursor: boolean;
   designs: DesignItemResponse[];
-  roadMore(): void;
+  loadMore(): void;
 };
 
 export const useMyDesigns = (): MyDesigns => {
@@ -35,7 +35,7 @@ export const useMyDesigns = (): MyDesigns => {
   const hasLastCursor =
     (lastData?.payload ?? []).length > 0 && lastData?.meta.last_cursor != null;
 
-  const roadMore = (): void => {
+  const loadMore = (): void => {
     if (hasLastCursor) {
       setSize(size + 1);
     }
@@ -45,6 +45,6 @@ export const useMyDesigns = (): MyDesigns => {
     isLoading,
     hasLastCursor,
     designs,
-    roadMore,
+    loadMore,
   };
 };
