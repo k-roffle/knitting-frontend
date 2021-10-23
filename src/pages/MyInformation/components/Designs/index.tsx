@@ -13,7 +13,7 @@ import { useRenderEmptyContent } from '../InformationTabs/useRenderEmptyContent'
 import { StyledList, Loader } from './Designs.css';
 
 const Designs = (): React.ReactElement => {
-  const { isLoading, hasLastCursor, designs, roadMore } = useMyDesigns();
+  const { isLoading, hasLastCursor, designs, loadMore } = useMyDesigns();
   const emptyContent = useRenderEmptyContent();
 
   const setTabItemLength = useSetRecoilState(tabItemLengthAtom);
@@ -28,7 +28,7 @@ const Designs = (): React.ReactElement => {
     <StyledList>
       <InfiniteScroll
         dataLength={designs.length}
-        next={roadMore}
+        next={loadMore}
         hasMore={hasLastCursor}
         loader={
           <Loader>
