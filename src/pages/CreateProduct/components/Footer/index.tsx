@@ -60,6 +60,7 @@ const Footer = (): React.ReactElement => {
 
     mutate(postProductData);
     pathname: '/product',
+    onError: () => setOpenErrorSnackbar(true),
   });
 
   const handleSnackbarClose = () => {
@@ -67,12 +68,8 @@ const Footer = (): React.ReactElement => {
   };
 
   const saveProduct = (): void => {
-    try {
-      mutate({ id: 1 });
-      history.push(MY_INFORMATION_ROUTER_ROOT);
-    } catch (e) {
-      setOpenErrorSnackbar(true);
-    }
+    mutate({ id: 1 });
+    history.push(MY_INFORMATION_ROUTER_ROOT);
   };
 
   const requestSaveProduct = async (): Promise<void> => {
