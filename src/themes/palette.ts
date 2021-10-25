@@ -5,6 +5,9 @@ import { deepOrange } from './colors/deepOrange';
 
 export const { palette } = createMuiTheme({
   palette: {
+    common: {
+      black: '#000',
+    },
     primary: {
       light: deepOrange[200],
       main: deepOrange[600],

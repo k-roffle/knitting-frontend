@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { theme } from 'themes';
 
 export const ProductCard = styled(Link)`
-  color: #000;
+  color: ${theme.palette.common.black};
   text-decoration: none;
   width: ${theme.spacing(55)};
   border: 5px solid ${theme.palette.grey[200]};

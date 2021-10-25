@@ -10,7 +10,7 @@ import {
   InfoMessage,
   Price,
   Tag,
-} from './index.css';
+} from './Confirm.css';
 
 const Confirm = (): React.ReactElement => {
   const { name, fullPrice, discountPrice, representativeImageUrl, tags } =
