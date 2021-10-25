@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { FooterContainer } from 'styles/constants';
 import { request } from 'utils/requests';
+import { splitText } from 'utils/splitText';
 
 const Footer = (): React.ReactElement => {
   const { DESIGN, PACKAGE, INTRODUCTION, CONFIRM } = PAGE;
@@ -53,14 +54,44 @@ const Footer = (): React.ReactElement => {
       representative_image_url: representativeImageUrl,
       specified_sales_start_date: specifiedSalesStartDate,
       specified_sales_end_date: specifiedSalesEndDate,
-      tags: tags
-        .split('#')
-        .map((tag) => tag.trim())
-        .filter((value) => value),
+      tags: splitText(tags, '#'),
       design_ids: designIds,
     };
 
     mutate(postProductData);
+    pathname: '/product',
+  });
+
+  const handleSnackbarClose = () => {
+    setOpenErrorSnackbar(false);
+  };
+
+  const saveProduct = (): void => {
+    try {
+      mutate({ id: 1 });
+      history.push(MY_INFORMATION_ROUTER_ROOT);
+    } catch (e) {
+      setOpenErrorSnackbar(true);
+    }
+  };
+
+  const requestSaveProduct = async (): Promise<void> => {
+    await request({
+      pathname: '/product/package',
+      method: 'post',
+      data: {
+        id: null,
+        name,
+        full_price: fullPrice,
+        discount_price: discountPrice,
+        representative_image_url: representativeImageUrl,
+        specified_sales_start_date: specifiedSalesStartDate,
+        specified_sales_end_date: specifiedSalesEndDate,
+        tags: splitText(tags, '#'),
+        design_ids: designIds,
+      },
+      useCurrentToken: true,
+    });
   };
 
   const handleOnClickPrevious = async (): Promise<void> => {

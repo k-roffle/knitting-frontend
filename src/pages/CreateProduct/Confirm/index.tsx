@@ -1,6 +1,7 @@
 import { Box, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
+import { splitText } from 'utils/splitText';
 
 import { currentProductInputAtom } from '../recoils';
 
@@ -15,13 +16,6 @@ import {
 const Confirm = (): React.ReactElement => {
   const { name, fullPrice, discountPrice, representativeImageUrl, tags } =
     useRecoilValue(currentProductInputAtom);
-
-  const splitTags = (): string[] => {
-    return tags
-      .split('#')
-      .map((tag) => tag.trim())
-      .filter((value) => value);
-  };
 
   const getRate = (): string => {
     const rate = Math.round((discountPrice / fullPrice) * 100);
@@ -49,7 +43,7 @@ const Confirm = (): React.ReactElement => {
             <Typography variant="h4">{name}</Typography>
             <Box display="flex" justifyContent="space-between" mt={4}>
               <div>
-                {splitTags().map((tag: string) => (
+                {splitText(tags, '#').map((tag: string) => (
                   <Tag>#{tag}</Tag>
                 ))}
               </div>
