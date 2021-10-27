@@ -11,9 +11,28 @@ type CurrentDesignInput = Omit<
   techniques: string;
 };
 
+type CurrentCoverInput = Pick<
+  DesignInput,
+  'name' | 'coverImageUrl' | 'description'
+>;
+
 export const currentStepAtom = atom<PAGE_TYPE>({
   key: 'currentStep',
   default: PAGE.COVER,
+});
+
+export const currentCoverInputAtom = atom<CurrentCoverInput>({
+  key: 'currentCoverInputAtom',
+  default: {
+    name: '',
+    coverImageUrl: '',
+    description: '',
+  },
+});
+
+export const coverImageAtom = atom<ImageInformation[] | undefined>({
+  key: 'coverImageAtom',
+  default: undefined,
 });
 
 export const currentDesignInputAtom = atom<CurrentDesignInput>({
