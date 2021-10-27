@@ -33,8 +33,11 @@ export const useStepController = (): StepController => {
 
   const onPreviousClick = (): void => {
     switch (currentStep) {
+      case PAGE.OUTLINE:
+        setCurrentStep(PAGE.COVER);
+        break;
       case PAGE.PATTERN:
-        setCurrentStep(PAGE.DETAIL);
+        setCurrentStep(PAGE.OUTLINE);
         break;
       case PAGE.REVIEW:
         setCurrentStep(PAGE.PATTERN);
@@ -46,7 +49,10 @@ export const useStepController = (): StepController => {
 
   const onNextClick = (): void => {
     switch (currentStep) {
-      case PAGE.DETAIL:
+      case PAGE.COVER:
+        setCurrentStep(PAGE.OUTLINE);
+        break;
+      case PAGE.OUTLINE:
         setCurrentStep(PAGE.PATTERN);
         break;
       case PAGE.PATTERN:
@@ -89,10 +95,12 @@ export const useStepController = (): StepController => {
 
   const isNextDisabled = (): boolean => {
     switch (currentStep) {
-      case PAGE.DETAIL:
+      case PAGE.COVER:
         if (isInvalidDetailValue()) {
           return true;
         }
+        return false;
+      case PAGE.OUTLINE:
         return false;
       case PAGE.PATTERN:
         // TODO: 도안 유효성 검사

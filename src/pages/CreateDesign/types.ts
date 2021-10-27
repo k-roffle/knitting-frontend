@@ -1,9 +1,10 @@
 import { SnakeToCamelCase } from 'utils/types';
 
 export const PAGE = {
-  DETAIL: 0,
-  PATTERN: 1,
-  REVIEW: 2,
+  COVER: 0,
+  OUTLINE: 1,
+  PATTERN: 2,
+  REVIEW: 3,
 } as const;
 
 export type PAGE_TYPE = typeof PAGE[keyof typeof PAGE];

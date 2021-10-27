@@ -13,7 +13,7 @@ type CurrentDesignInput = Omit<
 
 export const currentStepAtom = atom<PAGE_TYPE>({
   key: 'currentStep',
-  default: PAGE.DETAIL,
+  default: PAGE.COVER,
 });
 
 export const currentDesignInputAtom = atom<CurrentDesignInput>({
