@@ -21,7 +21,7 @@ const Footer = (): React.ReactElement => {
   return (
     <FooterContainer>
       <MaterialButton variant="contained" onClick={onPreviousClick}>
-        {currentStep === PAGE.DETAIL ? '취소' : '이전'}
+        {currentStep === PAGE.COVER ? '취소' : '이전'}
       </MaterialButton>
       <Button
         onClick={onNextClick}
