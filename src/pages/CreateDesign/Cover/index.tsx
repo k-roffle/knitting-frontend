@@ -5,7 +5,7 @@ import {
   coverImageAtom,
   currentCoverInputAtom,
 } from 'pages/CreateDesign/recoils';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -20,6 +20,15 @@ const Cover = (): React.ReactElement => {
   const [coverImage, setCoverImage] = useRecoilState(coverImageAtom);
 
   const { name, description } = currentCoverInput;
+
+  useEffect(() => {
+    if (coverImage) {
+      setCurrentCoverInput({
+        ...currentCoverInput,
+        coverImageUrl: coverImage[0].url,
+      });
+    }
+  }, [coverImage]);
 
   const onChangeName: InputProps['onChange'] = ({ currentTarget }) => {
     setCurrentCoverInput({
