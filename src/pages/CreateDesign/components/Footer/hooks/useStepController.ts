@@ -1,4 +1,5 @@
 import {
+  currentCoverInputAtom,
   currentDesignInputAtom,
   currentStepAtom,
   localCoverImageAtom,
@@ -18,8 +19,8 @@ type StepController = {
 
 export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
+  const { name, coverImageUrl } = useRecoilValue(currentCoverInputAtom);
   const {
-    name,
     stitches,
     rows,
     size,
@@ -78,6 +79,10 @@ export const useStepController = (): StepController => {
     return currentStep === PAGE.REVIEW ? '저장' : '다음';
   };
 
+  const isInvalidCoverValue = (): boolean => {
+    return hasEmptyValue([name, coverImageUrl]);
+  };
+
   const isInvalidDetailValue = (): boolean => {
     const isInvalidNumberInput = hasNegativeNumber([
       stitches,
@@ -104,7 +109,7 @@ export const useStepController = (): StepController => {
   const isNextDisabled = (): boolean => {
     switch (currentStep) {
       case PAGE.COVER:
-        if (isInvalidDetailValue()) {
+        if (isInvalidCoverValue()) {
           return true;
         }
         return false;
