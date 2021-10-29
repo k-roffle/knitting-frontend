@@ -5,7 +5,10 @@ import { useMyDesigns } from 'pages/MyInformation/hooks/useMyDesigns';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useHistory } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
+
+import { currentProductInputAtom } from '../recoils';
 
 import { Loader, StyledList } from './SelectDesigns.css';
 
@@ -13,7 +16,24 @@ const SelectDesigns = (): React.ReactElement => {
   const { isLoading, hasLastCursor, designs, loadMore } = useMyDesigns();
   const history = useHistory();
 
+  const [currentProductInput, setCurrentProductInput] = useRecoilState(
+    currentProductInputAtom,
+  );
+  const { designIds } = currentProductInput;
+
   const isEmpty = !isLoading && designs.length === 0;
+
+  const handleSelectDesign = (id: number) => (): void => {
+    let newDesignIds;
+
+    if (designIds.find((designId) => designId === id)) {
+      newDesignIds = designIds.filter((designId) => designId !== id);
+    } else {
+      newDesignIds = designIds.concat(id);
+    }
+
+    setCurrentProductInput({ ...currentProductInput, designIds: newDesignIds });
+  };
 
   return (
     <StyledList>
@@ -30,13 +50,19 @@ const SelectDesigns = (): React.ReactElement => {
         {(isLoading ? [...Array(DEFAULT_LIST_LENGTH)] : designs).map(
           (design, index) => {
             const showDivider = designs.length - 1 !== index;
+            const isChecked = designIds.some(
+              (designId) => designId === design?.id,
+            );
 
             return (
               <DesignItem
+                showCheckBox
                 isLoading={isLoading}
                 key={index}
                 {...design}
                 showDivider={showDivider}
+                checked={isChecked}
+                onClick={handleSelectDesign(design?.id)}
               />
             );
           },

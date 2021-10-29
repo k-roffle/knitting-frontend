@@ -1,5 +1,5 @@
 export type DesignItemResponse = {
-  id: string;
+  id: number;
   name: string;
   yarn: string;
   cover_image_url: string;
