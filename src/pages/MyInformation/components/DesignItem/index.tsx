@@ -1,19 +1,19 @@
-import { Typography, ListItem } from '@material-ui/core';
+import { Typography, ListItem, Checkbox } from '@material-ui/core';
 import { Ellipsis } from 'components';
 import Skeleton from 'dumbs/Skeleton';
+import { DesignItemResponse } from 'pages/MyInformation/hooks/types';
+import { MouseEvent } from 'react';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
 import { formatDate } from 'utils/format';
 
 interface Props {
-  name?: string;
-  yarn?: string;
-  cover_image_url?: string;
-  tags?: string[];
-  created_at?: string;
   showDivider?: boolean;
   isLoading?: boolean;
+  showCheckBox?: boolean;
+  checked?: boolean;
+  onClick: (event: MouseEvent<HTMLDivElement>) => void;
 }
 
 const StyledListItem = styled(ListItem)`
@@ -23,6 +23,7 @@ const StyledListItem = styled(ListItem)`
 
 const ListItemContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const ImageWrapper = styled.div`
@@ -77,6 +78,21 @@ const Divider = styled.div`
   background-color: ${palette.grey[300]};
 `;
 
+const StyledCheckBox = styled(Checkbox)`
+  width: ${theme.spacing(3.5)};
+  height: ${theme.spacing(3.5)};
+  padding-right: ${theme.spacing(2)};
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 const DesignItem = ({
   name = '',
   cover_image_url: coverImageUrl,
@@ -85,10 +101,21 @@ const DesignItem = ({
   created_at: createdAt,
   showDivider = true,
   isLoading = false,
-}: Props): React.ReactElement => {
+  showCheckBox,
+  checked = false,
+  onClick,
+}: Props & DesignItemResponse): React.ReactElement => {
   return (
-    <StyledListItem button>
+    <StyledListItem button onClick={onClick}>
       <ListItemContainer>
+        {showCheckBox && (
+          <StyledCheckBox
+            color="primary"
+            edge="start"
+            checked={checked}
+            disableRipple
+          />
+        )}
         {(isLoading || coverImageUrl) && (
           <ImageWrapper>
             <Skeleton
