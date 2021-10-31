@@ -1,11 +1,12 @@
 import CommonStepProgressBar from 'components/CommonStepProgressBar';
-import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
+import { currentStepAtom } from '../../recoils';
+
 const StepProgressBar = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
-  const steps = ['기본 정보 입력', '도안 작성', '최종 확인'];
+  const steps = ['도안 선택', '상품 구성', '상품 소개', '최종 확인'];
 
   return <CommonStepProgressBar steps={steps} currentStep={currentStep} />;
 };

@@ -1,4 +1,5 @@
-import { css } from 'styled-components';
+import { Typography } from '@material-ui/core';
+import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 
 export const flexCenterAlign = css`
@@ -13,3 +14,18 @@ export const flexVerticalAlign = css`
 `;
 
 export const defaultShadow = theme.shadows[8];
+
+export const Title = styled(Typography)`
+  margin-bottom: ${theme.spacing(2)};
+  font-weight: 600;
+`;
+
+export const Contents = styled(Typography)`
+  white-space: pre-line;
+`;
+
+export const FooterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: ${theme.spacing(6, 0, 4)};
+`;
