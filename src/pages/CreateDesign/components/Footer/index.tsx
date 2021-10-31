@@ -1,22 +1,17 @@
 import { Button as MaterialButton } from '@material-ui/core';
 import { Button } from 'dumbs';
+import { FooterContainer } from 'pages/CreateDesign/components/Footer/Footer.css';
+import { useStepController } from 'pages/CreateDesign/components/Footer/hooks/useStepController';
 import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { FooterContainer } from './Footer.css';
-import { useStepController } from './hooks/useStepController';
-
 const Footer = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
 
-  const {
-    onPreviousClick,
-    onNextClick,
-    renderNextLabel,
-    isNextDisabled,
-  } = useStepController();
+  const { onPreviousClick, onNextClick, renderNextLabel, isNextDisabled } =
+    useStepController();
 
   return (
     <FooterContainer>

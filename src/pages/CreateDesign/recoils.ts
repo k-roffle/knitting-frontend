@@ -16,6 +16,11 @@ type CurrentCoverInput = Pick<
   'name' | 'coverImageUrl' | 'description'
 >;
 
+type CurrentOutlineInput = Pick<
+  DesignInput,
+  'designType' | 'patternType' | 'stitches' | 'rows' | 'needle'
+>;
+
 export const currentStepAtom = atom<PAGE_TYPE>({
   key: 'currentStep',
   default: PAGE.COVER,
@@ -33,6 +38,17 @@ export const currentCoverInputAtom = atom<CurrentCoverInput>({
 export const coverImageAtom = atom<ImageInformation[] | undefined>({
   key: 'coverImageAtom',
   default: undefined,
+});
+
+export const currentOutlineInputAtom = atom<CurrentOutlineInput>({
+  key: 'currentOutlineInputAtom',
+  default: {
+    designType: DESIGN.SWEATER,
+    patternType: PATTERN.TEXT,
+    stitches: 0,
+    rows: 0,
+    needle: '',
+  },
 });
 
 export const currentDesignInputAtom = atom<CurrentDesignInput>({
