@@ -1,3 +1,4 @@
+import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
 import {
   currentCoverInputAtom,
   currentDesignInputAtom,
@@ -20,15 +21,8 @@ type StepController = {
 export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
   const { name, coverImageUrl } = useRecoilValue(currentCoverInputAtom);
-  const {
-    stitches,
-    rows,
-    size,
-    needle,
-    yarn,
-    description,
-    techniques,
-  } = useRecoilValue(currentDesignInputAtom);
+  const { stitches, rows, size, needle, yarn, description, techniques } =
+    useRecoilValue(currentDesignInputAtom);
   const {
     totalLength,
     sleeveLength,
@@ -37,6 +31,8 @@ export const useStepController = (): StepController => {
     armholeDepth,
   } = size;
   const localCoverImage = useRecoilValue(localCoverImageAtom);
+
+  const isInvalidOutlineValue = useInvalidOutline();
 
   const saveDesign = useSaveDesign();
 
@@ -109,12 +105,9 @@ export const useStepController = (): StepController => {
   const isNextDisabled = (): boolean => {
     switch (currentStep) {
       case PAGE.COVER:
-        if (isInvalidCoverValue()) {
-          return true;
-        }
-        return false;
+        return isInvalidCoverValue();
       case PAGE.OUTLINE:
-        return false;
+        return isInvalidOutlineValue;
       case PAGE.PATTERN:
         // TODO: 도안 유효성 검사
         return false;
