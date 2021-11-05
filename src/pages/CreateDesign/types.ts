@@ -34,17 +34,17 @@ export const LevelKind = [
   {
     value: LEVEL.EASY,
     label: '쉬움',
-    description: '이제 막 뜨개질을 시작한 사람!',
+    description: '누구든 시도해볼 수 있어요.',
   },
   {
     value: LEVEL.NORMAL,
     label: '보통',
-    description: '겉뜨기, 안뜨기, 코잡기는 쉽게 가능한 사람!',
+    description: '몇가지 작품을 만들어 봤다면 도전해 볼 만해요.',
   },
   {
     value: LEVEL.HARD,
     label: '어려움',
-    description: '니트, 양말, 모자 하나 정도는 떠본 사람!',
+    description: '새로운 도전을 기다리는 고수분들을 위해 준비했어요.',
   },
 ];
 
