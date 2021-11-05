@@ -22,6 +22,7 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { renderDesign, renderPattern } from 'utils/renderText';
 
+import { Row } from '../common.css';
 import OptionalOutline from '../components/OptionalOutline';
 
 const Outline = (): React.ReactElement => {
@@ -98,37 +99,35 @@ const Outline = (): React.ReactElement => {
 
   return (
     <Grid container>
-      <Grid container spacing={6}>
-        <Grid item xs={12} sm={6}>
-          <RequiredSelect
-            id="design-type"
-            variant="h5"
-            label="편물 종류"
-            placeholder="종류 선택"
-            defaultValue={SWEATER}
-            value={designType}
-            onChange={onChangeDesignType}
-          >
-            <ListSubheader>상의</ListSubheader>
-            <MenuItem value={SWEATER}>{renderDesign(SWEATER)}</MenuItem>
-          </RequiredSelect>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <RequiredSelect
-            id="pattern-type"
-            variant="h5"
-            label="도안 종류"
-            placeholder="종류 선택"
-            defaultValue={TEXT}
-            value={patternType}
-            onChange={onChangePatternType}
-          >
-            <MenuItem value={TEXT}>{renderPattern(TEXT)}</MenuItem>
-            <MenuItem value={IMAGE}>{renderPattern(IMAGE)}</MenuItem>
-            <MenuItem value={VIDEO}>{renderPattern(VIDEO)}</MenuItem>
-          </RequiredSelect>
-        </Grid>
-      </Grid>
+      <Row item xs={12} sm={6}>
+        <RequiredSelect
+          id="design-type"
+          variant="h5"
+          label="편물 종류"
+          placeholder="종류 선택"
+          defaultValue={SWEATER}
+          value={designType}
+          onChange={onChangeDesignType}
+        >
+          <ListSubheader>상의</ListSubheader>
+          <MenuItem value={SWEATER}>{renderDesign(SWEATER)}</MenuItem>
+        </RequiredSelect>
+      </Row>
+      <Row item xs={12} sm={6}>
+        <RequiredSelect
+          id="pattern-type"
+          variant="h5"
+          label="도안 종류"
+          placeholder="종류 선택"
+          defaultValue={TEXT}
+          value={patternType}
+          onChange={onChangePatternType}
+        >
+          <MenuItem value={TEXT}>{renderPattern(TEXT)}</MenuItem>
+          <MenuItem value={IMAGE}>{renderPattern(IMAGE)}</MenuItem>
+          <MenuItem value={VIDEO}>{renderPattern(VIDEO)}</MenuItem>
+        </RequiredSelect>
+      </Row>
       <FormLabel variant="h5">
         게이지
         <RequiredMark />
@@ -139,8 +138,8 @@ const Outline = (): React.ReactElement => {
           <InfoOutlinedIcon />
         </Tooltip>
       </FormLabel>
-      <Grid container spacing={6}>
-        <Grid item xs={12} sm={6}>
+      <Grid container>
+        <Row item xs={12} sm={6}>
           <InputWithLabel
             id="stitches"
             type="number"
@@ -151,8 +150,8 @@ const Outline = (): React.ReactElement => {
             onChange={onChangeStitches}
             isRequired
           />
-        </Grid>
-        <Grid item xs={12} sm={6}>
+        </Row>
+        <Row item xs={12} sm={6}>
           <InputWithLabel
             id="rows"
             type="number"
@@ -163,23 +162,27 @@ const Outline = (): React.ReactElement => {
             onChange={onChangeRows}
             isRequired
           />
-        </Grid>
+        </Row>
       </Grid>
-      <InputWithLabel
-        id="needle"
-        variant="h5"
-        label="사용한 바늘"
-        placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
-        value={needle}
-        onChange={onChangeNeedle}
-        isRequired
-      />
+      <Row item xs={12}>
+        <InputWithLabel
+          id="needle"
+          variant="h5"
+          label="사용한 바늘"
+          placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
+          value={needle}
+          onChange={onChangeNeedle}
+          isRequired
+        />
+      </Row>
       {!isInvalidOutlineValue && (
         <>
-          <InfoBox mt={3} py={2} textAlign="center">
-            필수값을 모두 입력하였어요.
-            <br /> 많은 양의 정보를 입력하고 니터들에게 관심을 받아봐요. 🥰
-          </InfoBox>
+          <Row item xs={12}>
+            <InfoBox mt={3} py={2} textAlign="center">
+              필수값을 모두 입력하였어요.
+              <br /> 많은 양의 정보를 입력하고 니터들에게 관심을 받아봐요. 🥰
+            </InfoBox>
+          </Row>
           <OptionalOutline />
         </>
       )}
