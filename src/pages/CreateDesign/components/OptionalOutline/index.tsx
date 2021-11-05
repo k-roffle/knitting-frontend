@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { FormLabel, InputWithLabel } from 'dumbs';
+import { FullWidthInput, Row } from 'pages/CreateDesign/common.css';
 import {
   OptionalOutlineInput,
   optionalOutlineInputAtom,
@@ -18,7 +19,7 @@ import { SnakeToCamelCase } from 'utils/types';
 
 import DesignSizeImage from '../DesignSizeImage';
 
-import { FullWithInput, LevelLabel, Row } from './OptionalOutline.css';
+import { LevelLabel } from './OptionalOutline.css';
 
 type DesignSizeKey = keyof SnakeToCamelCase<DesignSize>;
 
@@ -73,7 +74,7 @@ const OptionalOutline = (): React.ReactElement => {
     <Grid container>
       <Row item xs={12}>
         <FormLabel variant="h5">뜨개 기법</FormLabel>
-        <FullWithInput
+        <FullWidthInput
           id="techniques"
           aria-describedby="techniques"
           placeholder="예) 겉뜨기, 안뜨기, 원통뜨기"
@@ -116,7 +117,7 @@ const OptionalOutline = (): React.ReactElement => {
       </Row>
       <Row item xs={12}>
         <FormLabel variant="h5">추가 재료</FormLabel>
-        <FullWithInput
+        <FullWidthInput
           id="extra"
           aria-describedby="extra"
           placeholder="예) 18mm 단추 3개, 돗바늘, 지퍼 10개, 마커 10개"
