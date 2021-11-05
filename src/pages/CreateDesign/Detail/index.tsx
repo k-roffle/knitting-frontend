@@ -12,7 +12,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import ImageFileUploader from 'components/ImageFileUploader';
-import { RequiredSelect, RequiredInput, FormLabel } from 'dumbs';
+import { RequiredSelect, InputWithLabel, FormLabel } from 'dumbs';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { flexVerticalAlign } from 'styles/constants';
@@ -232,13 +232,14 @@ const Detail = (): React.ReactElement => {
       <form autoComplete="false">
         <Grid container>
           <Row item xs={12}>
-            <RequiredInput
+            <InputWithLabel
               id="name"
               variant="h5"
               label="이름"
               placeholder="예) 토니 캔디 라운드넥 니트"
               value={name}
               onChange={onChangeName}
+              isRequired
             />
           </Row>
           <Row item xs={12}>
@@ -325,7 +326,7 @@ const Detail = (): React.ReactElement => {
             <FormLabel>10 x 10(cm) 편물의 코와 단을 공유해주세요.</FormLabel>
             <Grid container spacing={6}>
               <Grid item xs={12} sm={6}>
-                <RequiredInput
+                <InputWithLabel
                   id="stitches"
                   type="number"
                   variant="h6"
@@ -335,11 +336,11 @@ const Detail = (): React.ReactElement => {
                   }
                   value={stitches}
                   onChange={onChangeStitches}
-                  inputProps={{ min: 1 }}
+                  isRequired
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <RequiredInput
+                <InputWithLabel
                   id="rows"
                   type="number"
                   variant="h6"
@@ -349,7 +350,7 @@ const Detail = (): React.ReactElement => {
                   }
                   value={rows}
                   onChange={onChangeRows}
-                  inputProps={{ min: 1 }}
+                  isRequired
                 />
               </Grid>
             </Grid>
@@ -362,7 +363,7 @@ const Detail = (): React.ReactElement => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Grid>
-                  <RequiredInput
+                  <InputWithLabel
                     id="total-length"
                     type="number"
                     variant="h6"
@@ -372,11 +373,11 @@ const Detail = (): React.ReactElement => {
                     }
                     value={totalLength}
                     onChange={onChangeTotalLength}
-                    inputProps={{ min: 1 }}
+                    isRequired
                   />
                 </Grid>
                 <Grid>
-                  <RequiredInput
+                  <InputWithLabel
                     id="sleeve-width"
                     type="number"
                     variant="h6"
@@ -386,11 +387,11 @@ const Detail = (): React.ReactElement => {
                     }
                     value={sleeveLength}
                     onChange={onChangeSleeveLength}
-                    inputProps={{ min: 1 }}
+                    isRequired
                   />
                 </Grid>
                 <Grid>
-                  <RequiredInput
+                  <InputWithLabel
                     id="shoulder-width"
                     type="number"
                     variant="h6"
@@ -400,11 +401,11 @@ const Detail = (): React.ReactElement => {
                     }
                     value={shoulderWidth}
                     onChange={onChangeShoulderWidth}
-                    inputProps={{ min: 1 }}
+                    isRequired
                   />
                 </Grid>
                 <Grid>
-                  <RequiredInput
+                  <InputWithLabel
                     id="bottom-width"
                     type="number"
                     variant="h6"
@@ -414,11 +415,10 @@ const Detail = (): React.ReactElement => {
                     }
                     value={bottomWidth}
                     onChange={onChangeBottomWidth}
-                    inputProps={{ min: 1 }}
                   />
                 </Grid>
                 <Grid>
-                  <RequiredInput
+                  <InputWithLabel
                     id="armhole-depth"
                     type="number"
                     variant="h6"
@@ -428,30 +428,32 @@ const Detail = (): React.ReactElement => {
                     }
                     value={armholeDepth}
                     onChange={onChangeArmholeDepth}
-                    inputProps={{ min: 1 }}
+                    isRequired
                   />
                 </Grid>
               </Grid>
             </Grid>
           </Row>
           <Row item xs={12}>
-            <RequiredInput
+            <InputWithLabel
               id="needle"
               variant="h5"
               label="사용한 바늘"
               placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
               value={needle}
               onChange={onChangeNeedle}
+              isRequired
             />
           </Row>
           <Row item xs={12}>
-            <RequiredInput
+            <InputWithLabel
               id="yarn"
               variant="h5"
               label="사용한 실"
               placeholder="예) 티파니 100g 4볼"
               value={yarn}
               onChange={onChangeYarn}
+              isRequired
             />
           </Row>
           <Row item xs={12}>

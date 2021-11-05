@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from '@material-ui/core';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import { FormLabel, RequiredInput, RequiredMark, RequiredSelect } from 'dumbs';
+import { FormLabel, InputWithLabel, RequiredMark, RequiredSelect } from 'dumbs';
 import { InfoBox } from 'pages/CreateDesign/Outline/Outline.css';
 import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
 import { currentOutlineInputAtom } from 'pages/CreateDesign/recoils';
@@ -139,7 +139,7 @@ const Outline = (): React.ReactElement => {
       </FormLabel>
       <Grid container spacing={6}>
         <Grid item xs={12} sm={6}>
-          <RequiredInput
+          <InputWithLabel
             id="stitches"
             type="number"
             variant="h6"
@@ -147,11 +147,11 @@ const Outline = (): React.ReactElement => {
             endAdornment={<InputAdornment position="end">코</InputAdornment>}
             value={stitches}
             onChange={onChangeStitches}
-            inputProps={{ min: 1 }}
+            isRequired
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <RequiredInput
+          <InputWithLabel
             id="rows"
             type="number"
             variant="h6"
@@ -159,17 +159,18 @@ const Outline = (): React.ReactElement => {
             endAdornment={<InputAdornment position="end">단</InputAdornment>}
             value={rows}
             onChange={onChangeRows}
-            inputProps={{ min: 1 }}
+            isRequired
           />
         </Grid>
       </Grid>
-      <RequiredInput
+      <InputWithLabel
         id="needle"
         variant="h5"
         label="사용한 바늘"
         placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
         value={needle}
         onChange={onChangeNeedle}
+        isRequired
       />
       {!isInvalidOutlineValue && (
         <InfoBox mt={3} py={2} textAlign="center">
