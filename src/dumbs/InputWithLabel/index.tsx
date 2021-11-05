@@ -60,7 +60,7 @@ const InputWithLabel = ({
     <>
       <FormLabel variant={variant}>
         {label}
-        <RequiredMark />
+        {isRequired && <RequiredMark />}
       </FormLabel>
       <FullWithInput
         id={id}
