@@ -1,7 +1,7 @@
 import Button from './Button';
+import InputWithLabel, { FormLabel, RequiredMark } from './InputWithLabel';
 import Layout from './Layout';
 import Logo from './Logo';
-import RequiredInput, { FormLabel, RequiredMark } from './RequiredInput';
 import RequiredSelect from './RequiredSelect';
 import Snackbar from './Snackbar';
 
@@ -11,7 +11,7 @@ export {
   Button,
   Layout,
   Logo,
-  RequiredInput,
+  InputWithLabel,
   RequiredSelect,
   Snackbar,
 };
