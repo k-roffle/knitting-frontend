@@ -48,7 +48,7 @@ export const LevelKind = [
   },
 ];
 
-type DesignSize = {
+export type DesignSize = {
   total_length: number;
   sleeve_length: number;
   shoulder_width: number;

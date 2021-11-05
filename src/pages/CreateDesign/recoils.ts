@@ -21,6 +21,13 @@ type CurrentOutlineInput = Pick<
   'designType' | 'patternType' | 'stitches' | 'rows' | 'needle'
 >;
 
+export type OptionalOutlineInput = Pick<
+  DesignInput,
+  'targetLevel' | 'yarn' | 'extra' | 'size'
+> & {
+  techniques: string;
+};
+
 export const currentStepAtom = atom<PAGE_TYPE>({
   key: 'currentStep',
   default: PAGE.COVER,
@@ -48,6 +55,23 @@ export const currentOutlineInputAtom = atom<CurrentOutlineInput>({
     stitches: 0,
     rows: 0,
     needle: '',
+  },
+});
+
+export const optionalOutlineInputAtom = atom<OptionalOutlineInput>({
+  key: 'optionalOutlineInputAtom',
+  default: {
+    techniques: '',
+    targetLevel: LEVEL.NORMAL,
+    size: {
+      totalLength: 0,
+      sleeveLength: 0,
+      shoulderWidth: 0,
+      bottomWidth: 0,
+      armholeDepth: 0,
+    },
+    yarn: '',
+    extra: undefined,
   },
 });
 
