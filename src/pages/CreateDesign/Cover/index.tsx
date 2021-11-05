@@ -1,18 +1,14 @@
-import { FormGroup, Input, InputProps } from '@material-ui/core';
+import { FormGroup, InputProps } from '@material-ui/core';
 import ImageFileUploader from 'components/ImageFileUploader';
 import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
 import { FormLabel, InputWithLabel, RequiredMark } from 'dumbs';
+import { Row } from 'pages/CreateDesign/common.css';
 import {
   coverImageAtom,
   currentCoverInputAtom,
 } from 'pages/CreateDesign/recoils';
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
-
-const FullWidthInput = styled(Input)`
-  width: 100%;
-`;
 
 const Cover = (): React.ReactElement => {
   const [currentCoverInput, setCurrentCoverInput] = useRecoilState(
@@ -54,31 +50,38 @@ const Cover = (): React.ReactElement => {
 
   return (
     <FormGroup>
-      <InputWithLabel
-        id="name"
-        variant="h5"
-        label="이름"
-        placeholder="예) 토니 캔디 라운드넥 니트"
-        value={name}
-        onChange={handleChangeName}
-        isRequired
-      />
-      <FormLabel variant="h5">
-        표지 이미지
-        <RequiredMark />
-      </FormLabel>
-      <ImageFileUploader
-        selectedFiles={coverImage ? [coverImage] : []}
-        onChange={handleChangeCoverImage}
-      />
-      <FormLabel variant="h5">한 줄 소개</FormLabel>
-      <FullWidthInput
-        id="description"
-        aria-describedby="description"
-        placeholder="예) 어디서나 잘 어울리는 기본 니트 도안"
-        value={description}
-        onChange={handleChangeDescription}
-      />
+      <Row item xs={12}>
+        <InputWithLabel
+          id="name"
+          variant="h5"
+          label="이름"
+          placeholder="예) 토니 캔디 라운드넥 니트"
+          value={name}
+          onChange={handleChangeName}
+          isRequired
+        />
+      </Row>
+      <Row item xs={12}>
+        <FormLabel variant="h5">
+          표지 이미지
+          <RequiredMark />
+        </FormLabel>
+        <ImageFileUploader
+          selectedFiles={coverImage ? [coverImage] : []}
+          onChange={handleChangeCoverImage}
+        />
+      </Row>
+      <Row item xs={12}>
+        <InputWithLabel
+          id="description"
+          variant="h5"
+          label="한 줄 소개"
+          aria-describedby="description"
+          placeholder="예) 어디서나 잘 어울리는 기본 니트 도안"
+          value={description}
+          onChange={handleChangeDescription}
+        />
+      </Row>
     </FormGroup>
   );
 };
