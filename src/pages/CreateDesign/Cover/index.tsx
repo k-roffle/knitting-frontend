@@ -1,7 +1,7 @@
 import { FormGroup, Input, InputProps } from '@material-ui/core';
 import ImageFileUploader from 'components/ImageFileUploader';
 import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
-import { FormLabel, RequiredInput, RequiredMark } from 'dumbs';
+import { FormLabel, InputWithLabel, RequiredMark } from 'dumbs';
 import {
   coverImageAtom,
   currentCoverInputAtom,
@@ -54,13 +54,14 @@ const Cover = (): React.ReactElement => {
 
   return (
     <FormGroup>
-      <RequiredInput
+      <InputWithLabel
         id="name"
         variant="h5"
         label="이름"
         placeholder="예) 토니 캔디 라운드넥 니트"
         value={name}
         onChange={handleChangeName}
+        isRequired
       />
       <FormLabel variant="h5">
         표지 이미지
