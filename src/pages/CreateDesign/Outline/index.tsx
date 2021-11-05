@@ -22,6 +22,8 @@ import React from 'react';
 import { useRecoilState } from 'recoil';
 import { renderDesign, renderPattern } from 'utils/renderText';
 
+import OptionalOutline from '../components/OptionalOutline';
+
 const Outline = (): React.ReactElement => {
   const { SWEATER } = DESIGN;
   const { TEXT, IMAGE, VIDEO } = PATTERN;
@@ -173,10 +175,13 @@ const Outline = (): React.ReactElement => {
         isRequired
       />
       {!isInvalidOutlineValue && (
-        <InfoBox mt={3} py={2} textAlign="center">
-          필수값을 모두 입력하였어요.
-          <br /> 많은 양의 정보를 입력하고 니터들에게 관심을 받아봐요. 🥰
-        </InfoBox>
+        <>
+          <InfoBox mt={3} py={2} textAlign="center">
+            필수값을 모두 입력하였어요.
+            <br /> 많은 양의 정보를 입력하고 니터들에게 관심을 받아봐요. 🥰
+          </InfoBox>
+          <OptionalOutline />
+        </>
       )}
     </Grid>
   );
