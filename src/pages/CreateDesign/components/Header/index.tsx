@@ -1,9 +1,11 @@
 import { Grid, Typography } from '@material-ui/core';
 import StepProgressBar from 'pages/CreateDesign/components/StepProgressBar';
-import useStepContents from 'pages/CreateDesign/hooks/useStepContents';
+import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
+import { renderStepContents } from 'utils/renderStepContents';
 
 const Title = styled(Typography)`
   margin-bottom: ${theme.spacing(2)};
@@ -15,7 +17,8 @@ const Contents = styled(Typography)`
 `;
 
 const Header = (): React.ReactElement => {
-  const { title, detailContents } = useStepContents();
+  const currentStep = useRecoilValue(currentStepAtom);
+  const { title, detailContents } = renderStepContents(currentStep);
 
   return (
     <Grid container>

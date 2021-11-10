@@ -1,6 +1,4 @@
-import { currentStepAtom } from 'pages/CreateDesign/recoils';
-import { PAGE } from 'pages/CreateDesign/types';
-import { useRecoilValue } from 'recoil';
+import { PAGE, PAGE_TYPE } from '../pages/CreateDesign/types';
 
 type StepContent = {
   title: string;
@@ -30,8 +28,7 @@ const stepContent: StepContent[] = [
   },
 ];
 
-const useStepContents = (): StepContent => {
-  const currentStep = useRecoilValue(currentStepAtom);
+export const renderStepContents = (currentStep: PAGE_TYPE): StepContent => {
   const { COVER, OUTLINE, PATTERN, REVIEW } = PAGE;
 
   switch (currentStep) {
@@ -47,5 +44,3 @@ const useStepContents = (): StepContent => {
       return stepContent[COVER];
   }
 };
-
-export default useStepContents;
