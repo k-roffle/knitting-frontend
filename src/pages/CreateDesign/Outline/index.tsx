@@ -30,8 +30,13 @@ const Outline = (): React.ReactElement => {
     currentOutlineInputAtom,
   );
 
-  const { designType, patternType, stitches, rows, needle } =
-    currentOutlineInput;
+  const {
+    designType,
+    patternType,
+    stitches,
+    rows,
+    needle,
+  } = currentOutlineInput;
 
   const isInvalidOutlineValue = useInvalidOutline();
 
