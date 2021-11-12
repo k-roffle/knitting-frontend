@@ -21,8 +21,15 @@ type StepController = {
 export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
   const { name, coverImageUrl } = useRecoilValue(currentCoverInputAtom);
-  const { stitches, rows, size, needle, yarn, description, techniques } =
-    useRecoilValue(currentDesignInputAtom);
+  const {
+    stitches,
+    rows,
+    size,
+    needle,
+    yarn,
+    description,
+    techniques,
+  } = useRecoilValue(currentDesignInputAtom);
   const {
     totalLength,
     sleeveLength,
