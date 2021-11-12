@@ -35,7 +35,7 @@ export const currentCoverInputAtom = atom<CurrentCoverInput>({
   },
 });
 
-export const coverImageAtom = atom<ImageInformation[] | undefined>({
+export const coverImageAtom = atom<ImageInformation | undefined>({
   key: 'coverImageAtom',
   default: undefined,
 });
