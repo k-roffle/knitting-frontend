@@ -1,5 +1,6 @@
 import { FormGroup, Input, InputProps } from '@material-ui/core';
 import ImageFileUploader from 'components/ImageFileUploader';
+import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
 import { FormLabel, RequiredInput, RequiredMark } from 'dumbs';
 import {
   coverImageAtom,
@@ -21,29 +22,35 @@ const Cover = (): React.ReactElement => {
 
   const { name, description } = currentCoverInput;
 
-  useEffect(() => {
-    if (coverImage) {
-      setCurrentCoverInput({
-        ...currentCoverInput,
-        coverImageUrl: coverImage[0].url,
-      });
-    }
-  }, [coverImage]);
-
-  const onChangeName: InputProps['onChange'] = ({ currentTarget }) => {
+  const handleChangeName: InputProps['onChange'] = ({ currentTarget }) => {
     setCurrentCoverInput({
       ...currentCoverInput,
       name: currentTarget.value,
     });
   };
 
-  const onChangeDescription: InputProps['onChange'] = ({ currentTarget }) => {
+  const handleChangeDescription: InputProps['onChange'] = ({
+    currentTarget,
+  }) => {
     if (currentTarget == null) return;
     setCurrentCoverInput({
       ...currentCoverInput,
       description: currentTarget.value,
     });
   };
+
+  const handleChangeCoverImage = (images: ImageInformation[]) => {
+    setCoverImage(images[0]);
+  };
+
+  useEffect(() => {
+    if (coverImage) {
+      setCurrentCoverInput({
+        ...currentCoverInput,
+        coverImageUrl: coverImage.url,
+      });
+    }
+  }, [coverImage]);
 
   return (
     <FormGroup>
@@ -53,20 +60,23 @@ const Cover = (): React.ReactElement => {
         label="이름"
         placeholder="예) 토니 캔디 라운드넥 니트"
         value={name}
-        onChange={onChangeName}
+        onChange={handleChangeName}
       />
       <FormLabel variant="h5">
         표지 이미지
         <RequiredMark />
       </FormLabel>
-      <ImageFileUploader selectedFiles={coverImage} onChange={setCoverImage} />
+      <ImageFileUploader
+        selectedFiles={coverImage ? [coverImage] : []}
+        onChange={handleChangeCoverImage}
+      />
       <FormLabel variant="h5">한 줄 소개</FormLabel>
       <FullWidthInput
         id="description"
         aria-describedby="description"
         placeholder="예) 어디서나 잘 어울리는 기본 니트 도안"
         value={description}
-        onChange={onChangeDescription}
+        onChange={handleChangeDescription}
       />
     </FormGroup>
   );
