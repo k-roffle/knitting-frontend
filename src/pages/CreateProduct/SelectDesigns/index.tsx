@@ -50,9 +50,7 @@ const SelectDesigns = (): React.ReactElement => {
         {(isLoading ? [...Array(DEFAULT_LIST_LENGTH)] : designs).map(
           (design, index) => {
             const showDivider = designs.length - 1 !== index;
-            const isChecked = designIds.some(
-              (designId) => designId === design?.id,
-            );
+            const isChecked = designIds.includes(design?.id);
 
             return (
               <DesignItem
