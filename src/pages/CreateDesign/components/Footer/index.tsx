@@ -5,6 +5,7 @@ import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { FooterContainer } from 'styles/constants';
+
 import { useStepController } from './hooks/useStepController';
 
 const Footer = (): React.ReactElement => {

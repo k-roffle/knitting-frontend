@@ -3,8 +3,7 @@ import {
   FAILED_TO_GET_MY_SALE_SUMMARY,
 } from 'constants/errors';
 
-import { Button, Typography } from '@material-ui/core';
-import { Email } from '@material-ui/icons';
+import { Typography } from '@material-ui/core';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import EmptyContent from 'dumbs/EmptyContent';
 import { useGetMyProfile } from 'pages/MyInformation/hooks/useGetMyProfile';
@@ -21,6 +20,7 @@ import {
   MySalesSummary,
   Profile,
   Name,
+  Email,
   ProfileContainer,
   SalesSummaryCount,
 } from './MyProfile.css';
@@ -29,8 +29,11 @@ import { useRenderButtonText } from './useRenderButtonText';
 const MyProfile = (): React.ReactElement => {
   const [createButtonText, handleButtonClick] = useRenderButtonText();
   const tabItemLength = useRecoilValue(tabItemLengthAtom);
-  const { data, error } = useGetMySalesSummary();
-  const { data, error } = useGetMyProfile();
+  const {
+    error: salesSummaryError,
+    data: salesSummaryData,
+  } = useGetMySalesSummary();
+  const { error: myProfileError, data: myProfileData } = useGetMyProfile();
   const history = useHistory();
 
   const emptyContent = {
@@ -42,22 +45,28 @@ const MyProfile = (): React.ReactElement => {
   useCommonSnackbar({
     message: FAILED_TO_GET_MY_SALE_SUMMARY,
     severity: 'error',
-    dependencies: [error],
+    dependencies: [salesSummaryError],
   });
 
-  if (data == null) {
+  useCommonSnackbar({
+    message: FAILED_TO_GET_MY_PROFILE,
+    severity: 'error',
+    dependencies: [myProfileError],
+  });
+
+  if (myProfileData == null) {
     return <EmptyContent {...emptyContent} />;
   }
 
-  const { email, profile_image_url, name } = data.payload;
-  const isLoading = data == null;
+  const { email, profile_image_url, name } = myProfileData.payload;
   const {
     number_of_products_on_sales: numberOfProductsOnSales,
     number_of_products_sold: numberOfProductsSold,
-  } = data?.payload ?? {
+  } = salesSummaryData?.payload ?? {
     number_of_products_on_sales: 0,
     number_of_products_sold: 0,
   };
+
   const emptyList = tabItemLength === 0;
 
   return (
