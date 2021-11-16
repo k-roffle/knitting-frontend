@@ -1,25 +1,16 @@
-import useSWR, { SWRResponse } from 'swr';
-import { getAccessToken } from 'utils/auth';
+import { useQuery } from 'react-query';
+import { UseQueryResult } from 'react-query/types/react/types';
 import { ObjectResponse } from 'utils/requestType';
-import { request } from 'utils/requests';
+import { getRequest } from 'utils/requests';
 
 import { ProfileResponse } from './types';
 
-type MyProfileQueryResult = ObjectResponse<ProfileResponse>;
-
-const getMyProfile = async (
-  pathname: string,
-): Promise<MyProfileQueryResult> => {
-  const { data } = await request({
-    pathname,
-    method: 'get',
-    accessToken: getAccessToken(),
-  });
-
-  return data;
+const fetchMyProfile = () => {
+  return getRequest('/me/profile');
 };
 
-export const useGetMyProfile = (): SWRResponse<
-  MyProfileQueryResult,
-  MyProfileQueryResult
-> => useSWR('/me/profile', getMyProfile);
+export const useGetMyProfile = (): UseQueryResult<
+  ObjectResponse<ProfileResponse>
+> => {
+  return useQuery('my-profile', fetchMyProfile);
+};

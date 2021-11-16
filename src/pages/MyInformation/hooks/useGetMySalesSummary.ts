@@ -1,29 +1,16 @@
-import useSWR, { SWRResponse } from 'swr';
-import { getAccessToken } from 'utils/auth';
-import { SingleResponse } from 'utils/requestType';
-import { request } from 'utils/requests';
+import { useQuery } from 'react-query';
+import { UseQueryResult } from 'react-query/types/react/types';
+import { ObjectResponse } from 'utils/requestType';
+import { getRequest } from 'utils/requests';
 
 import { SalesSummaryResponse } from './types';
 
-type MySalesSummaryQueryResult = SingleResponse<SalesSummaryResponse>;
-
-const getMySalesSummary = async (
-  pathname: string,
-): Promise<MySalesSummaryQueryResult> => {
-  const { data } = await request({
-    pathname,
-    method: 'get',
-    accessToken: getAccessToken(),
-  });
-
-  return data;
+const fetchMySalesSummary = () => {
+  return getRequest('/me/sales-summary');
 };
 
-export const useGetMySalesSummary = (): SWRResponse<
-  MySalesSummaryQueryResult,
-  MySalesSummaryQueryResult
+export const useGetMySalesSummary = (): UseQueryResult<
+  ObjectResponse<SalesSummaryResponse>
 > => {
-  const response = useSWR('/me/sales-summary', getMySalesSummary);
-
-  return response;
+  return useQuery('salesSummary', fetchMySalesSummary);
 };
