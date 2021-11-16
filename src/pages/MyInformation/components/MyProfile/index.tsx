@@ -1,79 +1,30 @@
-import { FAILED_TO_GET_MY_PROFILE } from 'constants/errors';
-import { FAILED_TO_GET_MY_SALE_SUMMARY } from 'constants/errors';
+import {
+  FAILED_TO_GET_MY_PROFILE,
+  FAILED_TO_GET_MY_SALE_SUMMARY,
+} from 'constants/errors';
 
 import { Button, Typography } from '@material-ui/core';
+import { Email } from '@material-ui/icons';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import EmptyContent from 'dumbs/EmptyContent';
-import { useGetMySalesSummary } from 'pages/MyInformation/hooks/useGetMySalesSummary';
 import { useGetMyProfile } from 'pages/MyInformation/hooks/useGetMyProfile';
+import { useGetMySalesSummary } from 'pages/MyInformation/hooks/useGetMySalesSummary';
 import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import { flexVerticalAlign } from 'styles/constants';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
+import {
+  CreateButton,
+  EmptyProfile,
+  MyProfileContainer,
+  MySalesSummary,
+  Profile,
+  Name,
+  ProfileContainer,
+  SalesSummaryCount,
+} from './MyProfile.css';
 import { useRenderButtonText } from './useRenderButtonText';
-
-const MyProfileContainer = styled.section`
-  display: inline-block;
-  width: 100%;
-  margin-bottom: ${theme.spacing(6)};
-`;
-
-const ProfileContainer = styled.div`
-  ${flexVerticalAlign};
-
-  display: flex;
-  float: left;
-  margin-right: ${theme.spacing(3)};
-`;
-
-const EmptyProfile = styled.span`
-  display: inline-block;
-  min-width: ${theme.spacing(10)};
-  min-height: ${theme.spacing(10)};
-  border-radius: ${theme.spacing(5)};
-  margin-right: ${theme.spacing(3)};
-  background-color: ${palette.grey[300]};
-`;
-
-const Profile = styled.img`
-  display: inline-block;
-  min-width: ${theme.spacing(10)};
-  min-height: ${theme.spacing(10)};
-  border-radius: ${theme.spacing(5)};
-  margin-right: ${theme.spacing(3)};
-`;
-
-const Name = styled(Typography)`
-  display: inline-block;
-  margin-right: ${theme.spacing(1)};
-`;
-
-const Email = styled.span`
-  color: ${palette.text.secondary};
-`;
-
-const MySalesSummary = styled.div`
-  display: flex;
-  margin-top: ${theme.spacing(1.5)};
-
-  > div:first-child {
-    margin-right: ${theme.spacing(3)};
-  }
-`;
-
-const SalesSummaryCount = styled(Typography)`
-  text-align: center;
-`;
-
-const CreateButton = styled(Button)`
-  float: right;
-  margin-top: ${theme.spacing((10 - 4.5) / 2)};
-`;
 
 const MyProfile = (): React.ReactElement => {
   const [createButtonText, handleButtonClick] = useRenderButtonText();
