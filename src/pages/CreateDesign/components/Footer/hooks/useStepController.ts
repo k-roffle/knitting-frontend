@@ -1,13 +1,11 @@
 import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
 import {
   currentCoverInputAtom,
-  currentDesignInputAtom,
   currentStepAtom,
-  localCoverImageAtom,
 } from 'pages/CreateDesign/recoils';
 import { PAGE } from 'pages/CreateDesign/types';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { hasEmptyValue, hasNegativeNumber } from 'utils/validation';
+import { hasEmptyValue } from 'utils/validation';
 
 import { useSaveDesign } from './useSaveDesign';
 
@@ -21,26 +19,7 @@ type StepController = {
 export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
   const { name, coverImageUrl } = useRecoilValue(currentCoverInputAtom);
-  const {
-    stitches,
-    rows,
-    size,
-    needle,
-    yarn,
-    description,
-    techniques,
-  } = useRecoilValue(currentDesignInputAtom);
-  const {
-    totalLength,
-    sleeveLength,
-    shoulderWidth,
-    bottomWidth,
-    armholeDepth,
-  } = size;
-  const localCoverImage = useRecoilValue(localCoverImageAtom);
-
   const isInvalidOutlineValue = useInvalidOutline();
-
   const saveDesign = useSaveDesign();
 
   const onPreviousClick = (): void => {
@@ -84,29 +63,6 @@ export const useStepController = (): StepController => {
 
   const isInvalidCoverValue = (): boolean => {
     return hasEmptyValue([name, coverImageUrl]);
-  };
-
-  const isInvalidDetailValue = (): boolean => {
-    const isInvalidNumberInput = hasNegativeNumber([
-      stitches,
-      rows,
-      totalLength,
-      sleeveLength,
-      shoulderWidth,
-      bottomWidth,
-      armholeDepth,
-    ]);
-
-    const isInvalidRequiredValue = hasEmptyValue([
-      name,
-      description,
-      techniques,
-      needle,
-      yarn,
-      localCoverImage[0]?.url,
-    ]);
-
-    return isInvalidRequiredValue || isInvalidNumberInput;
   };
 
   const isNextDisabled = (): boolean => {
