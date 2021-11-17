@@ -1,8 +1,10 @@
 import { GENERAL_ERROR, NETWORK_ERROR } from 'constants/errors';
 
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
+import { ProductId } from 'pages/CreateProduct/types';
 import { useState } from 'react';
 import { useMutation, UseMutationResult } from 'react-query';
+import { ObjectResponse } from 'utils/requestType';
 import { postRequest } from 'utils/requests';
 
 interface Post {
@@ -18,7 +20,7 @@ export const usePost = ({
   errorMessage = GENERAL_ERROR,
   onSuccess,
   onError,
-}: Post): UseMutationResult<void, unknown> => {
+}: Post): UseMutationResult<ObjectResponse<ProductId> | void, unknown> => {
   const [postErrorMessage, setPostErrorMessage] = useState<string>();
 
   useCommonSnackbar({

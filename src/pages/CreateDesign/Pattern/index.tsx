@@ -133,8 +133,9 @@ const Pattern = (): React.ReactElement => {
     toolbarPlugin,
   ];
 
-  const currentPatternLength = editorState.getCurrentContent().getPlainText('')
-    .length;
+  const currentPatternLength = editorState
+    .getCurrentContent()
+    .getPlainText('').length;
 
   const handleBeforeInput = (
     _chars: string,

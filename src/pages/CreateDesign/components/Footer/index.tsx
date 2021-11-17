@@ -11,12 +11,8 @@ import { useStepController } from './hooks/useStepController';
 const Footer = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
 
-  const {
-    onPreviousClick,
-    onNextClick,
-    renderNextLabel,
-    isNextDisabled,
-  } = useStepController();
+  const { onPreviousClick, onNextClick, renderNextLabel, isNextDisabled } =
+    useStepController();
 
   return (
     <FooterContainer>

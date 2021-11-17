@@ -3,7 +3,7 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { splitText } from 'utils/splitText';
 
-import { currentProductInputAtom } from '../recoils';
+import { currentProductIdAtom, currentProductInputAtom } from '../recoils';
 
 import {
   ProductCard,
@@ -16,6 +16,7 @@ import {
 const Confirm = (): React.ReactElement => {
   const { name, fullPrice, discountPrice, representativeImageUrl, tags } =
     useRecoilValue(currentProductInputAtom);
+  const currentProductId = useRecoilValue(currentProductIdAtom);
 
   const getRate = (): string => {
     const rate = Math.round((discountPrice / fullPrice) * 100);
@@ -31,8 +32,8 @@ const Confirm = (): React.ReactElement => {
 
   return (
     <>
-      <Grid container justifyContent="center">
-        <ProductCard to="/product/1">
+      <Grid container>
+        <ProductCard to={`/product/${currentProductId}`}>
           {representativeImageUrl && (
             <RepresentativeImage
               src="//via.placeholder.com/500x300"

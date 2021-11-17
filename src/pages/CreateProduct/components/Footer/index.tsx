@@ -1,95 +1,19 @@
-import { FAILED_TO_SAVE_PRODUCT } from 'constants/errors';
-import { MY_INFORMATION_ROUTER_ROOT } from 'constants/path';
-
 import { Button as MaterialButton } from '@material-ui/core';
-import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import { Button } from 'dumbs';
-import { usePost } from 'hooks/usePost';
-import {
-  currentProductInputAtom,
-  currentStepAtom,
-} from 'pages/CreateProduct/recoils';
+import { currentStepAtom } from 'pages/CreateProduct/recoils';
 import { PAGE } from 'pages/CreateProduct/types';
-import React, { useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import React from 'react';
+import { useRecoilState } from 'recoil';
 import { FooterContainer } from 'styles/constants';
-import { request } from 'utils/requests';
-import { splitText } from 'utils/splitText';
+
+import { useSaveProduct } from './hooks/useSaveProduct';
+import { useStartSale } from './hooks/useStartSale';
 
 const Footer = (): React.ReactElement => {
   const { DESIGN, PACKAGE, INTRODUCTION, CONFIRM } = PAGE;
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
-  const {
-    name,
-    fullPrice,
-    discountPrice,
-    representativeImageUrl,
-    specifiedSalesStartDate,
-    specifiedSalesEndDate,
-    tags,
-    designIds,
-  } = useRecoilValue(currentProductInputAtom);
-
-  const [showError, setShowError] = useState(false);
-
-  const { mutate } = usePost({
-    pathname: '/product/package',
-    errorMessage: FAILED_TO_SAVE_PRODUCT,
-    onSuccess: () => setCurrentStep(INTRODUCTION),
-    onError: () => setShowError(true),
-  });
-
-  useCommonSnackbar({
-    message: FAILED_TO_SAVE_PRODUCT,
-    severity: 'error',
-    dependencies: [showError],
-  });
-
-  const saveProduct = (): void => {
-    const postProductData = {
-      id: null,
-      name,
-      full_price: fullPrice,
-      discount_price: discountPrice,
-      representative_image_url: representativeImageUrl,
-      specified_sales_start_date: specifiedSalesStartDate,
-      specified_sales_end_date: specifiedSalesEndDate,
-      tags: splitText(tags, '#'),
-      design_ids: designIds,
-    };
-
-    mutate(postProductData);
-    pathname: '/product',
-    onError: () => setOpenErrorSnackbar(true),
-  });
-
-  const handleSnackbarClose = () => {
-    setOpenErrorSnackbar(false);
-  };
-
-  const saveProduct = (): void => {
-    mutate({ id: 1 });
-    history.push(MY_INFORMATION_ROUTER_ROOT);
-  };
-
-  const requestSaveProduct = async (): Promise<void> => {
-    await request({
-      pathname: '/product/package',
-      method: 'post',
-      data: {
-        id: null,
-        name,
-        full_price: fullPrice,
-        discount_price: discountPrice,
-        representative_image_url: representativeImageUrl,
-        specified_sales_start_date: specifiedSalesStartDate,
-        specified_sales_end_date: specifiedSalesEndDate,
-        tags: splitText(tags, '#'),
-        design_ids: designIds,
-      },
-      useCurrentToken: true,
-    });
-  };
+  const { saveProduct } = useSaveProduct();
+  const { startSale } = useStartSale();
 
   const handleOnClickPrevious = async (): Promise<void> => {
     switch (currentStep) {
@@ -134,6 +58,7 @@ const Footer = (): React.ReactElement => {
         setCurrentStep(CONFIRM);
         break;
       case CONFIRM:
+        startSale();
         break;
       default:
         break;
