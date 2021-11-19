@@ -1,33 +1,11 @@
-import { MenuList, MenuListProps } from '@material-ui/core';
+import { MenuListProps } from '@material-ui/core';
 import {
   ArrowDropDown as ArrowDropDownIcon,
   ArrowDropUp as ArrowDropUpIcon,
 } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
-const DropDownWrapper = styled.div`
-  height: ${theme.spacing(4)};
-`;
-
-const SelectedButton = styled.button`
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  padding: ${theme.spacing(0.5, 1, 0.5, 1.5)};
-`;
-
-const OptionWrapper = styled(MenuList)`
-  background: ${palette.background.paper};
-  max-height: ${theme.spacing(27)};
-  border-radius: ${theme.spacing(0.5)};
-  box-shadow: ${theme.shadows[8]};
-  overflow-y: scroll;
-`;
+import { DropDownWrapper, OptionWrapper, SelectedButton } from './DropDown.css';
 
 interface Props {
   onChange(value: number): void;
