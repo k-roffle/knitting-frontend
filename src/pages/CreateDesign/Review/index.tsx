@@ -1,9 +1,8 @@
 import Editor from '@draft-js-plugins/editor';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { customInlineStylesMap } from 'libs/draftjs-utils/inline';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
 
 import {
   coverInputAtom,
@@ -14,23 +13,7 @@ import {
 import DesignSizeImage from '../components/DesignSizeImage';
 import { PATTERN, PATTERN_TYPE } from '../types';
 
-const Title = styled(Typography)`
-  font-weight: 600;
-`;
-
-const Row = styled(Grid)`
-  padding: 12px;
-`;
-
-const Label = styled(Typography)`
-  padding-bottom: 10px;
-  width: 100%;
-`;
-
-const Contents = styled(Typography)`
-  white-space: pre-line;
-  padding: 5px;
-`;
+import { Title, Contents, Row, Label } from './Review.css';
 
 const Review = (): React.ReactElement => {
   const { name } = useRecoilValue(coverInputAtom);

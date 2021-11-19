@@ -1,20 +1,11 @@
-import { Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { currentStepAtom } from 'pages/CreateDesign/atom';
 import StepProgressBar from 'pages/CreateDesign/components/StepProgressBar';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import { theme } from 'themes';
 import { renderStepContents } from 'utils/renderStepContents';
 
-const Title = styled(Typography)`
-  margin-bottom: ${theme.spacing(2)};
-  font-weight: 600;
-`;
-
-const Contents = styled(Typography)`
-  white-space: pre-line;
-`;
+import { Contents, Title } from './Header.css';
 
 const Header = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
