@@ -1,5 +1,5 @@
 import { Button, Typography } from '@material-ui/core';
-import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
+import { tabItemLengthAtom } from 'pages/MyInformation/atom';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';

@@ -5,8 +5,8 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
+import { currentDesignInputAtom, editorStateAtom } from '../atom';
 import DesignSizeImage from '../components/DesignSizeImage';
-import { currentDesignInputAtom, editorStateAtom } from '../recoils';
 import { PATTERN, PATTERN_TYPE } from '../types';
 
 const Title = styled(Typography)`

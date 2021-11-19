@@ -9,7 +9,7 @@ import { theme } from 'themes';
 import { palette } from 'themes/palette';
 import { constructURL } from 'utils/requests';
 
-import { errorSnackbarMessageAtom } from './recoils';
+import { errorSnackbarMessageAtom } from './atom';
 
 const LoginWrapper = styled.div`
   ${flexCenterAlign}

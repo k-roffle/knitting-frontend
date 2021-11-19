@@ -1,7 +1,7 @@
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Stepper from '@material-ui/core/Stepper';
-import { currentStepAtom } from 'pages/CreateDesign/recoils';
+import { currentStepAtom } from 'pages/CreateDesign/atom';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';

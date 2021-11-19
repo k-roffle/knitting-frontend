@@ -1,7 +1,7 @@
 import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'constants/errors';
 
 import { CircularProgress, Typography } from '@material-ui/core';
-import { errorSnackbarMessageAtom } from 'pages/Login/recoils';
+import { errorSnackbarMessageAtom } from 'pages/Login/atom';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
