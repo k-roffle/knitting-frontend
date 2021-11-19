@@ -2,11 +2,8 @@ import { FormGroup, InputProps } from '@material-ui/core';
 import ImageFileUploader from 'components/ImageFileUploader';
 import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
 import { FormLabel, InputWithLabel, RequiredMark } from 'dumbs';
+import { coverImageAtom, currentCoverInputAtom } from 'pages/CreateDesign/atom';
 import { Row } from 'pages/CreateDesign/common.css';
-import {
-  coverImageAtom,
-  currentCoverInputAtom,
-} from 'pages/CreateDesign/recoils';
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 

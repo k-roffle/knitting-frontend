@@ -10,8 +10,8 @@ import {
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { FormLabel, InputWithLabel, RequiredMark, RequiredSelect } from 'dumbs';
 import { InfoBox } from 'pages/CreateDesign/Outline/Outline.css';
+import { currentOutlineInputAtom } from 'pages/CreateDesign/atom';
 import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
-import { currentOutlineInputAtom } from 'pages/CreateDesign/recoils';
 import {
   DESIGN,
   DESIGN_TYPE,
