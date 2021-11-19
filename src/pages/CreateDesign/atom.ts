@@ -4,9 +4,12 @@ import { atom } from 'recoil';
 
 import { DESIGN, DesignInput, LEVEL, PAGE, PAGE_TYPE, PATTERN } from './types';
 
-type CoverInput = Pick<DesignInput, 'name' | 'coverImageUrl' | 'description'>;
+export type CoverInput = Pick<
+  DesignInput,
+  'name' | 'coverImageUrl' | 'description'
+>;
 
-type OutlineInput = Pick<
+export type OutlineInput = Pick<
   DesignInput,
   'designType' | 'patternType' | 'stitches' | 'rows' | 'needle'
 >;
