@@ -26,8 +26,8 @@ import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
 
+import { editorStateAtom } from '../atom';
 import { FontSize } from '../components/FontSize';
-import { editorStateAtom } from '../recoils';
 
 import { DEFAULT_FONT_SIZE, MAX_PATTERN_LENGTH } from './constants';
 import { getCurrentFontSize } from './utils';

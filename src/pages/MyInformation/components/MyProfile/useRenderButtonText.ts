@@ -1,4 +1,4 @@
-import { selectedTabAtom } from 'pages/MyInformation/recoils';
+import { selectedTabAtom } from 'pages/MyInformation/atom';
 import { DESIGN_MENU } from 'pages/MyInformation/types';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';

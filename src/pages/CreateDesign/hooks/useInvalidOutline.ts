@@ -1,4 +1,4 @@
-import { currentOutlineInputAtom } from 'pages/CreateDesign/recoils';
+import { currentOutlineInputAtom } from 'pages/CreateDesign/atom';
 import { useRecoilValue } from 'recoil';
 import { hasEmptyValue, hasNegativeNumber } from 'utils/validation';
 

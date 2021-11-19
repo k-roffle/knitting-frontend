@@ -7,11 +7,11 @@ import {
   Typography,
 } from '@material-ui/core';
 import { FormLabel, InputWithLabel } from 'dumbs';
-import { FullWidthInput, Row } from 'pages/CreateDesign/common.css';
 import {
   OptionalOutlineInput,
   optionalOutlineInputAtom,
-} from 'pages/CreateDesign/recoils';
+} from 'pages/CreateDesign/atom';
+import { FullWidthInput, Row } from 'pages/CreateDesign/common.css';
 import { DesignSize, LevelKind } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilState } from 'recoil';
