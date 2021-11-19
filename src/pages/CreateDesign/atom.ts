@@ -4,12 +4,9 @@ import { atom } from 'recoil';
 
 import { DESIGN, DesignInput, LEVEL, PAGE, PAGE_TYPE, PATTERN } from './types';
 
-type CurrentCoverInput = Pick<
-  DesignInput,
-  'name' | 'coverImageUrl' | 'description'
->;
+type CoverInput = Pick<DesignInput, 'name' | 'coverImageUrl' | 'description'>;
 
-type CurrentOutlineInput = Pick<
+type OutlineInput = Pick<
   DesignInput,
   'designType' | 'patternType' | 'stitches' | 'rows' | 'needle'
 >;
@@ -26,8 +23,8 @@ export const currentStepAtom = atom<PAGE_TYPE>({
   default: PAGE.COVER,
 });
 
-export const currentCoverInputAtom = atom<CurrentCoverInput>({
-  key: 'currentCoverInputAtom',
+export const coverInputAtom = atom<CoverInput>({
+  key: 'coverInputAtom',
   default: {
     name: '',
     coverImageUrl: '',
@@ -40,8 +37,8 @@ export const coverImageAtom = atom<ImageInformation | undefined>({
   default: undefined,
 });
 
-export const currentOutlineInputAtom = atom<CurrentOutlineInput>({
-  key: 'currentOutlineInputAtom',
+export const outlineInputAtom = atom<OutlineInput>({
+  key: 'outlineInputAtom',
   default: {
     designType: DESIGN.SWEATER,
     patternType: PATTERN.TEXT,

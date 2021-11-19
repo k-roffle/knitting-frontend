@@ -1,7 +1,4 @@
-import {
-  currentCoverInputAtom,
-  currentStepAtom,
-} from 'pages/CreateDesign/atom';
+import { coverInputAtom, currentStepAtom } from 'pages/CreateDesign/atom';
 import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
 import { PAGE } from 'pages/CreateDesign/types';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -18,7 +15,7 @@ type StepController = {
 
 export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
-  const { name, coverImageUrl } = useRecoilValue(currentCoverInputAtom);
+  const { name, coverImageUrl } = useRecoilValue(coverInputAtom);
   const isInvalidOutlineValue = useInvalidOutline();
   const saveDesign = useSaveDesign();
 
