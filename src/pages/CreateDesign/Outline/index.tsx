@@ -10,7 +10,7 @@ import {
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { FormLabel, InputWithLabel, RequiredMark, RequiredSelect } from 'dumbs';
 import { InfoBox } from 'pages/CreateDesign/Outline/Outline.css';
-import { currentOutlineInputAtom } from 'pages/CreateDesign/atom';
+import { outlineInputAtom } from 'pages/CreateDesign/atom';
 import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
 import {
   DESIGN,
@@ -29,17 +29,9 @@ const Outline = (): React.ReactElement => {
   const { SWEATER } = DESIGN;
   const { TEXT, IMAGE, VIDEO } = PATTERN;
 
-  const [currentOutlineInput, setCurrentOutlineInput] = useRecoilState(
-    currentOutlineInputAtom,
-  );
+  const [outlineInput, setOutlineInput] = useRecoilState(outlineInputAtom);
 
-  const {
-    designType,
-    patternType,
-    stitches,
-    rows,
-    needle,
-  } = currentOutlineInput;
+  const { designType, patternType, stitches, rows, needle } = outlineInput;
 
   const isInvalidOutlineValue = useInvalidOutline();
 
@@ -59,40 +51,40 @@ const Outline = (): React.ReactElement => {
 
   const onChangeDesignType: SelectProps['onChange'] = ({ currentTarget }) => {
     if (currentTarget == null) return;
-    setCurrentOutlineInput({
-      ...currentOutlineInput,
+    setOutlineInput({
+      ...outlineInput,
       designType: currentTarget.value as DESIGN_TYPE,
     });
   };
 
   const onChangePatternType: SelectProps['onChange'] = ({ currentTarget }) => {
     if (currentTarget == null) return;
-    setCurrentOutlineInput({
-      ...currentOutlineInput,
+    setOutlineInput({
+      ...outlineInput,
       patternType: currentTarget.value as PATTERN_TYPE,
     });
   };
 
   const onChangeStitches: InputProps['onChange'] = ({ currentTarget }) => {
     if (checkNotPositiveNumber(currentTarget)) return;
-    setCurrentOutlineInput({
-      ...currentOutlineInput,
+    setOutlineInput({
+      ...outlineInput,
       stitches: getNumberToChange(currentTarget),
     });
   };
 
   const onChangeRows: InputProps['onChange'] = ({ currentTarget }) => {
     if (checkNotPositiveNumber(currentTarget)) return;
-    setCurrentOutlineInput({
-      ...currentOutlineInput,
+    setOutlineInput({
+      ...outlineInput,
       rows: getNumberToChange(currentTarget),
     });
   };
 
   const onChangeNeedle: InputProps['onChange'] = ({ currentTarget }) => {
     if (checkNotPositiveNumber(currentTarget)) return;
-    setCurrentOutlineInput({
-      ...currentOutlineInput,
+    setOutlineInput({
+      ...outlineInput,
       needle: currentTarget.value,
     });
   };
