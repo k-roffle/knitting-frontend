@@ -1,7 +1,6 @@
 import {
   Grid,
   InputAdornment,
-  InputProps,
   ListSubheader,
   MenuItem,
   SelectProps,
@@ -10,14 +9,9 @@ import {
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import { FormLabel, InputWithLabel, RequiredMark, RequiredSelect } from 'dumbs';
 import { InfoBox } from 'pages/CreateDesign/Outline/Outline.css';
-import { outlineInputAtom } from 'pages/CreateDesign/atom';
+import { OutlineInput, outlineInputAtom } from 'pages/CreateDesign/atom';
 import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
-import {
-  DESIGN,
-  DESIGN_TYPE,
-  PATTERN,
-  PATTERN_TYPE,
-} from 'pages/CreateDesign/types';
+import { DESIGN, PATTERN } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import { renderDesign, renderPattern } from 'utils/renderText';
@@ -49,43 +43,28 @@ const Outline = (): React.ReactElement => {
     return isNaN(valueToNumber) ? 0 : valueToNumber;
   };
 
-  const onChangeDesignType: SelectProps['onChange'] = ({ currentTarget }) => {
-    if (currentTarget == null) return;
+  const handleSelectChange = (
+    { target }: React.ChangeEvent<SelectProps>,
+    type: keyof OutlineInput,
+  ): void => {
     setOutlineInput({
       ...outlineInput,
-      designType: currentTarget.value as DESIGN_TYPE,
+      [type]: target.value,
     });
   };
 
-  const onChangePatternType: SelectProps['onChange'] = ({ currentTarget }) => {
-    if (currentTarget == null) return;
-    setOutlineInput({
-      ...outlineInput,
-      patternType: currentTarget.value as PATTERN_TYPE,
-    });
-  };
-
-  const onChangeStitches: InputProps['onChange'] = ({ currentTarget }) => {
+  const handleInputChange = (
+    {
+      currentTarget,
+    }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    type: keyof OutlineInput,
+    isNumber = false,
+  ): void => {
     if (checkNotPositiveNumber(currentTarget)) return;
-    setOutlineInput({
-      ...outlineInput,
-      stitches: getNumberToChange(currentTarget),
-    });
-  };
 
-  const onChangeRows: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNotPositiveNumber(currentTarget)) return;
     setOutlineInput({
       ...outlineInput,
-      rows: getNumberToChange(currentTarget),
-    });
-  };
-
-  const onChangeNeedle: InputProps['onChange'] = ({ currentTarget }) => {
-    if (checkNotPositiveNumber(currentTarget)) return;
-    setOutlineInput({
-      ...outlineInput,
-      needle: currentTarget.value,
+      [type]: isNumber ? getNumberToChange(currentTarget) : currentTarget.value,
     });
   };
 
@@ -99,7 +78,7 @@ const Outline = (): React.ReactElement => {
           placeholder="종류 선택"
           defaultValue={SWEATER}
           value={designType}
-          onChange={onChangeDesignType}
+          onChange={(event) => handleSelectChange(event, 'designType')}
         >
           <ListSubheader>상의</ListSubheader>
           <MenuItem value={SWEATER}>{renderDesign(SWEATER)}</MenuItem>
@@ -113,7 +92,7 @@ const Outline = (): React.ReactElement => {
           placeholder="종류 선택"
           defaultValue={TEXT}
           value={patternType}
-          onChange={onChangePatternType}
+          onChange={(event) => handleSelectChange(event, 'patternType')}
         >
           <MenuItem value={TEXT}>{renderPattern(TEXT)}</MenuItem>
           <MenuItem value={IMAGE}>{renderPattern(IMAGE)}</MenuItem>
@@ -139,7 +118,7 @@ const Outline = (): React.ReactElement => {
             label="코"
             endAdornment={<InputAdornment position="end">코</InputAdornment>}
             value={stitches}
-            onChange={onChangeStitches}
+            onChange={(event) => handleInputChange(event, 'stitches', true)}
             isRequired
           />
         </Row>
@@ -151,7 +130,7 @@ const Outline = (): React.ReactElement => {
             label="단"
             endAdornment={<InputAdornment position="end">단</InputAdornment>}
             value={rows}
-            onChange={onChangeRows}
+            onChange={(event) => handleInputChange(event, 'rows', true)}
             isRequired
           />
         </Row>
@@ -163,7 +142,7 @@ const Outline = (): React.ReactElement => {
           label="사용한 바늘"
           placeholder="예) 5.0mm 80cm 둘레 바늘, 4.5mm 40cm 둘레 바늘"
           value={needle}
-          onChange={onChangeNeedle}
+          onChange={(event) => handleInputChange(event, 'needle')}
           isRequired
         />
       </Row>
