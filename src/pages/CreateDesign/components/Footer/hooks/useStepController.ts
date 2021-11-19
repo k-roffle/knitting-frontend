@@ -1,8 +1,8 @@
-import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
 import {
   currentCoverInputAtom,
   currentStepAtom,
-} from 'pages/CreateDesign/recoils';
+} from 'pages/CreateDesign/atom';
+import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
 import { PAGE } from 'pages/CreateDesign/types';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { hasEmptyValue } from 'utils/validation';

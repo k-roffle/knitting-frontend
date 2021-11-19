@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@material-ui/core';
+import { currentStepAtom } from 'pages/CreateDesign/atom';
 import StepProgressBar from 'pages/CreateDesign/components/StepProgressBar';
-import { currentStepAtom } from 'pages/CreateDesign/recoils';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';

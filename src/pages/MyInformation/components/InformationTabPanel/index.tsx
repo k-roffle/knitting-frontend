@@ -1,4 +1,4 @@
-import { selectedTabAtom } from 'pages/MyInformation/recoils';
+import { selectedTabAtom } from 'pages/MyInformation/atom';
 import { DESIGN_MENU_TYPE } from 'pages/MyInformation/types';
 import { useRecoilValue } from 'recoil';
 

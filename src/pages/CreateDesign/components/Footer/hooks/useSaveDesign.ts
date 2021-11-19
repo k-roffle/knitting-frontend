@@ -7,7 +7,7 @@ import {
   currentDesignInputAtom,
   editorStateAtom,
   localCoverImageAtom,
-} from 'pages/CreateDesign/recoils';
+} from 'pages/CreateDesign/atom';
 import { PostDesignInput } from 'pages/CreateDesign/types';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
