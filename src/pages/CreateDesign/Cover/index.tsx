@@ -2,22 +2,20 @@ import { FormGroup, InputProps } from '@material-ui/core';
 import ImageFileUploader from 'components/ImageFileUploader';
 import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
 import { FormLabel, InputWithLabel, RequiredMark } from 'dumbs';
-import { coverImageAtom, currentCoverInputAtom } from 'pages/CreateDesign/atom';
+import { coverImageAtom, coverInputAtom } from 'pages/CreateDesign/atom';
 import { Row } from 'pages/CreateDesign/common.css';
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 const Cover = (): React.ReactElement => {
-  const [currentCoverInput, setCurrentCoverInput] = useRecoilState(
-    currentCoverInputAtom,
-  );
+  const [coverInput, setCoverInput] = useRecoilState(coverInputAtom);
   const [coverImage, setCoverImage] = useRecoilState(coverImageAtom);
 
-  const { name, description } = currentCoverInput;
+  const { name, description } = coverInput;
 
   const handleChangeName: InputProps['onChange'] = ({ currentTarget }) => {
-    setCurrentCoverInput({
-      ...currentCoverInput,
+    setCoverInput({
+      ...coverInput,
       name: currentTarget.value,
     });
   };
@@ -26,8 +24,8 @@ const Cover = (): React.ReactElement => {
     currentTarget,
   }) => {
     if (currentTarget == null) return;
-    setCurrentCoverInput({
-      ...currentCoverInput,
+    setCoverInput({
+      ...coverInput,
       description: currentTarget.value,
     });
   };
@@ -38,8 +36,8 @@ const Cover = (): React.ReactElement => {
 
   useEffect(() => {
     if (coverImage) {
-      setCurrentCoverInput({
-        ...currentCoverInput,
+      setCoverInput({
+        ...coverInput,
         coverImageUrl: coverImage.url,
       });
     }
