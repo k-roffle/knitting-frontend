@@ -1,8 +1,12 @@
-import { FormGroup, InputProps } from '@material-ui/core';
+import { FormGroup } from '@material-ui/core';
 import ImageFileUploader from 'components/ImageFileUploader';
 import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
 import { FormLabel, InputWithLabel, RequiredMark } from 'dumbs';
-import { coverImageAtom, coverInputAtom } from 'pages/CreateDesign/atom';
+import {
+  coverImageAtom,
+  CoverInput,
+  coverInputAtom,
+} from 'pages/CreateDesign/atom';
 import { Row } from 'pages/CreateDesign/common.css';
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
@@ -13,20 +17,15 @@ const Cover = (): React.ReactElement => {
 
   const { name, description } = coverInput;
 
-  const handleChangeName: InputProps['onChange'] = ({ currentTarget }) => {
+  const handleInputChange = (
+    {
+      currentTarget,
+    }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    type: keyof CoverInput,
+  ): void => {
     setCoverInput({
       ...coverInput,
-      name: currentTarget.value,
-    });
-  };
-
-  const handleChangeDescription: InputProps['onChange'] = ({
-    currentTarget,
-  }) => {
-    if (currentTarget == null) return;
-    setCoverInput({
-      ...coverInput,
-      description: currentTarget.value,
+      [type]: currentTarget.value,
     });
   };
 
@@ -52,7 +51,7 @@ const Cover = (): React.ReactElement => {
           label="이름"
           placeholder="예) 토니 캔디 라운드넥 니트"
           value={name}
-          onChange={handleChangeName}
+          onChange={(event) => handleInputChange(event, 'name')}
           isRequired
         />
       </Row>
@@ -74,7 +73,7 @@ const Cover = (): React.ReactElement => {
           aria-describedby="description"
           placeholder="예) 어디서나 잘 어울리는 기본 니트 도안"
           value={description}
-          onChange={handleChangeDescription}
+          onChange={(event) => handleInputChange(event, 'description')}
         />
       </Row>
     </FormGroup>
