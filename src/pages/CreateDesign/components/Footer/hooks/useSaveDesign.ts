@@ -4,8 +4,8 @@ import { convertToRaw } from 'draft-js';
 import useFirebaseImageStorage from 'hooks/useFirebaseImageStorage';
 import { usePost } from 'hooks/usePost';
 import {
-  currentCoverInputAtom,
-  currentOutlineInputAtom,
+  coverInputAtom,
+  outlineInputAtom,
   editorStateAtom,
   localCoverImageAtom,
   optionalOutlineInputAtom,
@@ -16,9 +16,9 @@ import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 export const useSaveDesign = (): (() => void) | undefined => {
-  const { name, description } = useRecoilValue(currentCoverInputAtom);
+  const { name, description } = useRecoilValue(coverInputAtom);
   const { designType, patternType, stitches, rows, needle } = useRecoilValue(
-    currentOutlineInputAtom,
+    outlineInputAtom,
   );
   const { size, yarn, extra, targetLevel, techniques } = useRecoilValue(
     optionalOutlineInputAtom,

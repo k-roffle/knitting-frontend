@@ -6,8 +6,8 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 import {
-  currentCoverInputAtom,
-  currentOutlineInputAtom,
+  coverInputAtom,
+  outlineInputAtom,
   editorStateAtom,
   optionalOutlineInputAtom,
 } from '../atom';
@@ -33,9 +33,9 @@ const Contents = styled(Typography)`
 `;
 
 const Review = (): React.ReactElement => {
-  const { name } = useRecoilValue(currentCoverInputAtom);
+  const { name } = useRecoilValue(coverInputAtom);
   const { designType, patternType, stitches, rows, needle } = useRecoilValue(
-    currentOutlineInputAtom,
+    outlineInputAtom,
   );
   const { size, yarn, extra } = useRecoilValue(optionalOutlineInputAtom);
   const {
