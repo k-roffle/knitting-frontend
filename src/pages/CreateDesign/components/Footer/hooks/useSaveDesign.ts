@@ -4,9 +4,11 @@ import { convertToRaw } from 'draft-js';
 import useFirebaseImageStorage from 'hooks/useFirebaseImageStorage';
 import { usePost } from 'hooks/usePost';
 import {
-  currentDesignInputAtom,
+  currentCoverInputAtom,
+  currentOutlineInputAtom,
   editorStateAtom,
   localCoverImageAtom,
+  optionalOutlineInputAtom,
 } from 'pages/CreateDesign/atom';
 import { PostDesignInput } from 'pages/CreateDesign/types';
 import { useEffect } from 'react';
@@ -14,20 +16,13 @@ import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 export const useSaveDesign = (): (() => void) | undefined => {
-  const {
-    name,
-    designType,
-    patternType,
-    stitches,
-    rows,
-    size,
-    needle,
-    yarn,
-    extra,
-    description,
-    targetLevel,
-    techniques,
-  } = useRecoilValue(currentDesignInputAtom);
+  const { name, description } = useRecoilValue(currentCoverInputAtom);
+  const { designType, patternType, stitches, rows, needle } = useRecoilValue(
+    currentOutlineInputAtom,
+  );
+  const { size, yarn, extra, targetLevel, techniques } = useRecoilValue(
+    optionalOutlineInputAtom,
+  );
   const {
     totalLength,
     sleeveLength,

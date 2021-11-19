@@ -5,7 +5,12 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-import { currentDesignInputAtom, editorStateAtom } from '../atom';
+import {
+  currentCoverInputAtom,
+  currentOutlineInputAtom,
+  editorStateAtom,
+  optionalOutlineInputAtom,
+} from '../atom';
 import DesignSizeImage from '../components/DesignSizeImage';
 import { PATTERN, PATTERN_TYPE } from '../types';
 
@@ -28,18 +33,11 @@ const Contents = styled(Typography)`
 `;
 
 const Review = (): React.ReactElement => {
-  const currentDesignInput = useRecoilValue(currentDesignInputAtom);
-  const {
-    name,
-    stitches,
-    rows,
-    size,
-    needle,
-    yarn,
-    extra,
-    designType,
-    patternType,
-  } = currentDesignInput;
+  const { name } = useRecoilValue(currentCoverInputAtom);
+  const { designType, patternType, stitches, rows, needle } = useRecoilValue(
+    currentOutlineInputAtom,
+  );
+  const { size, yarn, extra } = useRecoilValue(optionalOutlineInputAtom);
   const {
     totalLength,
     sleeveLength,
