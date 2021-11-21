@@ -4,7 +4,7 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
-} from '@material-ui/core';
+} from '@mui/material';
 import { FormLabel, InputWithLabel } from 'knitting/dumbs';
 import {
   OptionalOutlineInput,

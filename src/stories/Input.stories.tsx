@@ -1,4 +1,4 @@
-import { Input as OriginalInput, InputProps } from '@material-ui/core';
+import { Input as OriginalInput, InputProps } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 

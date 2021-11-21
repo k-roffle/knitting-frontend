@@ -1,4 +1,4 @@
-import StepLabel from '@material-ui/core/StepLabel';
+import { StepLabel } from '@mui/material';
 import { palette } from 'knitting/themes/palette';
 import { zIndex } from 'knitting/themes/zIndex';
 import styled, { css } from 'styled-components';

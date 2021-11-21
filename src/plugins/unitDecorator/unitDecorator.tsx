@@ -1,4 +1,4 @@
-import { Tooltip } from '@material-ui/core';
+import { Tooltip } from '@mui/material';
 import { ContentState, EditorState } from 'draft-js';
 import { changeOriginalStyleToNewStyle } from 'knitting/libs/draftjs-utils/inline';
 import { StyleKeyType } from 'knitting/libs/draftjs-utils/types';

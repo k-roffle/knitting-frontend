@@ -1,4 +1,4 @@
-import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import CommonSnackbar from 'knitting/components/CommonSnackbar';
 import {
   MY_INFORMATION_ROUTER_ROOT,
@@ -28,28 +28,26 @@ const App = (): React.ReactElement => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <RecoilRoot>
-          <StylesProvider injectFirst>
-            <ThemeProvider theme={theme}>
-              <QueryParamProvider ReactRouterRoute={PublicRoute}>
-                <Switch>
-                  <NestedRoute
-                    path={MY_INFORMATION_ROUTER_ROOT}
-                    component={MyInformation}
-                  />
-                  <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
-                  <NestedRoute path={PRODUCT_DETAIL_PATH} component={Product} />
-                  <PublicRoute
-                    path={ERROR_PATH}
-                    component={Error404}
-                    exact
-                    strict
-                    sensitive
-                  />
-                  <PublicRoute path="*" component={Error404} />
-                </Switch>
-              </QueryParamProvider>
-            </ThemeProvider>
-          </StylesProvider>
+          <ThemeProvider theme={theme}>
+            <QueryParamProvider ReactRouterRoute={PublicRoute}>
+              <Switch>
+                <NestedRoute
+                  path={MY_INFORMATION_ROUTER_ROOT}
+                  component={MyInformation}
+                />
+                <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
+                <NestedRoute path={PRODUCT_DETAIL_PATH} component={Product} />
+                <PublicRoute
+                  path={ERROR_PATH}
+                  component={Error404}
+                  exact
+                  strict
+                  sensitive
+                />
+                <PublicRoute path="*" component={Error404} />
+              </Switch>
+            </QueryParamProvider>
+          </ThemeProvider>
           <CommonSnackbar />
         </RecoilRoot>
       </BrowserRouter>

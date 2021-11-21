@@ -1,4 +1,4 @@
-import { Skeleton as OriginalSkeleton, SkeletonProps } from '@material-ui/lab';
+import { Skeleton as OriginalSkeleton, SkeletonProps } from '@mui/material';
 import React from 'react';
 
 interface Props {

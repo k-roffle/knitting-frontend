@@ -95,7 +95,7 @@ export const getRequest = async <T extends ListResponse<unknown>>(
   return data;
 };
 
-export const postRequest = async <T extends unknown>(
+export const postRequest = async <T>(
   pathname: string,
   postData: T,
   useCurrentToken = true,

@@ -1,9 +1,9 @@
-import { Typography, ListItem, Checkbox } from '@material-ui/core';
+import { Typography, ListItemButton, Checkbox } from '@material-ui/core';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';
 
-export const StyledListItem = styled(ListItem)`
+export const StyledListItemButton = styled(ListItemButton)`
   padding: ${theme.spacing(3)};
   display: block;
 `;

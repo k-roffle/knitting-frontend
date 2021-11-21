@@ -1,10 +1,10 @@
-import { Typography } from '@material-ui/core';
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
 import {
   FAILED_TO_GET_MY_SALE_SUMMARY,
   FAILED_TO_GET_MY_PROFILE,
 } from 'knitting/constants/errors';
 import EmptyContent from 'knitting/dumbs/EmptyContent';
+import { Typography } from '@mui/material';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -29,10 +29,8 @@ import { useRenderButtonText } from './useRenderButtonText';
 const MyProfile = (): React.ReactElement => {
   const [createButtonText, handleButtonClick] = useRenderButtonText();
   const tabItemLength = useRecoilValue(tabItemLengthAtom);
-  const {
-    error: salesSummaryError,
-    data: salesSummaryData,
-  } = useGetMySalesSummary();
+  const { error: salesSummaryError, data: salesSummaryData } =
+    useGetMySalesSummary();
   const { error: myProfileError, data: myProfileData } = useGetMyProfile();
   const history = useHistory();
 

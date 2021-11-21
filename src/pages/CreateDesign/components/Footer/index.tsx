@@ -1,4 +1,4 @@
-import { Button as MaterialButton } from '@material-ui/core';
+import { Button as MaterialButton } from '@mui/material';
 import { Button } from 'knitting/dumbs';
 import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
 import { FooterContainer } from 'knitting/pages/CreateDesign/components/Footer/Footer.css';

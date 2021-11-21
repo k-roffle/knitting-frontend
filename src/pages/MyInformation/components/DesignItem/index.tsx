@@ -7,7 +7,7 @@ import { MouseEvent } from 'react';
 import { DesignItemResponse } from '../../hooks/types';
 
 import {
-  StyledListItem,
+  StyledListItemButton,
   ListItemContainer,
   ImageWrapper,
   Content,
@@ -41,7 +41,7 @@ const DesignItem = ({
   onClick,
 }: Props & DesignItemResponse): React.ReactElement => {
   return (
-    <StyledListItem button onClick={onClick}>
+    <StyledListItemButton onClick={onClick}>
       <ListItemContainer>
         {showCheckBox && (
           <StyledCheckBox
@@ -55,7 +55,7 @@ const DesignItem = ({
           <ImageWrapper>
             <Skeleton
               isLoading={isLoading}
-              variant="rect"
+              variant="rectangular"
               width="100%"
               height="100%"
             >
@@ -96,7 +96,7 @@ const DesignItem = ({
         </Content>
       </ListItemContainer>
       {showDivider && <Divider />}
-    </StyledListItem>
+    </StyledListItemButton>
   );
 };
 

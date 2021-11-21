@@ -1,5 +1,5 @@
-import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core';
-import { AccountCircle, ArrowDropDown } from '@material-ui/icons';
+import { AccountCircle, ArrowDropDown } from '@mui/icons-material';
+import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
 import { MY_INFORMATION_PROFILE_PATH } from 'knitting/constants/path';
 import { Logo } from 'knitting/dumbs';
 import { theme } from 'knitting/themes';

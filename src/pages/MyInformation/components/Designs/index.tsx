@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import EmptyContent from 'knitting/dumbs/EmptyContent';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
