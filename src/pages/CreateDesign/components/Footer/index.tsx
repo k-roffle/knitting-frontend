@@ -1,4 +1,4 @@
-import { Button as MaterialButton } from '@material-ui/core';
+import { Button as MaterialButton } from '@mui/material';
 import { Button } from 'dumbs';
 import { currentStepAtom } from 'pages/CreateDesign/atom';
 import { FooterContainer } from 'pages/CreateDesign/components/Footer/Footer.css';

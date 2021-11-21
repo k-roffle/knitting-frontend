@@ -5,7 +5,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import { FormLabel, InputWithLabel } from 'dumbs';
 import {
   OptionalOutlineInput,

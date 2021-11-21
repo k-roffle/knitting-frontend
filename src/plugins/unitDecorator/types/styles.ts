@@ -1,4 +1,4 @@
-import { deepOrange, blue } from '@material-ui/core/colors';
+import { blue, deepOrange } from '@mui/material/colors';
 import { palette } from 'themes/palette';
 
 import { REPEAT_DETAIL_APPROXIMATION } from './repeats';

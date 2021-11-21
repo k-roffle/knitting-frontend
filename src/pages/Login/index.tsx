@@ -1,4 +1,4 @@
-import { Button as MaterialButton, Typography } from '@material-ui/core';
+import { Button as MaterialButton, Typography } from '@mui/material';
 import { ReactComponent as GoogleIcon } from 'assets/icn/google.svg';
 import { Snackbar } from 'dumbs';
 import React from 'react';

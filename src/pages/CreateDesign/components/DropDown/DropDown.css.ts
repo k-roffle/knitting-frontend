@@ -1,4 +1,4 @@
-import { MenuList } from '@material-ui/core';
+import { MenuList } from '@mui/material';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';

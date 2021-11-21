@@ -1,4 +1,4 @@
-import { Button as MaterialButton } from '@material-ui/core';
+import { Button as MaterialButton } from '@mui/material';
 import React from 'react';
 import styled, { css } from 'styled-components';
 

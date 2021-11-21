@@ -1,4 +1,4 @@
-import { FormGroup } from '@material-ui/core';
+import { FormGroup } from '@mui/material';
 import ImageFileUploader from 'components/ImageFileUploader';
 import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
 import { FormLabel, InputWithLabel, RequiredMark } from 'dumbs';

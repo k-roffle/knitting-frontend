@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { currentStepAtom } from 'pages/CreateDesign/atom';
 import StepProgressBar from 'pages/CreateDesign/components/StepProgressBar';
 import React from 'react';

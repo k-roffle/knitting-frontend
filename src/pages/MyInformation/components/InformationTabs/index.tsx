@@ -1,4 +1,4 @@
-import { Tab, Tabs } from '@material-ui/core';
+import { Tab, Tabs } from '@mui/material';
 import { selectedTabAtom } from 'pages/MyInformation/atom';
 import { DESIGN_MENU_TYPE, DESIGN_MENU } from 'pages/MyInformation/types';
 import React from 'react';
@@ -11,7 +11,7 @@ const MyInformationTabs = (): React.ReactElement => {
   const [selectedTab, setSelectedTab] = useRecoilState(selectedTabAtom);
 
   const handleChange = (
-    _event: React.ChangeEvent<Record<string, never>>,
+    _event: React.SyntheticEvent<Element, Event>,
     newValue: DESIGN_MENU_TYPE,
   ) => {
     setSelectedTab(newValue);

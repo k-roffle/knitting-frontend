@@ -1,6 +1,6 @@
 import { FAILED_TO_GET_MY_DESIGNS } from 'constants/errors';
 
-import { List, Typography } from '@material-ui/core';
+import { List, Typography } from '@mui/material';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import EmptyContent from 'dumbs/EmptyContent';
 import { tabItemLengthAtom } from 'pages/MyInformation/atom';

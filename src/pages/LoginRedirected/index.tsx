@@ -1,6 +1,6 @@
 import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'constants/errors';
 
-import { CircularProgress, Typography } from '@material-ui/core';
+import { CircularProgress, Typography } from '@mui/material';
 import { errorSnackbarMessageAtom } from 'pages/Login/atom';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';

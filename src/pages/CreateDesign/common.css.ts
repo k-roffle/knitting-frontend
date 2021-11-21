@@ -1,4 +1,4 @@
-import { Grid, Input } from '@material-ui/core';
+import { Grid, Input } from '@mui/material';
 import styled from 'styled-components';
 import { theme } from 'themes';
 

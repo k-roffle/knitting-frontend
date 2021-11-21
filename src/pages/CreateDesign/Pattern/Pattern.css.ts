@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import styled, { css } from 'styled-components';
 import { theme } from 'themes';
 import { palette } from 'themes/palette';

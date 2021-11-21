@@ -1,7 +1,6 @@
-import { Typography } from '@material-ui/core';
-import { Image } from '@material-ui/icons';
+import { Image } from '@mui/icons-material';
+import { Typography } from '@mui/material';
 import { useRef } from 'react';
-import { theme } from 'themes';
 
 import {
   ImagesContainer,
@@ -30,8 +29,8 @@ const ImageFileUploader = ({
   isMultiple = false,
   maximumSize = 10000000,
   imageAccepts = ['png', 'jpeg', 'jpg', 'gif'],
-  width = theme.spacing(40),
-  height = theme.spacing(30),
+  width = 320,
+  height = 240,
   selectedFiles = [],
   onChange,
 }: Props): React.ReactElement | null => {

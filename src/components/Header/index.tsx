@@ -1,7 +1,7 @@
 import { MY_INFORMATION_PROFILE_PATH } from 'constants/path';
 
-import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core';
-import { AccountCircle, ArrowDropDown } from '@material-ui/icons';
+import { AccountCircle, ArrowDropDown } from '@mui/icons-material';
+import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
 import { Logo } from 'dumbs';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
