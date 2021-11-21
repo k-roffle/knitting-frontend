@@ -1,14 +1,13 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material/styles';
 
-import { overrides } from './overrides';
+import { components } from './overrides';
 import { palette } from './palette';
 import { typography } from './typography';
 import { zIndex } from './zIndex';
 
-export const theme = createMuiTheme({
-  spacing: (factor) => `${8 * factor}px`,
+export const theme = createTheme({
   palette,
   typography,
-  overrides,
+  components,
   zIndex,
 });

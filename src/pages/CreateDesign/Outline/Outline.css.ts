@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 import { theme } from 'knitting/themes';
 import styled from 'styled-components';
 

@@ -1,4 +1,4 @@
-import { CircularProgress, Typography } from '@material-ui/core';
+import { CircularProgress, Typography } from '@mui/material';
 import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'knitting/constants/errors';
 import { errorSnackbarMessageAtom } from 'knitting/pages/Login/atom';
 import { theme } from 'knitting/themes';

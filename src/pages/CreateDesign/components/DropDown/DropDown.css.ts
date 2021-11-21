@@ -1,4 +1,4 @@
-import { MenuList } from '@material-ui/core';
+import { MenuList } from '@mui/material';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
 import styled from 'styled-components';

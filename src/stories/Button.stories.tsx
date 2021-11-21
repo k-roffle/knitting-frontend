@@ -1,4 +1,4 @@
-import { Button as OriginalButton, ButtonProps } from '@material-ui/core';
+import { Button as OriginalButton, ButtonProps } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 

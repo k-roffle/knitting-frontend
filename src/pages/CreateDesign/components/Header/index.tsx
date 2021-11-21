@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
 import StepProgressBar from 'knitting/pages/CreateDesign/components/StepProgressBar';
 import { renderStepContents } from 'knitting/utils/renderStepContents';
