@@ -1,8 +1,4 @@
-import {
-  MenuItem,
-  Select as OriginalSelect,
-  SelectProps,
-} from '@material-ui/core';
+import { MenuItem, Select as OriginalSelect, SelectProps } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 

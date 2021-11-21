@@ -1,4 +1,4 @@
-import { Typography, ListItem } from '@material-ui/core';
+import { Typography, ListItemButton } from '@mui/material';
 import { Ellipsis } from 'knitting/components';
 import Skeleton from 'knitting/dumbs/Skeleton';
 import { theme } from 'knitting/themes';
@@ -16,7 +16,7 @@ interface Props {
   isLoading?: boolean;
 }
 
-const StyledListItem = styled(ListItem)`
+const StyledListItemButton = styled(ListItemButton)`
   padding: ${theme.spacing(3)};
   display: block;
 `;
@@ -87,13 +87,13 @@ const DesignItem = ({
   isLoading = false,
 }: Props): React.ReactElement => {
   return (
-    <StyledListItem button>
+    <StyledListItemButton>
       <ListItemContainer>
         {(isLoading || coverImageUrl) && (
           <ImageWrapper>
             <Skeleton
               isLoading={isLoading}
-              variant="rect"
+              variant="rectangular"
               width="100%"
               height="100%"
             >
@@ -134,7 +134,7 @@ const DesignItem = ({
         </Content>
       </ListItemContainer>
       {showDivider && <Divider />}
-    </StyledListItem>
+    </StyledListItemButton>
   );
 };
 

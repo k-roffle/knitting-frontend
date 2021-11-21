@@ -1,12 +1,12 @@
+import { InfoOutlined } from '@mui/icons-material';
 import {
   Grid,
   InputAdornment,
   ListSubheader,
   MenuItem,
-  SelectProps,
+  SelectChangeEvent,
   Tooltip,
-} from '@material-ui/core';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+} from '@mui/material';
 import {
   FormLabel,
   InputWithLabel,
@@ -52,7 +52,7 @@ const Outline = (): React.ReactElement => {
   };
 
   const handleSelectChange = (
-    { target }: React.ChangeEvent<SelectProps>,
+    { target }: SelectChangeEvent<unknown>,
     type: keyof OutlineInput,
   ): void => {
     setOutlineInput({
@@ -114,7 +114,7 @@ const Outline = (): React.ReactElement => {
           title="10 x 10(cm) 편물의 코와 단을 공유해주세요."
           placement="right"
         >
-          <InfoOutlinedIcon />
+          <InfoOutlined />
         </Tooltip>
       </FormLabel>
       <Grid container>

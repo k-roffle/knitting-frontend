@@ -1,4 +1,4 @@
-import { Button, Typography } from '@material-ui/core';
+import { Button, Typography } from '@mui/material';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 import { flexVerticalAlign } from 'knitting/styles/constants';
 import { theme } from 'knitting/themes';

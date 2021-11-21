@@ -1,4 +1,4 @@
-import { List, Typography } from '@material-ui/core';
+import { List, Typography } from '@mui/material';
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
 import { FAILED_TO_GET_MY_DESIGNS } from 'knitting/constants/errors';
 import EmptyContent from 'knitting/dumbs/EmptyContent';

@@ -1,7 +1,7 @@
 import { addParameters } from '@storybook/react';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import React from 'react';
-import { StylesProvider, ThemeProvider } from '@material-ui/core';
+import { StylesProvider, ThemeProvider } from '@mui/material';
 
 import GlobalStyle from '../src/globalStyles';
 import { theme } from '../src/themes';

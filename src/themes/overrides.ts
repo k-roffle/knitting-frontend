@@ -1,97 +1,109 @@
-import { createMuiTheme } from '@material-ui/core';
-import { grey } from '@material-ui/core/colors';
+import { grey } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
 import { palette } from './palette';
 
-export const defaultTheme = createMuiTheme();
+export const defaultTheme = createTheme();
 
-export const { overrides } = createMuiTheme({
-  overrides: {
+export const { components } = createTheme({
+  components: {
     MuiAppBar: {
-      root: {
-        boxShadow:
-          '0px 2px 4px -1px rgb(0 0 0 / 3%), 0px 4px 5px 0px rgb(0 0 0 / 3%), 0px 1px 10px 0px rgb(0 0 0 / 3%)',
+      styleOverrides: {
+        root: {
+          boxShadow:
+            '0px 2px 4px -1px rgb(0 0 0 / 3%), 0px 4px 5px 0px rgb(0 0 0 / 3%), 0px 1px 10px 0px rgb(0 0 0 / 3%)',
+        },
       },
     },
     MuiSelect: {
-      select: {
-        '&:focus': {
-          backgroundColor: 'transparent',
+      styleOverrides: {
+        select: {
+          '&:focus': {
+            backgroundColor: 'transparent',
+          },
         },
-      },
-      icon: {
-        right: defaultTheme.spacing(1.5),
+        icon: {
+          right: defaultTheme.spacing(1.5),
+        },
       },
     },
     MuiInput: {
-      root: {
-        border: '1.5px solid transparent',
-        backgroundColor: palette.grey[200],
-        borderRadius: defaultTheme.spacing(1),
-        padding: defaultTheme.spacing(0, 1.5),
-        '&.Mui-focused': {
-          border: `1.5px solid ${grey[400]}`,
+      styleOverrides: {
+        root: {
+          border: '1.5px solid transparent',
+          backgroundColor: palette.grey[200],
+          borderRadius: defaultTheme.spacing(1),
+          padding: defaultTheme.spacing(0, 1.5),
+          '&.Mui-focused': {
+            border: `1.5px solid ${grey[400]}`,
+          },
+          '&:hover:not($disabled):not($focused):not($error)': {
+            backgroundColor: palette.action.hover,
+          },
         },
-        '&:hover:not($disabled):not($focused):not($error)': {
-          backgroundColor: palette.action.hover,
+        input: {
+          padding: defaultTheme.spacing(1.5, 0),
         },
-      },
-      input: {
-        padding: defaultTheme.spacing(1.5, 0),
-      },
-      underline: {
-        '&:before': {
-          borderBottom: 'none',
-        },
-        '&:after': {
-          borderBottom: 'none',
-        },
-        '&:hover&:before': {
-          borderBottom: 'none',
+        underline: {
+          '&:before': {
+            borderBottom: 'none',
+          },
+          '&:after': {
+            borderBottom: 'none',
+          },
+          '&:hover&:before': {
+            borderBottom: 'none',
+          },
         },
       },
     },
     MuiStepConnector: {
-      alternativeLabel: {
-        top: 10,
-        left: 'calc(-50%)',
-        right: 'calc(50%)',
-      },
-      active: {
-        '& $line': {
-          borderColor: palette.primary.main,
+      styleOverrides: {
+        alternativeLabel: {
+          top: 10,
+          left: 'calc(-50%)',
+          right: 'calc(50%)',
         },
-      },
-      completed: {
-        '& $line': {
-          borderColor: palette.primary.main,
+        active: {
+          '& $line': {
+            borderColor: palette.primary.main,
+          },
         },
-      },
-      line: {
-        borderColor: palette.grey[200],
-      },
-      lineHorizontal: {
-        borderTopWidth: 5,
+        completed: {
+          '& $line': {
+            borderColor: palette.primary.main,
+          },
+        },
+        line: {
+          borderColor: palette.grey[200],
+        },
+        lineHorizontal: {
+          borderTopWidth: 5,
+        },
       },
     },
     MuiTooltip: {
-      tooltip: {
-        color: palette.text.primary,
-        backgroundColor: palette.background.paper,
-        fontSize: 12,
-        boxShadow: defaultTheme.shadows[2],
-        display: 'table',
-      },
-      arrow: {
-        color: palette.background.paper,
-        '&:before': {
+      styleOverrides: {
+        tooltip: {
+          color: palette.text.primary,
+          backgroundColor: palette.background.paper,
+          fontSize: 12,
           boxShadow: defaultTheme.shadows[2],
+          display: 'table',
+        },
+        arrow: {
+          color: palette.background.paper,
+          '&:before': {
+            boxShadow: defaultTheme.shadows[2],
+          },
         },
       },
     },
     MuiTab: {
-      wrapper: {
-        fontSize: 15,
+      styleOverrides: {
+        wrapped: {
+          fontSize: 15,
+        },
       },
     },
   },

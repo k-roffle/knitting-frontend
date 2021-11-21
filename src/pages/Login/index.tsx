@@ -1,4 +1,4 @@
-import { Button as MaterialButton, Typography } from '@material-ui/core';
+import { Button as MaterialButton, Typography } from '@mui/material';
 import { Snackbar } from 'knitting/dumbs';
 import { flexCenterAlign } from 'knitting/styles/constants';
 import { theme } from 'knitting/themes';

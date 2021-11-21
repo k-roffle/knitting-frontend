@@ -1,8 +1,8 @@
-import { MenuListProps } from '@material-ui/core';
 import {
   ArrowDropDown as ArrowDropDownIcon,
   ArrowDropUp as ArrowDropUpIcon,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
+import { MenuListProps } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 import { DropDownWrapper, OptionWrapper, SelectedButton } from './DropDown.css';

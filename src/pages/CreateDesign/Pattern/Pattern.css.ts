@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
 import styled, { css } from 'styled-components';

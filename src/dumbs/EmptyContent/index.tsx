@@ -1,4 +1,4 @@
-import { Button, Typography } from '@material-ui/core';
+import { Button, Typography } from '@mui/material';
 import { flexCenterAlign } from 'knitting/styles/constants';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
