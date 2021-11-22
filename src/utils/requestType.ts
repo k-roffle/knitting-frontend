@@ -6,3 +6,10 @@ export type Meta = {
 
 export type ListResponse<T> = { payload: T[]; meta: Meta };
 export type ObjectResponse<T> = { payload: T; meta: Meta };
+export type RequestParam = {
+  pathname: string;
+  errorMessage?: string;
+
+  onSuccess?: () => void;
+  onError?: () => void;
+};
