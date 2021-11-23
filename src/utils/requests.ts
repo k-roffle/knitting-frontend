@@ -4,6 +4,7 @@ import parse from 'url-parse';
 import { getAccessToken } from './auth';
 import { getConfig } from './config';
 import { notFoundExpected } from './errors';
+import { ListResponse } from './requestType';
 
 type Method = 'get' | 'post' | 'put' | 'delete' | 'patch';
 
@@ -52,10 +53,6 @@ const requestApi = async ({
     const currentAccessToken = getAccessToken();
 
     if (currentAccessToken == null) {
-      const loginUrl = constructURL('/login');
-
-      window.location.href = loginUrl.toString();
-
       notFoundExpected('access token');
     }
 
@@ -84,4 +81,31 @@ export const requestWithToken = (
   props: RequestWithTokenProps,
 ): Promise<AxiosResponse> => {
   return requestApi(props);
+};
+
+export const getRequest = async <T extends ListResponse<unknown>>(
+  pathname: string,
+): Promise<T> => {
+  const { data } = await request({
+    pathname,
+    method: 'get',
+    useCurrentToken: true,
+  });
+
+  return data;
+};
+
+export const postRequest = async <T extends unknown>(
+  pathname: string,
+  postData: T,
+  useCurrentToken = true,
+): Promise<void> => {
+  const { data } = await request({
+    pathname,
+    method: 'post',
+    data: postData,
+    useCurrentToken,
+  });
+
+  return data;
 };

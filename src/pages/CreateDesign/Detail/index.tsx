@@ -1,37 +1,55 @@
 import {
+  FormControlLabel,
   Grid,
   Input,
   InputAdornment,
   InputProps,
   ListSubheader,
   MenuItem,
+  Radio,
+  RadioGroup,
   SelectProps,
+  Typography,
 } from '@material-ui/core';
+import ImageFileUploader from 'components/ImageFileUploader';
 import { RequiredSelect, RequiredInput, FormLabel } from 'dumbs';
-import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { flexVerticalAlign } from 'styles/constants';
 import { theme } from 'themes';
+import { palette } from 'themes/palette';
 import { renderDesign, renderPattern } from 'utils/renderText';
 
 import DesignSizeImage from '../components/DesignSizeImage';
-import { currentDesignInputAtom } from '../recoils';
-import { DESIGN, DESIGN_TYPE, PATTERN, PATTERN_TYPE } from '../types';
+import { currentDesignInputAtom, localCoverImageAtom } from '../recoils';
+import {
+  DESIGN,
+  DESIGN_TYPE,
+  LevelKind,
+  LEVEL_TYPE,
+  PATTERN,
+  PATTERN_TYPE,
+} from '../types';
 
 const FullWithInput = styled(Input)`
   width: 100%;
 `;
 
-const NumberInput = styled(Input)`
-  width: 100%;
-
-  input {
-    text-align: right;
-  }
-`;
-
 const Row = styled(Grid)`
   padding: ${theme.spacing(1.5)};
+`;
+
+const LevelLabel = styled.div`
+  ${flexVerticalAlign}
+
+  span {
+    margin-right: ${theme.spacing(1.5)};
+  }
+
+  h6 {
+    font-weight: 400;
+    color: ${palette.text.secondary};
+  }
 `;
 
 const Detail = (): React.ReactElement => {
@@ -42,18 +60,26 @@ const Detail = (): React.ReactElement => {
     name,
     stitches,
     rows,
+    size,
+    needle,
+    yarn,
+    extra,
+    designType,
+    patternType,
+    description,
+    techniques,
+    targetLevel,
+  } = currentDesignInput;
+  const {
     totalLength,
     sleeveLength,
     shoulderWidth,
     bottomWidth,
     armholeDepth,
-    needle,
-    yarn,
-    extra,
-    price,
-    designType,
-    patternType,
-  } = currentDesignInput;
+  } = size;
+  const [localCoverImage, setLocalCoverImage] = useRecoilState(
+    localCoverImageAtom,
+  );
 
   const { SWEATER } = DESIGN;
   const { TEXT, IMAGE, VIDEO } = PATTERN;
@@ -96,35 +122,50 @@ const Detail = (): React.ReactElement => {
     if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      totalLength: getNumberToChange(currentTarget),
+      size: {
+        ...size,
+        totalLength: getNumberToChange(currentTarget),
+      },
     });
   };
   const onChangeSleeveLength: InputProps['onChange'] = ({ currentTarget }) => {
     if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      sleeveLength: getNumberToChange(currentTarget),
+      size: {
+        ...size,
+        sleeveLength: getNumberToChange(currentTarget),
+      },
     });
   };
   const onChangeShoulderWidth: InputProps['onChange'] = ({ currentTarget }) => {
     if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      shoulderWidth: getNumberToChange(currentTarget),
+      size: {
+        ...size,
+        shoulderWidth: getNumberToChange(currentTarget),
+      },
     });
   };
   const onChangeBottomWidth: InputProps['onChange'] = ({ currentTarget }) => {
     if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      bottomWidth: getNumberToChange(currentTarget),
+      size: {
+        ...size,
+        bottomWidth: getNumberToChange(currentTarget),
+      },
     });
   };
   const onChangeArmholeDepth: InputProps['onChange'] = ({ currentTarget }) => {
     if (checkNotPositiveNumber(currentTarget)) return;
     setCurrentDesignInputAtom({
       ...currentDesignInput,
-      armholeDepth: getNumberToChange(currentTarget),
+      size: {
+        ...size,
+        armholeDepth: getNumberToChange(currentTarget),
+      },
     });
   };
   const onChangeNeedle: InputProps['onChange'] = ({ currentTarget }) => {
@@ -148,13 +189,6 @@ const Detail = (): React.ReactElement => {
       extra: currentTarget.value,
     });
   };
-  const onChangePrice: InputProps['onChange'] = ({ currentTarget }) => {
-    if (currentTarget == null) return;
-    setCurrentDesignInputAtom({
-      ...currentDesignInput,
-      price: getNumberToChange(currentTarget),
-    });
-  };
   const onChangeDesignType: SelectProps['onChange'] = ({ currentTarget }) => {
     if (currentTarget == null) return;
     setCurrentDesignInputAtom({
@@ -170,6 +204,30 @@ const Detail = (): React.ReactElement => {
     });
   };
 
+  const onChangeDescription: InputProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      description: currentTarget.value,
+    });
+  };
+
+  const onChangeTechniques: InputProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      techniques: currentTarget.value,
+    });
+  };
+
+  const onChangeLevelType: SelectProps['onChange'] = ({ currentTarget }) => {
+    if (currentTarget == null) return;
+    setCurrentDesignInputAtom({
+      ...currentDesignInput,
+      targetLevel: currentTarget.value as LEVEL_TYPE,
+    });
+  };
+
   return (
     <>
       <form autoComplete="false">
@@ -182,6 +240,12 @@ const Detail = (): React.ReactElement => {
               placeholder="예) 토니 캔디 라운드넥 니트"
               value={name}
               onChange={onChangeName}
+            />
+          </Row>
+          <Row item xs={12}>
+            <ImageFileUploader
+              selectedFiles={localCoverImage}
+              onChange={setLocalCoverImage}
             />
           </Row>
           <Row container spacing={6}>
@@ -214,6 +278,48 @@ const Detail = (): React.ReactElement => {
                 <MenuItem value={VIDEO}>{renderPattern(VIDEO)}</MenuItem>
               </RequiredSelect>
             </Grid>
+          </Row>
+          <Row item xs={12}>
+            <FormLabel variant="h5">도안 한 줄 소개</FormLabel>
+            <FullWithInput
+              id="description"
+              aria-describedby="description"
+              placeholder="예) 어디서나 잘 어울리는 기본 니트 도안"
+              value={description}
+              onChange={onChangeDescription}
+            />
+          </Row>
+          <Row item xs={12}>
+            <FormLabel variant="h5">뜨개 기법</FormLabel>
+            <FullWithInput
+              id="techniques"
+              aria-describedby="techniques"
+              placeholder="예) 겉뜨기, 안뜨기, 원통뜨기"
+              value={techniques}
+              onChange={onChangeTechniques}
+            />
+          </Row>
+          <Row item xs={12}>
+            <FormLabel variant="h5">난이도</FormLabel>
+            <RadioGroup value={targetLevel} onChange={onChangeLevelType}>
+              {LevelKind.map(
+                ({ value, label, description: levelDescription }) => (
+                  <FormControlLabel
+                    key={value}
+                    value={value}
+                    control={<Radio color="primary" />}
+                    label={
+                      <LevelLabel>
+                        <span>{label}</span>
+                        <Typography variant="subtitle2">
+                          {levelDescription}
+                        </Typography>
+                      </LevelLabel>
+                    }
+                  />
+                ),
+              )}
+            </RadioGroup>
           </Row>
           <Row container>
             <FormLabel variant="h5">게이지</FormLabel>
@@ -357,18 +463,6 @@ const Detail = (): React.ReactElement => {
               placeholder="예) 18mm 단추 3개, 돗바늘, 지퍼 10개, 마커 10개"
               value={extra}
               onChange={onChangeExtra}
-            />
-          </Row>
-          <Row item xs={12}>
-            <FormLabel variant="h5">판매 가격</FormLabel>
-            <NumberInput
-              id="price"
-              type="number"
-              aria-describedby="price"
-              endAdornment={<InputAdornment position="end">원</InputAdornment>}
-              value={price}
-              onChange={onChangePrice}
-              inputProps={{ min: 0 }}
             />
           </Row>
         </Grid>

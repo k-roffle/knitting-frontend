@@ -8,6 +8,7 @@ import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
 import CommonSnackbar from 'components/CommonSnackbar';
 import { Error404 } from 'pages';
 import React from 'react';
+import { QueryClientProvider, QueryClient } from 'react-query';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import Login from 'routers/LoginRouter';
@@ -19,34 +20,38 @@ import {
   RouteWithoutTrailigSlash as NestedRoute,
 } from 'utils/route';
 
+const queryClient = new QueryClient();
+
 const App = (): React.ReactElement => {
   return (
-    <BrowserRouter>
-      <RecoilRoot>
-        <StylesProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <QueryParamProvider ReactRouterRoute={PublicRoute}>
-              <Switch>
-                <NestedRoute
-                  path={MY_INFORMATION_ROUTER_ROOT}
-                  component={MyInformation}
-                />
-                <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
-                <PublicRoute
-                  path={ERROR_PATH}
-                  component={Error404}
-                  exact
-                  strict
-                  sensitive
-                />
-                <PublicRoute path="*" component={Error404} />
-              </Switch>
-            </QueryParamProvider>
-          </ThemeProvider>
-        </StylesProvider>
-        <CommonSnackbar />
-      </RecoilRoot>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <RecoilRoot>
+          <StylesProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <QueryParamProvider ReactRouterRoute={PublicRoute}>
+                <Switch>
+                  <NestedRoute
+                    path={MY_INFORMATION_ROUTER_ROOT}
+                    component={MyInformation}
+                  />
+                  <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
+                  <PublicRoute
+                    path={ERROR_PATH}
+                    component={Error404}
+                    exact
+                    strict
+                    sensitive
+                  />
+                  <PublicRoute path="*" component={Error404} />
+                </Switch>
+              </QueryParamProvider>
+            </ThemeProvider>
+          </StylesProvider>
+          <CommonSnackbar />
+        </RecoilRoot>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 };
 

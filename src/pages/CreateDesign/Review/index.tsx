@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import DesignSizeImage from '../components/DesignSizeImage';
 import { currentDesignInputAtom, editorStateAtom } from '../recoils';
 import { PATTERN, PATTERN_TYPE } from '../types';
-import { formatNumber } from '../utils';
 
 const Title = styled(Typography)`
   font-weight: 600;
@@ -34,19 +33,20 @@ const Review = (): React.ReactElement => {
     name,
     stitches,
     rows,
+    size,
+    needle,
+    yarn,
+    extra,
+    designType,
+    patternType,
+  } = currentDesignInput;
+  const {
     totalLength,
     sleeveLength,
     shoulderWidth,
     bottomWidth,
     armholeDepth,
-    needle,
-    yarn,
-    extra,
-    price,
-    designType,
-    patternType,
-  } = currentDesignInput;
-
+  } = size;
   const editorState = useRecoilValue(editorStateAtom);
 
   const { TEXT, IMAGE, VIDEO } = PATTERN;
@@ -61,14 +61,6 @@ const Review = (): React.ReactElement => {
         return '영상 도안';
       default:
         return '서술형 도안';
-    }
-  };
-
-  const renderPrice = (patternPrice: number): string => {
-    if (patternPrice === 0) {
-      return '무료 나눔';
-    } else {
-      return `${formatNumber(patternPrice)}원`;
     }
   };
 
@@ -135,10 +127,6 @@ const Review = (): React.ReactElement => {
         <Row item xs={12}>
           <Label variant="h4">추가 재료</Label>
           <Contents>{extra}</Contents>
-        </Row>
-        <Row item xs={12}>
-          <Label variant="h4">판매 가격</Label>
-          <Contents>{renderPrice(price)}</Contents>
         </Row>
         <Row item xs={12}>
           <Label variant="h4">도안</Label>
