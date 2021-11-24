@@ -9,4 +9,6 @@ export const LOGIN_ROUTER_ROOT = '/login';
 export const LOGIN_PATH = LOGIN_ROUTER_ROOT;
 export const LOGIN_REDIRECTED_PATH = `${LOGIN_ROUTER_ROOT}/redirected`;
 
+export const PRODUCT_DETAIL_PATH = '/products/:id';
+
 export const ERROR_PATH = '/error';

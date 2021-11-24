@@ -20,3 +20,8 @@ export const currentProductInputAtom = atom<ProductInput>({
     designIds: [],
   },
 });
+
+export const productIdAtom = atom<number | undefined>({
+  key: 'productId',
+  default: undefined,
+});
