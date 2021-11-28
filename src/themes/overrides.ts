@@ -80,12 +80,12 @@ export const { components } = createTheme({
       styleOverrides: {
         root: {
           '&.Mui-active': {
-            '& $line': {
+            span: {
               borderColor: palette.primary.main,
             },
           },
           '&.Mui-completed': {
-            '& $line': {
+            span: {
               borderColor: palette.primary.main,
             },
           },
