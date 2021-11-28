@@ -59,20 +59,22 @@ export const { components } = createTheme({
     },
     MuiStepConnector: {
       styleOverrides: {
+        root: {
+          '&.Mui-active': {
+            '& $line': {
+              borderColor: palette.primary.main,
+            },
+          },
+          '&.Mui-completed': {
+            '& $line': {
+              borderColor: palette.primary.main,
+            },
+          },
+        },
         alternativeLabel: {
           top: 10,
           left: 'calc(-50%)',
           right: 'calc(50%)',
-        },
-        active: {
-          '& $line': {
-            borderColor: palette.primary.main,
-          },
-        },
-        completed: {
-          '& $line': {
-            borderColor: palette.primary.main,
-          },
         },
         line: {
           borderColor: palette.grey[200],
