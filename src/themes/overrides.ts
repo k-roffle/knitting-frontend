@@ -18,12 +18,31 @@ export const { components } = createTheme({
     MuiSelect: {
       styleOverrides: {
         select: {
-          '&:focus': {
-            backgroundColor: 'transparent',
+          border: '1.5px solid transparent',
+          backgroundColor: palette.grey[200],
+          borderRadius: defaultTheme.spacing(1),
+          padding: defaultTheme.spacing(1, 0),
+          '&.Mui-selected': {
+            backgroundColor: palette.action.hover,
+          },
+          '&:hover:not($disabled):not($focused):not($error)': {
+            backgroundColor: palette.action.hover,
           },
         },
         icon: {
           right: defaultTheme.spacing(1.5),
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            backgroundColor: palette.action.selected,
+            '&:hover': {
+              backgroundColor: palette.action.hover,
+            },
+          },
         },
       },
     },
@@ -42,7 +61,7 @@ export const { components } = createTheme({
           },
         },
         input: {
-          padding: defaultTheme.spacing(1.5, 0),
+          padding: defaultTheme.spacing(1.2, 0),
         },
         underline: {
           '&:before': {
