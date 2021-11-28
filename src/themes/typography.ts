@@ -1,6 +1,6 @@
-import { createMuiTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
-export const { typography } = createMuiTheme({
+export const { typography } = createTheme({
   typography: {
     h1: {
       fontSize: 42,
