@@ -47,6 +47,7 @@ const RequiredSelect = ({
         defaultValue={defaultValue}
         value={value}
         onChange={onChange}
+        variant="standard"
       >
         {children}
       </FullWithSelect>
