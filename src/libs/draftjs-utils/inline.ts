@@ -225,8 +225,10 @@ export const changeOriginalStyleToNewStyle = ({
     );
   }
 
-  const editorStateWithNewStyleAndPreviousSelection =
-    EditorState.forceSelection(editorStateWithNewStyle, originalSelection);
+  const editorStateWithNewStyleAndPreviousSelection = EditorState.forceSelection(
+    editorStateWithNewStyle,
+    originalSelection,
+  );
 
   return editorStateWithNewStyleAndPreviousSelection;
 };

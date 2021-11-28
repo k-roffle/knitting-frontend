@@ -1,6 +1,5 @@
 import { FAILED_TO_SAVE_PRODUCT } from 'constants/errors';
 
-import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import { usePost } from 'hooks/usePost';
 import {
   currentProductIdAtom,
@@ -61,12 +60,6 @@ export const useSaveProduct = (): SaveProduct => {
 
     mutate(postProductData);
   };
-
-  useCommonSnackbar({
-    message: FAILED_TO_SAVE_PRODUCT,
-    severity: 'error',
-    dependencies: [showError],
-  });
 
   return { saveProduct };
 };

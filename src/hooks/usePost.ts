@@ -15,12 +15,12 @@ interface Post {
   onError?: () => void;
 }
 
-export const usePost = ({
+export const usePost = <T extends ProductId>({
   pathname,
   errorMessage = GENERAL_ERROR,
   onSuccess,
   onError,
-}: Post): UseMutationResult<ObjectResponse<ProductId> | void, unknown> => {
+}: Post): UseMutationResult<ObjectResponse<T> | void, unknown> => {
   const [postErrorMessage, setPostErrorMessage] = useState<string>();
 
   useCommonSnackbar({
