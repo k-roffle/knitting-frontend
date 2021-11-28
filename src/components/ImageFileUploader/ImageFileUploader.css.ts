@@ -15,8 +15,8 @@ export const DropZone = styled.div<{ width: number; height: number }>`
   cursor: pointer;
   border: 1px solid ${palette.grey[300]};
   border-radius: ${theme.spacing(1)};
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
+  width: ${({ width }) => `${width}px`};
+  height: ${({ height }) => `${height}px`};
   margin-right: ${theme.spacing(2)};
 
   img {
