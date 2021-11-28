@@ -15,6 +15,8 @@ export const useGet = <
   pathname,
   errorMessage = GENERAL_ERROR,
   onSuccess,
+  isError,
+  isLoading
 }: RequestParam): UseQueryResult<TData, TError> => {
   const [showError, setShowError] = useState<boolean>(false);
 
@@ -27,5 +29,7 @@ export const useGet = <
   return useQuery(pathname, () => getRequest(pathname), {
     onSuccess,
     onError: () => setShowError(true),
+    isError,
+    isLoading
   });
 };
