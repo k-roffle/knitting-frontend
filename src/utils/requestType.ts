@@ -12,4 +12,6 @@ export type RequestParam = {
 
   onSuccess?: () => void;
   onError?: () => void;
+  isError?: boolean;
+  isLoading? : boolean;
 };
