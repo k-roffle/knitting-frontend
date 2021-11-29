@@ -49,8 +49,8 @@ const ProductDetail = ({
             <Typography variant="h3">{name}</Typography>
           </Box>
           <Box mt={1} display="flex" justifyContent="end">
-            {tags.map((tag: string) => (
-              <Tag>#{tag}</Tag>
+            {tags.map((tag: string, index: number) => (
+              <Tag key={index}>#{tag}</Tag>
             ))}
           </Box>
           <Box mt={1} display="flex" justifyContent="end">

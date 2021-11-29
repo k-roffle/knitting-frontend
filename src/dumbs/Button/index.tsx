@@ -17,16 +17,11 @@ export interface Props {
   fullWidth?: boolean;
 }
 
-const StyledButton = styled(MaterialButton)<Pick<Props, 'side' | 'fullWidth'>>`
+const StyledButton = styled(MaterialButton)<Pick<Props, 'side'>>`
   ${({ side }) =>
     side != null &&
     css`
       float: ${side.toLowerCase()};
-    `};
-  ${({ fullWidth }) =>
-    fullWidth &&
-    css`
-      width: 100%;
     `};
 `;
 
