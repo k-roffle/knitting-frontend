@@ -1,14 +1,15 @@
 import { atom } from 'recoil';
+import { SnakeToCamelCase } from 'utils/types';
 
 import { Product } from './types';
 
-export const productAtom = atom<Partial<Product>>({
+export const productAtom = atom<Partial<SnakeToCamelCase<Product>>>({
   key: 'product',
   default: {
     name: '',
-    full_price: undefined,
-    discount_price: undefined,
-    representative_image_url: '',
+    fullPrice: undefined,
+    discountPrice: undefined,
+    representativeImageUrl: '',
     tags: [''],
   },
 });
