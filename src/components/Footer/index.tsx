@@ -36,7 +36,7 @@ const Info = styled.li`
 const Terms = styled.li`
   margin: ${theme.spacing(2, 0)};
 
-  span:first-child {
+  span:first-of-type {
     margin-right: ${theme.spacing(2)};
   }
 
