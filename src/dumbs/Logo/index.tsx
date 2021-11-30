@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { theme } from 'knitting/themes';
 import React from 'react';
 
 const getTextStyle = (size: 'small' | 'large'): string => {
@@ -26,7 +25,7 @@ const LogoWrapper = styled.div<Props>`
 `;
 
 const LogoIcon = styled.span<Props>`
-  ${({ size }) =>
+  ${({ size, theme }) =>
     size === 'large' &&
     css`
       margin-right: ${theme.spacing(1)};

@@ -6,7 +6,6 @@ import { changeOriginalStyleToNewStyle } from 'knitting/libs/draftjs-utils/inlin
 import { StyleKeyType } from 'knitting/libs/draftjs-utils/types';
 import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
 import { PAGE } from 'knitting/pages/CreateDesign/types';
-import { theme } from 'knitting/themes';
 import { ReactElement, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
@@ -43,14 +42,18 @@ export interface UnitDecoratorProps {
 
 const DecoratorWrapper = styled.span<{ isReadOnly?: boolean }>`
   > span {
-    margin: ${theme.spacing(0, 0.5)};
-    padding: ${theme.spacing(0.5, 1)};
-    border-radius: ${theme.spacing(0.5)};
-    color: ${theme.palette.background.paper};
-    box-shadow: ${theme.shadows[2]};
     line-height: 210%;
 
-    ${({ isReadOnly }) =>
+    ${({ theme }) =>
+      css`
+        margin: ${theme.spacing(0, 0.5)};
+        padding: ${theme.spacing(0.5, 1)};
+        border-radius: ${theme.spacing(0.5)};
+        color: ${theme.palette.background.paper};
+        box-shadow: ${theme.shadows[2]};
+      `}
+
+    ${({ isReadOnly, theme }) =>
       !isReadOnly &&
       css`
         cursor: pointer;

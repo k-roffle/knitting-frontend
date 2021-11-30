@@ -1,10 +1,9 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { MenuList } from '@mui/material';
-import { theme } from 'knitting/themes';
-import { palette } from 'knitting/themes/palette';
 
 export const DropDownWrapper = styled.div`
-  height: ${theme.spacing(4)};
+  height: ${({ theme }) => theme.spacing(4)};
 `;
 
 export const SelectedButton = styled.button`
@@ -13,13 +12,16 @@ export const SelectedButton = styled.button`
   width: 100%;
   height: 100%;
   align-items: center;
-  padding: ${theme.spacing(0.5, 1, 0.5, 1.5)};
+  padding: ${({ theme }) => theme.spacing(0.5, 1, 0.5, 1.5)};
 `;
 
 export const OptionWrapper = styled(MenuList)`
-  background: ${palette.background.paper};
-  max-height: ${theme.spacing(27)};
-  border-radius: ${theme.spacing(0.5)};
-  box-shadow: ${theme.shadows[8]};
   overflow-y: scroll;
+  ${({ theme }) =>
+    css`
+      background: ${theme.palette.background.paper};
+      max-height: ${theme.spacing(27)};
+      border-radius: ${theme.spacing(0.5)};
+      box-shadow: ${theme.shadows[8]};
+    `}
 `;

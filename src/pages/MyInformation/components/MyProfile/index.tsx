@@ -4,8 +4,8 @@ import {
   FAILED_TO_GET_MY_PROFILE,
 } from 'knitting/constants/errors';
 import EmptyContent from 'knitting/dumbs/EmptyContent';
-import { Typography } from '@mui/material';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
+import { Typography } from '@mui/material';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';

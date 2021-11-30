@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { CircularProgress, Typography } from '@mui/material';
 import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'knitting/constants/errors';
 import { errorSnackbarMessageAtom } from 'knitting/pages/Login/atom';
-import { theme } from 'knitting/themes';
 import { setAccessToken } from 'knitting/utils/auth';
 import { request } from 'knitting/utils/requests';
 import React, { useEffect } from 'react';
@@ -24,7 +23,7 @@ const StyledCircularProgress = styled(CircularProgress)`
 `;
 
 const LoadingContent = styled(Typography)`
-  margin-top: ${theme.spacing(3)};
+  margin-top: ${({ theme }) => theme.spacing(3)};
 `;
 
 const LoginRedirected = (): React.ReactElement => {

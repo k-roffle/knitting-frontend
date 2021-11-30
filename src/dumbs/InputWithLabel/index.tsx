@@ -2,8 +2,6 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Input, InputBaseComponentProps, Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
-import { theme } from 'knitting/themes';
-import { palette } from 'knitting/themes/palette';
 import React from 'react';
 
 interface Props {
@@ -24,12 +22,12 @@ interface Props {
 const Required = styled(Typography)`
   display: inline;
   font-weight: normal;
-  color: ${palette.primary.main};
+  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 export const FormLabel = styled(Typography)`
   width: 100%;
-  padding: ${theme.spacing(1)};
+  padding: ${({ theme }) => theme.spacing(1)};
 `;
 
 const FullWithInput = styled(Input)<{ type?: string }>`

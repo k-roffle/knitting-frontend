@@ -1,10 +1,11 @@
 import { addParameters } from '@storybook/react';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import React from 'react';
-import { StylesProvider, ThemeProvider } from '@mui/material';
-
+import { ThemeProvider } from '@mui/material';
+import { StyledEngineProvider } from '@mui/material/styles';
 import GlobalStyle from '../src/globalStyles';
 import { theme } from '../src/themes';
+import { Global } from '@emotion/react';
 
 addParameters({
   docs: {
@@ -15,11 +16,11 @@ addParameters({
 
 export const decorators = [
   (Story) => (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
+        <Global styles={GlobalStyle} />
         <Story />
       </ThemeProvider>
-    </StylesProvider>
+    </StyledEngineProvider>
   ),
 ];
