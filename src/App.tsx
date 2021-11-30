@@ -1,3 +1,4 @@
+import { Global } from '@emotion/react';
 import { ThemeProvider } from '@mui/material/styles';
 import CommonSnackbar from 'knitting/components/CommonSnackbar';
 import {
@@ -6,6 +7,7 @@ import {
   ERROR_PATH,
   PRODUCT_DETAIL_PATH,
 } from 'knitting/constants/path';
+import GlobalStyle from 'knitting/globalStyles';
 import { Error404 } from 'knitting/pages';
 import Login from 'knitting/routers/LoginRouter';
 import MyInformation from 'knitting/routers/MyInformationRouter';
@@ -30,6 +32,7 @@ const App = (): React.ReactElement => {
         <RecoilRoot>
           <ThemeProvider theme={theme}>
             <QueryParamProvider ReactRouterRoute={PublicRoute}>
+              <Global styles={GlobalStyle} />
               <Switch>
                 <NestedRoute
                   path={MY_INFORMATION_ROUTER_ROOT}

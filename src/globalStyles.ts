@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from '@emotion/react';
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = css`
   body {
     margin: 0;
     padding: 0;
