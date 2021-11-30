@@ -1,8 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { UNIT_APPROXIMATION_TYPE } from 'knitting/plugins/unitDecorator/types';
-import { theme } from 'knitting/themes';
-import { palette } from 'knitting/themes/palette';
 import React from 'react';
 
 export interface TooltipMenuProps {
@@ -14,19 +12,23 @@ export const TooltipMenuContainer = styled.div`
 `;
 
 export const TooltipMenu = styled.span<TooltipMenuProps>`
-  padding: ${theme.spacing(0.8)};
-  margin: ${theme.spacing(0.2)};
   white-space: nowrap;
   cursor: pointer;
 
-  &:hover {
-    background-color: ${palette.action.hover};
-  }
+  ${({ theme }) =>
+    css`
+      padding: ${theme.spacing(0.8)};
+      margin: ${theme.spacing(0.2)};
 
-  ${({ isSelectedCalculateKey }) =>
+      &:hover {
+        background-color: ${theme.palette.action.hover};
+      }
+    `}
+
+  ${({ isSelectedCalculateKey, theme }) =>
     isSelectedCalculateKey &&
     css`
-      background-color: ${palette.action.selected};
+      background-color: ${theme.palette.action.selected};
     `}
 `;
 

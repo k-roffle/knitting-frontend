@@ -1,9 +1,8 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button, Typography } from '@mui/material';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 import { flexVerticalAlign } from 'knitting/styles/constants';
-import { theme } from 'knitting/themes';
-import { palette } from 'knitting/themes/palette';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
@@ -12,7 +11,7 @@ import { useRenderButtonText } from './useRenderButtonText';
 const MyProfileContainer = styled.section`
   display: inline-block;
   width: 100%;
-  margin-bottom: ${theme.spacing(6)};
+  margin-bottom: ${({ theme }) => theme.spacing(6)};
 `;
 
 const ProfileContainer = styled.div`
@@ -20,34 +19,40 @@ const ProfileContainer = styled.div`
 
   display: flex;
   float: left;
-  margin-right: ${theme.spacing(3)};
+  margin-right: ${({ theme }) => theme.spacing(3)};
 `;
 
 const EmptyProfile = styled.span`
   display: inline-block;
-  min-width: ${theme.spacing(10)};
-  min-height: ${theme.spacing(10)};
-  border-radius: ${theme.spacing(5)};
-  margin-right: ${theme.spacing(3)};
-  background-color: ${palette.grey[300]};
+  ${({ theme }) =>
+    css`
+      min-width: ${theme.spacing(10)};
+      min-height: ${theme.spacing(10)};
+      border-radius: ${theme.spacing(5)};
+      margin-right: ${theme.spacing(3)};
+      background-color: ${theme.palette.grey[300]};
+    `}
 `;
 
 const Name = styled(Typography)`
   display: inline-block;
-  margin-right: ${theme.spacing(1)};
+  margin-right: ${({ theme }) => theme.spacing(1)};
 `;
 
 const Email = styled.span`
-  color: ${palette.text.secondary};
+  color: ${({ theme }) => theme.palette.text.secondary};
 `;
 
 const MySalesSummary = styled.div`
   display: flex;
-  margin-top: ${theme.spacing(1.5)};
+  ${({ theme }) =>
+    css`
+      margin-top: ${theme.spacing(1.5)};
 
-  > div:first-of-type {
-    margin-right: ${theme.spacing(3)};
-  }
+      > div:first-of-type {
+        margin-right: ${theme.spacing(3)};
+      }
+    `}
 `;
 
 const SalesSummaryCount = styled(Typography)`
@@ -56,7 +61,7 @@ const SalesSummaryCount = styled(Typography)`
 
 const CreateButton = styled(Button)`
   float: right;
-  margin-top: ${theme.spacing((10 - 4.5) / 2)};
+  margin-top: ${({ theme }) => theme.spacing((10 - 4.5) / 2)};
 `;
 
 const mock = {

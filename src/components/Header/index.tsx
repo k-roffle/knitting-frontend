@@ -3,13 +3,12 @@ import { AccountCircle, ArrowDropDown } from '@mui/icons-material';
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
 import { MY_INFORMATION_PROFILE_PATH } from 'knitting/constants/path';
 import { Logo } from 'knitting/dumbs';
-import { theme } from 'knitting/themes';
 import { deleteAccessToken } from 'knitting/utils/auth';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 const StyledIconButton = styled(IconButton)`
-  border-radius: ${theme.spacing(6)};
+  border-radius: ${({ theme }) => theme.spacing(6)};
 `;
 
 const Header = (): React.ReactElement => {

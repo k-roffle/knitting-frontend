@@ -5,7 +5,6 @@ import { FAILED_TO_GET_MY_DESIGNS } from 'knitting/constants/errors';
 import EmptyContent from 'knitting/dumbs/EmptyContent';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 import { useGetMyDesigns } from 'knitting/pages/MyInformation/hooks/useGetMyDesigns';
-import { theme } from 'knitting/themes';
 import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
 import { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -85,11 +84,11 @@ const Designs = (): React.ReactElement => {
 export default Designs;
 
 const StyledList = styled(List)`
-  margin-top: ${theme.spacing(2)};
+  margin-top: ${({ theme }) => theme.spacing(2)};
 `;
 
 const Loader = styled.div`
   width: 100%;
   text-align: center;
-  padding: ${theme.spacing(7, 0)};
+  padding: ${({ theme }) => theme.spacing(7, 0)};
 `;

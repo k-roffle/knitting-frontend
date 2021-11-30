@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { Header, Footer } from 'knitting/components';
-import { theme } from 'knitting/themes';
 import React from 'react';
 
 interface Props {
@@ -10,10 +9,10 @@ interface Props {
 const Content = styled.section`
   max-width: 1100px;
   display: flex;
-  margin: ${theme.spacing(8, 'auto', 'auto')};
+  margin: ${({ theme }) => theme.spacing(8, 'auto', 'auto')};
 
   > div {
-    margin: ${theme.spacing(4, 2)};
+    margin: ${({ theme }) => theme.spacing(4, 2)};
     width: 100%;
   }
 `;
