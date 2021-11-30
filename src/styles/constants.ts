@@ -1,5 +1,5 @@
+import { css } from '@emotion/react';
 import { theme } from 'knitting/themes';
-import { css } from 'styled-components';
 
 export const flexCenterAlign = css`
   display: flex;

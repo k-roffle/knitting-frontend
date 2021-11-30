@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { List, Typography } from '@mui/material';
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
 import { FAILED_TO_GET_MY_DESIGNS } from 'knitting/constants/errors';
@@ -9,7 +10,6 @@ import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
 import { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
 
 import { DesignItemResponse } from '../../hooks/types';
 import DesignItem from '../DesignItem';

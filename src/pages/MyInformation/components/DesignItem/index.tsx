@@ -1,10 +1,10 @@
+import styled from '@emotion/styled';
 import { Typography, ListItemButton } from '@mui/material';
 import { Ellipsis } from 'knitting/components';
 import Skeleton from 'knitting/dumbs/Skeleton';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
 import { formatDate } from 'knitting/utils/format';
-import styled from 'styled-components';
 
 interface Props {
   name?: string;

@@ -1,7 +1,8 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
-import styled, { css } from 'styled-components';
 
 interface EditorWrapperProps {
   isFocused: boolean;

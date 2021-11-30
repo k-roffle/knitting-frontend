@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { Button, Typography } from '@mui/material';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 import { flexVerticalAlign } from 'knitting/styles/constants';
@@ -5,7 +6,6 @@ import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
 
 import { useRenderButtonText } from './useRenderButtonText';
 

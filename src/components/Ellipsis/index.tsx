@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import OriginalEllipsis from 'react-ellipsis-component';
-import styled from 'styled-components';
 
 const EllipsisWrapper = styled.div`
   overflow: hidden;
