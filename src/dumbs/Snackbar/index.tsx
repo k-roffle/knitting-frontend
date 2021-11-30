@@ -18,6 +18,7 @@ const Snackbar = ({
 }: Props): React.ReactElement => {
   return (
     <MaterialSnackbar
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       open={open}
       autoHideDuration={autoHideDuration}
       onClose={onClose}
