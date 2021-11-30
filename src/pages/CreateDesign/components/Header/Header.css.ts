@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 import { theme } from 'knitting/themes';
-import styled from 'styled-components';
 
 export const Title = styled(Typography)`
   margin-bottom: ${theme.spacing(2)};

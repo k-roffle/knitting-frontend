@@ -1,5 +1,5 @@
+import styled from '@emotion/styled';
 import { theme } from 'knitting/themes';
-import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
   display: flex;

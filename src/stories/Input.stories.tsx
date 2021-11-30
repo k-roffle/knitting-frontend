@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { Input as OriginalInput, InputProps } from '@mui/material';
 import React from 'react';
-import styled from 'styled-components';
 
 const Input = styled(OriginalInput)`
   margin: 0 0 16px 16px;

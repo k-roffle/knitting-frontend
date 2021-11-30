@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { AccountCircle, ArrowDropDown } from '@mui/icons-material';
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
 import { MY_INFORMATION_PROFILE_PATH } from 'knitting/constants/path';
@@ -6,7 +7,6 @@ import { theme } from 'knitting/themes';
 import { deleteAccessToken } from 'knitting/utils/auth';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 
 const StyledIconButton = styled(IconButton)`
   border-radius: ${theme.spacing(6)};

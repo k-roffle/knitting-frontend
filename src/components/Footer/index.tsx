@@ -1,8 +1,8 @@
+import styled from '@emotion/styled';
 import { Logo } from 'knitting/dumbs';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
 import React from 'react';
-import styled from 'styled-components';
 
 const Divider = styled.div`
   margin-top: ${theme.spacing(-2)};
@@ -19,7 +19,7 @@ const FooterContent = styled.ul`
   list-style: none;
 `;
 
-const StyledLogo = styled((props) => <Logo {...props} />)`
+const StyledLogo = styled(Logo)`
   color: ${palette.grey[600]};
 `;
 

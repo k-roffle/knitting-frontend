@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { Grid, Input } from '@mui/material';
 import { theme } from 'knitting/themes';
-import styled from 'styled-components';
 
 export const FullWidthInput = styled(Input)`
   width: 100%;

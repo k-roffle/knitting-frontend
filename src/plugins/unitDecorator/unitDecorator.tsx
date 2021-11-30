@@ -1,3 +1,5 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { Tooltip } from '@mui/material';
 import { ContentState, EditorState } from 'draft-js';
 import { changeOriginalStyleToNewStyle } from 'knitting/libs/draftjs-utils/inline';
@@ -7,7 +9,6 @@ import { PAGE } from 'knitting/pages/CreateDesign/types';
 import { theme } from 'knitting/themes';
 import { ReactElement, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import styled, { css } from 'styled-components';
 
 import { DetailTooltipMenu } from './components/DetailTooltipMenu';
 import { RepeatTooltipMenu } from './components/RepeatTooltipMenu';
