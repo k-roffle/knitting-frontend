@@ -7,7 +7,6 @@ import {
   currentStepAtom,
 } from 'pages/CreateProduct/recoils';
 import { PAGE } from 'pages/CreateProduct/types';
-import { useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { splitText } from 'utils/splitText';
 
@@ -18,7 +17,6 @@ type SaveProduct = {
 export const useSaveProduct = (): SaveProduct => {
   const setCurrentStep = useSetRecoilState(currentStepAtom);
   const setCurrentProductId = useSetRecoilState(currentProductIdAtom);
-  const [showError, setShowError] = useState(false);
 
   const {
     name,
@@ -42,7 +40,6 @@ export const useSaveProduct = (): SaveProduct => {
     pathname: '/product/package',
     errorMessage: FAILED_TO_SAVE_PRODUCT,
     onSuccess,
-    onError: () => setShowError(true),
   });
 
   const saveProduct = (): void => {
