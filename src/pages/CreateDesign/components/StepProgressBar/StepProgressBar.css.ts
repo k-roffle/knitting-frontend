@@ -1,7 +1,8 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { StepLabel } from '@mui/material';
 import { palette } from 'knitting/themes/palette';
 import { zIndex } from 'knitting/themes/zIndex';
-import styled, { css } from 'styled-components';
 
 export interface StepIconProps {
   active: boolean;

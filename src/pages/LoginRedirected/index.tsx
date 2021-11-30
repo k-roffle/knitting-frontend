@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { CircularProgress, Typography } from '@mui/material';
 import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'knitting/constants/errors';
 import { errorSnackbarMessageAtom } from 'knitting/pages/Login/atom';
@@ -7,7 +8,6 @@ import { request } from 'knitting/utils/requests';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
 import { useQueryParam, StringParam } from 'use-query-params';
 
 const ProgressWrapper = styled.div`

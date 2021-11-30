@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import { flexCenterAlign } from 'knitting/styles/constants';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
-import styled from 'styled-components';
 
 export const FileInput = styled.input`
   display: none;

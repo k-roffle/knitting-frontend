@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import { flexVerticalAlign } from 'knitting/styles/constants';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
-import styled from 'styled-components';
 
 export const LevelLabel = styled.div`
   ${flexVerticalAlign}

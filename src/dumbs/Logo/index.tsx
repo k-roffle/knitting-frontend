@@ -1,6 +1,7 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { theme } from 'knitting/themes';
 import React from 'react';
-import styled, { css } from 'styled-components';
 
 const getTextStyle = (size: 'small' | 'large'): string => {
   switch (size) {

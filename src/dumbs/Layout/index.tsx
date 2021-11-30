@@ -1,7 +1,7 @@
+import styled from '@emotion/styled';
 import { Header, Footer } from 'knitting/components';
 import { theme } from 'knitting/themes';
 import React from 'react';
-import styled from 'styled-components';
 
 interface Props {
   children: React.ReactNode;

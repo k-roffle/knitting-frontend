@@ -1,8 +1,9 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { UNIT_APPROXIMATION_TYPE } from 'knitting/plugins/unitDecorator/types';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
 import React from 'react';
-import styled, { css } from 'styled-components';
 
 export interface TooltipMenuProps {
   isSelectedCalculateKey: boolean;

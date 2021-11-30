@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { Button as MaterialButton, Typography } from '@mui/material';
 import { Snackbar } from 'knitting/dumbs';
 import { flexCenterAlign } from 'knitting/styles/constants';
@@ -6,7 +7,6 @@ import { palette } from 'knitting/themes/palette';
 import { constructURL } from 'knitting/utils/requests';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
 
 import { ReactComponent as GoogleIcon } from 'knitting/assets/icn/google.svg';
 
