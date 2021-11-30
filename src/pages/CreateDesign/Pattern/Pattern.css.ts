@@ -1,29 +1,29 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
-import { theme } from 'knitting/themes';
-import { palette } from 'knitting/themes/palette';
 
 interface EditorWrapperProps {
   isFocused: boolean;
 }
 
 export const PatternContainer = styled.div`
-  margin: ${theme.spacing(1.5)};
+  margin: ${({ theme }) => theme.spacing(1.5)};
 `;
 
 export const EditorWrapper = styled.div<EditorWrapperProps>`
   min-height: 40vh;
-  padding: ${theme.spacing(1.5)};
-  margin-top: ${theme.spacing(1)};
   border: 1.5px solid transparent;
-  border-radius: ${theme.spacing(1)};
-  background: ${palette.grey[200]};
+  ${({ theme }) => css`
+    padding: ${theme.spacing(1.5)};
+    margin-top: ${theme.spacing(1)};
+    border-radius: ${theme.spacing(1)};
+    background: ${theme.palette.grey[200]};
+  `};
 
-  ${({ isFocused }) =>
+  ${({ isFocused, theme }) =>
     isFocused &&
     css`
-      border: 1.5px solid ${palette.grey[400]};
+      border: 1.5px solid ${theme.palette.grey[400]};
     `}
 
   .public-DraftEditorPlaceholder-root {
@@ -31,7 +31,7 @@ export const EditorWrapper = styled.div<EditorWrapperProps>`
     div {
       display: inline;
     }
-    color: ${palette.action.active};
+    color: ${({ theme }) => theme.palette.action.active};
   }
 
   .DraftEditor-editorContainer {
@@ -41,27 +41,31 @@ export const EditorWrapper = styled.div<EditorWrapperProps>`
 
 export const ToolbarContentWrapper = styled.div`
   display: flex;
-  margin-top: ${theme.spacing(4)};
-  padding: ${theme.spacing(0.5)};
-  background: ${palette.grey[200]};
-  border-radius: ${theme.spacing(1)};
+  ${({ theme }) => css`
+    margin-top: ${theme.spacing(4)};
+    padding: ${theme.spacing(0.5)};
+    background: ${theme.palette.grey[200]};
+    border-radius: ${theme.spacing(1)};
+  `}
 
   button {
     height: 100%;
     background: transparent;
-    border-radius: ${theme.spacing(0.5)};
+    border-radius: ${({ theme }) => theme.spacing(0.5)};
     border: none;
     cursor: pointer;
 
     &:hover {
-      background: ${palette.grey[300]};
+      background: ${({ theme }) => theme.palette.grey[300]};
     }
   }
 `;
 
 export const CurrentLengthInfo = styled(Typography)`
   display: block;
-  margin: ${theme.spacing(1, 0)};
   text-align: right;
-  color: ${palette.text.secondary};
+  ${({ theme }) => css`
+    margin: ${theme.spacing(1, 0)};
+    color: ${theme.palette.text.secondary};
+  `}
 `;

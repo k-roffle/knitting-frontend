@@ -1,9 +1,8 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button as MaterialButton, Typography } from '@mui/material';
 import { Snackbar } from 'knitting/dumbs';
 import { flexCenterAlign } from 'knitting/styles/constants';
-import { theme } from 'knitting/themes';
-import { palette } from 'knitting/themes/palette';
 import { constructURL } from 'knitting/utils/requests';
 import React from 'react';
 import { useRecoilState } from 'recoil';
@@ -28,11 +27,14 @@ const LoginBox = styled.div`
   max-width: 650px;
   height: 100%;
   max-height: 450px;
-  margin: ${theme.spacing(4)};
   overflow: hidden;
   background-color: white;
-  border-radius: ${theme.spacing(1)};
   box-shadow: -3px -2px 20px 2px rgb(0 0 0/ 12%);
+  ${({ theme }) =>
+    css`
+      margin: ${theme.spacing(4)};
+      border-radius: ${theme.spacing(1)};
+    `}
 `;
 
 const LogoWrapper = styled.div`
@@ -40,7 +42,7 @@ const LogoWrapper = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  background-color: ${palette.primary.main};
+  background-color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 const Logo = styled.div`
@@ -52,14 +54,14 @@ const Logo = styled.div`
 
 const LogoIcon = styled.span`
   background-color: white;
-  padding: ${theme.spacing(2.9, 3, 2, 3.2)};
+  padding: ${({ theme }) => theme.spacing(2.9, 3, 2, 3.2)};
   border-radius: 70px;
   font-size: 50px;
 `;
 
 const LoginContent = styled.div`
   width: 100%;
-  margin: ${theme.spacing(4)};
+  margin: ${({ theme }) => theme.spacing(4)};
 `;
 
 const LoginTitle = styled.div`
@@ -67,40 +69,52 @@ const LoginTitle = styled.div`
   text-align: center;
   font-size: 2rem;
   font-weight: 500;
-  color: ${palette.text.primary};
+  color: ${({ theme }) => theme.palette.text.primary};
 `;
 
 const KnitterText = styled.span`
-  color: ${palette.primary.main};
+  color: ${({ theme }) => theme.palette.primary.main};
 `;
 
 const WelcomeTitle = styled(Typography)`
   width: 100%;
-  margin: ${theme.spacing(1, 0, 7, 0)};
   text-align: center;
-  color: ${palette.text.primary};
   font-weight: 300;
+  ${({ theme }) =>
+    css`
+      margin: ${theme.spacing(1, 0, 7, 0)};
+      color: ${theme.palette.text.primary};
+    `}
 `;
 
 const LoginButton = styled(MaterialButton)`
   width: 100%;
   padding: 0;
-  background-color: ${palette.grey[200]};
+  ${({ theme }) =>
+    css`
+      background-color: ${theme.palette.grey[200]};
 
-  &:hover {
-    background-color: ${palette.grey[300]};
-  }
+      &:hover {
+        background-color: ${theme.palette.grey[300]};
+      }
+    `}
 `;
 
 const StyledGoogleIcon = styled(GoogleIcon)`
-  padding: ${theme.spacing(2)};
-  margin-right: ${theme.spacing(1)};
+  ${({ theme }) =>
+    css`
+      padding: ${theme.spacing(2)};
+      margin-right: ${theme.spacing(1)};
+    `}
 `;
 
 const LoginText = styled.span`
-  padding-right: ${theme.spacing(2)};
   font-size: 16px;
-  color: ${palette.grey[600]};
+  ${({ theme }) =>
+    css`
+      padding-right: ${theme.spacing(2)};
+      color: ${theme.palette.grey[600]};
+    `}
 `;
 
 const Login = (): React.ReactElement => {

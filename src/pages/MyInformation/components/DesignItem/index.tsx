@@ -1,9 +1,8 @@
+import { css, useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Typography, ListItemButton } from '@mui/material';
 import { Ellipsis } from 'knitting/components';
 import Skeleton from 'knitting/dumbs/Skeleton';
-import { theme } from 'knitting/themes';
-import { palette } from 'knitting/themes/palette';
 import { formatDate } from 'knitting/utils/format';
 
 interface Props {
@@ -17,7 +16,7 @@ interface Props {
 }
 
 const StyledListItemButton = styled(ListItemButton)`
-  padding: ${theme.spacing(3)};
+  padding: ${({ theme }) => theme.spacing(3)};
   display: block;
 `;
 
@@ -26,10 +25,13 @@ const ListItemContainer = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  width: ${theme.spacing(32)};
-  height: ${theme.spacing(17)};
-  margin-right: ${theme.spacing(2)};
   overflow: hidden;
+  ${({ theme }) =>
+    css`
+      width: ${theme.spacing(32)};
+      height: ${theme.spacing(17)};
+      margin-right: ${theme.spacing(2)};
+    `}
 `;
 
 const Content = styled.div`
@@ -37,28 +39,36 @@ const Content = styled.div`
 `;
 
 const Name = styled(Typography)`
-  margin-bottom: ${theme.spacing(1.5)};
+  margin-bottom: ${({ theme }) => theme.spacing(1.5)};
 `;
 
 const DesignType = styled.span`
   display: inline-block;
-  color: ${palette.grey[800]};
   background-color: rgba(0, 0, 0, 0.06);
-  padding: ${theme.spacing(0.5, 1)};
-  border-radius: ${theme.spacing(0.5)};
-  font-size: 14px;
-  margin-right: ${theme.spacing(1)};
+  ${({ theme }) =>
+    css`
+      padding: ${theme.spacing(0.5, 1)};
+      border-radius: ${theme.spacing(0.5)};
+      margin-right: ${theme.spacing(1)};
+      color: ${theme.palette.grey[800]};
+    `}
 `;
 
 const Information = styled(Typography)`
-  color: ${palette.grey[800]};
-  margin-bottom: ${theme.spacing(0.5)};
+  ${({ theme }) =>
+    css`
+      color: ${theme.palette.grey[800]};
+      margin-bottom: ${theme.spacing(0.5)};
+    `}
 `;
 
 const CreatedDate = styled(Typography)`
   display: block;
-  color: ${palette.text.secondary};
-  margin-bottom: ${theme.spacing(2)};
+  ${({ theme }) =>
+    css`
+      color: ${theme.palette.text.secondary};
+      margin-bottom: ${theme.spacing(2)};
+    `}
 `;
 
 const ThumbNail = styled.img`
@@ -72,9 +82,12 @@ const ThumbNail = styled.img`
 `;
 
 const Divider = styled.div`
-  margin: ${theme.spacing(3, -3, -3)};
   height: 1px;
-  background-color: ${palette.grey[300]};
+  ${({ theme }) =>
+    css`
+      margin: ${theme.spacing(3, -3, -3)};
+      background-color: ${theme.palette.grey[300]};
+    `}
 `;
 
 const DesignItem = ({
@@ -86,6 +99,8 @@ const DesignItem = ({
   showDivider = true,
   isLoading = false,
 }: Props): React.ReactElement => {
+  const theme = useTheme();
+
   return (
     <StyledListItemButton>
       <ListItemContainer>
