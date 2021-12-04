@@ -1,28 +1,20 @@
 import { LOGIN_PATH, ROOT_PATH } from 'constants/path';
 
 import React from 'react';
-import { RouteProps, Route, Redirect } from 'react-router-dom';
+import { RouteProps, Route, useLocation, Routes } from 'react-router-dom';
 import { isAuthenticated } from 'utils/auth';
 
 export const ProtectedRoute = (props: RouteProps): React.ReactElement => {
   return isAuthenticated() ? (
     <RouteWithoutTrailigSlash {...props} />
   ) : (
-    <Redirect
-      to={{
-        pathname: LOGIN_PATH,
-      }}
-    />
+    <RouteWithoutTrailigSlash {...props} path={LOGIN_PATH} />
   );
 };
 
 export const LoginRoute = (props: RouteProps): React.ReactElement => {
   return isAuthenticated() ? (
-    <Redirect
-      to={{
-        pathname: ROOT_PATH,
-      }}
-    />
+    <RouteWithoutTrailigSlash {...props} path={ROOT_PATH} />
   ) : (
     <RouteWithoutTrailigSlash {...props} />
   );
@@ -31,20 +23,25 @@ export const LoginRoute = (props: RouteProps): React.ReactElement => {
 export const RouteWithoutTrailigSlash = (
   props: RouteProps,
 ): React.ReactElement => {
-  const pathname = props.location?.pathname;
+  const { pathname } = useLocation();
   const pathnameWithoutTrailingSlash = pathname?.replace(/\/$/, '');
 
+  console.log('path', props);
   if (pathname === '/') {
-    return <Route {...props} />;
+    return (
+      <Routes>
+        <Route {...props} />
+      </Routes>
+    );
   }
 
   return pathname === pathnameWithoutTrailingSlash ? (
-    <Route {...props} />
+    <Routes>
+      <Route {...props} />
+    </Routes>
   ) : (
-    <Redirect
-      to={{
-        pathname: pathnameWithoutTrailingSlash,
-      }}
-    />
+    <Routes>
+      <Route {...props} path={pathnameWithoutTrailingSlash} />
+    </Routes>
   );
 };

@@ -13,7 +13,7 @@ import {
   DatePickerProps,
 } from '@material-ui/pickers';
 import dayjs from 'dayjs';
-import { FormLabel, RequiredInput, RequiredMark } from 'dumbs';
+import { FormLabel, RequiredMark } from 'dumbs';
 import InlineInput from 'dumbs/InlineInput';
 import React, { ReactNode } from 'react';
 import ImageUploading from 'react-images-uploading';
@@ -205,7 +205,7 @@ const Package = (): React.ReactElement => {
     <form>
       <Grid container>
         <Row item xs={12}>
-          <RequiredInput
+          <InlineInput
             id="name"
             variant="h5"
             label="상품명"

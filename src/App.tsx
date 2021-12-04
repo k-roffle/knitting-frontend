@@ -9,12 +9,11 @@ import CommonSnackbar from 'components/CommonSnackbar';
 import { Error404 } from 'pages';
 import React from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import Login from 'routers/LoginRouter';
 import MyInformation from 'routers/MyInformationRouter';
 import { theme } from 'themes';
-import { QueryParamProvider } from 'use-query-params';
 import {
   RouteWithoutTrailigSlash as PublicRoute,
   RouteWithoutTrailigSlash as NestedRoute,
@@ -29,23 +28,34 @@ const App = (): React.ReactElement => {
         <RecoilRoot>
           <StylesProvider injectFirst>
             <ThemeProvider theme={theme}>
-              <QueryParamProvider ReactRouterRoute={PublicRoute}>
-                <Switch>
-                  <NestedRoute
+              <Routes>
+                <Route
+                  path={MY_INFORMATION_ROUTER_ROOT}
+                  element={<NestedRoute />}
+                >
+                  <Route
                     path={MY_INFORMATION_ROUTER_ROOT}
-                    component={MyInformation}
+                    element={<MyInformation />}
                   />
-                  <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
-                  <PublicRoute
+                </Route>
+                <Route path={LOGIN_ROUTER_ROOT} element={<NestedRoute />}>
+                  <Route path={LOGIN_ROUTER_ROOT} element={<Login />} />
+                </Route>
+                <Route
+                  path={ERROR_PATH}
+                  element={<PublicRoute />}
+                  caseSensitive
+                >
+                  <Route
                     path={ERROR_PATH}
-                    component={Error404}
-                    exact
-                    strict
-                    sensitive
+                    element={<Error404 />}
+                    caseSensitive
                   />
-                  <PublicRoute path="*" component={Error404} />
-                </Switch>
-              </QueryParamProvider>
+                </Route>
+                <Route path="*" element={<PublicRoute />}>
+                  <Route path="*" element={<Error404 />} />
+                </Route>
+              </Routes>
             </ThemeProvider>
           </StylesProvider>
           <CommonSnackbar />

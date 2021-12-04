@@ -108,7 +108,8 @@ export default function UnitDecorator({
     editorState,
     newSelection,
   );
-  const decoratorStyle = editorStateWithDecoratorSelection.getCurrentInlineStyle();
+  const decoratorStyle =
+    editorStateWithDecoratorSelection.getCurrentInlineStyle();
 
   useEffect(() => {
     const canCalculate =
