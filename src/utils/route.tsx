@@ -35,7 +35,11 @@ export const RouteWithoutTrailigSlash = (
   const pathnameWithoutTrailingSlash = pathname?.replace(/\/$/, '');
 
   if (pathname === '/') {
-    return <Route {...props} />;
+    return isAuthenticated() ? (
+      <Route {...props} />
+    ) : (
+      <Redirect to={{ pathname: LOGIN_PATH }} />
+    );
   }
 
   return pathname === pathnameWithoutTrailingSlash ? (
