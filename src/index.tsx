@@ -1,4 +1,3 @@
-import { StyledEngineProvider } from '@mui/material/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -7,9 +6,7 @@ import GlobalStyle from './globalStyles';
 
 ReactDOM.render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <App />
-    </StyledEngineProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 );

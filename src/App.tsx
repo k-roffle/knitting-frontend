@@ -1,5 +1,5 @@
 import { Global } from '@emotion/react';
-import { ThemeProvider } from '@mui/material/styles';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import CommonSnackbar from 'knitting/components/CommonSnackbar';
 import {
   MY_INFORMATION_ROUTER_ROOT,
@@ -28,26 +28,28 @@ const App = (): React.ReactElement => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <RecoilRoot>
-          <ThemeProvider theme={theme}>
-            <QueryParamProvider ReactRouterRoute={PublicRoute}>
-              <Global styles={GlobalStyle} />
-              <Switch>
-                <NestedRoute
-                  path={MY_INFORMATION_ROUTER_ROOT}
-                  component={MyInformation}
-                />
-                <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
-                <PublicRoute
-                  path={ERROR_PATH}
-                  component={Error404}
-                  exact
-                  strict
-                  sensitive
-                />
-                <PublicRoute path="*" component={Error404} />
-              </Switch>
-            </QueryParamProvider>
-          </ThemeProvider>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <QueryParamProvider ReactRouterRoute={PublicRoute}>
+                <Global styles={GlobalStyle} />
+                <Switch>
+                  <NestedRoute
+                    path={MY_INFORMATION_ROUTER_ROOT}
+                    component={MyInformation}
+                  />
+                  <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
+                  <PublicRoute
+                    path={ERROR_PATH}
+                    component={Error404}
+                    exact
+                    strict
+                    sensitive
+                  />
+                  <PublicRoute path="*" component={Error404} />
+                </Switch>
+              </QueryParamProvider>
+            </ThemeProvider>
+          </StyledEngineProvider>
           <CommonSnackbar />
         </RecoilRoot>
       </BrowserRouter>
