@@ -4,7 +4,7 @@ import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core';
 import { AccountCircle, ArrowDropDown } from '@material-ui/icons';
 import { Logo } from 'dumbs';
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'themes';
 import { deleteAccessToken } from 'utils/auth';
@@ -18,7 +18,7 @@ const Header = (): React.ReactElement => {
     HTMLElement | undefined
   >();
   const open = Boolean(anchorElement);
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const handleMenu = ({ currentTarget }: React.MouseEvent<HTMLElement>) => {
@@ -34,7 +34,7 @@ const Header = (): React.ReactElement => {
     if (location.pathname === MY_INFORMATION_PROFILE_PATH) {
       window.location.reload();
     } else {
-      history.push(MY_INFORMATION_PROFILE_PATH);
+      navigate(MY_INFORMATION_PROFILE_PATH);
     }
   };
 

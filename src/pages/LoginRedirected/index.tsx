@@ -3,7 +3,7 @@ import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'constants/errors';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { errorSnackbarMessageAtom } from 'pages/Login/atom';
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
@@ -30,17 +30,17 @@ const LoadingContent = styled(Typography)`
 
 const LoginRedirected = (): React.ReactElement => {
   const [code] = useQueryParam('code', StringParam);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const setErrorSnackbarMessage = useSetRecoilState(errorSnackbarMessageAtom);
   const onLoginSuccess = (accessToken: string) => {
     setAccessToken(accessToken);
-    history.replace('/');
+    navigate('/');
   };
 
   const onLoginFailed = () => {
     setErrorSnackbarMessage(FAILED_TO_FETCH_ACCESS_TOKEN);
-    history.push('/login');
+    navigate('/login');
   };
 
   const requestFetchAccessToken = async () => {

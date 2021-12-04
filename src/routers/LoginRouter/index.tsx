@@ -4,22 +4,20 @@ import Error404 from 'pages/Error404';
 import Login from 'pages/Login';
 import LoginRedirected from 'pages/LoginRedirected';
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { LoginRoute } from 'utils/route';
 
 const LoginRouter = (): React.ReactElement => {
   return (
-    <Switch>
-      <LoginRoute path={LOGIN_PATH} component={Login} exact strict sensitive />
+    <Routes>
+      <LoginRoute path={LOGIN_PATH} element={<Login />} />
       <LoginRoute
         path={LOGIN_REDIRECTED_PATH}
-        component={LoginRedirected}
-        exact
-        strict
-        sensitive
+        element={<LoginRedirected />}
+        caseSensitive
       />
-      <Route path="*" component={Error404} />
-    </Switch>
+      <Route path="*" element={<Error404 />} />
+    </Routes>
   );
 };
 

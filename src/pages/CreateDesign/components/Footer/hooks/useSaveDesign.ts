@@ -12,14 +12,13 @@ import {
 } from 'pages/CreateDesign/atom';
 import { PostDesignInput } from 'pages/CreateDesign/types';
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 export const useSaveDesign = (): (() => void) | undefined => {
   const { name, description } = useRecoilValue(coverInputAtom);
-  const { designType, patternType, stitches, rows, needle } = useRecoilValue(
-    outlineInputAtom,
-  );
+  const { designType, patternType, stitches, rows, needle } =
+    useRecoilValue(outlineInputAtom);
   const { size, yarn, extra, targetLevel, techniques } = useRecoilValue(
     optionalOutlineInputAtom,
   );
@@ -41,10 +40,10 @@ export const useSaveDesign = (): (() => void) | undefined => {
 
   const { mutate } = usePost({
     pathname: '/design',
-    onSuccess: () => history.push(MY_INFORMATION_ROUTER_ROOT),
+    onSuccess: () => navigate(MY_INFORMATION_ROUTER_ROOT),
   });
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const saveDesign = (coverImageUrl: string): void => {
     const pattern = `${JSON.stringify(

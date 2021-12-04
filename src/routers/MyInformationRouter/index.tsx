@@ -9,35 +9,30 @@ import CreateProduct from 'pages/CreateProduct';
 import Error404 from 'pages/Error404';
 import MyInformation from 'pages/MyInformation';
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ProtectedRoute } from 'utils/route';
 
 const MyInformationRouter = (): React.ReactElement => {
+  console.log('my Info');
   return (
-    <Switch>
+    <Routes>
       <ProtectedRoute
         path={MY_INFORMATION_PROFILE_PATH}
-        component={MyInformation}
-        exact
-        strict
-        sensitive
+        element={<MyInformation />}
+        caseSensitive
       />
       <ProtectedRoute
         path={MY_INFORMATION_CREATE_DESIGN_PATH}
-        component={CreateDesign}
-        exact
-        strict
-        sensitive
+        element={<CreateDesign />}
+        caseSensitive
       />
       <ProtectedRoute
         path={MY_INFORMATION_CREATE_PRODUCT_PATH}
-        component={CreateProduct}
-        exact
-        strict
-        sensitive
+        element={<CreateProduct />}
+        caseSensitive
       />
-      <Route path="*" component={Error404} />
-    </Switch>
+      <Route path="*" element={<Error404 />} />
+    </Routes>
   );
 };
 

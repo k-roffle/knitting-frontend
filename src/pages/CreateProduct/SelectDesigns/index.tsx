@@ -4,7 +4,7 @@ import DesignItem from 'pages/MyInformation/components/DesignItem';
 import { useMyDesigns } from 'pages/MyInformation/hooks/useMyDesigns';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
 
@@ -14,7 +14,7 @@ import { Loader, StyledList } from './SelectDesigns.css';
 
 const SelectDesigns = (): React.ReactElement => {
   const { isLoading, hasLastCursor, designs, loadMore } = useMyDesigns();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [currentProductInput, setCurrentProductInput] = useRecoilState(
     currentProductInputAtom,
@@ -76,7 +76,7 @@ const SelectDesigns = (): React.ReactElement => {
             </>
           }
           buttonText="빠르게 도안 만들고 오기"
-          onClick={() => history.push('/my/designs/create')}
+          onClick={() => navigate('/my/designs/create')}
         />
       )}
     </StyledList>

@@ -9,7 +9,7 @@ import CommonSnackbar from 'components/CommonSnackbar';
 import { Error404 } from 'pages';
 import React from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import Login from 'routers/LoginRouter';
 import MyInformation from 'routers/MyInformationRouter';
@@ -30,21 +30,19 @@ const App = (): React.ReactElement => {
           <StylesProvider injectFirst>
             <ThemeProvider theme={theme}>
               <QueryParamProvider ReactRouterRoute={PublicRoute}>
-                <Switch>
+                <Routes>
                   <NestedRoute
                     path={MY_INFORMATION_ROUTER_ROOT}
-                    component={MyInformation}
+                    element={<MyInformation />}
                   />
-                  <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
+                  <NestedRoute path={LOGIN_ROUTER_ROOT} element={<Login />} />
                   <PublicRoute
                     path={ERROR_PATH}
-                    component={Error404}
-                    exact
-                    strict
-                    sensitive
+                    element={<Error404 />}
+                    caseSensitive
                   />
-                  <PublicRoute path="*" component={Error404} />
-                </Switch>
+                  <PublicRoute path="*" element={<Error404 />} />
+                </Routes>
               </QueryParamProvider>
             </ThemeProvider>
           </StylesProvider>
