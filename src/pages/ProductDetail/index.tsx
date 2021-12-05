@@ -1,12 +1,16 @@
+import { FAILED_TO_GET_PRODUCT } from 'constants/errors';
+
 import { Box, Grid, Typography } from '@material-ui/core';
 import { Button, Layout } from 'dumbs';
+import { useGet } from 'hooks/useGet';
+import { Product } from 'pages/ProductDetail/types';
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { ObjectResponse } from 'utils/requestType';
 
 import MyInformation from '../MyInformation';
 
 import { Row, Profile, Tag, Price, Design } from './ProductDetail.css';
-import { useProduct } from './hooks/useProduct';
 
 type Props = {
   id: string;
@@ -15,7 +19,10 @@ type Props = {
 const ProductDetail = ({
   match,
 }: RouteComponentProps<Props>): React.ReactElement => {
-  const { data } = useProduct(match.params.id);
+  const { data } = useGet<ObjectResponse<Product>, unknown>({
+    pathname: `/product/mine/${match.params.id}`,
+    errorMessage: FAILED_TO_GET_PRODUCT,
+  });
 
   if (data == null) {
     return <MyInformation />;
