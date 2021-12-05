@@ -77,9 +77,8 @@ const Detail = (): React.ReactElement => {
     bottomWidth,
     armholeDepth,
   } = size;
-  const [localCoverImage, setLocalCoverImage] = useRecoilState(
-    localCoverImageAtom,
-  );
+  const [localCoverImage, setLocalCoverImage] =
+    useRecoilState(localCoverImageAtom);
 
   const { SWEATER } = DESIGN;
   const { TEXT, IMAGE, VIDEO } = PATTERN;

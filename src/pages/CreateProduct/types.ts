@@ -7,6 +7,10 @@ export const PAGE = {
 
 export type PAGE_TYPE = typeof PAGE[keyof typeof PAGE];
 
+export type ProductId = {
+  id: number;
+};
+
 export type ProductInput = {
   name: string;
   fullPrice: number;
