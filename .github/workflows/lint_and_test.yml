@@ -13,6 +13,9 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
 
+      - name: Install Dependencies
+        run: yarn install
+
       - name: Run Lint Code Base
         uses: github/super-linter@v4
         env:
