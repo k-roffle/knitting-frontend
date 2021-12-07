@@ -2,6 +2,7 @@ import {
   MY_INFORMATION_ROUTER_ROOT,
   LOGIN_ROUTER_ROOT,
   ERROR_PATH,
+  PRODUCT_DETAIL_PATH,
 } from 'constants/path';
 
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
@@ -13,6 +14,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import Login from 'routers/LoginRouter';
 import MyInformation from 'routers/MyInformationRouter';
+import Product from 'routers/ProductRouter';
 import { theme } from 'themes';
 import { QueryParamProvider } from 'use-query-params';
 import {
@@ -36,6 +38,7 @@ const App = (): React.ReactElement => {
                     component={MyInformation}
                   />
                   <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
+                  <NestedRoute path={PRODUCT_DETAIL_PATH} component={Product} />
                   <PublicRoute
                     path={ERROR_PATH}
                     component={Error404}

@@ -15,3 +15,4 @@ export const FAILED_TO_SAVE_PRODUCT = '상품 저장에 실패했습니다.';
 export const ONLY_UPLOAD_FILES_BELOW_10MB =
   '10MB 이하에 파일만 업로드할 수 있습니다';
 export const FAILED_TO_UPLOAD_IMAGE = '이미지 업로드에 실패했습니다';
+export const FAILED_TO_GET_PRODUCT = '상품 정보를 가져오는데 실패했습니다.';
