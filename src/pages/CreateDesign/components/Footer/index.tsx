@@ -1,6 +1,6 @@
 import { Button as MaterialButton } from '@material-ui/core';
 import { Button } from 'dumbs';
-import { currentStepAtom } from 'pages/CreateDesign/recoils';
+import { currentStepAtom } from 'pages/CreateDesign/atom';
 import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';

@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core';
-import { currentStepAtom } from 'pages/CreateDesign/recoils';
+import { currentStepAtom } from 'pages/CreateDesign/atom';
 import { PAGE } from 'pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
