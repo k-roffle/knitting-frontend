@@ -1,5 +1,5 @@
 import CommonStepProgressBar from 'components/CommonStepProgressBar';
-import { currentStepAtom } from 'pages/CreateDesign/recoils';
+import { currentStepAtom } from 'pages/CreateDesign/atom';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 

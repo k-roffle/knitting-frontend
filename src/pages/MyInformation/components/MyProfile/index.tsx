@@ -6,9 +6,9 @@ import {
 import { Typography } from '@material-ui/core';
 import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
 import EmptyContent from 'dumbs/EmptyContent';
+import { tabItemLengthAtom } from 'pages/MyInformation/atom';
 import { useGetMyProfile } from 'pages/MyInformation/hooks/useGetMyProfile';
 import { useGetMySalesSummary } from 'pages/MyInformation/hooks/useGetMySalesSummary';
-import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';

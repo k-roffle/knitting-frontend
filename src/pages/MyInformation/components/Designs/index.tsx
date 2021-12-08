@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import EmptyContent from 'dumbs/EmptyContent';
+import { tabItemLengthAtom } from 'pages/MyInformation/atom';
 import { useMyDesigns } from 'pages/MyInformation/hooks/useMyDesigns';
-import { tabItemLengthAtom } from 'pages/MyInformation/recoils';
 import React, { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSetRecoilState } from 'recoil';
