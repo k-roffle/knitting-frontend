@@ -24,6 +24,7 @@ export const PATTERN = {
 export type PATTERN_TYPE = typeof PATTERN[keyof typeof PATTERN];
 
 export const LEVEL = {
+  PERSON_BY_PERSON: 'PERSON_BY_PERSON',
   EASY: 'EASY',
   NORMAL: 'NORMAL',
   HARD: 'HARD',
@@ -32,19 +33,20 @@ export type LEVEL_TYPE = typeof LEVEL[keyof typeof LEVEL];
 
 export const LevelKind = [
   {
+    value: LEVEL.PERSON_BY_PERSON,
+    label: '사람마다 달라요.',
+  },
+  {
     value: LEVEL.EASY,
-    label: '쉬움',
-    description: '누구든 시도해볼 수 있어요.',
+    label: '누구든 시도해볼 수 있어요.',
   },
   {
     value: LEVEL.NORMAL,
-    label: '보통',
-    description: '몇가지 작품을 만들어 봤다면 도전해 볼 만해요.',
+    label: '몇가지 작품을 만들어 봤다면 도전해 볼 만해요.',
   },
   {
     value: LEVEL.HARD,
-    label: '어려움',
-    description: '새로운 도전을 기다리는 고수분들을 위해 준비했어요.',
+    label: '새로운 도전을 기다리는 고수분들을 위해 준비했어요.',
   },
 ];
 
