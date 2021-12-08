@@ -4,7 +4,6 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
-  Typography,
 } from '@material-ui/core';
 import { FormLabel, InputWithLabel } from 'dumbs';
 import {
@@ -18,8 +17,6 @@ import { useRecoilState } from 'recoil';
 import { SnakeToCamelCase } from 'utils/types';
 
 import DesignSizeImage from '../DesignSizeImage';
-
-import { LevelLabel } from './OptionalOutline.css';
 
 type DesignSizeKey = keyof SnakeToCamelCase<DesignSize>;
 
@@ -88,19 +85,12 @@ const OptionalOutline = (): React.ReactElement => {
           value={targetLevel}
           onChange={(event) => handleInputChange(event, 'targetLevel')}
         >
-          {LevelKind.map(({ value, label, description: levelDescription }) => (
+          {LevelKind.map(({ value, label }) => (
             <FormControlLabel
               key={value}
               value={value}
               control={<Radio color="primary" />}
-              label={
-                <LevelLabel>
-                  <span>{label}</span>
-                  <Typography variant="subtitle2">
-                    {levelDescription}
-                  </Typography>
-                </LevelLabel>
-              }
+              label={label}
             />
           ))}
         </RadioGroup>
