@@ -11,10 +11,11 @@ import {
   UploadTaskSnapshot,
   UploadTask,
 } from 'firebase/storage';
-import firebaseInit from 'firebaseInit';
 import decodeJwtToken from 'jwt-decode';
 import { useEffect, useState } from 'react';
 import { getAccessToken, TokenPayload } from 'utils/auth';
+
+import firebaseInit from '../firebaseInit';
 
 type UploadStorage = {
   localFileId: string;
