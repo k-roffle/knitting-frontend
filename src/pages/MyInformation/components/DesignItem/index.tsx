@@ -1,10 +1,10 @@
 import { Typography, ListItem } from '@material-ui/core';
-import { Ellipsis } from 'components';
-import Skeleton from 'dumbs/Skeleton';
+import { Ellipsis } from 'knitting/components';
+import Skeleton from 'knitting/dumbs/Skeleton';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
+import { formatDate } from 'knitting/utils/format';
 import styled from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
-import { formatDate } from 'utils/format';
 
 interface Props {
   name?: string;

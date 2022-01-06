@@ -1,4 +1,4 @@
-import { Layout } from 'dumbs';
+import { Layout } from 'knitting/dumbs';
 import React from 'react';
 
 import MyInformationTabs from './components/InformationTabs';

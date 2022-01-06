@@ -1,5 +1,5 @@
+import { theme } from 'knitting/themes';
 import { css } from 'styled-components';
-import { theme } from 'themes';
 
 export const flexCenterAlign = css`
   display: flex;

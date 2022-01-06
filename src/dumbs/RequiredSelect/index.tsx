@@ -1,7 +1,7 @@
 import { Select } from '@material-ui/core';
 import { InputBaseComponentProps } from '@material-ui/core/InputBase';
 import { Variant } from '@material-ui/core/styles/createTypography';
-import { FormLabel, RequiredMark } from 'dumbs';
+import { FormLabel, RequiredMark } from 'knitting/dumbs';
 import React from 'react';
 import styled from 'styled-components';
 

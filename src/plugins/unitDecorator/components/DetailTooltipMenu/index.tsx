@@ -1,8 +1,8 @@
-import { UNIT_APPROXIMATION_TYPE } from 'plugins/unitDecorator/types';
+import { UNIT_APPROXIMATION_TYPE } from 'knitting/plugins/unitDecorator/types';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 export interface TooltipMenuProps {
   isSelectedCalculateKey: boolean;

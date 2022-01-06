@@ -1,8 +1,8 @@
-import { Logo } from 'dumbs';
+import { Logo } from 'knitting/dumbs';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 import React from 'react';
 import styled from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 const Divider = styled.div`
   margin-top: ${theme.spacing(-2)};

@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 import styled, { css } from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 interface EditorWrapperProps {
   isFocused: boolean;

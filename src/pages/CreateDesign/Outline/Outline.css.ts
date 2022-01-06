@@ -1,6 +1,6 @@
 import { Box } from '@material-ui/core';
+import { theme } from 'knitting/themes';
 import styled from 'styled-components';
-import { theme } from 'themes';
 
 export const InfoBox = styled(Box)`
   width: 100%;

@@ -1,13 +1,13 @@
 import { FormGroup } from '@material-ui/core';
-import ImageFileUploader from 'components/ImageFileUploader';
-import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
-import { FormLabel, InputWithLabel, RequiredMark } from 'dumbs';
+import ImageFileUploader from 'knitting/components/ImageFileUploader';
+import { ImageInformation } from 'knitting/components/ImageFileUploader/hooks/useImageFileUploader';
+import { FormLabel, InputWithLabel, RequiredMark } from 'knitting/dumbs';
 import {
   coverImageAtom,
   CoverInput,
   coverInputAtom,
-} from 'pages/CreateDesign/atom';
-import { Row } from 'pages/CreateDesign/common.css';
+} from 'knitting/pages/CreateDesign/atom';
+import { Row } from 'knitting/pages/CreateDesign/common.css';
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 

@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import { Image } from '@material-ui/icons';
+import { theme } from 'knitting/themes';
 import { useRef } from 'react';
-import { theme } from 'themes';
 
 import {
   ImagesContainer,

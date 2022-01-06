@@ -1,16 +1,15 @@
-import { FAILED_TO_GET_MY_DESIGNS } from 'constants/errors';
-
 import { List, Typography } from '@material-ui/core';
-import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
-import EmptyContent from 'dumbs/EmptyContent';
-import { tabItemLengthAtom } from 'pages/MyInformation/atom';
-import { useGetMyDesigns } from 'pages/MyInformation/hooks/useGetMyDesigns';
+import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
+import { FAILED_TO_GET_MY_DESIGNS } from 'knitting/constants/errors';
+import EmptyContent from 'knitting/dumbs/EmptyContent';
+import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
+import { useGetMyDesigns } from 'knitting/pages/MyInformation/hooks/useGetMyDesigns';
+import { theme } from 'knitting/themes';
+import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
 import { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { theme } from 'themes';
-import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
 
 import { DesignItemResponse } from '../../hooks/types';
 import DesignItem from '../DesignItem';

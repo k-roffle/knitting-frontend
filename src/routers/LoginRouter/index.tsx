@@ -1,11 +1,10 @@
-import { LOGIN_REDIRECTED_PATH, LOGIN_PATH } from 'constants/path';
-
-import Error404 from 'pages/Error404';
-import Login from 'pages/Login';
-import LoginRedirected from 'pages/LoginRedirected';
+import { LOGIN_REDIRECTED_PATH, LOGIN_PATH } from 'knitting/constants/path';
+import Error404 from 'knitting/pages/Error404';
+import Login from 'knitting/pages/Login';
+import LoginRedirected from 'knitting/pages/LoginRedirected';
+import { LoginRoute } from 'knitting/utils/route';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { LoginRoute } from 'utils/route';
 
 const LoginRouter = (): React.ReactElement => {
   return (

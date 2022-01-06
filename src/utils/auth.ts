@@ -1,7 +1,6 @@
-import { LOGIN_ROUTER_ROOT } from 'constants/path';
-
 import decodeJwtToken from 'jwt-decode';
-import { requestWithToken } from 'utils/requests';
+import { LOGIN_ROUTER_ROOT } from 'knitting/constants/path';
+import { requestWithToken } from 'knitting/utils/requests';
 
 export interface TokenPayload {
   id: string;

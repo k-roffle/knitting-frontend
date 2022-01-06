@@ -3,7 +3,7 @@ import {
   DESIGN_TYPE,
   PATTERN,
   PATTERN_TYPE,
-} from 'pages/CreateDesign/types';
+} from 'knitting/pages/CreateDesign/types';
 
 export const renderPattern = (pattern: PATTERN_TYPE): string => {
   switch (pattern) {

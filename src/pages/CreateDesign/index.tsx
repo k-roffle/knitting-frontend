@@ -1,12 +1,12 @@
-import { Layout } from 'dumbs';
-import Cover from 'pages/CreateDesign/Cover';
-import Outline from 'pages/CreateDesign/Outline';
-import Pattern from 'pages/CreateDesign/Pattern';
-import Review from 'pages/CreateDesign/Review';
-import { currentStepAtom } from 'pages/CreateDesign/atom';
-import Footer from 'pages/CreateDesign/components/Footer';
-import Header from 'pages/CreateDesign/components/Header';
-import { PAGE } from 'pages/CreateDesign/types';
+import { Layout } from 'knitting/dumbs';
+import Cover from 'knitting/pages/CreateDesign/Cover';
+import Outline from 'knitting/pages/CreateDesign/Outline';
+import Pattern from 'knitting/pages/CreateDesign/Pattern';
+import Review from 'knitting/pages/CreateDesign/Review';
+import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
+import Footer from 'knitting/pages/CreateDesign/components/Footer';
+import Header from 'knitting/pages/CreateDesign/components/Header';
+import { PAGE } from 'knitting/pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 

@@ -1,8 +1,7 @@
-import { LOGIN_PATH, ROOT_PATH } from 'constants/path';
-
+import { LOGIN_PATH, ROOT_PATH } from 'knitting/constants/path';
+import { isAuthenticated } from 'knitting/utils/auth';
 import React from 'react';
 import { RouteProps, Route, Redirect } from 'react-router-dom';
-import { isAuthenticated } from 'utils/auth';
 
 export const ProtectedRoute = (props: RouteProps): React.ReactElement => {
   return isAuthenticated() ? (

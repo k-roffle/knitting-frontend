@@ -1,6 +1,6 @@
 import Step from '@material-ui/core/Step';
 import Stepper from '@material-ui/core/Stepper';
-import { currentStepAtom } from 'pages/CreateDesign/atom';
+import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
