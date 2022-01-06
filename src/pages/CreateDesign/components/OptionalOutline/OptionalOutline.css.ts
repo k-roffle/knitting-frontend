@@ -1,7 +1,7 @@
+import { flexVerticalAlign } from 'knitting/styles/constants';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 import styled from 'styled-components';
-import { flexVerticalAlign } from 'styles/constants';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 export const LevelLabel = styled.div`
   ${flexVerticalAlign}

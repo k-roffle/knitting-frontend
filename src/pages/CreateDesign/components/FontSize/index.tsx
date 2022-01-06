@@ -1,4 +1,4 @@
-import { toggleCustomInlineStyle } from 'libs/draftjs-utils/inline';
+import { toggleCustomInlineStyle } from 'knitting/libs/draftjs-utils/inline';
 import React, { useEffect, useState } from 'react';
 
 import { DropDown } from '../DropDown';

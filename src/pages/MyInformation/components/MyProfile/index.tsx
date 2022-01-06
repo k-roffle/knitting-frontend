@@ -1,11 +1,11 @@
 import { Button, Typography } from '@material-ui/core';
-import { tabItemLengthAtom } from 'pages/MyInformation/atom';
+import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
+import { flexVerticalAlign } from 'knitting/styles/constants';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { flexVerticalAlign } from 'styles/constants';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 import { useRenderButtonText } from './useRenderButtonText';
 

@@ -1,6 +1,6 @@
 import Editor from '@draft-js-plugins/editor';
 import { Grid } from '@material-ui/core';
-import { customInlineStylesMap } from 'libs/draftjs-utils/inline';
+import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 

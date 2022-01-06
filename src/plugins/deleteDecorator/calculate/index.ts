@@ -1,5 +1,5 @@
 import { ContentBlock } from 'draft-js';
-import { getUnitDecoratorBoundary } from 'plugins/unitDecorator/calculate/regex';
+import { getUnitDecoratorBoundary } from 'knitting/plugins/unitDecorator/calculate/regex';
 
 import { getUnitTotallyMatch, getAllGroupsIntoSpace } from './regex';
 import { UnitDecoratorIndices } from './types';

@@ -1,4 +1,4 @@
-import { UnitDecoratorIndices } from 'plugins/deleteDecorator/calculate/types';
+import { UnitDecoratorIndices } from 'knitting/plugins/deleteDecorator/calculate/types';
 
 import { getHashSigns, getUnitDecoratorBoundary } from './regex';
 

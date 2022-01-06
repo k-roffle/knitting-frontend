@@ -1,9 +1,9 @@
 import { Grid } from '@material-ui/core';
-import { currentStepAtom } from 'pages/CreateDesign/atom';
-import StepProgressBar from 'pages/CreateDesign/components/StepProgressBar';
+import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
+import StepProgressBar from 'knitting/pages/CreateDesign/components/StepProgressBar';
+import { renderStepContents } from 'knitting/utils/renderStepContents';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { renderStepContents } from 'utils/renderStepContents';
 
 import { Contents, Title } from './Header.css';
 

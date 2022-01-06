@@ -1,7 +1,7 @@
 import { MenuList } from '@material-ui/core';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 import styled from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 export const DropDownWrapper = styled.div`
   height: ${theme.spacing(4)};

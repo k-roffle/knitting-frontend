@@ -1,16 +1,15 @@
-import { MY_INFORMATION_ROUTER_ROOT } from 'constants/path';
-
 import { convertToRaw } from 'draft-js';
-import useFirebaseImageStorage from 'hooks/useFirebaseImageStorage';
-import { usePost } from 'hooks/usePost';
+import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
+import useFirebaseImageStorage from 'knitting/hooks/useFirebaseImageStorage';
+import { usePost } from 'knitting/hooks/usePost';
 import {
   coverInputAtom,
   outlineInputAtom,
   editorStateAtom,
   localCoverImageAtom,
   optionalOutlineInputAtom,
-} from 'pages/CreateDesign/atom';
-import { PostDesignInput } from 'pages/CreateDesign/types';
+} from 'knitting/pages/CreateDesign/atom';
+import { PostDesignInput } from 'knitting/pages/CreateDesign/types';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';

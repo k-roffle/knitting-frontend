@@ -1,4 +1,4 @@
-import { SnakeToCamelCase } from 'utils/types';
+import { SnakeToCamelCase } from 'knitting/utils/types';
 
 export const PAGE = {
   COVER: 0,

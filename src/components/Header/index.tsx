@@ -1,13 +1,12 @@
-import { MY_INFORMATION_PROFILE_PATH } from 'constants/path';
-
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core';
 import { AccountCircle, ArrowDropDown } from '@material-ui/icons';
-import { Logo } from 'dumbs';
+import { MY_INFORMATION_PROFILE_PATH } from 'knitting/constants/path';
+import { Logo } from 'knitting/dumbs';
+import { theme } from 'knitting/themes';
+import { deleteAccessToken } from 'knitting/utils/auth';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { theme } from 'themes';
-import { deleteAccessToken } from 'utils/auth';
 
 const StyledIconButton = styled(IconButton)`
   border-radius: ${theme.spacing(6)};

@@ -1,9 +1,9 @@
 import { Button as MaterialButton } from '@material-ui/core';
-import { Button } from 'dumbs';
-import { currentStepAtom } from 'pages/CreateDesign/atom';
-import { FooterContainer } from 'pages/CreateDesign/components/Footer/Footer.css';
-import { useStepController } from 'pages/CreateDesign/components/Footer/hooks/useStepController';
-import { PAGE } from 'pages/CreateDesign/types';
+import { Button } from 'knitting/dumbs';
+import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
+import { FooterContainer } from 'knitting/pages/CreateDesign/components/Footer/Footer.css';
+import { useStepController } from 'knitting/pages/CreateDesign/components/Footer/hooks/useStepController';
+import { PAGE } from 'knitting/pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
