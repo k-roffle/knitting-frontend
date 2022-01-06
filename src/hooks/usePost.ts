@@ -1,10 +1,9 @@
-import { GENERAL_ERROR, NETWORK_ERROR } from 'constants/errors';
-
-import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
+import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
+import { GENERAL_ERROR, NETWORK_ERROR } from 'knitting/constants/errors';
+import { RequestParam } from 'knitting/utils/requestType';
+import { postRequest } from 'knitting/utils/requests';
 import { useState } from 'react';
 import { useMutation, UseMutationResult } from 'react-query';
-import { RequestParam } from 'utils/requestType';
-import { postRequest } from 'utils/requests';
 
 export const usePost = ({
   pathname,

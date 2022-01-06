@@ -1,13 +1,13 @@
 import { Tooltip } from '@material-ui/core';
 import { ContentState, EditorState } from 'draft-js';
-import { changeOriginalStyleToNewStyle } from 'libs/draftjs-utils/inline';
-import { StyleKeyType } from 'libs/draftjs-utils/types';
-import { currentStepAtom } from 'pages/CreateDesign/atom';
-import { PAGE } from 'pages/CreateDesign/types';
+import { changeOriginalStyleToNewStyle } from 'knitting/libs/draftjs-utils/inline';
+import { StyleKeyType } from 'knitting/libs/draftjs-utils/types';
+import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
+import { PAGE } from 'knitting/pages/CreateDesign/types';
+import { theme } from 'knitting/themes';
 import { ReactElement, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
-import { theme } from 'themes';
 
 import { DetailTooltipMenu } from './components/DetailTooltipMenu';
 import { RepeatTooltipMenu } from './components/RepeatTooltipMenu';

@@ -1,5 +1,5 @@
+import { theme } from 'knitting/themes';
 import styled from 'styled-components';
-import { theme } from 'themes';
 
 export const FooterContainer = styled.div`
   display: flex;

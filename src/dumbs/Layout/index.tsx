@@ -1,7 +1,7 @@
-import { Header, Footer } from 'components';
+import { Header, Footer } from 'knitting/components';
+import { theme } from 'knitting/themes';
 import React from 'react';
 import styled from 'styled-components';
-import { theme } from 'themes';
 
 interface Props {
   children: React.ReactNode;

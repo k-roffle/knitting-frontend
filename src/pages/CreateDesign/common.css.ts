@@ -1,6 +1,6 @@
 import { Grid, Input } from '@material-ui/core';
+import { theme } from 'knitting/themes';
 import styled from 'styled-components';
-import { theme } from 'themes';
 
 export const FullWidthInput = styled(Input)`
   width: 100%;

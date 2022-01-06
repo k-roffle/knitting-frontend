@@ -1,6 +1,6 @@
+import { DEFAULT_LIST_LENGTH, ListResponse } from 'knitting/utils/requestType';
+import { getRequest } from 'knitting/utils/requests';
 import { SWRInfiniteResponse, useSWRInfinite } from 'swr';
-import { DEFAULT_LIST_LENGTH, ListResponse } from 'utils/requestType';
-import { getRequest } from 'utils/requests';
 
 import { DesignItemResponse } from './types';
 

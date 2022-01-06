@@ -1,9 +1,9 @@
 import { Button, Typography } from '@material-ui/core';
+import { flexCenterAlign } from 'knitting/styles/constants';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 import React, { ReactChild } from 'react';
 import styled from 'styled-components';
-import { flexCenterAlign } from 'styles/constants';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 const EmptyContentContainer = styled.div`
   ${flexCenterAlign}

@@ -1,4 +1,4 @@
-import { numbers } from 'plugins/unitDecorator/calculate/regex';
+import { numbers } from 'knitting/plugins/unitDecorator/calculate/regex';
 
 export const getUnitTotallyMatch = (units = '코'): RegExp =>
   new RegExp(`^[${numbers}]+[${units}]$`, 'gi');

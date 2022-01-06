@@ -1,7 +1,7 @@
+import { flexCenterAlign } from 'knitting/styles/constants';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 import styled from 'styled-components';
-import { flexCenterAlign } from 'styles/constants';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 export const FileInput = styled.input`
   display: none;

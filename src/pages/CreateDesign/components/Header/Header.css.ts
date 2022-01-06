@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core';
+import { theme } from 'knitting/themes';
 import styled from 'styled-components';
-import { theme } from 'themes';
 
 export const Title = styled(Typography)`
   margin-bottom: ${theme.spacing(2)};

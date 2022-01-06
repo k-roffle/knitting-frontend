@@ -1,5 +1,5 @@
-import { selectedTabAtom } from 'pages/MyInformation/atom';
-import { DESIGN_MENU } from 'pages/MyInformation/types';
+import { selectedTabAtom } from 'knitting/pages/MyInformation/atom';
+import { DESIGN_MENU } from 'knitting/pages/MyInformation/types';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 

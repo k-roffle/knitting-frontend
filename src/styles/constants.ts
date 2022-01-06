@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core';
+import { theme } from 'knitting/themes';
 import styled, { css } from 'styled-components';
-import { theme } from 'themes';
 
 export const flexCenterAlign = css`
   display: flex;

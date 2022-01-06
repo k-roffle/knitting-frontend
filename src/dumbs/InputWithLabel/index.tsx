@@ -1,10 +1,10 @@
 import { Input, Typography } from '@material-ui/core';
 import { InputBaseComponentProps } from '@material-ui/core/InputBase';
 import { Variant } from '@material-ui/core/styles/createTypography';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 interface Props {
   id: string;

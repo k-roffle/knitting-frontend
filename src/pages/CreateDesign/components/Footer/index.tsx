@@ -1,18 +1,21 @@
 import { Button as MaterialButton } from '@material-ui/core';
-import { Button } from 'dumbs';
-import { currentStepAtom } from 'pages/CreateDesign/atom';
-import { PAGE } from 'pages/CreateDesign/types';
+import { Button } from 'knitting/dumbs';
+import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
+import { FooterContainer } from 'knitting/pages/CreateDesign/components/Footer/Footer.css';
+import { useStepController } from 'knitting/pages/CreateDesign/components/Footer/hooks/useStepController';
+import { PAGE } from 'knitting/pages/CreateDesign/types';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { FooterContainer } from 'styles/constants';
-
-import { useStepController } from './hooks/useStepController';
 
 const Footer = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
 
-  const { onPreviousClick, onNextClick, renderNextLabel, isNextDisabled } =
-    useStepController();
+  const {
+    onPreviousClick,
+    onNextClick,
+    renderNextLabel,
+    isNextDisabled,
+  } = useStepController();
 
   return (
     <FooterContainer>

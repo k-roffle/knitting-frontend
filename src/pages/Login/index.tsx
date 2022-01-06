@@ -1,13 +1,14 @@
 import { Button as MaterialButton, Typography } from '@material-ui/core';
-import { ReactComponent as GoogleIcon } from 'assets/icn/google.svg';
-import { Snackbar } from 'dumbs';
+import { Snackbar } from 'knitting/dumbs';
+import { flexCenterAlign } from 'knitting/styles/constants';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
+import { constructURL } from 'knitting/utils/requests';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { flexCenterAlign } from 'styles/constants';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
-import { constructURL } from 'utils/requests';
+
+import { ReactComponent as GoogleIcon } from 'knitting/assets/icn/google.svg';
 
 import { errorSnackbarMessageAtom } from './atom';
 

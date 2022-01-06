@@ -1,15 +1,14 @@
-import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'constants/errors';
-
 import { CircularProgress, Typography } from '@material-ui/core';
-import { errorSnackbarMessageAtom } from 'pages/Login/atom';
+import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'knitting/constants/errors';
+import { errorSnackbarMessageAtom } from 'knitting/pages/Login/atom';
+import { theme } from 'knitting/themes';
+import { setAccessToken } from 'knitting/utils/auth';
+import { request } from 'knitting/utils/requests';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { theme } from 'themes';
 import { useQueryParam, StringParam } from 'use-query-params';
-import { setAccessToken } from 'utils/auth';
-import { request } from 'utils/requests';
 
 const ProgressWrapper = styled.div`
   position: absolute;

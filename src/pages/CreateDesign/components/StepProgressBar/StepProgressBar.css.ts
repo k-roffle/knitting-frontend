@@ -1,7 +1,7 @@
 import StepLabel from '@material-ui/core/StepLabel';
+import { palette } from 'knitting/themes/palette';
+import { zIndex } from 'knitting/themes/zIndex';
 import styled, { css } from 'styled-components';
-import { palette } from 'themes/palette';
-import { zIndex } from 'themes/zIndex';
 
 export interface StepIconProps {
   active: boolean;

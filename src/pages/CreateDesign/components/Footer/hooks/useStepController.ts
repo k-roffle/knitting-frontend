@@ -1,8 +1,11 @@
-import { coverInputAtom, currentStepAtom } from 'pages/CreateDesign/atom';
-import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
-import { PAGE } from 'pages/CreateDesign/types';
+import {
+  coverInputAtom,
+  currentStepAtom,
+} from 'knitting/pages/CreateDesign/atom';
+import useInvalidOutline from 'knitting/pages/CreateDesign/hooks/useInvalidOutline';
+import { PAGE } from 'knitting/pages/CreateDesign/types';
+import { hasEmptyValue } from 'knitting/utils/validation';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { hasEmptyValue } from 'utils/validation';
 
 import { useSaveDesign } from './useSaveDesign';
 

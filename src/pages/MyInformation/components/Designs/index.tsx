@@ -1,12 +1,12 @@
 import { Typography } from '@material-ui/core';
-import EmptyContent from 'dumbs/EmptyContent';
-import { tabItemLengthAtom } from 'pages/MyInformation/atom';
-import { useMyDesigns } from 'pages/MyInformation/hooks/useMyDesigns';
-import React, { useEffect } from 'react';
+import EmptyContent from 'knitting/dumbs/EmptyContent';
+import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
+import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
+import { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSetRecoilState } from 'recoil';
-import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
 
+import { useMyDesigns } from '../../hooks/useMyDesigns';
 import DesignItem from '../DesignItem';
 import { useRenderEmptyContent } from '../InformationTabs/useRenderEmptyContent';
 

@@ -7,14 +7,22 @@ import {
   Tooltip,
 } from '@material-ui/core';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import { FormLabel, InputWithLabel, RequiredMark, RequiredSelect } from 'dumbs';
-import { InfoBox } from 'pages/CreateDesign/Outline/Outline.css';
-import { OutlineInput, outlineInputAtom } from 'pages/CreateDesign/atom';
-import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
-import { DESIGN, PATTERN } from 'pages/CreateDesign/types';
+import {
+  FormLabel,
+  InputWithLabel,
+  RequiredMark,
+  RequiredSelect,
+} from 'knitting/dumbs';
+import { InfoBox } from 'knitting/pages/CreateDesign/Outline/Outline.css';
+import {
+  OutlineInput,
+  outlineInputAtom,
+} from 'knitting/pages/CreateDesign/atom';
+import useInvalidOutline from 'knitting/pages/CreateDesign/hooks/useInvalidOutline';
+import { DESIGN, PATTERN } from 'knitting/pages/CreateDesign/types';
+import { renderDesign, renderPattern } from 'knitting/utils/renderText';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { renderDesign, renderPattern } from 'utils/renderText';
 
 import { Row } from '../common.css';
 import OptionalOutline from '../components/OptionalOutline';

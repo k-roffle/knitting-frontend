@@ -1,17 +1,17 @@
-import {
-  FAILED_TO_GET_MY_PROFILE,
-  FAILED_TO_GET_MY_SALE_SUMMARY,
-} from 'constants/errors';
-
 import { Typography } from '@material-ui/core';
-import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
-import EmptyContent from 'dumbs/EmptyContent';
-import { tabItemLengthAtom } from 'pages/MyInformation/atom';
-import { useGetMyProfile } from 'pages/MyInformation/hooks/useGetMyProfile';
-import { useGetMySalesSummary } from 'pages/MyInformation/hooks/useGetMySalesSummary';
+import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
+import {
+  FAILED_TO_GET_MY_SALE_SUMMARY,
+  FAILED_TO_GET_MY_PROFILE,
+} from 'knitting/constants/errors';
+import EmptyContent from 'knitting/dumbs/EmptyContent';
+import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+
+import { useGetMyProfile } from '../../hooks/useGetMyProfile';
+import { useGetMySalesSummary } from '../../hooks/useGetMySalesSummary';
 
 import {
   CreateButton,

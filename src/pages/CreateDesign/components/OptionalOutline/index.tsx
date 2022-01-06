@@ -5,16 +5,16 @@ import {
   RadioGroup,
   FormControlLabel,
 } from '@material-ui/core';
-import { FormLabel, InputWithLabel } from 'dumbs';
+import { FormLabel, InputWithLabel } from 'knitting/dumbs';
 import {
   OptionalOutlineInput,
   optionalOutlineInputAtom,
-} from 'pages/CreateDesign/atom';
-import { FullWidthInput, Row } from 'pages/CreateDesign/common.css';
-import { DesignSize, LevelKind } from 'pages/CreateDesign/types';
+} from 'knitting/pages/CreateDesign/atom';
+import { FullWidthInput, Row } from 'knitting/pages/CreateDesign/common.css';
+import { DesignSize, LevelKind } from 'knitting/pages/CreateDesign/types';
+import { SnakeToCamelCase } from 'knitting/utils/types';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { SnakeToCamelCase } from 'utils/types';
 
 import DesignSizeImage from '../DesignSizeImage';
 

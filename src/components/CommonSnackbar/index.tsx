@@ -1,5 +1,5 @@
 import { Color } from '@material-ui/lab/Alert';
-import { Snackbar } from 'dumbs';
+import { Snackbar } from 'knitting/dumbs';
 import React from 'react';
 import { atom, useRecoilValue } from 'recoil';
 

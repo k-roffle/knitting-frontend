@@ -1,5 +1,5 @@
-import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
 import { EditorState } from 'draft-js';
+import { ImageInformation } from 'knitting/components/ImageFileUploader/hooks/useImageFileUploader';
 import { atom } from 'recoil';
 
 import { DESIGN, DesignInput, LEVEL, PAGE, PAGE_TYPE, PATTERN } from './types';
