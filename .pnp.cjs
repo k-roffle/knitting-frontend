@@ -59,23 +59,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/url-parse", "npm:1.4.3"],
             ["@types/uuid", "npm:8.3.1"],
             ["@typescript-eslint/parser", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:5.7.0"],
-            ["assets", "link:src/assets::locator=knitting-frontend%40workspace%3A."],
             ["axios", "npm:0.21.1"],
-            ["components", "link:src/components::locator=knitting-frontend%40workspace%3A."],
-            ["constants", "link:src/constants::locator=knitting-frontend%40workspace%3A."],
             ["dayjs", "npm:1.10.6"],
             ["draft-js", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:0.11.7"],
-            ["dumbs", "link:src/dumbs::locator=knitting-frontend%40workspace%3A."],
             ["eslint-config-naver", "npm:2.1.0"],
             ["eslint-config-prettier", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:8.1.0"],
             ["eslint-import-resolver-node", "npm:0.3.6"],
             ["eslint-plugin-prettier", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:3.3.1"],
             ["firebase", "npm:9.0.1"],
-            ["hooks", "link:src/hooks::locator=knitting-frontend%40workspace%3A."],
             ["jwt-decode", "npm:3.1.2"],
-            ["libs", "link:src/libs::locator=knitting-frontend%40workspace%3A."],
-            ["pages", "link:src/pages::locator=knitting-frontend%40workspace%3A."],
-            ["plugins", "link:src/plugins::locator=knitting-frontend%40workspace%3A."],
+            ["knitting", "link:src::locator=knitting-frontend%40workspace%3A."],
             ["prettier", "npm:2.2.1"],
             ["query-string", "npm:6.14.1"],
             ["react", "npm:17.0.1"],
@@ -86,16 +79,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-router-dom", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:5.2.0"],
             ["react-scripts", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:4.0.3"],
             ["recoil", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:0.1.2"],
-            ["routers", "link:src/routers::locator=knitting-frontend%40workspace%3A."],
-            ["stories", "link:src/stories::locator=knitting-frontend%40workspace%3A."],
             ["styled-components", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:5.2.1"],
-            ["styles", "link:src/styles::locator=knitting-frontend%40workspace%3A."],
             ["swr", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:0.5.6"],
-            ["themes", "link:src/themes::locator=knitting-frontend%40workspace%3A."],
             ["typescript", "patch:typescript@npm%3A4.1.3#~builtin<compat/typescript>::version=4.1.3&hash=493e53"],
             ["url-parse", "npm:1.5.1"],
             ["use-query-params", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:1.2.0"],
-            ["utils", "link:src/utils::locator=knitting-frontend%40workspace%3A."],
             ["web-vitals", "npm:1.1.0"]
           ],
           "linkType": "SOFT",
@@ -11238,16 +11226,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["assets", [
-        ["link:src/assets::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/assets/",
-          "packageDependencies": [
-            ["assets", "link:src/assets::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
-        }]
-      ]],
       ["assign-symbols", [
         ["npm:1.0.0", {
           "packageLocation": "./.yarn/cache/assign-symbols-npm-1.0.0-fd803ccdf1-c0eb895911.zip/node_modules/assign-symbols/",
@@ -13626,16 +13604,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["components", [
-        ["link:src/components::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/components/",
-          "packageDependencies": [
-            ["components", "link:src/components::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
-        }]
-      ]],
       ["compose-function", [
         ["npm:3.0.3", {
           "packageLocation": "./.yarn/cache/compose-function-npm-3.0.3-78fa572363-9f17d431e3.zip/node_modules/compose-function/",
@@ -13737,16 +13705,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["console-control-strings", "npm:1.1.0"]
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["constants", [
-        ["link:src/constants::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/constants/",
-          "packageDependencies": [
-            ["constants", "link:src/constants::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
         }]
       ]],
       ["constants-browserify", [
@@ -15284,16 +15242,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "react"
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["dumbs", [
-        ["link:src/dumbs::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/dumbs/",
-          "packageDependencies": [
-            ["dumbs", "link:src/dumbs::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
         }]
       ]],
       ["duplexer", [
@@ -18207,16 +18155,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["hooks", [
-        ["link:src/hooks::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/hooks/",
-          "packageDependencies": [
-            ["hooks", "link:src/hooks::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
-        }]
-      ]],
       ["hoopy", [
         ["npm:0.1.4", {
           "packageLocation": "./.yarn/cache/hoopy-npm-0.1.4-32e7a5b08e-cfa60c7684.zip/node_modules/hoopy/",
@@ -20837,6 +20775,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["knitting", [
+        ["link:src::locator=knitting-frontend%40workspace%3A.", {
+          "packageLocation": "./src/",
+          "packageDependencies": [
+            ["knitting", "link:src::locator=knitting-frontend%40workspace%3A."]
+          ],
+          "linkType": "SOFT",
+          "discardFromLookup": true
+        }]
+      ]],
       ["knitting-frontend", [
         ["workspace:.", {
           "packageLocation": "./",
@@ -20866,23 +20814,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/url-parse", "npm:1.4.3"],
             ["@types/uuid", "npm:8.3.1"],
             ["@typescript-eslint/parser", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:5.7.0"],
-            ["assets", "link:src/assets::locator=knitting-frontend%40workspace%3A."],
             ["axios", "npm:0.21.1"],
-            ["components", "link:src/components::locator=knitting-frontend%40workspace%3A."],
-            ["constants", "link:src/constants::locator=knitting-frontend%40workspace%3A."],
             ["dayjs", "npm:1.10.6"],
             ["draft-js", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:0.11.7"],
-            ["dumbs", "link:src/dumbs::locator=knitting-frontend%40workspace%3A."],
             ["eslint-config-naver", "npm:2.1.0"],
             ["eslint-config-prettier", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:8.1.0"],
             ["eslint-import-resolver-node", "npm:0.3.6"],
             ["eslint-plugin-prettier", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:3.3.1"],
             ["firebase", "npm:9.0.1"],
-            ["hooks", "link:src/hooks::locator=knitting-frontend%40workspace%3A."],
             ["jwt-decode", "npm:3.1.2"],
-            ["libs", "link:src/libs::locator=knitting-frontend%40workspace%3A."],
-            ["pages", "link:src/pages::locator=knitting-frontend%40workspace%3A."],
-            ["plugins", "link:src/plugins::locator=knitting-frontend%40workspace%3A."],
+            ["knitting", "link:src::locator=knitting-frontend%40workspace%3A."],
             ["prettier", "npm:2.2.1"],
             ["query-string", "npm:6.14.1"],
             ["react", "npm:17.0.1"],
@@ -20893,16 +20834,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-router-dom", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:5.2.0"],
             ["react-scripts", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:4.0.3"],
             ["recoil", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:0.1.2"],
-            ["routers", "link:src/routers::locator=knitting-frontend%40workspace%3A."],
-            ["stories", "link:src/stories::locator=knitting-frontend%40workspace%3A."],
             ["styled-components", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:5.2.1"],
-            ["styles", "link:src/styles::locator=knitting-frontend%40workspace%3A."],
             ["swr", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:0.5.6"],
-            ["themes", "link:src/themes::locator=knitting-frontend%40workspace%3A."],
             ["typescript", "patch:typescript@npm%3A4.1.3#~builtin<compat/typescript>::version=4.1.3&hash=493e53"],
             ["url-parse", "npm:1.5.1"],
             ["use-query-params", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:1.2.0"],
-            ["utils", "link:src/utils::locator=knitting-frontend%40workspace%3A."],
             ["web-vitals", "npm:1.1.0"]
           ],
           "linkType": "SOFT",
@@ -20979,16 +20915,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["type-check", "npm:0.4.0"]
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["libs", [
-        ["link:src/libs::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/libs/",
-          "packageDependencies": [
-            ["libs", "link:src/libs::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
         }]
       ]],
       ["lie", [
@@ -22893,16 +22819,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["pages", [
-        ["link:src/pages::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/pages/",
-          "packageDependencies": [
-            ["pages", "link:src/pages::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
-        }]
-      ]],
       ["pako", [
         ["npm:1.0.11", {
           "packageLocation": "./.yarn/cache/pako-npm-1.0.11-b8f1b69d3e-1be2bfa1f8.zip/node_modules/pako/",
@@ -23286,16 +23202,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["find-up", "npm:3.0.0"]
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["plugins", [
-        ["link:src/plugins::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/plugins/",
-          "packageDependencies": [
-            ["plugins", "link:src/plugins::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
         }]
       ]],
       ["pnp-webpack-plugin", [
@@ -26511,16 +26417,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["routers", [
-        ["link:src/routers::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/routers/",
-          "packageDependencies": [
-            ["routers", "link:src/routers::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
-        }]
-      ]],
       ["rsvp", [
         ["npm:4.8.5", {
           "packageLocation": "./.yarn/cache/rsvp-npm-4.8.5-09f3c6ed40-2d8ef30d8f.zip/node_modules/rsvp/",
@@ -27569,16 +27465,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["stories", [
-        ["link:src/stories::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/stories/",
-          "packageDependencies": [
-            ["stories", "link:src/stories::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
-        }]
-      ]],
       ["stream-browserify", [
         ["npm:2.0.2", {
           "packageLocation": "./.yarn/cache/stream-browserify-npm-2.0.2-145ceec889-8de7bcab55.zip/node_modules/stream-browserify/",
@@ -28016,16 +27902,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["styles", [
-        ["link:src/styles::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/styles/",
-          "packageDependencies": [
-            ["styles", "link:src/styles::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
-        }]
-      ]],
       ["supports-color", [
         ["npm:5.5.0", {
           "packageLocation": "./.yarn/cache/supports-color-npm-5.5.0-183ac537bc-95f6f4ba5a.zip/node_modules/supports-color/",
@@ -28419,16 +28295,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["text-table", "npm:0.2.0"]
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["themes", [
-        ["link:src/themes::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/themes/",
-          "packageDependencies": [
-            ["themes", "link:src/themes::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
         }]
       ]],
       ["throat", [
@@ -29552,16 +29418,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["utila", "npm:0.4.0"]
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["utils", [
-        ["link:src/utils::locator=knitting-frontend%40workspace%3A.", {
-          "packageLocation": "./src/utils/",
-          "packageDependencies": [
-            ["utils", "link:src/utils::locator=knitting-frontend%40workspace%3A."]
-          ],
-          "linkType": "SOFT",
-          "discardFromLookup": true
         }]
       ]],
       ["utils-merge", [
