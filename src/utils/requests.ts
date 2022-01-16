@@ -45,29 +45,32 @@ const requestApi = async ({
     params,
   };
 
-  if (accessToken != null) {
-    payload.headers.Authorization = `Bearer ${accessToken}`;
-  }
-
-  if (accessToken == null && useCurrentToken) {
-    const currentAccessToken = getAccessToken();
-
-    if (currentAccessToken == null) {
-      notFoundExpected('access token');
+  if (payload.headers) {
+    if (accessToken != null) {
+      payload.headers.Authorization = `Bearer ${accessToken}`;
     }
 
-    payload.headers.Authorization = `Bearer ${currentAccessToken}`;
+    if (accessToken == null && useCurrentToken) {
+      const currentAccessToken = getAccessToken();
+
+      if (currentAccessToken == null) {
+        notFoundExpected('access token');
+      }
+
+      payload.headers.Authorization = `Bearer ${currentAccessToken}`;
+    }
+
+    switch (method) {
+      case 'post':
+      case 'put':
+        payload.headers['Content-Type'] = 'application/json';
+        payload.data = JSON.stringify(data);
+        break;
+      default:
+        break;
+    }
   }
 
-  switch (method) {
-    case 'post':
-    case 'put':
-      payload.headers['Content-Type'] = 'application/json';
-      payload.data = JSON.stringify(data);
-      break;
-    default:
-      break;
-  }
   const response = await axios(payload);
 
   return response;
