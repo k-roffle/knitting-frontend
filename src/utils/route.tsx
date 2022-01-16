@@ -1,47 +1,48 @@
 import { LOGIN_PATH, ROOT_PATH } from 'constants/path';
 
 import React from 'react';
-import { RouteProps, Route, useLocation, Routes } from 'react-router-dom';
+import { RouteProps, useLocation, Navigate } from 'react-router-dom';
 import { isAuthenticated } from 'utils/auth';
 
-export const ProtectedRoute = (props: RouteProps): React.ReactElement => {
+export const ProtectedRoute = ({
+  children,
+}: {
+  children: React.ReactElement;
+}): React.ReactElement => {
+  const location = useLocation();
+
   return isAuthenticated() ? (
-    <RouteWithoutTrailigSlash {...props} />
+    children
   ) : (
-    <RouteWithoutTrailigSlash {...props} path={LOGIN_PATH} />
+    <Navigate to={LOGIN_PATH} state={{ from: location }} replace />
   );
 };
 
-export const LoginRoute = (props: RouteProps): React.ReactElement => {
-  return isAuthenticated() ? (
-    <RouteWithoutTrailigSlash {...props} path={ROOT_PATH} />
-  ) : (
-    <RouteWithoutTrailigSlash {...props} />
-  );
+export const LoginRoute = ({
+  children,
+}: {
+  children: React.ReactElement;
+}): React.ReactElement => {
+  return isAuthenticated() ? <Navigate to={ROOT_PATH} /> : children;
 };
 
-export const RouteWithoutTrailigSlash = (
+export const RouteWithoutTrailingSlash = (
   props: RouteProps,
-): React.ReactElement => {
-  const { pathname } = useLocation();
-  const pathnameWithoutTrailingSlash = pathname?.replace(/\/$/, '');
+): React.ReactElement | null => {
+  const location = useLocation();
 
-  console.log('path', props);
-  if (pathname === '/') {
+  if (location.pathname.match('/.*/$')) {
     return (
-      <Routes>
-        <Route {...props} />
-      </Routes>
+      <Navigate
+        replace
+        {...props}
+        to={{
+          pathname: location.pathname.replace(/\/$/, ''),
+          search: location.search,
+        }}
+      />
     );
   }
 
-  return pathname === pathnameWithoutTrailingSlash ? (
-    <Routes>
-      <Route {...props} />
-    </Routes>
-  ) : (
-    <Routes>
-      <Route {...props} path={pathnameWithoutTrailingSlash} />
-    </Routes>
-  );
+  return null;
 };

@@ -1,4 +1,4 @@
-import { MY_INFORMATION_PROFILE_PATH } from 'constants/path';
+import { MY_INFORMATION_ROUTER_ROOT } from 'constants/path';
 
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@material-ui/core';
 import { AccountCircle, ArrowDropDown } from '@material-ui/icons';
@@ -31,10 +31,10 @@ const Header = (): React.ReactElement => {
 
   const onClickMyProfile = () => {
     handleClose();
-    if (location.pathname === MY_INFORMATION_PROFILE_PATH) {
+    if (location.pathname === MY_INFORMATION_ROUTER_ROOT) {
       window.location.reload();
     } else {
-      navigate(MY_INFORMATION_PROFILE_PATH);
+      navigate(MY_INFORMATION_ROUTER_ROOT);
     }
   };
 

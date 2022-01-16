@@ -2,6 +2,7 @@ import {
   MY_INFORMATION_ROUTER_ROOT,
   LOGIN_ROUTER_ROOT,
   ERROR_PATH,
+  ROUTER_ROOT,
 } from 'constants/path';
 
 import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
@@ -15,8 +16,9 @@ import Login from 'routers/LoginRouter';
 import MyInformation from 'routers/MyInformationRouter';
 import { theme } from 'themes';
 import {
-  RouteWithoutTrailigSlash as PublicRoute,
-  RouteWithoutTrailigSlash as NestedRoute,
+  LoginRoute,
+  ProtectedRoute,
+  RouteWithoutTrailingSlash,
 } from 'utils/route';
 
 const queryClient = new QueryClient();
@@ -28,33 +30,26 @@ const App = (): React.ReactElement => {
         <RecoilRoot>
           <StylesProvider injectFirst>
             <ThemeProvider theme={theme}>
+              <RouteWithoutTrailingSlash />
               <Routes>
                 <Route
-                  path={MY_INFORMATION_ROUTER_ROOT}
-                  element={<NestedRoute />}
-                >
-                  <Route
-                    path={MY_INFORMATION_ROUTER_ROOT}
-                    element={<MyInformation />}
-                  />
-                </Route>
-                <Route path={LOGIN_ROUTER_ROOT} element={<NestedRoute />}>
-                  <Route path={LOGIN_ROUTER_ROOT} element={<Login />} />
-                </Route>
+                  path={MY_INFORMATION_ROUTER_ROOT + ROUTER_ROOT}
+                  element={
+                    <ProtectedRoute>
+                      <MyInformation />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route
-                  path={ERROR_PATH}
-                  element={<PublicRoute />}
-                  caseSensitive
-                >
-                  <Route
-                    path={ERROR_PATH}
-                    element={<Error404 />}
-                    caseSensitive
-                  />
-                </Route>
-                <Route path="*" element={<PublicRoute />}>
-                  <Route path="*" element={<Error404 />} />
-                </Route>
+                  path={LOGIN_ROUTER_ROOT + ROUTER_ROOT}
+                  element={
+                    <LoginRoute>
+                      <Login />
+                    </LoginRoute>
+                  }
+                />
+                <Route path={ERROR_PATH} element={<Error404 />} caseSensitive />
+                <Route path="*" element={<Error404 />} />
               </Routes>
             </ThemeProvider>
           </StylesProvider>

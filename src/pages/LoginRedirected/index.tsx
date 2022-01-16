@@ -3,11 +3,10 @@ import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'constants/errors';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { errorSnackbarMessageAtom } from 'pages/Login/atom';
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'themes';
-import { useQueryParam, StringParam } from 'use-query-params';
 import { setAccessToken } from 'utils/auth';
 import { request } from 'utils/requests';
 
@@ -29,7 +28,8 @@ const LoadingContent = styled(Typography)`
 `;
 
 const LoginRedirected = (): React.ReactElement => {
-  const [code] = useQueryParam('code', StringParam);
+  const { search } = useLocation();
+  const code = new URLSearchParams(search).get('code');
   const navigate = useNavigate();
 
   const setErrorSnackbarMessage = useSetRecoilState(errorSnackbarMessageAtom);

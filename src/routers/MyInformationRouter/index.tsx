@@ -10,28 +10,21 @@ import Error404 from 'pages/Error404';
 import MyInformation from 'pages/MyInformation';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { ProtectedRoute } from 'utils/route';
 
 const MyInformationRouter = (): React.ReactElement => {
   return (
     <Routes>
       <Route
-        path={`${MY_INFORMATION_PROFILE_PATH}/*`}
-        element={<ProtectedRoute />}
+        path={MY_INFORMATION_PROFILE_PATH}
+        element={<MyInformation />}
         caseSensitive
-      >
-        <Route
-          path={`${MY_INFORMATION_PROFILE_PATH}/*`}
-          element={<MyInformation />}
-          caseSensitive
-        />
-      </Route>
-      <ProtectedRoute
+      />
+      <Route
         path={MY_INFORMATION_CREATE_DESIGN_PATH}
         element={<CreateDesign />}
         caseSensitive
       />
-      <ProtectedRoute
+      <Route
         path={MY_INFORMATION_CREATE_PRODUCT_PATH}
         element={<CreateProduct />}
         caseSensitive
