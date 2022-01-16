@@ -23,7 +23,7 @@ type RequestWithTokenProps = DefaultRequestProps & {
   accessToken?: string;
 };
 
-export const constructURL = (pathname: string): parse => {
+export const constructURL = (pathname: string): parse<string> => {
   const url = parse(getConfig('REACT_APP_SERVER_URL'));
 
   return url.set('pathname', pathname);

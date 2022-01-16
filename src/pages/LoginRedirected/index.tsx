@@ -5,7 +5,7 @@ import { errorSnackbarMessageAtom } from 'knitting/pages/Login/atom';
 import { setAccessToken } from 'knitting/utils/auth';
 import { request } from 'knitting/utils/requests';
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { useQueryParam, StringParam } from 'use-query-params';
 
@@ -28,17 +28,17 @@ const LoadingContent = styled(Typography)`
 
 const LoginRedirected = (): React.ReactElement => {
   const [code] = useQueryParam('code', StringParam);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const setErrorSnackbarMessage = useSetRecoilState(errorSnackbarMessageAtom);
   const onLoginSuccess = (accessToken: string) => {
     setAccessToken(accessToken);
-    history.replace('/');
+    navigate('/');
   };
 
   const onLoginFailed = () => {
     setErrorSnackbarMessage(FAILED_TO_FETCH_ACCESS_TOKEN);
-    history.push('/login');
+    navigate('/login');
   };
 
   const requestFetchAccessToken = async () => {

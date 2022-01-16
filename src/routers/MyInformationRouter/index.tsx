@@ -5,29 +5,24 @@ import {
 import CreateDesign from 'knitting/pages/CreateDesign';
 import Error404 from 'knitting/pages/Error404';
 import MyInformation from 'knitting/pages/MyInformation';
-import { ProtectedRoute } from 'knitting/utils/route';
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 const MyInformationRouter = (): React.ReactElement => {
   return (
-    <Switch>
-      <ProtectedRoute
+    <Routes>
+      <Route
         path={MY_INFORMATION_PROFILE_PATH}
-        component={MyInformation}
-        exact
-        strict
-        sensitive
+        element={<MyInformation />}
+        caseSensitive
       />
-      <ProtectedRoute
+      <Route
         path={MY_INFORMATION_CREATE_DESIGN_PATH}
-        component={CreateDesign}
-        exact
-        strict
-        sensitive
+        element={<CreateDesign />}
+        caseSensitive
       />
-      <Route path="*" component={Error404} />
-    </Switch>
+      <Route path="*" element={<Error404 />} />
+    </Routes>
   );
 };
 

@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 import { AccountCircle, ArrowDropDown } from '@mui/icons-material';
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
-import { MY_INFORMATION_PROFILE_PATH } from 'knitting/constants/path';
+import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
 import { Logo } from 'knitting/dumbs';
 import { deleteAccessToken } from 'knitting/utils/auth';
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const StyledIconButton = styled(IconButton)`
   border-radius: ${({ theme }) => theme.spacing(6)};
@@ -16,7 +16,7 @@ const Header = (): React.ReactElement => {
     HTMLElement | undefined
   >();
   const open = Boolean(anchorElement);
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const handleMenu = ({ currentTarget }: React.MouseEvent<HTMLElement>) => {
@@ -29,10 +29,10 @@ const Header = (): React.ReactElement => {
 
   const onClickMyProfile = () => {
     handleClose();
-    if (location.pathname === MY_INFORMATION_PROFILE_PATH) {
+    if (location.pathname === MY_INFORMATION_ROUTER_ROOT) {
       window.location.reload();
     } else {
-      history.push(MY_INFORMATION_PROFILE_PATH);
+      navigate(MY_INFORMATION_ROUTER_ROOT);
     }
   };
 
