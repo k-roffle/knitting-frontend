@@ -16301,7 +16301,6 @@ __metadata:
     swr: ^1.1.2
     typescript: 4.5.4
     url-parse: ^1.5.4
-    use-query-params: ^1.2.3
     web-vitals: ^2.1.3
   languageName: unknown
   linkType: soft
@@ -21488,15 +21487,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"serialize-query-params@npm:^1.3.5":
-  version: 1.3.6
-  resolution: "serialize-query-params@npm:1.3.6"
-  peerDependencies:
-    query-string: ">=5.1.1"
-  checksum: 72b496836c8cd16b8bd4f7b86ed6d3b003576e3c0cda1c0f7718b4573d51fce77d177cb30f0b47f7d3a21cba7f9e933d82f0d19f6711bf5760089d43107eacf5
-  languageName: node
-  linkType: hard
-
 "serve-favicon@npm:^2.5.0":
   version: 2.5.0
   resolution: "serve-favicon@npm:2.5.0"
@@ -23719,19 +23709,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: f0cb3a49119e14ed46db8a946b1aa17b838b8834c8a652bde314877ede6057c55b50654a97ee802597a5839c070180195e58ea3a756b7c33db7f540642f0ddea
-  languageName: node
-  linkType: hard
-
-"use-query-params@npm:^1.2.3":
-  version: 1.2.3
-  resolution: "use-query-params@npm:1.2.3"
-  dependencies:
-    serialize-query-params: ^1.3.5
-  peerDependencies:
-    query-string: ">=5.1.1"
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: a2312f7d3064708ab094e85265d04f8e36c52f0d578946667a2de0fbe44dd89ad8559aeda5fe9da06aa15782d46e79300e2de32aa3747dd96c172c777e15a6e8
   languageName: node
   linkType: hard
 
