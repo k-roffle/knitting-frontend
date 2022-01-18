@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Logo } from 'knitting/dumbs';
+import Logo from 'knitting/dumbs/Logo';
 import React from 'react';
 
 const Divider = styled.div`
