@@ -7,7 +7,6 @@ import { request } from 'knitting/utils/requests';
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { useQueryParam, StringParam } from 'use-query-params';
 
 const ProgressWrapper = styled.div`
   position: absolute;
