@@ -31,6 +31,7 @@ const App = (): React.ReactElement => {
         <RecoilRoot>
           <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
+              <Global styles={GlobalStyle} />
               <RouteWithoutTrailingSlash />
               <Routes>
                 <Route
