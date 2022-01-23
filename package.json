@@ -18,7 +18,7 @@
     "firebase": "^9.6.3",
     "jwt-decode": "^3.1.2",
     "date-fns": "^2.24.0",
-    "knitting": "link:src",
+    "knitting": "link:./src",
     "query-string": "^7.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -31,6 +31,7 @@
     "recoil": "^0.5.2",
     "swr": "^1.1.2",
     "url-parse": "^1.5.4",
+    "use-query-params": "^1.2.3",
     "web-vitals": "^2.1.3"
   },
   "scripts": {

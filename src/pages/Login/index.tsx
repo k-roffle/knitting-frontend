@@ -1,13 +1,12 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button as MaterialButton, Typography } from '@mui/material';
+import { ReactComponent as GoogleIcon } from 'knitting/assets/icn/google.svg';
 import { Snackbar } from 'knitting/dumbs';
 import { flexCenterAlign } from 'knitting/styles/constants';
 import { constructURL } from 'knitting/utils/requests';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-
-import { ReactComponent as GoogleIcon } from 'knitting/assets/icn/google.svg';
 
 import { errorSnackbarMessageAtom } from './atom';
 
