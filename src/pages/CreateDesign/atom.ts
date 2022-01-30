@@ -4,29 +4,58 @@ import { atom } from 'recoil';
 
 import { DESIGN, DesignInput, LEVEL, PAGE, PAGE_TYPE, PATTERN } from './types';
 
-type CurrentDesignInput = Omit<
+export type CoverInput = Pick<
   DesignInput,
-  'pattern' | 'techniques' | 'coverImageUrl'
+  'name' | 'coverImageUrl' | 'description'
+>;
+
+export type OutlineInput = Pick<
+  DesignInput,
+  'designType' | 'patternType' | 'stitches' | 'rows' | 'needle'
+>;
+
+export type OptionalOutlineInput = Pick<
+  DesignInput,
+  'targetLevel' | 'yarn' | 'extra' | 'size'
 > & {
   techniques: string;
 };
 
 export const currentStepAtom = atom<PAGE_TYPE>({
   key: 'currentStep',
-  default: PAGE.DETAIL,
+  default: PAGE.COVER,
 });
 
-export const currentDesignInputAtom = atom<CurrentDesignInput>({
-  key: 'currentDesignInput',
+export const coverInputAtom = atom<CoverInput>({
+  key: 'coverInputAtom',
   default: {
     name: '',
+    coverImageUrl: '',
+    description: '',
+  },
+});
+
+export const coverImageAtom = atom<ImageInformation | undefined>({
+  key: 'coverImageAtom',
+  default: undefined,
+});
+
+export const outlineInputAtom = atom<OutlineInput>({
+  key: 'outlineInputAtom',
+  default: {
     designType: DESIGN.SWEATER,
     patternType: PATTERN.TEXT,
-    description: '',
-    techniques: '',
-    targetLevel: LEVEL.NORMAL,
     stitches: 0,
     rows: 0,
+    needle: '',
+  },
+});
+
+export const optionalOutlineInputAtom = atom<OptionalOutlineInput>({
+  key: 'optionalOutlineInputAtom',
+  default: {
+    techniques: '',
+    targetLevel: LEVEL.NORMAL,
     size: {
       totalLength: 0,
       sleeveLength: 0,
@@ -34,7 +63,6 @@ export const currentDesignInputAtom = atom<CurrentDesignInput>({
       bottomWidth: 0,
       armholeDepth: 0,
     },
-    needle: '',
     yarn: '',
     extra: undefined,
   },

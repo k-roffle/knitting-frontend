@@ -1,11 +1,8 @@
-import {
-  currentDesignInputAtom,
-  currentStepAtom,
-  localCoverImageAtom,
-} from 'pages/CreateDesign/recoils';
+import { coverInputAtom, currentStepAtom } from 'pages/CreateDesign/atom';
+import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
 import { PAGE } from 'pages/CreateDesign/types';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { hasEmptyValue, hasNegativeNumber } from 'utils/validation';
+import { hasEmptyValue } from 'utils/validation';
 
 import { useSaveDesign } from './useSaveDesign';
 
@@ -18,23 +15,17 @@ type StepController = {
 
 export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
-  const { name, stitches, rows, size, needle, yarn, description, techniques } =
-    useRecoilValue(currentDesignInputAtom);
-  const {
-    totalLength,
-    sleeveLength,
-    shoulderWidth,
-    bottomWidth,
-    armholeDepth,
-  } = size;
-  const localCoverImage = useRecoilValue(localCoverImageAtom);
-
+  const { name, coverImageUrl } = useRecoilValue(coverInputAtom);
+  const isInvalidOutlineValue = useInvalidOutline();
   const saveDesign = useSaveDesign();
 
   const onPreviousClick = (): void => {
     switch (currentStep) {
+      case PAGE.OUTLINE:
+        setCurrentStep(PAGE.COVER);
+        break;
       case PAGE.PATTERN:
-        setCurrentStep(PAGE.DETAIL);
+        setCurrentStep(PAGE.OUTLINE);
         break;
       case PAGE.REVIEW:
         setCurrentStep(PAGE.PATTERN);
@@ -46,7 +37,10 @@ export const useStepController = (): StepController => {
 
   const onNextClick = (): void => {
     switch (currentStep) {
-      case PAGE.DETAIL:
+      case PAGE.COVER:
+        setCurrentStep(PAGE.OUTLINE);
+        break;
+      case PAGE.OUTLINE:
         setCurrentStep(PAGE.PATTERN);
         break;
       case PAGE.PATTERN:
@@ -64,36 +58,16 @@ export const useStepController = (): StepController => {
     return currentStep === PAGE.REVIEW ? '저장' : '다음';
   };
 
-  const isInvalidDetailValue = (): boolean => {
-    const isInvalidNumberInput = hasNegativeNumber([
-      stitches,
-      rows,
-      totalLength,
-      sleeveLength,
-      shoulderWidth,
-      bottomWidth,
-      armholeDepth,
-    ]);
-
-    const isInvalidRequiredValue = hasEmptyValue([
-      name,
-      description,
-      techniques,
-      needle,
-      yarn,
-      localCoverImage[0]?.url,
-    ]);
-
-    return isInvalidRequiredValue || isInvalidNumberInput;
+  const isInvalidCoverValue = (): boolean => {
+    return hasEmptyValue([name, coverImageUrl]);
   };
 
   const isNextDisabled = (): boolean => {
     switch (currentStep) {
-      case PAGE.DETAIL:
-        if (isInvalidDetailValue()) {
-          return true;
-        }
-        return false;
+      case PAGE.COVER:
+        return isInvalidCoverValue();
+      case PAGE.OUTLINE:
+        return isInvalidOutlineValue;
       case PAGE.PATTERN:
         // TODO: 도안 유효성 검사
         return false;

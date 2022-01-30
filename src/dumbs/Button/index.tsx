@@ -14,6 +14,7 @@ export interface Props {
   label: string;
   onClick?(): void;
   disabled?: boolean;
+  fullWidth?: boolean;
 }
 
 const StyledButton = styled(MaterialButton)<Pick<Props, 'side'>>`

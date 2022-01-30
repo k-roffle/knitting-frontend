@@ -1,9 +1,10 @@
 import { SnakeToCamelCase } from 'utils/types';
 
 export const PAGE = {
-  DETAIL: 0,
-  PATTERN: 1,
-  REVIEW: 2,
+  COVER: 0,
+  OUTLINE: 1,
+  PATTERN: 2,
+  REVIEW: 3,
 } as const;
 
 export type PAGE_TYPE = typeof PAGE[keyof typeof PAGE];
@@ -23,6 +24,7 @@ export const PATTERN = {
 export type PATTERN_TYPE = typeof PATTERN[keyof typeof PATTERN];
 
 export const LEVEL = {
+  PERSON_BY_PERSON: 'PERSON_BY_PERSON',
   EASY: 'EASY',
   NORMAL: 'NORMAL',
   HARD: 'HARD',
@@ -31,23 +33,24 @@ export type LEVEL_TYPE = typeof LEVEL[keyof typeof LEVEL];
 
 export const LevelKind = [
   {
+    value: LEVEL.PERSON_BY_PERSON,
+    label: '사람마다 달라요.',
+  },
+  {
     value: LEVEL.EASY,
-    label: '쉬움',
-    description: '이제 막 뜨개질을 시작한 사람!',
+    label: '누구든 시도해볼 수 있어요.',
   },
   {
     value: LEVEL.NORMAL,
-    label: '보통',
-    description: '겉뜨기, 안뜨기, 코잡기는 쉽게 가능한 사람!',
+    label: '몇가지 작품을 만들어 봤다면 도전해 볼 만해요.',
   },
   {
     value: LEVEL.HARD,
-    label: '어려움',
-    description: '니트, 양말, 모자 하나 정도는 떠본 사람!',
+    label: '새로운 도전을 기다리는 고수분들을 위해 준비했어요.',
   },
 ];
 
-type DesignSize = {
+export type DesignSize = {
   total_length: number;
   sleeve_length: number;
   shoulder_width: number;

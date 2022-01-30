@@ -1,5 +1,5 @@
 import { Tab, Tabs } from '@material-ui/core';
-import { selectedTabAtom } from 'pages/MyInformation/recoils';
+import { selectedTabAtom } from 'pages/MyInformation/atom';
 import { DESIGN_MENU_TYPE, DESIGN_MENU } from 'pages/MyInformation/types';
 import React from 'react';
 import { useRecoilState } from 'recoil';

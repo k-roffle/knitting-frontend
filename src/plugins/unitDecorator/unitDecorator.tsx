@@ -2,7 +2,7 @@ import { Tooltip } from '@material-ui/core';
 import { ContentState, EditorState } from 'draft-js';
 import { changeOriginalStyleToNewStyle } from 'libs/draftjs-utils/inline';
 import { StyleKeyType } from 'libs/draftjs-utils/types';
-import { currentStepAtom } from 'pages/CreateDesign/recoils';
+import { currentStepAtom } from 'pages/CreateDesign/atom';
 import { PAGE } from 'pages/CreateDesign/types';
 import { ReactElement, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';

@@ -14,7 +14,6 @@ import Editor from '@draft-js-plugins/editor';
 import createToolbarPlugin, {
   Separator,
 } from '@draft-js-plugins/static-toolbar';
-import { Typography } from '@material-ui/core';
 import { DraftHandleValue, DraftStyleMap, EditorState } from 'draft-js';
 import { Snackbar } from 'dumbs';
 import { customInlineStylesMap } from 'libs/draftjs-utils/inline';
@@ -22,13 +21,16 @@ import createDeleteDecoratorPlugin from 'plugins/deleteDecorator';
 import createUnitDecoratorPlugin from 'plugins/unitDecorator';
 import React, { useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import styled, { css } from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
+import { editorStateAtom } from '../atom';
 import { FontSize } from '../components/FontSize';
-import { editorStateAtom } from '../recoils';
 
+import {
+  PatternContainer,
+  ToolbarContentWrapper,
+  EditorWrapper,
+  CurrentLengthInfo,
+} from './Pattern.css';
 import { DEFAULT_FONT_SIZE, MAX_PATTERN_LENGTH } from './constants';
 import { getCurrentFontSize } from './utils';
 
@@ -42,68 +44,6 @@ const deleteDecoratorPlugin = createDeleteDecoratorPlugin({
 
 const toolbarPlugin = createToolbarPlugin();
 const { Toolbar } = toolbarPlugin;
-
-interface EditorWrapperProps {
-  isFocused: boolean;
-}
-
-const PatternContainer = styled.div`
-  margin: ${theme.spacing(1.5)};
-`;
-
-const EditorWrapper = styled.div<EditorWrapperProps>`
-  min-height: 40vh;
-  padding: ${theme.spacing(1.5)};
-  margin-top: ${theme.spacing(1)};
-  border: 1.5px solid transparent;
-  border-radius: ${theme.spacing(1)};
-  background: ${palette.grey[200]};
-
-  ${({ isFocused }) =>
-    isFocused &&
-    css`
-      border: 1.5px solid ${palette.grey[400]};
-    `}
-
-  .public-DraftEditorPlaceholder-root {
-    display: inline;
-    div {
-      display: inline;
-    }
-    color: ${palette.action.active};
-  }
-
-  .DraftEditor-editorContainer {
-    display: inline-block;
-  }
-`;
-
-const ToolbarContentWrapper = styled.div`
-  display: flex;
-  margin-top: ${theme.spacing(4)};
-  padding: ${theme.spacing(0.5)};
-  background: ${palette.grey[200]};
-  border-radius: ${theme.spacing(1)};
-
-  button {
-    height: 100%;
-    background: transparent;
-    border-radius: ${theme.spacing(0.5)};
-    border: none;
-    cursor: pointer;
-
-    &:hover {
-      background: ${palette.grey[300]};
-    }
-  }
-`;
-
-const CurrentLengthInfo = styled(Typography)`
-  display: block;
-  margin: ${theme.spacing(1, 0)};
-  text-align: right;
-  color: ${palette.text.secondary};
-`;
 
 const Pattern = (): React.ReactElement => {
   const [editorState, setEditorState] = useRecoilState(editorStateAtom);

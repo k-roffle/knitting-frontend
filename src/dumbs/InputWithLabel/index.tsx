@@ -15,6 +15,7 @@ interface Props {
   placeholder?: string;
   endAdornment?: React.ReactNode;
   inputProps?: InputBaseComponentProps;
+  isRequired?: boolean;
   onChange: (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => void;
@@ -47,34 +48,29 @@ export const RequiredMark = (): React.ReactElement => (
   <Required variant="h4"> *</Required>
 );
 
-const RequiredInput = ({
+const InputWithLabel = ({
   id,
-  type,
   label,
   variant,
-  value,
-  placeholder,
-  endAdornment,
-  onChange,
+  inputProps = { min: 1 },
+  isRequired = false,
+  ...other
 }: Props): React.ReactElement => {
   return (
     <>
       <FormLabel variant={variant}>
         {label}
-        <RequiredMark />
+        {isRequired && <RequiredMark />}
       </FormLabel>
       <FullWithInput
         id={id}
-        type={type}
         aria-describedby={id}
-        placeholder={placeholder}
-        endAdornment={endAdornment}
-        value={value}
-        onChange={onChange}
-        required
+        required={isRequired}
+        inputProps={inputProps}
+        {...other}
       />
     </>
   );
 };
 
-export default RequiredInput;
+export default InputWithLabel;
