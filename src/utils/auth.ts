@@ -1,7 +1,9 @@
+import { LOGIN_ROUTER_ROOT } from 'constants/path';
+
 import decodeJwtToken from 'jwt-decode';
 import { requestWithToken } from 'utils/requests';
 
-interface TokenPayload {
+export interface TokenPayload {
   id: string;
   exp: number;
 }
@@ -24,18 +26,18 @@ const refreshAccessToken = async (token: string): Promise<void> => {
     .catch(() => deleteAccessToken());
 };
 
-export const getAccessToken = (): string | undefined => {
+export const getAccessToken = (): string | void => {
   const now = new Date().getTime() / 1000;
-  const token = window.localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   if (token == null) {
-    return undefined;
+    return redirectToLogin();
   }
   const tokenPayload: TokenPayload = decodeJwtToken(token);
 
   if (now > tokenPayload.exp) {
     deleteAccessToken();
-    return undefined;
+    return redirectToLogin();
   }
 
   if (tokenPayload.exp - now < REFRESH_DELTA) {
@@ -45,12 +47,18 @@ export const getAccessToken = (): string | undefined => {
   return token;
 };
 
+export const redirectToLogin = (): void => {
+  if (!location.pathname.includes(LOGIN_ROUTER_ROOT)) {
+    location.href = LOGIN_ROUTER_ROOT;
+  }
+};
+
 export const setAccessToken = (token: string): void => {
-  window.localStorage.setItem('token', token);
+  localStorage.setItem('token', token);
 };
 
 export const deleteAccessToken = (): void => {
-  window.localStorage.removeItem('token');
+  localStorage.removeItem('token');
 };
 
 export const isAuthenticated = (): boolean => {

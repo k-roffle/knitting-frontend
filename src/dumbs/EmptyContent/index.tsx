@@ -1,5 +1,5 @@
 import { Button, Typography } from '@material-ui/core';
-import React from 'react';
+import React, { ReactChild } from 'react';
 import styled from 'styled-components';
 import { flexCenterAlign } from 'styles/constants';
 import { theme } from 'themes';
@@ -10,6 +10,7 @@ const EmptyContentContainer = styled.div`
 
   flex-direction: column;
   padding: ${theme.spacing(7)};
+  text-align: center;
 `;
 
 const Description = styled(Typography)`
@@ -23,8 +24,8 @@ const CreateButton = styled(Button)`
 `;
 
 export interface EmptyContentProps {
-  title: string;
-  description?: string;
+  title: ReactChild;
+  description?: ReactChild;
   buttonText: string;
   onClick: () => void;
 }
