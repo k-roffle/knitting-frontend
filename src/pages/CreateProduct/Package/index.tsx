@@ -40,10 +40,10 @@ const Rate = styled.span`
 `;
 
 const SalesDateInfo = styled(Typography)<{
-  isInvalid?: boolean;
+  invalid?: boolean;
 }>`
   margin-top: ${theme.spacing(1)};
-  color: ${({ isInvalid }) => (isInvalid ? '#ff0000' : '#808080')};
+  color: ${({ invalid }) => (invalid ? '#ff0000' : '#808080')};
 `;
 
 const Wave = styled.span`
@@ -125,7 +125,7 @@ const Package = (): React.ReactElement => {
       dayjs(specifiedSalesStartDate).valueOf() >
       dayjs(specifiedSalesEndDate).valueOf();
 
-    let isInvalid = false;
+    let invalid = false;
     let message = '상품이 등록된 이후부터 계속해서 판매됩니다.';
 
     if (specifiedSalesStartDate || specifiedSalesEndDate) {
@@ -142,7 +142,7 @@ const Package = (): React.ReactElement => {
       }
       if (specifiedSalesStartDate && specifiedSalesEndDate) {
         if (invalidDateRange) {
-          isInvalid = true;
+          invalid = true;
           message = '종료일은 시작일보다 커야 합니다.';
         } else {
           message = `
@@ -154,7 +154,7 @@ const Package = (): React.ReactElement => {
     }
 
     return (
-      <SalesDateInfo variant="h5" isInvalid={isInvalid}>
+      <SalesDateInfo variant="h5" invalid={invalid || undefined}>
         {message}
       </SalesDateInfo>
     );
