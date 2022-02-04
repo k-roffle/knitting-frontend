@@ -13,6 +13,7 @@ import React from 'react';
 interface InlineInputProps extends InputProps {
   label: string;
   variant?: Variant | 'inherit';
+  message?: string;
 }
 
 export const FormLabel = styled(Typography)`
@@ -43,6 +44,7 @@ const InlineInput = (props: InlineInputProps): React.ReactElement => {
       </Grid>
       <Grid item>
         <Input {...props} aria-describedby={props.id} required />
+        {props.error && <FormHelperText error>{props.message}</FormHelperText>}
       </Grid>
     </InputGrid>
   );

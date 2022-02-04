@@ -97,6 +97,13 @@ const Package = (): React.ReactElement => {
     tags,
   } = currentProductInput;
   const [images, setImages] = React.useState<ImageListType>([]);
+  const [invalidPrice, setInvalidPrice] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    if (fullPrice < discountPrice) {
+      setInvalidPrice(true);
+    }
+  }, [fullPrice, discountPrice]);
 
   const getRate = (): string => {
     const rate = Math.round(
