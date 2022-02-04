@@ -8,8 +8,14 @@ import { UnitDecoratorProps } from '../unitDecorator';
 export default function DeleteDecorator(
   props: UnitDecoratorProps,
 ): ReactElement {
-  const { children, getEditorState, setEditorState, blockKey, start, end } =
-    props;
+  const {
+    children,
+    getEditorState,
+    setEditorState,
+    blockKey,
+    start,
+    end,
+  } = props;
 
   const editorState = getEditorState();
   const selectionState = editorState.getSelection();
@@ -23,8 +29,7 @@ export default function DeleteDecorator(
     editorState,
     newSelection,
   );
-  const decoratorStyle =
-    editorStateWithDecoratorSelection.getCurrentInlineStyle();
+  const decoratorStyle = editorStateWithDecoratorSelection.getCurrentInlineStyle();
 
   useEffect(() => {
     if (start == null) {
