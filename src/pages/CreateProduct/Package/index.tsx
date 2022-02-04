@@ -98,6 +98,13 @@ const Package = (): React.ReactElement => {
     tags,
   } = currentProductInput;
   const [images, setImages] = React.useState<ImageListType>([]);
+  const [invalidPrice, setInvalidPrice] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    if (fullPrice < discountPrice) {
+      setInvalidPrice(true);
+    }
+  }, [fullPrice, discountPrice]);
 
   const getRate = (): string => {
     const rate = Math.round(
@@ -239,6 +246,8 @@ const Package = (): React.ReactElement => {
               aria-describedby="discountPrice"
               endAdornment={<InputAdornment position="end">원</InputAdornment>}
               onChange={onChangeDiscountPrice}
+              error={invalidPrice}
+              message="할인가는 정가보다 클 수 없습니다."
             />
             {rate && (
               <Rate>
