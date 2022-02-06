@@ -5,21 +5,16 @@ import { useGet } from 'knitting/hooks/useGet';
 import { Product } from 'knitting/pages/ProductDetail/types';
 import { ObjectResponse } from 'knitting/utils/requestType';
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import MyInformation from '../MyInformation';
 
 import { Row, Profile, Tag, Price, Design } from './ProductDetail.css';
 
-type Props = {
-  id: string;
-};
-
-const ProductDetail = ({
-  match,
-}: RouteComponentProps<Props>): React.ReactElement => {
+const ProductDetail = (): React.ReactElement => {
+  const params = useParams();
   const { data } = useGet<ObjectResponse<Product>, unknown>({
-    pathname: `/product/mine/${match.params.id}`,
+    pathname: `/product/mine/${params.id}`,
     errorMessage: FAILED_TO_GET_PRODUCT,
   });
 

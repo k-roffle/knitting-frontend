@@ -1,7 +1,7 @@
+import { ObjectResponse } from 'knitting/utils/requestType';
+import { getRequest } from 'knitting/utils/requests';
 import { useQuery } from 'react-query';
 import { UseQueryResult } from 'react-query/types/react/types';
-import { ObjectResponse } from 'utils/requestType';
-import { getRequest } from 'utils/requests';
 
 import { SalesSummaryResponse } from './types';
 

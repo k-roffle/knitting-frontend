@@ -1,14 +1,13 @@
-import { FAILED_TO_SAVE_PRODUCT } from 'constants/errors';
-
-import { usePost } from 'hooks/usePost';
+import { FAILED_TO_SAVE_PRODUCT } from 'knitting/constants/errors';
+import { usePost } from 'knitting/hooks/usePost';
 import {
   currentProductIdAtom,
   currentProductInputAtom,
   currentStepAtom,
-} from 'pages/CreateProduct/recoils';
-import { PAGE } from 'pages/CreateProduct/types';
+} from 'knitting/pages/CreateProduct/recoils';
+import { PAGE } from 'knitting/pages/CreateProduct/types';
+import { splitText } from 'knitting/utils/splitText';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { splitText } from 'utils/splitText';
 
 type SaveProduct = {
   saveProduct: () => void;
@@ -31,7 +30,8 @@ export const useSaveProduct = (): SaveProduct => {
 
   const onSuccess = () => {
     if (data) {
-      setCurrentProductId(data.payload.id);
+      // TODO FIX
+      // setCurrentProductId(data.payload.id);
     }
     setCurrentStep(PAGE.INTRODUCTION);
   };

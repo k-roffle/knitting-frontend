@@ -1,4 +1,4 @@
-import CommonStepProgressBar from 'components/CommonStepProgressBar';
+import CommonStepProgressBar from 'knitting/components/CommonStepProgressBar';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 

@@ -1,3 +1,4 @@
+import { Global } from '@emotion/react';
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import CommonSnackbar from 'knitting/components/CommonSnackbar';
 import {
@@ -19,6 +20,8 @@ import React from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+
+import GlobalStyle from './globalStyles';
 
 const queryClient = new QueryClient();
 

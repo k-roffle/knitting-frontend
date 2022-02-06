@@ -1,8 +1,7 @@
-import { MY_INFORMATION_ROUTER_ROOT } from 'constants/path';
-
-import { usePost } from 'hooks/usePost';
-import { currentProductIdAtom } from 'pages/CreateProduct/recoils';
-import { useHistory } from 'react-router-dom';
+import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
+import { usePost } from 'knitting/hooks/usePost';
+import { currentProductIdAtom } from 'knitting/pages/CreateProduct/recoils';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 type StartSale = {
@@ -11,7 +10,7 @@ type StartSale = {
 
 export const useStartSale = (): StartSale => {
   const currentProductId = useRecoilValue(currentProductIdAtom);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { mutate } = usePost({
     pathname: '/product',
@@ -19,7 +18,7 @@ export const useStartSale = (): StartSale => {
 
   const startSale = () => {
     mutate({ id: currentProductId });
-    history.push(MY_INFORMATION_ROUTER_ROOT);
+    navigate(MY_INFORMATION_ROUTER_ROOT);
   };
 
   return { startSale };

@@ -7,7 +7,7 @@ import {
 import EmptyContent from 'knitting/dumbs/EmptyContent';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { useGetMyProfile } from '../../hooks/useGetMyProfile';
@@ -32,12 +32,12 @@ const MyProfile = (): React.ReactElement => {
   const { error: salesSummaryError, data: salesSummaryData } =
     useGetMySalesSummary();
   const { error: myProfileError, data: myProfileData } = useGetMyProfile();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const emptyContent = {
     title: '사용자 정보를 불러올 수 없어요! 😢',
     buttonText: '메인으로 돌아가기',
-    onClick: () => history.push('/'),
+    onClick: () => navigate('/'),
   };
 
   useCommonSnackbar({

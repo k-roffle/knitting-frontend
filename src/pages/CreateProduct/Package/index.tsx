@@ -1,17 +1,16 @@
-import DateFnsUtils from '@date-io/date-fns';
 import styled from '@emotion/styled';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-  DatePickerProps,
-} from '@material-ui/pickers';
 import { Close } from '@mui/icons-material';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import DatePicker from '@mui/lab/DatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import {
   Grid,
   Input,
   Typography,
   InputProps,
   InputAdornment,
+  TextField,
+  TextFieldProps,
 } from '@mui/material';
 import dayjs from 'dayjs';
 import { FormLabel, InputWithLabel, RequiredMark } from 'knitting/dumbs';
@@ -181,16 +180,14 @@ const Package = (): React.ReactElement => {
     });
   };
 
-  const onChangeSpecifiedSalesStartDate: DatePickerProps['onChange'] = (
-    date,
-  ) => {
+  const onChangeSpecifiedSalesStartDate = (date: any) => {
     setCurrentProductInput({
       ...currentProductInput,
       specifiedSalesStartDate: date?.toISOString(),
     });
   };
 
-  const onChangeSpecifiedSalesEndDate: DatePickerProps['onChange'] = (date) => {
+  const onChangeSpecifiedSalesEndDate = (date: any) => {
     setCurrentProductInput({
       ...currentProductInput,
       specifiedSalesEndDate: date?.toISOString(),
@@ -282,33 +279,31 @@ const Package = (): React.ReactElement => {
         </Row>
         <Row item xs={12}>
           <FormLabel variant="h5">판매 기간</FormLabel>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Grid alignItems="center" container>
-              <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="yyyy/MM/dd"
-                id="date-picker-inline"
+              <DatePicker
+                disableFuture
+                openTo="day"
+                views={['year', 'month', 'day']}
                 value={specifiedSalesStartDate}
                 onChange={onChangeSpecifiedSalesStartDate}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
+                renderInput={(params: TextFieldProps) => (
+                  <TextField {...params} />
+                )}
               />
               <Wave>~</Wave>
-              <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="yyyy/MM/dd"
-                id="date-picker-inline"
+              <DatePicker
+                disableFuture
+                openTo="day"
+                views={['year', 'month', 'day']}
                 value={specifiedSalesEndDate}
                 onChange={onChangeSpecifiedSalesEndDate}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
+                renderInput={(params: TextFieldProps) => (
+                  <TextField {...params} />
+                )}
               />
             </Grid>
-          </MuiPickersUtilsProvider>
+          </LocalizationProvider>
         </Row>
         <Grid item xs={12}>
           {renderSalesDateInfoMessage()}
