@@ -1,10 +1,9 @@
-import { PRODUCT_DETAIL_PATH } from 'constants/path';
-
-import { Error404 } from 'pages';
-import ProductDetail from 'pages/ProductDetail';
+import { PRODUCT_DETAIL_PATH } from 'knitting/constants/path';
+import { Error404 } from 'knitting/pages';
+import ProductDetail from 'knitting/pages/ProductDetail';
+import { ProtectedRoute } from 'knitting/utils/route';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { ProtectedRoute } from 'utils/route';
 
 const ProductRouter = (): React.ReactElement => {
   return (

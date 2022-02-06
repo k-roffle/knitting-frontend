@@ -1,12 +1,11 @@
-import { FAILED_TO_GET_PRODUCT } from 'constants/errors';
-
-import { Box, Grid, Typography } from '@material-ui/core';
-import { Button, Layout } from 'dumbs';
-import { useGet } from 'hooks/useGet';
-import { Product } from 'pages/ProductDetail/types';
+import { Grid, Box, Typography } from '@mui/material';
+import { FAILED_TO_GET_PRODUCT } from 'knitting/constants/errors';
+import { Button, Layout } from 'knitting/dumbs';
+import { useGet } from 'knitting/hooks/useGet';
+import { Product } from 'knitting/pages/ProductDetail/types';
+import { ObjectResponse } from 'knitting/utils/requestType';
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { ObjectResponse } from 'utils/requestType';
 
 import MyInformation from '../MyInformation';
 

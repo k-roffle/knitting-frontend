@@ -1,7 +1,6 @@
-import { FAILED_TO_GET_MY_DESIGNS } from 'constants/errors';
-
-import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
-import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
+import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
+import { FAILED_TO_GET_MY_DESIGNS } from 'knitting/constants/errors';
+import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
 
 import { DesignItemResponse } from './types';
 import { useGetMyDesigns } from './useGetMyDesigns';

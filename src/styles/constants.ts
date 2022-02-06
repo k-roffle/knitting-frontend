@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
-import { styled, Typography } from '@mui/material';
+import styled from '@emotion/styled';
+import { Typography } from '@mui/material';
 import { theme } from 'knitting/themes';
 
 export const flexCenterAlign = css`
