@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
 import {
   FAILED_TO_GET_MY_SALE_SUMMARY,
@@ -5,7 +6,6 @@ import {
 } from 'knitting/constants/errors';
 import EmptyContent from 'knitting/dumbs/EmptyContent';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
-import { Typography } from '@mui/material';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';

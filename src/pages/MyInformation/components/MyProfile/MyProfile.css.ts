@@ -1,9 +1,8 @@
-import { Button, Typography } from '@material-ui/core';
-import styled from 'styled-components';
-
-import { flexVerticalAlign } from '../../../../styles/constants';
-import { theme } from '../../../../themes';
-import { palette } from '../../../../themes/palette';
+import styled from '@emotion/styled';
+import { Typography, Button } from '@mui/material';
+import { flexVerticalAlign } from 'knitting/styles/constants';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 
 export const MyProfileContainer = styled.section`
   display: inline-block;

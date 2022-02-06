@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 import { Button, Typography } from '@mui/material';
 import { flexCenterAlign } from 'knitting/styles/constants';
-import React from 'react';
-import { ReactChild } from 'react';
+import React, { ReactChild } from 'react';
 
 const EmptyContentContainer = styled.div`
   ${flexCenterAlign}

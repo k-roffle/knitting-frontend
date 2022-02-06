@@ -1,7 +1,7 @@
-import { Typography } from '@material-ui/core';
+import styled from '@emotion/styled';
+import { Typography } from '@mui/material';
+import { theme } from 'knitting/themes';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { theme } from 'themes';
 
 export const ProductCard = styled(Link)`
   color: ${theme.palette.text.primary};

@@ -10,7 +10,7 @@ import { getRequest } from 'utils/requests';
 export const useGet = <
   TQueryFnData = unknown,
   TError = unknown,
-  TData = TQueryFnData
+  TData = TQueryFnData,
 >({
   pathname,
   errorMessage = GENERAL_ERROR,

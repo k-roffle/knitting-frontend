@@ -1,10 +1,10 @@
-import { Layout } from 'dumbs';
-import Package from 'pages/CreateProduct/Package';
-import SelectDesigns from 'pages/CreateProduct/SelectDesigns';
+import styled from '@emotion/styled';
+import { Layout } from 'knitting/dumbs';
+import Package from 'knitting/pages/CreateProduct/Package';
+import SelectDesigns from 'knitting/pages/CreateProduct/SelectDesigns';
+import { theme } from 'knitting/themes';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import { theme } from 'themes';
 
 import Confirm from './Confirm';
 import Footer from './components/Footer';
