@@ -1,6 +1,6 @@
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { theme } from 'themes';
 
 const getTextStyle = (size: 'small' | 'large'): string => {
   switch (size) {
@@ -25,7 +25,7 @@ const LogoWrapper = styled.div<Props>`
 `;
 
 const LogoIcon = styled.span<Props>`
-  ${({ size }) =>
+  ${({ size, theme }) =>
     size === 'large' &&
     css`
       margin-right: ${theme.spacing(1)};

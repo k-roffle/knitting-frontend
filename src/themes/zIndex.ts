@@ -1,6 +1,6 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material/styles';
 
-export const { zIndex } = createMuiTheme({
+export const { zIndex } = createTheme({
   zIndex: {
     mobileStepper: 1000,
     speedDial: 1050,

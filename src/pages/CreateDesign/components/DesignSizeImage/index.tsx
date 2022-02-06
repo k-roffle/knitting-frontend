@@ -1,4 +1,4 @@
-import KnitDesign from 'assets/designs/knit.png';
+import KnitDesign from 'knitting/assets/designs/knit.png';
 import React from 'react';
 
 import { DesignImageWrapper } from './DesignSizeImage.css';

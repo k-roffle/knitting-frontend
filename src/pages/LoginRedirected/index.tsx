@@ -1,15 +1,12 @@
-import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'constants/errors';
-
-import { CircularProgress, Typography } from '@material-ui/core';
-import { errorSnackbarMessageAtom } from 'pages/Login/atom';
+import styled from '@emotion/styled';
+import { CircularProgress, Typography } from '@mui/material';
+import { FAILED_TO_FETCH_ACCESS_TOKEN } from 'knitting/constants/errors';
+import { errorSnackbarMessageAtom } from 'knitting/pages/Login/atom';
+import { setAccessToken } from 'knitting/utils/auth';
+import { request } from 'knitting/utils/requests';
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
-import { theme } from 'themes';
-import { useQueryParam, StringParam } from 'use-query-params';
-import { setAccessToken } from 'utils/auth';
-import { request } from 'utils/requests';
 
 const ProgressWrapper = styled.div`
   position: absolute;
@@ -25,22 +22,23 @@ const StyledCircularProgress = styled(CircularProgress)`
 `;
 
 const LoadingContent = styled(Typography)`
-  margin-top: ${theme.spacing(3)};
+  margin-top: ${({ theme }) => theme.spacing(3)};
 `;
 
 const LoginRedirected = (): React.ReactElement => {
-  const [code] = useQueryParam('code', StringParam);
-  const history = useHistory();
+  const { search } = useLocation();
+  const code = new URLSearchParams(search).get('code');
+  const navigate = useNavigate();
 
   const setErrorSnackbarMessage = useSetRecoilState(errorSnackbarMessageAtom);
   const onLoginSuccess = (accessToken: string) => {
     setAccessToken(accessToken);
-    history.replace('/');
+    navigate('/');
   };
 
   const onLoginFailed = () => {
     setErrorSnackbarMessage(FAILED_TO_FETCH_ACCESS_TOKEN);
-    history.push('/login');
+    navigate('/login');
   };
 
   const requestFetchAccessToken = async () => {

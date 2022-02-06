@@ -2,42 +2,34 @@ import {
   MY_INFORMATION_PROFILE_PATH,
   MY_INFORMATION_CREATE_DESIGN_PATH,
   MY_INFORMATION_CREATE_PRODUCT_PATH,
-} from 'constants/path';
-
-import CreateDesign from 'pages/CreateDesign';
-import CreateProduct from 'pages/CreateProduct';
-import Error404 from 'pages/Error404';
-import MyInformation from 'pages/MyInformation';
+} from 'knitting/constants/path';
+import CreateDesign from 'knitting/pages/CreateDesign';
+import CreateProduct from 'knitting/pages/CreateProduct';
+import Error404 from 'knitting/pages/Error404';
+import MyInformation from 'knitting/pages/MyInformation';
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { ProtectedRoute } from 'utils/route';
+import { Route, Routes } from 'react-router-dom';
 
 const MyInformationRouter = (): React.ReactElement => {
   return (
-    <Switch>
-      <ProtectedRoute
+    <Routes>
+      <Route
         path={MY_INFORMATION_PROFILE_PATH}
-        component={MyInformation}
-        exact
-        strict
-        sensitive
+        element={<MyInformation />}
+        caseSensitive
       />
-      <ProtectedRoute
+      <Route
         path={MY_INFORMATION_CREATE_DESIGN_PATH}
-        component={CreateDesign}
-        exact
-        strict
-        sensitive
+        element={<CreateDesign />}
+        caseSensitive
       />
-      <ProtectedRoute
+      <Route
         path={MY_INFORMATION_CREATE_PRODUCT_PATH}
-        component={CreateProduct}
-        exact
-        strict
-        sensitive
+        element={<CreateProduct />}
+        caseSensitive
       />
-      <Route path="*" component={Error404} />
-    </Switch>
+      <Route path="*" element={<Error404 />} />
+    </Routes>
   );
 };
 

@@ -1,9 +1,8 @@
-import { Typography } from '@material-ui/core';
-import styled from 'styled-components';
-import { theme } from 'themes';
+import styled from '@emotion/styled';
+import { Typography } from '@mui/material';
 
 export const Title = styled(Typography)`
-  margin-bottom: ${theme.spacing(2)};
+  margin-bottom: ${({ theme }) => theme.spacing(2)};
   font-weight: 600;
 `;
 

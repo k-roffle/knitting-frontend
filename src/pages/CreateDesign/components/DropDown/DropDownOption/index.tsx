@@ -1,4 +1,4 @@
-import { MenuItem, MenuItemProps } from '@material-ui/core';
+import { MenuItem, MenuItemProps } from '@mui/material';
 import React from 'react';
 
 interface Props {

@@ -1,5 +1,4 @@
-import { Snackbar as MaterialSnackbar } from '@material-ui/core';
-import MuiAlert, { Color } from '@material-ui/lab/Alert';
+import { Alert, AlertColor, Snackbar as MaterialSnackbar } from '@mui/material';
 import React from 'react';
 
 interface Props {
@@ -7,7 +6,7 @@ interface Props {
   label: string;
   onClose?(): void;
   open: boolean;
-  severity: Color;
+  severity: AlertColor;
 }
 
 const Snackbar = ({
@@ -19,18 +18,19 @@ const Snackbar = ({
 }: Props): React.ReactElement => {
   return (
     <MaterialSnackbar
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       open={open}
       autoHideDuration={autoHideDuration}
       onClose={onClose}
     >
-      <MuiAlert
+      <Alert
         elevation={6}
         variant="filled"
         severity={severity}
         onClose={onClose}
       >
         {label}
-      </MuiAlert>
+      </Alert>
     </MaterialSnackbar>
   );
 };

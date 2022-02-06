@@ -1,6 +1,6 @@
-import { Button as OriginalButton, ButtonProps } from '@material-ui/core';
+import styled from '@emotion/styled';
+import { Button as OriginalButton, ButtonProps } from '@mui/material';
 import React from 'react';
-import styled from 'styled-components';
 
 const Button = styled(OriginalButton)`
   margin-right: 16px;

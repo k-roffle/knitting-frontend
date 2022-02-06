@@ -1,11 +1,11 @@
-import { Color } from '@material-ui/lab/Alert';
-import { Snackbar } from 'dumbs';
+import { AlertColor } from '@mui/material';
+import { Snackbar } from 'knitting/dumbs';
 import React from 'react';
 import { atom, useRecoilValue } from 'recoil';
 
 export type SnackbarParams = {
   message: string;
-  severity: Color;
+  severity: AlertColor;
   callbackAfterReset?(): void;
 };
 

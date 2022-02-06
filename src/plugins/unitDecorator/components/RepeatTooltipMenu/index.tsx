@@ -2,7 +2,7 @@ import {
   NOT_CALCULATE,
   REPEAT_APPROXIMATION_TYPE,
   UNIT_APPROXIMATION_TYPE,
-} from 'plugins/unitDecorator/types';
+} from 'knitting/plugins/unitDecorator/types';
 import React from 'react';
 
 import { TooltipMenuContainer, TooltipMenu } from '../DetailTooltipMenu';

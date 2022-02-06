@@ -1,31 +1,29 @@
-import { Logo } from 'dumbs';
+import styled from '@emotion/styled';
+import Logo from 'knitting/dumbs/Logo';
 import React from 'react';
-import styled from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 const Divider = styled.div`
-  margin-top: ${theme.spacing(-2)};
+  margin-top: ${({ theme }) => theme.spacing(2)};
   height: 1px;
-  background-color: ${palette.grey[300]};
+  background-color: ${({ theme }) => theme.palette.grey[300]};
 `;
 
 const FooterContent = styled.ul`
   max-width: 1100px;
-  padding: ${theme.spacing(4)};
+  padding: ${({ theme }) => theme.spacing(4)};
   margin: auto;
   font-size: 0.85rem;
-  color: ${palette.grey[500]};
+  color: ${({ theme }) => theme.palette.grey[500]};
   list-style: none;
 `;
 
-const StyledLogo = styled((props) => <Logo {...props} />)`
-  color: ${palette.grey[600]};
+const StyledLogo = styled(Logo)`
+  color: ${({ theme }) => theme.palette.grey[600]};
 `;
 
 const Info = styled.li`
-  color: ${palette.grey[500]};
-  margin-bottom: ${theme.spacing(0.5)};
+  color: ${({ theme }) => theme.palette.grey[500]};
+  margin-bottom: ${({ theme }) => theme.spacing(0.5)};
 
   a {
     color: inherit;
@@ -34,10 +32,10 @@ const Info = styled.li`
 `;
 
 const Terms = styled.li`
-  margin: ${theme.spacing(2, 0)};
+  margin: ${({ theme }) => theme.spacing(2, 0)};
 
-  span:first-child {
-    margin-right: ${theme.spacing(2)};
+  span:first-of-type {
+    margin-right: ${({ theme }) => theme.spacing(2)};
   }
 
   span {

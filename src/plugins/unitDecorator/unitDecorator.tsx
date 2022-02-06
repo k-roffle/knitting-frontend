@@ -1,13 +1,13 @@
-import { Tooltip } from '@material-ui/core';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { Tooltip } from '@mui/material';
 import { ContentState, EditorState } from 'draft-js';
-import { changeOriginalStyleToNewStyle } from 'libs/draftjs-utils/inline';
-import { StyleKeyType } from 'libs/draftjs-utils/types';
-import { currentStepAtom } from 'pages/CreateDesign/atom';
-import { PAGE } from 'pages/CreateDesign/types';
+import { changeOriginalStyleToNewStyle } from 'knitting/libs/draftjs-utils/inline';
+import { StyleKeyType } from 'knitting/libs/draftjs-utils/types';
+import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
+import { PAGE } from 'knitting/pages/CreateDesign/types';
 import { ReactElement, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import styled, { css } from 'styled-components';
-import { theme } from 'themes';
 
 import { DetailTooltipMenu } from './components/DetailTooltipMenu';
 import { RepeatTooltipMenu } from './components/RepeatTooltipMenu';
@@ -42,14 +42,18 @@ export interface UnitDecoratorProps {
 
 const DecoratorWrapper = styled.span<{ isReadOnly?: boolean }>`
   > span {
-    margin: ${theme.spacing(0, 0.5)};
-    padding: ${theme.spacing(0.5, 1)};
-    border-radius: ${theme.spacing(0.5)};
-    color: ${theme.palette.background.paper};
-    box-shadow: ${theme.shadows[2]};
     line-height: 210%;
 
-    ${({ isReadOnly }) =>
+    ${({ theme }) =>
+      css`
+        margin: ${theme.spacing(0, 0.5)};
+        padding: ${theme.spacing(0.5, 1)};
+        border-radius: ${theme.spacing(0.5)};
+        color: ${theme.palette.background.paper};
+        box-shadow: ${theme.shadows[2]};
+      `}
+
+    ${({ isReadOnly, theme }) =>
       !isReadOnly &&
       css`
         cursor: pointer;

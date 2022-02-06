@@ -1,10 +1,6 @@
-import {
-  MenuItem,
-  Select as OriginalSelect,
-  SelectProps,
-} from '@material-ui/core';
+import styled from '@emotion/styled';
+import { MenuItem, Select as OriginalSelect, SelectProps } from '@mui/material';
 import React from 'react';
-import styled from 'styled-components';
 
 const Select = styled(OriginalSelect)`
   margin: 0 0 16px 16px;

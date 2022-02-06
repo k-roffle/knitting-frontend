@@ -1,6 +1,6 @@
 import Editor from '@draft-js-plugins/editor';
-import { Grid } from '@material-ui/core';
-import { customInlineStylesMap } from 'libs/draftjs-utils/inline';
+import { Grid } from '@mui/material';
+import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
@@ -17,9 +17,8 @@ import { Title, Contents, Row, Label } from './Review.css';
 
 const Review = (): React.ReactElement => {
   const { name } = useRecoilValue(coverInputAtom);
-  const { designType, patternType, stitches, rows, needle } = useRecoilValue(
-    outlineInputAtom,
-  );
+  const { designType, patternType, stitches, rows, needle } =
+    useRecoilValue(outlineInputAtom);
   const { size, yarn, extra } = useRecoilValue(optionalOutlineInputAtom);
   const {
     totalLength,

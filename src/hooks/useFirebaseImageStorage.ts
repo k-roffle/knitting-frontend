@@ -1,7 +1,3 @@
-import { FAILED_TO_UPLOAD_IMAGE } from 'constants/errors';
-
-import { useCommonSnackbar } from 'components/CommonSnackbar/useCommonSnackbar';
-import { ImageInformation } from 'components/ImageFileUploader/hooks/useImageFileUploader';
 import {
   ref,
   getDownloadURL,
@@ -11,10 +7,14 @@ import {
   UploadTaskSnapshot,
   UploadTask,
 } from 'firebase/storage';
-import firebaseInit from 'firebaseInit';
 import decodeJwtToken from 'jwt-decode';
+import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
+import { ImageInformation } from 'knitting/components/ImageFileUploader/hooks/useImageFileUploader';
+import { FAILED_TO_UPLOAD_IMAGE } from 'knitting/constants/errors';
+import { getAccessToken, TokenPayload } from 'knitting/utils/auth';
 import { useEffect, useState } from 'react';
-import { getAccessToken, TokenPayload } from 'utils/auth';
+
+import firebaseInit from '../firebaseInit';
 
 type UploadStorage = {
   localFileId: string;

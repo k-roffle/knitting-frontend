@@ -1,10 +1,10 @@
-import { Button as MaterialButton } from '@material-ui/core';
-import { Button } from 'dumbs';
-import { currentStepAtom } from 'pages/CreateProduct/recoils';
-import { PAGE } from 'pages/CreateProduct/types';
+import { Button as MaterialButton } from '@mui/material';
+import { Button } from 'knitting/dumbs';
+import { currentStepAtom } from 'knitting/pages/CreateProduct/recoils';
+import { PAGE } from 'knitting/pages/CreateProduct/types';
+import { FooterContainer } from 'knitting/styles/constants';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { FooterContainer } from 'styles/constants';
 
 import { useSaveProduct } from './hooks/useSaveProduct';
 import { useStartSale } from './hooks/useStartSale';

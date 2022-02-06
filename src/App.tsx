@@ -1,26 +1,27 @@
+import { Global } from '@emotion/react';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import CommonSnackbar from 'knitting/components/CommonSnackbar';
 import {
   MY_INFORMATION_ROUTER_ROOT,
   LOGIN_ROUTER_ROOT,
   ERROR_PATH,
-  PRODUCT_DETAIL_PATH,
-} from 'constants/path';
-
-import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
-import CommonSnackbar from 'components/CommonSnackbar';
-import { Error404 } from 'pages';
+  ROUTER_PATH,
+} from 'knitting/constants/path';
+import { Error404 } from 'knitting/pages';
+import Login from 'knitting/routers/LoginRouter';
+import MyInformation from 'knitting/routers/MyInformationRouter';
+import { theme } from 'knitting/themes';
+import {
+  LoginRoute,
+  ProtectedRoute,
+  RouteWithoutTrailingSlash,
+} from 'knitting/utils/route';
 import React from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import Login from 'routers/LoginRouter';
-import MyInformation from 'routers/MyInformationRouter';
-import Product from 'routers/ProductRouter';
-import { theme } from 'themes';
-import { QueryParamProvider } from 'use-query-params';
-import {
-  RouteWithoutTrailigSlash as PublicRoute,
-  RouteWithoutTrailigSlash as NestedRoute,
-} from 'utils/route';
+
+import GlobalStyle from './globalStyles';
 
 const queryClient = new QueryClient();
 
@@ -29,28 +30,32 @@ const App = (): React.ReactElement => {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <RecoilRoot>
-          <StylesProvider injectFirst>
+          <StyledEngineProvider injectFirst>
             <ThemeProvider theme={theme}>
-              <QueryParamProvider ReactRouterRoute={PublicRoute}>
-                <Switch>
-                  <NestedRoute
-                    path={MY_INFORMATION_ROUTER_ROOT}
-                    component={MyInformation}
-                  />
-                  <NestedRoute path={LOGIN_ROUTER_ROOT} component={Login} />
-                  <NestedRoute path={PRODUCT_DETAIL_PATH} component={Product} />
-                  <PublicRoute
-                    path={ERROR_PATH}
-                    component={Error404}
-                    exact
-                    strict
-                    sensitive
-                  />
-                  <PublicRoute path="*" component={Error404} />
-                </Switch>
-              </QueryParamProvider>
+              <Global styles={GlobalStyle} />
+              <RouteWithoutTrailingSlash />
+              <Routes>
+                <Route
+                  path={MY_INFORMATION_ROUTER_ROOT + ROUTER_PATH}
+                  element={
+                    <ProtectedRoute>
+                      <MyInformation />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path={LOGIN_ROUTER_ROOT + ROUTER_PATH}
+                  element={
+                    <LoginRoute>
+                      <Login />
+                    </LoginRoute>
+                  }
+                />
+                <Route path={ERROR_PATH} element={<Error404 />} caseSensitive />
+                <Route path="*" element={<Error404 />} />
+              </Routes>
             </ThemeProvider>
-          </StylesProvider>
+          </StyledEngineProvider>
           <CommonSnackbar />
         </RecoilRoot>
       </BrowserRouter>

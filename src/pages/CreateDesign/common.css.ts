@@ -1,11 +1,10 @@
-import { Grid, Input } from '@material-ui/core';
-import styled from 'styled-components';
-import { theme } from 'themes';
+import styled from '@emotion/styled';
+import { Grid, Input } from '@mui/material';
 
 export const FullWidthInput = styled(Input)`
   width: 100%;
 `;
 
 export const Row = styled(Grid)`
-  padding: ${theme.spacing(1.5)};
+  padding: ${({ theme }) => theme.spacing(1.5)};
 `;

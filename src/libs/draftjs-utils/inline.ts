@@ -1,7 +1,7 @@
 import { ContentBlock, EditorState, Modifier, RichUtils } from 'draft-js';
-import { UnitDecoratorStyleMap } from 'plugins/unitDecorator/types';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
+import { UnitDecoratorStyleMap } from 'knitting/plugins/unitDecorator/types';
+import { theme } from 'knitting/themes';
+import { palette } from 'knitting/themes/palette';
 
 import { getSelectedBlocksList } from './block';
 import {
@@ -225,10 +225,8 @@ export const changeOriginalStyleToNewStyle = ({
     );
   }
 
-  const editorStateWithNewStyleAndPreviousSelection = EditorState.forceSelection(
-    editorStateWithNewStyle,
-    originalSelection,
-  );
+  const editorStateWithNewStyleAndPreviousSelection =
+    EditorState.forceSelection(editorStateWithNewStyle, originalSelection);
 
   return editorStateWithNewStyleAndPreviousSelection;
 };

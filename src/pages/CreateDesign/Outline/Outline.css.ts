@@ -1,8 +1,7 @@
-import { Box } from '@material-ui/core';
-import styled from 'styled-components';
-import { theme } from 'themes';
+import styled from '@emotion/styled';
+import { Box } from '@mui/material';
 
 export const InfoBox = styled(Box)`
   width: 100%;
-  background-color: ${theme.palette.grey[100]};
+  background-color: ${({ theme }) => theme.palette.grey[100]};
 `;

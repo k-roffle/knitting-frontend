@@ -1,5 +1,5 @@
-import { Grid, Typography } from '@material-ui/core';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import { Grid, Typography } from '@mui/material';
 
 export const Title = styled(Typography)`
   font-weight: 600;

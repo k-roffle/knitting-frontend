@@ -1,50 +1,47 @@
-import { LOGIN_PATH, ROOT_PATH } from 'constants/path';
-
+import { LOGIN_PATH, ROOT_PATH } from 'knitting/constants/path';
+import { isAuthenticated } from 'knitting/utils/auth';
 import React from 'react';
-import { RouteProps, Route, Redirect } from 'react-router-dom';
-import { isAuthenticated } from 'utils/auth';
+import { RouteProps, useLocation, Navigate } from 'react-router-dom';
 
-export const ProtectedRoute = (props: RouteProps): React.ReactElement => {
+export const ProtectedRoute = ({
+  children,
+}: {
+  children: React.ReactElement;
+}): React.ReactElement => {
+  const location = useLocation();
+
   return isAuthenticated() ? (
-    <RouteWithoutTrailigSlash {...props} />
+    children
   ) : (
-    <Redirect
-      to={{
-        pathname: LOGIN_PATH,
-      }}
-    />
+    <Navigate to={LOGIN_PATH} state={{ from: location }} replace />
   );
 };
 
-export const LoginRoute = (props: RouteProps): React.ReactElement => {
-  return isAuthenticated() ? (
-    <Redirect
-      to={{
-        pathname: ROOT_PATH,
-      }}
-    />
-  ) : (
-    <RouteWithoutTrailigSlash {...props} />
-  );
+export const LoginRoute = ({
+  children,
+}: {
+  children: React.ReactElement;
+}): React.ReactElement => {
+  return isAuthenticated() ? <Navigate to={ROOT_PATH} /> : children;
 };
 
-export const RouteWithoutTrailigSlash = (
+export const RouteWithoutTrailingSlash = (
   props: RouteProps,
-): React.ReactElement => {
-  const pathname = props.location?.pathname;
-  const pathnameWithoutTrailingSlash = pathname?.replace(/\/$/, '');
+): React.ReactElement | null => {
+  const location = useLocation();
 
-  if (pathname === '/') {
-    return <Route {...props} />;
+  if (location.pathname.match('/.*/$')) {
+    return (
+      <Navigate
+        replace
+        {...props}
+        to={{
+          pathname: location.pathname.replace(/\/$/, ''),
+          search: location.search,
+        }}
+      />
+    );
   }
 
-  return pathname === pathnameWithoutTrailingSlash ? (
-    <Route {...props} />
-  ) : (
-    <Redirect
-      to={{
-        pathname: pathnameWithoutTrailingSlash,
-      }}
-    />
-  );
+  return null;
 };

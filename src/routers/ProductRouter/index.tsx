@@ -1,23 +1,15 @@
-import { PRODUCT_DETAIL_PATH } from 'constants/path';
-
-import { Error404 } from 'pages';
-import ProductDetail from 'pages/ProductDetail';
+import { PRODUCT_DETAIL_PATH } from 'knitting/constants/path';
+import { Error404 } from 'knitting/pages';
+import ProductDetail from 'knitting/pages/ProductDetail';
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { ProtectedRoute } from 'utils/route';
+import { Route, Routes } from 'react-router-dom';
 
 const ProductRouter = (): React.ReactElement => {
   return (
-    <Switch>
-      <ProtectedRoute
-        path={PRODUCT_DETAIL_PATH}
-        component={ProductDetail}
-        exact
-        strict
-        sensitive
-      />
-      <Route path="*" component={Error404} />
-    </Switch>
+    <Routes>
+      <Route path={PRODUCT_DETAIL_PATH} element={ProductDetail} caseSensitive />
+      <Route path="*" element={Error404} />
+    </Routes>
   );
 };
 

@@ -1,9 +1,8 @@
-import { Step, Stepper } from '@material-ui/core';
-import StepLabel from '@material-ui/core/StepLabel';
-import renderStepIcon from 'components/RenderStepIcon';
-import { PAGE_TYPE } from 'pages/CreateProduct/types';
+import styled from '@emotion/styled';
+import { Step, StepLabel, Stepper } from '@mui/material';
+import renderStepIcon from 'knitting/components/RenderStepIcon';
+import { PAGE_TYPE } from 'knitting/pages/CreateProduct/types';
 import React from 'react';
-import styled from 'styled-components';
 
 const StyledStepLabel = styled(StepLabel)`
   word-break: keep-all;

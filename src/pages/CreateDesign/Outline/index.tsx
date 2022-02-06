@@ -1,20 +1,28 @@
+import { InfoOutlined } from '@mui/icons-material';
 import {
   Grid,
   InputAdornment,
   ListSubheader,
   MenuItem,
-  SelectProps,
+  SelectChangeEvent,
   Tooltip,
-} from '@material-ui/core';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import { FormLabel, InputWithLabel, RequiredMark, RequiredSelect } from 'dumbs';
-import { InfoBox } from 'pages/CreateDesign/Outline/Outline.css';
-import { OutlineInput, outlineInputAtom } from 'pages/CreateDesign/atom';
-import useInvalidOutline from 'pages/CreateDesign/hooks/useInvalidOutline';
-import { DESIGN, PATTERN } from 'pages/CreateDesign/types';
+} from '@mui/material';
+import {
+  FormLabel,
+  InputWithLabel,
+  RequiredMark,
+  RequiredSelect,
+} from 'knitting/dumbs';
+import { InfoBox } from 'knitting/pages/CreateDesign/Outline/Outline.css';
+import {
+  OutlineInput,
+  outlineInputAtom,
+} from 'knitting/pages/CreateDesign/atom';
+import useInvalidOutline from 'knitting/pages/CreateDesign/hooks/useInvalidOutline';
+import { DESIGN, PATTERN } from 'knitting/pages/CreateDesign/types';
+import { renderDesign, renderPattern } from 'knitting/utils/renderText';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { renderDesign, renderPattern } from 'utils/renderText';
 
 import { Row } from '../common.css';
 import OptionalOutline from '../components/OptionalOutline';
@@ -44,7 +52,7 @@ const Outline = (): React.ReactElement => {
   };
 
   const handleSelectChange = (
-    { target }: React.ChangeEvent<SelectProps>,
+    { target }: SelectChangeEvent<unknown>,
     type: keyof OutlineInput,
   ): void => {
     setOutlineInput({
@@ -106,7 +114,7 @@ const Outline = (): React.ReactElement => {
           title="10 x 10(cm) 편물의 코와 단을 공유해주세요."
           placement="right"
         >
-          <InfoOutlinedIcon />
+          <InfoOutlined />
         </Tooltip>
       </FormLabel>
       <Grid container>

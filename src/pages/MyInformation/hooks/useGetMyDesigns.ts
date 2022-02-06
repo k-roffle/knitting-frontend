@@ -1,6 +1,6 @@
-import { SWRInfiniteResponse, useSWRInfinite } from 'swr';
-import { DEFAULT_LIST_LENGTH, ListResponse } from 'utils/requestType';
-import { getRequest } from 'utils/requests';
+import { DEFAULT_LIST_LENGTH, ListResponse } from 'knitting/utils/requestType';
+import { getRequest } from 'knitting/utils/requests';
+import useSWRInfinite, { SWRInfiniteResponse } from 'swr/infinite';
 
 import { DesignItemResponse } from './types';
 
@@ -30,7 +30,7 @@ export const useGetMyDesigns =
       return `designs/my?count=${DEFAULT_LIST_LENGTH}${afterValue}`;
     }
 
-    const response = useSWRInfinite(getKey, getRequest);
+    const response = useSWRInfinite<MyDesignsQueryResult>(getKey, getRequest);
 
     return response;
   };

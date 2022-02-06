@@ -1,5 +1,3 @@
-import { FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH } from 'constants/errors';
-
 import {
   ItalicButton,
   BoldButton,
@@ -15,10 +13,11 @@ import createToolbarPlugin, {
   Separator,
 } from '@draft-js-plugins/static-toolbar';
 import { DraftHandleValue, DraftStyleMap, EditorState } from 'draft-js';
-import { Snackbar } from 'dumbs';
-import { customInlineStylesMap } from 'libs/draftjs-utils/inline';
-import createDeleteDecoratorPlugin from 'plugins/deleteDecorator';
-import createUnitDecoratorPlugin from 'plugins/unitDecorator';
+import { FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH } from 'knitting/constants/errors';
+import { Snackbar } from 'knitting/dumbs';
+import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
+import createDeleteDecoratorPlugin from 'knitting/plugins/deleteDecorator';
+import createUnitDecoratorPlugin from 'knitting/plugins/unitDecorator';
 import React, { useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 

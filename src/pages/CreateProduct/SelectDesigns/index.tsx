@@ -1,12 +1,12 @@
-import { Typography } from '@material-ui/core';
-import EmptyContent from 'dumbs/EmptyContent';
-import DesignItem from 'pages/MyInformation/components/DesignItem';
-import { useMyDesigns } from 'pages/MyInformation/hooks/useMyDesigns';
+import { Typography } from '@mui/material';
+import EmptyContent from 'knitting/dumbs/EmptyContent';
+import DesignItem from 'knitting/pages/MyInformation/components/DesignItem';
+import { useMyDesigns } from 'knitting/pages/MyInformation/hooks/useMyDesigns';
+import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { DEFAULT_LIST_LENGTH } from 'utils/requestType';
 
 import { currentProductInputAtom } from '../recoils';
 
@@ -14,7 +14,7 @@ import { Loader, StyledList } from './SelectDesigns.css';
 
 const SelectDesigns = (): React.ReactElement => {
   const { isLoading, hasLastCursor, designs, loadMore } = useMyDesigns();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [currentProductInput, setCurrentProductInput] = useRecoilState(
     currentProductInputAtom,
@@ -76,7 +76,7 @@ const SelectDesigns = (): React.ReactElement => {
             </>
           }
           buttonText="빠르게 도안 만들고 오기"
-          onClick={() => history.push('/my/designs/create')}
+          onClick={() => navigate('/my/designs/create')}
         />
       )}
     </StyledList>

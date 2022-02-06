@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-import { theme } from 'themes';
+import styled from '@emotion/styled';
 
 export const FooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: ${theme.spacing(6, 0, 4)};
+  padding: ${({ theme }) => theme.spacing(6, 0, 4)};
 `;

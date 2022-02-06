@@ -1,8 +1,7 @@
-import { UNIT_APPROXIMATION_TYPE } from 'plugins/unitDecorator/types';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { UNIT_APPROXIMATION_TYPE } from 'knitting/plugins/unitDecorator/types';
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { theme } from 'themes';
-import { palette } from 'themes/palette';
 
 export interface TooltipMenuProps {
   isSelectedCalculateKey: boolean;
@@ -13,19 +12,23 @@ export const TooltipMenuContainer = styled.div`
 `;
 
 export const TooltipMenu = styled.span<TooltipMenuProps>`
-  padding: ${theme.spacing(0.8)};
-  margin: ${theme.spacing(0.2)};
   white-space: nowrap;
   cursor: pointer;
 
-  &:hover {
-    background-color: ${palette.action.hover};
-  }
+  ${({ theme }) =>
+    css`
+      padding: ${theme.spacing(0.8)};
+      margin: ${theme.spacing(0.2)};
 
-  ${({ isSelectedCalculateKey }) =>
+      &:hover {
+        background-color: ${theme.palette.action.hover};
+      }
+    `}
+
+  ${({ isSelectedCalculateKey, theme }) =>
     isSelectedCalculateKey &&
     css`
-      background-color: ${palette.action.selected};
+      background-color: ${theme.palette.action.selected};
     `}
 `;
 

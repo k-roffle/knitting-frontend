@@ -1,9 +1,12 @@
-import { Select } from '@material-ui/core';
-import { InputBaseComponentProps } from '@material-ui/core/InputBase';
-import { Variant } from '@material-ui/core/styles/createTypography';
-import { FormLabel, RequiredMark } from 'dumbs';
+import styled from '@emotion/styled';
+import {
+  InputBaseComponentProps,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
+import { Variant } from '@mui/material/styles/createTypography';
+import { FormLabel, RequiredMark } from 'knitting/dumbs';
 import React from 'react';
-import styled from 'styled-components';
 
 interface Props {
   id: string;
@@ -14,13 +17,7 @@ interface Props {
   placeholder?: string;
   inputProps?: InputBaseComponentProps;
   children: React.ReactNode;
-  onChange: (
-    event: React.ChangeEvent<{
-      name?: string | undefined;
-      value: unknown;
-    }>,
-    child: React.ReactNode,
-  ) => void;
+  onChange: (event: SelectChangeEvent<unknown>, child: React.ReactNode) => void;
 }
 
 const FullWithSelect = styled(Select)`
@@ -50,6 +47,7 @@ const RequiredSelect = ({
         defaultValue={defaultValue}
         value={value}
         onChange={onChange}
+        variant="standard"
       >
         {children}
       </FullWithSelect>

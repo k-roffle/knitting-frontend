@@ -1,6 +1,6 @@
-import { Box, Grid, Typography } from '@material-ui/core';
-import styled from 'styled-components';
-import { theme } from 'themes';
+import styled from '@emotion/styled';
+import { Grid, Typography, Box } from '@mui/material';
+import { theme } from 'knitting/themes';
 
 export const Row = styled(Grid)`
   padding: ${theme.spacing(1.5)};
@@ -19,7 +19,7 @@ export const Tag = styled.div`
   color: ${theme.palette.grey[700]};
   margin-right: ${theme.spacing(1)};
 
-  &: last-child {
+  &:last-child {
     margin-right: 0;
   }
 `;
