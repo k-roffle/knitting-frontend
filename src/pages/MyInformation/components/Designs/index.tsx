@@ -1,7 +1,8 @@
-import { Typography } from '@mui/material';
 import EmptyContent from 'knitting/dumbs/EmptyContent';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
+
+import { Typography } from '@mui/material';
 import { useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useSetRecoilState } from 'recoil';

@@ -1,12 +1,3 @@
-import { InfoOutlined } from '@mui/icons-material';
-import {
-  Grid,
-  InputAdornment,
-  ListSubheader,
-  MenuItem,
-  SelectChangeEvent,
-  Tooltip,
-} from '@mui/material';
 import {
   FormLabel,
   InputWithLabel,
@@ -21,6 +12,16 @@ import {
 import useInvalidOutline from 'knitting/pages/CreateDesign/hooks/useInvalidOutline';
 import { DESIGN, PATTERN } from 'knitting/pages/CreateDesign/types';
 import { renderDesign, renderPattern } from 'knitting/utils/renderText';
+
+import { InfoOutlined } from '@mui/icons-material';
+import {
+  Grid,
+  InputAdornment,
+  ListSubheader,
+  MenuItem,
+  SelectChangeEvent,
+  Tooltip,
+} from '@mui/material';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 

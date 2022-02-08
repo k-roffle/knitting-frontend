@@ -1,6 +1,7 @@
-import { EditorState } from 'draft-js';
 import { changeOriginalStyleToNewStyle } from 'knitting/libs/draftjs-utils/inline';
 import { StyleKeyType } from 'knitting/libs/draftjs-utils/types';
+
+import { EditorState } from 'draft-js';
 import { ReactElement, useEffect } from 'react';
 
 import { UnitDecoratorProps } from '../unitDecorator';

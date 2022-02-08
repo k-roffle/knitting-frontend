@@ -1,5 +1,6 @@
 import { LOGIN_PATH, ROOT_PATH } from 'knitting/constants/path';
 import { isAuthenticated } from 'knitting/utils/auth';
+
 import React from 'react';
 import { RouteProps, useLocation, Navigate } from 'react-router-dom';
 

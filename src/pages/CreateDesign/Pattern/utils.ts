@@ -1,5 +1,6 @@
-import { DraftStyleMap, EditorState } from 'draft-js';
 import { getSelectionCustomInlineStyle } from 'knitting/libs/draftjs-utils/inline';
+
+import { DraftStyleMap, EditorState } from 'draft-js';
 
 import { DEFAULT_FONT_SIZE } from './constants';
 

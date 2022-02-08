@@ -1,6 +1,7 @@
+import { UNIT_APPROXIMATION_TYPE } from 'knitting/plugins/unitDecorator/types';
+
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { UNIT_APPROXIMATION_TYPE } from 'knitting/plugins/unitDecorator/types';
 import React from 'react';
 
 export interface TooltipMenuProps {

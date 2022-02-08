@@ -1,6 +1,7 @@
+import deleteDecoratorStrategy from 'knitting/plugins/deleteDecorator/deleteDecoratorStrategy';
+
 import { EditorPlugin } from '@draft-js-plugins/editor';
 import { ContentBlock } from 'draft-js';
-import deleteDecoratorStrategy from 'knitting/plugins/deleteDecorator/deleteDecoratorStrategy';
 
 import DeleteDecorator from '../deleteDecorator/deleteDecorator';
 
