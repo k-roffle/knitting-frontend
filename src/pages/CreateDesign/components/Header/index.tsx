@@ -9,12 +9,13 @@ import { Contents, Title } from './Header.css';
 
 const Header = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
+  const { title, detailContents } = renderStepContents(currentStep);
 
   return (
     <Grid container>
       <Grid item xs={12} sm={8}>
-        <Title variant="h3">✏️ 새로운 도안 작성</Title>
-        <Contents>{renderStepContents(currentStep)}</Contents>
+        <Title variant="h3">{title}</Title>
+        <Contents>{detailContents}</Contents>
       </Grid>
       <Grid item xs={12} sm={4}>
         <StepProgressBar />
