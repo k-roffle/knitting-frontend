@@ -1,5 +1,3 @@
-import { Global } from '@emotion/react';
-import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import CommonSnackbar from 'knitting/components/CommonSnackbar';
 import {
   MY_INFORMATION_ROUTER_ROOT,
@@ -16,6 +14,9 @@ import {
   ProtectedRoute,
   RouteWithoutTrailingSlash,
 } from 'knitting/utils/route';
+
+import { Global } from '@emotion/react';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

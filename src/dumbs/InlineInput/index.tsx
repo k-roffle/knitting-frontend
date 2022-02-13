@@ -1,3 +1,5 @@
+import { theme } from 'knitting/themes';
+
 import styled from '@emotion/styled';
 import {
   InputProps,
@@ -7,7 +9,6 @@ import {
   css,
 } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
-import { theme } from 'knitting/themes';
 import React from 'react';
 
 interface InlineInputProps extends InputProps {

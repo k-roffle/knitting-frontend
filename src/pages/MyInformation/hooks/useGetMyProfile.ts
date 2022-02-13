@@ -1,7 +1,8 @@
 import { ObjectResponse } from 'knitting/utils/requestType';
 import { getRequest } from 'knitting/utils/requests';
-import { useQuery } from 'react-query';
 import { UseQueryResult } from 'react-query/types/react/types';
+
+import { useQuery } from 'react-query';
 
 import { ProfileResponse } from './types';
 

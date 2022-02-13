@@ -1,7 +1,8 @@
-import { ContentBlock, EditorState, Modifier, RichUtils } from 'draft-js';
 import { UnitDecoratorStyleMap } from 'knitting/plugins/unitDecorator/types';
 import { theme } from 'knitting/themes';
 import { palette } from 'knitting/themes/palette';
+
+import { ContentBlock, EditorState, Modifier, RichUtils } from 'draft-js';
 
 import { getSelectedBlocksList } from './block';
 import {

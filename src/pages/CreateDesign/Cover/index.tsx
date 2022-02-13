@@ -1,4 +1,3 @@
-import { FormGroup } from '@mui/material';
 import ImageFileUploader from 'knitting/components/ImageFileUploader';
 import { ImageInformation } from 'knitting/components/ImageFileUploader/hooks/useImageFileUploader';
 import { FormLabel, InputWithLabel, RequiredMark } from 'knitting/dumbs';
@@ -8,6 +7,8 @@ import {
   coverInputAtom,
 } from 'knitting/pages/CreateDesign/atom';
 import { Row } from 'knitting/pages/CreateDesign/common.css';
+
+import { FormGroup } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 

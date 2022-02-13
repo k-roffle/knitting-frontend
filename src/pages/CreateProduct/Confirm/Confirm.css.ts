@@ -1,6 +1,7 @@
+import { theme } from 'knitting/themes';
+
 import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
-import { theme } from 'knitting/themes';
 import { Link } from 'react-router-dom';
 
 export const ProductCard = styled(Link)`

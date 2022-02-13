@@ -1,6 +1,7 @@
+import { theme } from 'knitting/themes';
+
 import styled from '@emotion/styled';
 import { List } from '@mui/material';
-import { theme } from 'knitting/themes';
 
 export const StyledList = styled(List)`
   margin-top: ${theme.spacing(2)};

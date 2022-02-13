@@ -1,7 +1,8 @@
-import styled from '@emotion/styled';
-import { css } from '@mui/material';
 import { palette } from 'knitting/themes/palette';
 import { zIndex } from 'knitting/themes/zIndex';
+
+import styled from '@emotion/styled';
+import { css } from '@mui/material';
 import React from 'react';
 
 interface StepIconProps {

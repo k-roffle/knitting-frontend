@@ -1,5 +1,6 @@
-import { blue, deepOrange } from '@mui/material/colors';
 import { palette } from 'knitting/themes/palette';
+
+import { blue, deepOrange } from '@mui/material/colors';
 
 import { REPEAT_DETAIL_APPROXIMATION } from './repeats';
 import { STITCH_APPROXIMATION, ROW_APPROXIMATION } from './units';

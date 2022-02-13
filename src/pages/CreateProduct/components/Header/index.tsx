@@ -1,6 +1,7 @@
-import { Grid } from '@mui/material';
 import { useGetStepContents } from 'knitting/pages/CreateProduct/hooks/useGetStepContents';
 import { Title, Contents } from 'knitting/styles/constants';
+
+import { Grid } from '@mui/material';
 import React from 'react';
 
 import StepProgressBar from '../StepProgressBar';

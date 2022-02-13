@@ -2,9 +2,10 @@ import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonS
 import { GENERAL_ERROR } from 'knitting/constants/errors';
 import { RequestParam } from 'knitting/utils/requestType';
 import { getRequest } from 'knitting/utils/requests';
+import { UseQueryResult } from 'react-query/types/react/types';
+
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { UseQueryResult } from 'react-query/types/react/types';
 
 export const useGet = <
   TQueryFnData = unknown,

@@ -1,5 +1,6 @@
-import { initializeApp, FirebaseApp } from 'firebase/app';
 import { getConfig } from 'knitting/utils/config';
+
+import { initializeApp, FirebaseApp } from 'firebase/app';
 
 const firebaseConfig: Record<string, unknown> = {
   apiKey: getConfig('REACT_APP_FIREBASE_API_KEY'),

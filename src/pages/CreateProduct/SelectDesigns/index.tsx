@@ -1,8 +1,9 @@
-import { Typography } from '@mui/material';
 import EmptyContent from 'knitting/dumbs/EmptyContent';
 import DesignItem from 'knitting/pages/MyInformation/components/DesignItem';
 import { useMyDesigns } from 'knitting/pages/MyInformation/hooks/useMyDesigns';
 import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
+
+import { Typography } from '@mui/material';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useNavigate } from 'react-router-dom';

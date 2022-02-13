@@ -1,4 +1,5 @@
 import { SnakeToCamelCase } from 'knitting/utils/types';
+
 import { atom } from 'recoil';
 
 import { Product } from './types';

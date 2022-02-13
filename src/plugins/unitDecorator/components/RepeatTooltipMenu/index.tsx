@@ -3,6 +3,7 @@ import {
   REPEAT_APPROXIMATION_TYPE,
   UNIT_APPROXIMATION_TYPE,
 } from 'knitting/plugins/unitDecorator/types';
+
 import React from 'react';
 
 import { TooltipMenuContainer, TooltipMenu } from '../DetailTooltipMenu';

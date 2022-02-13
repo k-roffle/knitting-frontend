@@ -1,5 +1,6 @@
-import { Grid, Box, Typography } from '@mui/material';
 import { splitText } from 'knitting/utils/splitText';
+
+import { Grid, Box, Typography } from '@mui/material';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 

@@ -1,6 +1,7 @@
 import { PRODUCT_DETAIL_PATH } from 'knitting/constants/path';
 import { Error404 } from 'knitting/pages';
 import ProductDetail from 'knitting/pages/ProductDetail';
+
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 

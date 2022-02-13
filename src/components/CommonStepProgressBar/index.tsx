@@ -1,7 +1,8 @@
-import styled from '@emotion/styled';
-import { Step, StepLabel, Stepper } from '@mui/material';
 import renderStepIcon from 'knitting/components/RenderStepIcon';
 import { PAGE_TYPE } from 'knitting/pages/CreateProduct/types';
+
+import styled from '@emotion/styled';
+import { Step, StepLabel, Stepper } from '@mui/material';
 import React from 'react';
 
 const StyledStepLabel = styled(StepLabel)`

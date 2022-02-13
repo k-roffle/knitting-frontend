@@ -1,5 +1,6 @@
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
 import { ONLY_UPLOAD_FILES_BELOW_10MB } from 'knitting/constants/errors';
+
 import { ChangeEvent, DragEvent, useState } from 'react';
 
 type ImageMetadata = {

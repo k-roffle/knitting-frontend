@@ -1,6 +1,7 @@
+import { theme } from 'knitting/themes';
+
 import styled from '@emotion/styled';
 import { Grid, Typography, Box } from '@mui/material';
-import { theme } from 'knitting/themes';
 
 export const Row = styled(Grid)`
   padding: ${theme.spacing(1.5)};
