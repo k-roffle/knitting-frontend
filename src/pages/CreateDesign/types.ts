@@ -72,6 +72,7 @@ export type PostDesignInput = {
   needle: string;
   yarn: string;
   extra?: string;
+  price: number;
   pattern: string;
 };
 

@@ -20,7 +20,7 @@ export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
   const { name, coverImageUrl } = useRecoilValue(coverInputAtom);
   const isInvalidOutlineValue = useInvalidOutline();
-  const saveDesign = useSaveDesign();
+  const { saveDesign } = useSaveDesign();
 
   const onPreviousClick = (): void => {
     switch (currentStep) {
@@ -50,7 +50,7 @@ export const useStepController = (): StepController => {
         setCurrentStep(PAGE.REVIEW);
         break;
       case PAGE.REVIEW:
-        saveDesign?.();
+        saveDesign(coverImageUrl);
         break;
       default:
         break;

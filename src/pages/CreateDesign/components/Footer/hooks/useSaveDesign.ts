@@ -14,9 +14,14 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-export const useSaveDesign = (): (() => void) | undefined => {
+type SaveDesign = {
+  saveDesign: (coverImageUrl: string) => void;
+  uploadFile: (() => void) | undefined;
+};
+
+export const useSaveDesign = (): SaveDesign => {
   const { name, description } = useRecoilValue(coverInputAtom);
-  const { designType, patternType, stitches, rows, needle } =
+  const { price, designType, patternType, stitches, rows, needle } =
     useRecoilValue(outlineInputAtom);
   const { size, yarn, extra, targetLevel, techniques } = useRecoilValue(
     optionalOutlineInputAtom,
@@ -38,7 +43,7 @@ export const useSaveDesign = (): (() => void) | undefined => {
   });
 
   const { mutate } = usePost({
-    pathname: '/design',
+    pathname: '/designs',
     onSuccess: () => navigate(MY_INFORMATION_ROUTER_ROOT),
   });
 
@@ -67,6 +72,7 @@ export const useSaveDesign = (): (() => void) | undefined => {
       needle,
       yarn,
       extra,
+      price,
       description,
       target_level: targetLevel,
       pattern,
@@ -84,5 +90,5 @@ export const useSaveDesign = (): (() => void) | undefined => {
     }
   }, [uploadResults]);
 
-  return uploadFile;
+  return { saveDesign, uploadFile };
 };

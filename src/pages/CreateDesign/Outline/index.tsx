@@ -33,7 +33,8 @@ const Outline = (): React.ReactElement => {
 
   const [outlineInput, setOutlineInput] = useRecoilState(outlineInputAtom);
 
-  const { designType, patternType, stitches, rows, needle } = outlineInput;
+  const { price, designType, patternType, stitches, rows, needle } =
+    outlineInput;
 
   const isInvalidOutlineValue = useInvalidOutline();
 
@@ -78,6 +79,17 @@ const Outline = (): React.ReactElement => {
 
   return (
     <Grid container>
+      <Row item xs={12}>
+        <InputWithLabel
+          id="price"
+          type="number"
+          variant="h5"
+          label="도안 가격"
+          value={price}
+          onChange={(event) => handleInputChange(event, 'price', true)}
+          isRequired
+        />
+      </Row>
       <Row item xs={12} sm={6}>
         <RequiredSelect
           id="design-type"
