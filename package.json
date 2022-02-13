@@ -17,6 +17,7 @@
     "date-fns": "^2.24.0",
     "dayjs": "^1.10.7",
     "firebase": "^9.6.3",
+    "firebase-tools": "^10.2.0",
     "jwt-decode": "^3.1.2",
     "knitting": "link:./src",
     "query-string": "^7.1.0",
