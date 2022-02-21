@@ -3,6 +3,7 @@ export type DesignItemResponse = {
   name: string;
   yarn: string;
   cover_image_url: string;
+  price: number;
   tags: string[];
   created_at: string;
 };

@@ -19,6 +19,7 @@ import {
   ThumbNail,
   Divider,
   StyledCheckBox,
+  Price,
 } from './DesignItem.css';
 
 interface Props {
@@ -33,6 +34,7 @@ const DesignItem = ({
   name = '',
   cover_image_url: coverImageUrl,
   yarn = '',
+  price = 0,
   tags = [],
   created_at: createdAt,
   showDivider = true,
@@ -94,6 +96,12 @@ const DesignItem = ({
               </Skeleton>
             </DesignType>
           ))}
+
+          <Price>
+            <Skeleton isLoading={isLoading} variant="text">
+              {price.toLocaleString()}원
+            </Skeleton>
+          </Price>
         </Content>
       </ListItemContainer>
       {showDivider && <Divider />}
