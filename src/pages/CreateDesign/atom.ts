@@ -12,7 +12,7 @@ export type CoverInput = Pick<
 
 export type OutlineInput = Pick<
   DesignInput,
-  'designType' | 'patternType' | 'stitches' | 'rows' | 'needle'
+  'price' | 'designType' | 'patternType' | 'stitches' | 'rows' | 'needle'
 >;
 
 export type OptionalOutlineInput = Pick<
@@ -44,6 +44,7 @@ export const coverImageAtom = atom<ImageInformation | undefined>({
 export const outlineInputAtom = atom<OutlineInput>({
   key: 'outlineInputAtom',
   default: {
+    price: 0,
     designType: DESIGN.SWEATER,
     patternType: PATTERN.TEXT,
     stitches: 0,
