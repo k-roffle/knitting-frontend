@@ -1,4 +1,5 @@
 import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
+import Footer from 'knitting/pages/CreateDesign/components/Footer';
 
 import Editor from '@draft-js-plugins/editor';
 import { Grid } from '@mui/material';
@@ -10,8 +11,10 @@ import {
   outlineInputAtom,
   editorStateAtom,
   optionalOutlineInputAtom,
+  stepValidationsAtom,
 } from '../atom';
 import DesignSizeImage from '../components/DesignSizeImage';
+import { useStepController } from '../components/Footer/hooks/useStepController';
 import { PATTERN, PATTERN_TYPE } from '../types';
 
 import { Title, Contents, Row, Label } from './Review.css';
@@ -29,6 +32,9 @@ const Review = (): React.ReactElement => {
     armholeDepth,
   } = size;
   const editorState = useRecoilValue(editorStateAtom);
+  const stepValidations = useRecoilValue(stepValidationsAtom);
+
+  const { onPreviousClick, onNextClick } = useStepController();
 
   const { TEXT, IMAGE, VIDEO } = PATTERN;
 
@@ -120,6 +126,17 @@ const Review = (): React.ReactElement => {
           </Contents>
         </Row>
       </Grid>
+      <Footer
+        previousLabel="이전"
+        nextLabel="저장"
+        onPreviousClick={onPreviousClick}
+        onNextClick={onNextClick}
+        invalidMessage={
+          stepValidations.some((validation) => validation === false)
+            ? '저장이 불가능한 페이지가 있어요'
+            : undefined
+        }
+      />
     </>
   );
 };
