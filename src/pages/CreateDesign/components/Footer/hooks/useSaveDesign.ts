@@ -1,3 +1,4 @@
+import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
 import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
 import useFirebaseImageStorage from 'knitting/hooks/useFirebaseImageStorage';
 import { usePost } from 'knitting/hooks/usePost';
@@ -7,21 +8,26 @@ import {
   editorStateAtom,
   localCoverImageAtom,
   optionalOutlineInputAtom,
+  draftIdAtom,
 } from 'knitting/pages/CreateDesign/atom';
-import { PostDesignInput } from 'knitting/pages/CreateDesign/types';
+import {
+  PostDesignInput,
+  PostDraftDesign,
+} from 'knitting/pages/CreateDesign/types';
 
 import { convertToRaw } from 'draft-js';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 type SaveDesign = {
-  saveDesign: (coverImageUrl: string) => void;
+  draftDesign: () => void;
+  saveDesign: () => void;
   uploadFile: (() => void) | undefined;
 };
 
 export const useSaveDesign = (): SaveDesign => {
-  const { name, description } = useRecoilValue(coverInputAtom);
+  const { name, coverImageUrl, description } = useRecoilValue(coverInputAtom);
   const { price, designType, patternType, stitches, rows, needle } =
     useRecoilValue(outlineInputAtom);
   const { size, yarn, extra, targetLevel, techniques } = useRecoilValue(
@@ -37,26 +43,41 @@ export const useSaveDesign = (): SaveDesign => {
 
   const editorState = useRecoilValue(editorStateAtom);
   const localCoverImage = useRecoilValue(localCoverImageAtom);
+  const [draftId, setDraftId] = useRecoilState(draftIdAtom);
 
   const { uploadResults, uploadFile } = useFirebaseImageStorage({
     path: 'designs/cover-image',
     fileInformationList: localCoverImage,
   });
 
-  const { mutate } = usePost({
+  const { mutate: saveMutate } = usePost<number, PostDesignInput>({
     pathname: '/designs',
     onSuccess: () => navigate(MY_INFORMATION_ROUTER_ROOT),
   });
 
   const navigate = useNavigate();
 
-  const saveDesign = (coverImageUrl: string): void => {
+  const { isSuccess, mutate: draftMutate } = usePost<number, PostDraftDesign>({
+    pathname: 'designs/draft',
+    onSuccess: (id) => {
+      setDraftId(id);
+    },
+  });
+
+  useCommonSnackbar({
+    message: '도안이 임시저장 되었습니다.',
+    severity: 'success',
+    dependencies: [isSuccess],
+  });
+
+  const getDesignData = (): PostDesignInput => {
     const pattern = `${JSON.stringify(
       convertToRaw(editorState.getCurrentContent()),
     )}`;
 
     const separatedTechniques = techniques.split(',');
-    const postDesignData: PostDesignInput = {
+
+    return {
       name,
       cover_image_url: coverImageUrl,
       design_type: designType,
@@ -79,17 +100,27 @@ export const useSaveDesign = (): SaveDesign => {
       pattern,
       techniques: separatedTechniques,
     };
+  };
 
-    mutate(postDesignData);
+  const draftDesign = (): void => {
+    draftMutate({
+      id: draftId,
+      design_id: null,
+      value: JSON.stringify(getDesignData()),
+    });
+  };
+
+  const saveDesign = (): void => {
+    saveMutate(getDesignData());
   };
 
   useEffect(() => {
-    const coverImageUrl = uploadResults.map(({ url }) => url)[0];
+    const imageUrl = uploadResults.map(({ url }) => url)[0];
 
-    if (coverImageUrl != null) {
-      saveDesign(coverImageUrl);
+    if (imageUrl != null) {
+      saveDesign();
     }
   }, [uploadResults]);
 
-  return { saveDesign, uploadFile };
+  return { draftDesign, saveDesign, uploadFile };
 };

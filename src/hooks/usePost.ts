@@ -1,17 +1,25 @@
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
 import { GENERAL_ERROR, NETWORK_ERROR } from 'knitting/constants/errors';
-import { RequestParam } from 'knitting/utils/requestType';
+import { MutateRequestParam } from 'knitting/utils/requestType';
 import { postRequest } from 'knitting/utils/requests';
 
 import { useState } from 'react';
 import { useMutation, UseMutationResult } from 'react-query';
 
-export const usePost = ({
+type TError = {
+  response: unknown;
+};
+
+export const usePost = <TData = unknown, TVariables = void>({
   pathname,
   errorMessage = GENERAL_ERROR,
   onSuccess,
   onError,
-}: RequestParam): UseMutationResult<void, unknown> => {
+}: MutateRequestParam<TData, TError, TVariables>): UseMutationResult<
+  TData,
+  TError,
+  TVariables
+> => {
   const [postErrorMessage, setPostErrorMessage] = useState<string>();
 
   useCommonSnackbar({
@@ -29,7 +37,7 @@ export const usePost = ({
   };
 
   return useMutation(pathname, (postData) => postRequest(pathname, postData), {
-    onSuccess: () => onSuccess?.(),
+    onSuccess,
     onError: handleError,
   });
 };

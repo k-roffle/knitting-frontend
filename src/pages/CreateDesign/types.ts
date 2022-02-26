@@ -76,4 +76,10 @@ export type PostDesignInput = {
   pattern: string;
 };
 
+export type PostDraftDesign = {
+  id: number | null;
+  design_id: number | null;
+  value: string;
+};
+
 export type DesignInput = SnakeToCamelCase<PostDesignInput>;

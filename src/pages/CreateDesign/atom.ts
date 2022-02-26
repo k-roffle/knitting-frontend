@@ -84,3 +84,8 @@ export const editorStateAtom = atom<EditorState>({
   key: 'editorState',
   default: EditorState.createEmpty(),
 });
+
+export const draftIdAtom = atom<number | null>({
+  key: 'draftId',
+  default: null,
+});

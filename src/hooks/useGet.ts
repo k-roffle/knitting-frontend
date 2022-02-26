@@ -1,6 +1,6 @@
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
 import { GENERAL_ERROR } from 'knitting/constants/errors';
-import { RequestParam } from 'knitting/utils/requestType';
+import { QueryRequestParam } from 'knitting/utils/requestType';
 import { getRequest } from 'knitting/utils/requests';
 import { UseQueryResult } from 'react-query/types/react/types';
 
@@ -15,7 +15,7 @@ export const useGet = <
   pathname,
   errorMessage = GENERAL_ERROR,
   onSuccess,
-}: RequestParam): UseQueryResult<TData, TError> => {
+}: QueryRequestParam<TData>): UseQueryResult<TData, TError> => {
   const [showError, setShowError] = useState<boolean>(false);
 
   useCommonSnackbar({
