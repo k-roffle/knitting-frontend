@@ -4,6 +4,8 @@ import { Input, InputBaseComponentProps, Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import React from 'react';
 
+import { checkInvalid } from '../../pages/CreateDesign/utils';
+
 interface Props {
   id: string;
   type?: string;
@@ -14,6 +16,7 @@ interface Props {
   endAdornment?: React.ReactNode;
   inputProps?: InputBaseComponentProps;
   isRequired?: boolean;
+  showValidation?: boolean;
   onChange: (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => void;
@@ -49,11 +52,20 @@ export const RequiredMark = (): React.ReactElement => (
 const InputWithLabel = ({
   id,
   label,
+  value,
   variant,
   inputProps = { min: 1 },
   isRequired = false,
+  showValidation = false,
   ...other
 }: Props): React.ReactElement => {
+  const isInvalid = (): boolean => {
+    if (!isRequired && typeof value === 'string') {
+      return false;
+    }
+    return checkInvalid(value);
+  };
+
   return (
     <>
       <FormLabel variant={variant}>
@@ -62,9 +74,11 @@ const InputWithLabel = ({
       </FormLabel>
       <FullWithInput
         id={id}
+        value={value}
         aria-describedby={id}
         required={isRequired}
         inputProps={inputProps}
+        error={showValidation && isInvalid()}
         {...other}
       />
     </>

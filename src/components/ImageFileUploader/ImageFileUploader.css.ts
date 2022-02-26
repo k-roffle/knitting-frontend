@@ -10,9 +10,16 @@ export const ImagesContainer = styled.div`
   display: flex;
 `;
 
-export const DropZone = styled.div<{ width: number; height: number }>`
+export const DropZone = styled.div<{
+  width: number;
+  height: number;
+  error?: boolean;
+}>`
   cursor: pointer;
-  border: 1px solid ${({ theme }) => theme.palette.grey[300]};
+  border: ${({ error, theme }) =>
+    error
+      ? `1.5px solid ${theme.palette.error.main}`
+      : `1px solid ${theme.palette.grey[300]}`};
   border-radius: ${({ theme }) => theme.spacing(1)};
   width: ${({ width }) => `${width}px`};
   height: ${({ height }) => `${height}px`};
