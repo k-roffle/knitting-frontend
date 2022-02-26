@@ -70,7 +70,7 @@ export const useSaveDesign = (): SaveDesign => {
     dependencies: [isSuccess],
   });
 
-  const getDesignData = (): PostDesignInput => {
+  const getDesignData = (): Omit<PostDesignInput, 'draft_id'> => {
     const pattern = `${JSON.stringify(
       convertToRaw(editorState.getCurrentContent()),
     )}`;
@@ -111,7 +111,10 @@ export const useSaveDesign = (): SaveDesign => {
   };
 
   const saveDesign = (): void => {
-    saveMutate(getDesignData());
+    saveMutate({
+      ...getDesignData(),
+      draft_id: draftId,
+    });
   };
 
   useEffect(() => {
