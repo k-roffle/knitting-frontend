@@ -28,7 +28,7 @@ export const useGetMyDesigns =
         afterValue = `&after=${lastCursor}`;
       }
 
-      return `designs/my?count=${DEFAULT_LIST_LENGTH}${afterValue}`;
+      return `/designs/mine?count=${DEFAULT_LIST_LENGTH}${afterValue}`;
     }
 
     const response = useSWRInfinite<MyDesignsQueryResult>(getKey, getRequest);
