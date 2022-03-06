@@ -188,14 +188,14 @@ const Package = (): React.ReactElement => {
     });
   };
 
-  const onChangeSpecifiedSalesStartDate = (date: any) => {
+  const onChangeSpecifiedSalesStartDate = (date: Date | null) => {
     setCurrentProductInput({
       ...currentProductInput,
       specifiedSalesStartDate: date?.toISOString(),
     });
   };
 
-  const onChangeSpecifiedSalesEndDate = (date: any) => {
+  const onChangeSpecifiedSalesEndDate = (date: Date | null) => {
     setCurrentProductInput({
       ...currentProductInput,
       specifiedSalesEndDate: date?.toISOString(),
