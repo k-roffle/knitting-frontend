@@ -40,17 +40,16 @@ export const useStepController = (): StepController => {
   };
 
   const onNextClick = (): void => {
+    draftDesign();
+
     switch (currentStep) {
       case PAGE.COVER:
-        draftDesign();
         setCurrentStep(PAGE.OUTLINE);
         break;
       case PAGE.OUTLINE:
-        draftDesign();
         setCurrentStep(PAGE.PATTERN);
         break;
       case PAGE.PATTERN:
-        draftDesign();
         setCurrentStep(PAGE.REVIEW);
         break;
       case PAGE.REVIEW:
