@@ -39,6 +39,13 @@ export const DesignType = styled.span`
   margin-right: ${theme.spacing(1)};
 `;
 
+export const Price = styled.span`
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 700;
+  font-size: 24px;
+`;
+
 export const Information = styled(Typography)`
   color: ${palette.grey[800]};
   margin-bottom: ${theme.spacing(0.5)};
