@@ -4,10 +4,9 @@ import {
   stepValidationsAtom,
 } from 'knitting/pages/CreateDesign/atom';
 import { PAGE } from 'knitting/pages/CreateDesign/types';
+import { checkInvalid } from 'knitting/pages/CreateDesign/utils';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
-
-import { checkInvalid } from '../../../utils';
 
 import { useSaveDesign } from './useSaveDesign';
 
