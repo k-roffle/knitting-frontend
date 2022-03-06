@@ -1,10 +1,10 @@
 import {
   coverInputAtom,
   currentStepAtom,
+  stepValidationsAtom,
 } from 'knitting/pages/CreateDesign/atom';
-import useInvalidOutline from 'knitting/pages/CreateDesign/hooks/useInvalidOutline';
 import { PAGE } from 'knitting/pages/CreateDesign/types';
-import { hasEmptyValue } from 'knitting/utils/validation';
+import { checkInvalid } from 'knitting/pages/CreateDesign/utils';
 
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -13,14 +13,14 @@ import { useSaveDesign } from './useSaveDesign';
 type StepController = {
   onPreviousClick: () => void;
   onNextClick: () => void;
-  renderNextLabel: () => string;
-  isNextDisabled: () => boolean;
+  changeValidation: (values: unknown[]) => void;
 };
 
 export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
-  const { name, coverImageUrl } = useRecoilValue(coverInputAtom);
-  const isInvalidOutlineValue = useInvalidOutline();
+  const { coverImageUrl } = useRecoilValue(coverInputAtom);
+  const [stepValidations, setStepValidations] =
+    useRecoilState(stepValidationsAtom);
   const { saveDesign } = useSaveDesign();
 
   const onPreviousClick = (): void => {
@@ -58,32 +58,19 @@ export const useStepController = (): StepController => {
     }
   };
 
-  const renderNextLabel = (): string => {
-    return currentStep === PAGE.REVIEW ? '저장' : '다음';
-  };
-
-  const isInvalidCoverValue = (): boolean => {
-    return hasEmptyValue([name, coverImageUrl]);
-  };
-
-  const isNextDisabled = (): boolean => {
-    switch (currentStep) {
-      case PAGE.COVER:
-        return isInvalidCoverValue();
-      case PAGE.OUTLINE:
-        return isInvalidOutlineValue;
-      case PAGE.PATTERN:
-        // TODO: 도안 유효성 검사
-        return false;
-      default:
-        return false;
-    }
+  const changeValidation = (values: unknown[]): void => {
+    setStepValidations(
+      stepValidations.map((validation, index) =>
+        index === currentStep
+          ? values.every((value) => !checkInvalid(value))
+          : validation,
+      ),
+    );
   };
 
   return {
     onPreviousClick,
     onNextClick,
-    renderNextLabel,
-    isNextDisabled,
+    changeValidation,
   };
 };

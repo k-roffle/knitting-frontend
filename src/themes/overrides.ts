@@ -56,6 +56,9 @@ export const { components } = createTheme({
           '&.Mui-focused': {
             border: `1.5px solid ${grey[400]}`,
           },
+          '&.Mui-error': {
+            border: `1.5px solid ${palette.error.main}`,
+          },
           '&:hover:not($disabled):not($focused):not($error)': {
             backgroundColor: palette.action.hover,
           },

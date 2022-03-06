@@ -22,6 +22,7 @@ interface Props {
   width?: number;
   height?: number;
   selectedFiles?: ImageInformation[];
+  error?: boolean;
   onChange(files: ImageInformation[]): void;
 }
 
@@ -32,6 +33,7 @@ const ImageFileUploader = ({
   width = 320,
   height = 240,
   selectedFiles = [],
+  error,
   onChange,
 }: Props): React.ReactElement | null => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -67,6 +69,7 @@ const ImageFileUploader = ({
         onDragOver={(event) => event.preventDefault()}
         width={width}
         height={height}
+        error={error}
       >
         <UploadContainer>
           <Image />

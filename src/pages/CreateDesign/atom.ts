@@ -27,6 +27,11 @@ export const currentStepAtom = atom<PAGE_TYPE>({
   default: PAGE.COVER,
 });
 
+export const stepValidationsAtom = atom<(boolean | undefined)[]>({
+  key: 'stepValidations',
+  default: new Array(PAGE.REVIEW).fill(undefined),
+});
+
 export const coverInputAtom = atom<CoverInput>({
   key: 'coverInputAtom',
   default: {

@@ -4,7 +4,6 @@ import Outline from 'knitting/pages/CreateDesign/Outline';
 import Pattern from 'knitting/pages/CreateDesign/Pattern';
 import Review from 'knitting/pages/CreateDesign/Review';
 import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
-import Footer from 'knitting/pages/CreateDesign/components/Footer';
 import Header from 'knitting/pages/CreateDesign/components/Header';
 import { PAGE } from 'knitting/pages/CreateDesign/types';
 
@@ -33,7 +32,6 @@ const CreateDesign = (): React.ReactElement => {
     <Layout>
       <Header />
       {renderContent()}
-      <Footer />
     </Layout>
   );
 };

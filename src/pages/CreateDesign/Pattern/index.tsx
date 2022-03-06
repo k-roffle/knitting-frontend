@@ -1,6 +1,7 @@
 import { FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH } from 'knitting/constants/errors';
 import { Snackbar } from 'knitting/dumbs';
 import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
+import Footer from 'knitting/pages/CreateDesign/components/Footer';
 import createDeleteDecoratorPlugin from 'knitting/plugins/deleteDecorator';
 import createUnitDecoratorPlugin from 'knitting/plugins/unitDecorator';
 
@@ -24,6 +25,7 @@ import { useRecoilState } from 'recoil';
 
 import { editorStateAtom } from '../atom';
 import { FontSize } from '../components/FontSize';
+import { useStepController } from '../components/Footer/hooks/useStepController';
 
 import {
   PatternContainer,
@@ -47,6 +49,7 @@ const { Toolbar } = toolbarPlugin;
 
 const Pattern = (): React.ReactElement => {
   const [editorState, setEditorState] = useRecoilState(editorStateAtom);
+  const { onPreviousClick, onNextClick } = useStepController();
 
   const [customStyleMap, setCustomStyleMap] = useState<DraftStyleMap>(
     customInlineStylesMap,
@@ -121,54 +124,62 @@ const Pattern = (): React.ReactElement => {
   };
 
   return (
-    <PatternContainer>
-      <Toolbar>
-        {(externalProps) => (
-          <ToolbarContentWrapper>
-            <BoldButton {...externalProps} />
-            <ItalicButton {...externalProps} />
-            <UnderlineButton {...externalProps} />
-            <CodeButton {...externalProps} />
-            <Separator />
-            <UnorderedListButton {...externalProps} />
-            <OrderedListButton {...externalProps} />
-            <BlockquoteButton {...externalProps} />
-            <CodeBlockButton {...externalProps} />
-            <Separator />
-            <FontSize
-              defaultFontSize={DEFAULT_FONT_SIZE}
-              fontSize={currentFontSize}
-              editorState={editorState}
-              onChange={setEditorState}
-              onChangeCustomStyleMap={changeFontSize}
-            />
-          </ToolbarContentWrapper>
-        )}
-      </Toolbar>
-      <EditorWrapper onClick={focusEditor} isFocused={isFocused}>
-        <Editor
-          ref={editor}
-          editorState={editorState}
-          plugins={plugins}
-          customStyleMap={customStyleMap}
-          onChange={setEditorState}
-          handleBeforeInput={handleBeforeInput}
-          handlePastedText={handlePastedText}
-          onFocus={(): void => setIsFocused(true)}
-          onBlur={(): void => setIsFocused(false)}
-          placeholder="도안을 입력하세요"
+    <>
+      <PatternContainer>
+        <Toolbar>
+          {(externalProps) => (
+            <ToolbarContentWrapper>
+              <BoldButton {...externalProps} />
+              <ItalicButton {...externalProps} />
+              <UnderlineButton {...externalProps} />
+              <CodeButton {...externalProps} />
+              <Separator />
+              <UnorderedListButton {...externalProps} />
+              <OrderedListButton {...externalProps} />
+              <BlockquoteButton {...externalProps} />
+              <CodeBlockButton {...externalProps} />
+              <Separator />
+              <FontSize
+                defaultFontSize={DEFAULT_FONT_SIZE}
+                fontSize={currentFontSize}
+                editorState={editorState}
+                onChange={setEditorState}
+                onChangeCustomStyleMap={changeFontSize}
+              />
+            </ToolbarContentWrapper>
+          )}
+        </Toolbar>
+        <EditorWrapper onClick={focusEditor} isFocused={isFocused}>
+          <Editor
+            ref={editor}
+            editorState={editorState}
+            plugins={plugins}
+            customStyleMap={customStyleMap}
+            onChange={setEditorState}
+            handleBeforeInput={handleBeforeInput}
+            handlePastedText={handlePastedText}
+            onFocus={(): void => setIsFocused(true)}
+            onBlur={(): void => setIsFocused(false)}
+            placeholder="도안을 입력하세요"
+          />
+        </EditorWrapper>
+        <CurrentLengthInfo variant="caption">
+          {currentPatternLength} / {MAX_PATTERN_LENGTH}
+        </CurrentLengthInfo>
+        <Snackbar
+          label={FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH}
+          onClose={handleSnackbarClose}
+          open={openErrorSnackbar}
+          severity="error"
         />
-      </EditorWrapper>
-      <CurrentLengthInfo variant="caption">
-        {currentPatternLength} / {MAX_PATTERN_LENGTH}
-      </CurrentLengthInfo>
-      <Snackbar
-        label={FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH}
-        onClose={handleSnackbarClose}
-        open={openErrorSnackbar}
-        severity="error"
+      </PatternContainer>
+      <Footer
+        previousLabel="이전"
+        nextLabel="다음"
+        onPreviousClick={onPreviousClick}
+        onNextClick={onNextClick}
       />
-    </PatternContainer>
+    </>
   );
 };
 
