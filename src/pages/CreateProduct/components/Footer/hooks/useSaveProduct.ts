@@ -5,7 +5,7 @@ import {
   currentProductInputAtom,
   currentStepAtom,
 } from 'knitting/pages/CreateProduct/recoils';
-import { PAGE } from 'knitting/pages/CreateProduct/types';
+import { PAGE, PostProductInput } from 'knitting/pages/CreateProduct/types';
 import { splitText } from 'knitting/utils/splitText';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -37,7 +37,7 @@ export const useSaveProduct = (): SaveProduct => {
     setCurrentStep(PAGE.INTRODUCTION);
   };
 
-  const { data, mutate } = usePost({
+  const { data, mutate } = usePost<number, PostProductInput>({
     pathname: '/product/package',
     errorMessage: FAILED_TO_SAVE_PRODUCT,
     onSuccess,

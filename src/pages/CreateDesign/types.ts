@@ -74,6 +74,13 @@ export type PostDesignInput = {
   extra?: string;
   price: number;
   pattern: string;
+  draft_id: number | null;
 };
 
-export type DesignInput = SnakeToCamelCase<PostDesignInput>;
+export type PostDraftDesign = {
+  id: number | null;
+  design_id: number | null;
+  value: string;
+};
+
+export type DesignInput = Omit<SnakeToCamelCase<PostDesignInput>, 'draftId'>;

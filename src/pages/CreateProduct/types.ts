@@ -1,3 +1,5 @@
+import { SnakeToCamelCase } from 'knitting/utils/types';
+
 export const PAGE = {
   DESIGN: 0,
   PACKAGE: 1,
@@ -11,13 +13,17 @@ export type ProductId = {
   id: number;
 };
 
-export type ProductInput = {
+export type PostProductInput = {
   name: string;
-  fullPrice: number;
-  discountPrice: number;
-  representativeImageUrl: string;
-  specifiedSalesStartDate?: string | null;
-  specifiedSalesEndDate?: string | null;
+  design_ids: number[];
+  full_price: number;
+  discount_price: number;
+  representative_image_url: string;
+  specified_sales_start_date: string | null;
+  specified_sales_end_date: string | null;
+  tags: string[];
+};
+
+export type ProductInput = Omit<SnakeToCamelCase<PostProductInput>, 'tags'> & {
   tags: string;
-  designIds: number[];
 };

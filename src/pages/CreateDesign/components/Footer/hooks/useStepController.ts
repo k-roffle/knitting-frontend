@@ -18,10 +18,10 @@ type StepController = {
 
 export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
-  const { coverImageUrl } = useRecoilValue(coverInputAtom);
+  const { name, coverImageUrl } = useRecoilValue(coverInputAtom);
   const [stepValidations, setStepValidations] =
     useRecoilState(stepValidationsAtom);
-  const { saveDesign } = useSaveDesign();
+  const { draftDesign, saveDesign } = useSaveDesign();
 
   const onPreviousClick = (): void => {
     switch (currentStep) {
@@ -40,6 +40,8 @@ export const useStepController = (): StepController => {
   };
 
   const onNextClick = (): void => {
+    draftDesign();
+
     switch (currentStep) {
       case PAGE.COVER:
         setCurrentStep(PAGE.OUTLINE);
@@ -51,7 +53,7 @@ export const useStepController = (): StepController => {
         setCurrentStep(PAGE.REVIEW);
         break;
       case PAGE.REVIEW:
-        saveDesign(coverImageUrl);
+        saveDesign();
         break;
       default:
         break;
