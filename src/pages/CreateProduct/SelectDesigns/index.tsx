@@ -1,5 +1,6 @@
 import EmptyContent from 'knitting/dumbs/EmptyContent';
 import DesignItem from 'knitting/pages/MyInformation/components/DesignItem';
+import { DesignItemResponse } from 'knitting/pages/MyInformation/hooks/types';
 import { useMyDesigns } from 'knitting/pages/MyInformation/hooks/useMyDesigns';
 import { DEFAULT_LIST_LENGTH } from 'knitting/utils/requestType';
 
@@ -20,20 +21,26 @@ const SelectDesigns = (): React.ReactElement => {
   const [currentProductInput, setCurrentProductInput] = useRecoilState(
     currentProductInputAtom,
   );
-  const { designIds } = currentProductInput;
+  const { designs: selectDesigns } = currentProductInput;
 
   const isEmpty = !isLoading && designs.length === 0;
 
-  const handleSelectDesign = (id: number) => (): void => {
-    let newDesignIds;
+  const handleSelectDesign = (design: DesignItemResponse) => (): void => {
+    let newDesigns;
 
-    if (designIds.find((designId) => designId === id)) {
-      newDesignIds = designIds.filter((designId) => designId !== id);
+    if (selectDesigns.find(({ id }) => id === design.id)) {
+      newDesigns = selectDesigns.filter(({ id }) => id !== design.id);
     } else {
-      newDesignIds = designIds.concat(id);
+      newDesigns = selectDesigns.concat(design);
     }
 
-    setCurrentProductInput({ ...currentProductInput, designIds: newDesignIds });
+    setCurrentProductInput({
+      ...currentProductInput,
+      fullPrice: newDesigns
+        .map((newDesign) => newDesign.price)
+        .reduce((current, prev) => current + prev, 0),
+      designs: newDesigns,
+    });
   };
 
   return (
@@ -51,7 +58,7 @@ const SelectDesigns = (): React.ReactElement => {
         {(isLoading ? [...Array(DEFAULT_LIST_LENGTH)] : designs).map(
           (design, index) => {
             const showDivider = designs.length - 1 !== index;
-            const isChecked = designIds.includes(design?.id);
+            const isChecked = selectDesigns.some(({ id }) => id === design.id);
 
             return (
               <DesignItem
@@ -61,7 +68,7 @@ const SelectDesigns = (): React.ReactElement => {
                 {...design}
                 showDivider={showDivider}
                 checked={isChecked}
-                onClick={handleSelectDesign(design?.id)}
+                onClick={handleSelectDesign(design)}
               />
             );
           },

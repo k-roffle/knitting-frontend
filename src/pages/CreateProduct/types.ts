@@ -1,5 +1,7 @@
 import { SnakeToCamelCase } from 'knitting/utils/types';
 
+import { DesignItemResponse } from '../MyInformation/hooks/types';
+
 export const PAGE = {
   DESIGN: 0,
   PACKAGE: 1,
@@ -24,6 +26,10 @@ export type PostProductInput = {
   tags: string[];
 };
 
-export type ProductInput = Omit<SnakeToCamelCase<PostProductInput>, 'tags'> & {
+export type ProductInput = Omit<
+  SnakeToCamelCase<PostProductInput>,
+  'tags' | 'designIds'
+> & {
   tags: string;
+  designs: DesignItemResponse[];
 };

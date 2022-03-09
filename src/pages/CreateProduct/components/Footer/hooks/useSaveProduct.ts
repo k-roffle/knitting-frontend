@@ -1,7 +1,6 @@
 import { FAILED_TO_SAVE_PRODUCT } from 'knitting/constants/errors';
 import { usePost } from 'knitting/hooks/usePost';
 import {
-  currentProductIdAtom,
   currentProductInputAtom,
   currentStepAtom,
 } from 'knitting/pages/CreateProduct/recoils';
@@ -16,7 +15,6 @@ type SaveProduct = {
 
 export const useSaveProduct = (): SaveProduct => {
   const setCurrentStep = useSetRecoilState(currentStepAtom);
-  const setCurrentProductId = useSetRecoilState(currentProductIdAtom);
 
   const {
     name,
@@ -26,7 +24,7 @@ export const useSaveProduct = (): SaveProduct => {
     specifiedSalesStartDate,
     specifiedSalesEndDate,
     tags,
-    designIds,
+    designs,
   } = useRecoilValue(currentProductInputAtom);
 
   const onSuccess = () => {
@@ -53,7 +51,7 @@ export const useSaveProduct = (): SaveProduct => {
       specified_sales_start_date: specifiedSalesStartDate,
       specified_sales_end_date: specifiedSalesEndDate,
       tags: splitText(tags, '#'),
-      design_ids: designIds,
+      design_ids: designs.map((design) => design.id),
     };
 
     mutate(postProductData);
