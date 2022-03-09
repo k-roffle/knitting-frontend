@@ -1,11 +1,11 @@
 import { Ellipsis } from 'knitting/components';
 import Skeleton from 'knitting/dumbs/Skeleton';
+import { DesignItemResponse } from 'knitting/pages/MyInformation/hooks/types';
 import { theme } from 'knitting/themes';
 import { formatDate } from 'knitting/utils/format';
 
+import { Checkbox } from '@mui/material';
 import { MouseEvent } from 'react';
-
-import { DesignItemResponse } from '../../hooks/types';
 
 import {
   StyledListItemButton,
@@ -18,7 +18,6 @@ import {
   CreatedDate,
   ThumbNail,
   Divider,
-  StyledCheckBox,
   Price,
 } from './DesignItem.css';
 
@@ -47,12 +46,7 @@ const DesignItem = ({
     <StyledListItemButton onClick={onClick}>
       <ListItemContainer>
         {showCheckBox && (
-          <StyledCheckBox
-            color="primary"
-            edge="start"
-            checked={checked}
-            disableRipple
-          />
+          <Checkbox edge="start" checked={checked} disableRipple />
         )}
         {(isLoading || coverImageUrl) && (
           <ImageWrapper>
