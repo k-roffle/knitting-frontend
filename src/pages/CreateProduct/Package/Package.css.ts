@@ -70,3 +70,18 @@ export const ImagePreview = styled.img`
     width: ${theme.spacing(20)};
   `}
 `;
+
+export const AccordionDetail = styled.div`
+  display: flex;
+`;
+
+export const Name = styled(Typography)`
+  width: ${({ theme }) => theme.spacing(25)};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const Price = styled(Typography)`
+  margin-left: ${({ theme }) => theme.spacing(4)};
+`;

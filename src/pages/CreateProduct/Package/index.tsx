@@ -1,5 +1,6 @@
 import { FormLabel, InputWithLabel, RequiredMark } from 'knitting/dumbs';
-import InlineInput from 'knitting/dumbs/InlineInput';
+import Accordion from 'knitting/dumbs/Accordion';
+import InlineInput, { FormLabel as Label } from 'knitting/dumbs/InlineInput';
 import { formatDate } from 'knitting/utils/format';
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -21,12 +22,15 @@ import { useRecoilState } from 'recoil';
 import { currentProductInputAtom } from '../recoils';
 
 import {
+  AccordionDetail,
   CloseButton,
   FullWidthInput,
   ImageItem,
   ImagePreview,
   ImageUploader,
   ImageWrapper,
+  Name,
+  Price,
   Rate,
   Row,
   SalesDateInfo,
@@ -44,6 +48,7 @@ const Package = (): React.ReactElement => {
     specifiedSalesStartDate,
     specifiedSalesEndDate,
     tags,
+    designs,
   } = currentProductInput;
   const [images, setImages] = React.useState<ImageListType>([]);
   const [invalidPrice, setInvalidPrice] = React.useState<boolean>(false);
@@ -115,13 +120,6 @@ const Package = (): React.ReactElement => {
     });
   };
 
-  const onChangeFullPrice: InputProps['onChange'] = ({ currentTarget }) => {
-    setCurrentProductInput({
-      ...currentProductInput,
-      fullPrice: Number(currentTarget.value),
-    });
-  };
-
   const onChangeDiscountPrice: InputProps['onChange'] = ({ currentTarget }) => {
     setCurrentProductInput({
       ...currentProductInput,
@@ -154,6 +152,15 @@ const Package = (): React.ReactElement => {
     setImages(imageList);
   };
 
+  const renderDetailElements = () => {
+    return designs.map((design) => (
+      <AccordionDetail>
+        <Name>{design.name}</Name>
+        <Price>+ {design.price.toLocaleString()} 원</Price>
+      </AccordionDetail>
+    ));
+  };
+
   return (
     <form>
       <Grid container>
@@ -172,16 +179,15 @@ const Package = (): React.ReactElement => {
             판매가
             <RequiredMark />
           </FormLabel>
-          <InlineInput
-            id="fullPrice"
-            type="number"
-            label="정가"
-            variant="h6"
-            value={fullPrice}
-            aria-describedby="fullPrice"
-            endAdornment={<InputAdornment position="end">원</InputAdornment>}
-            onChange={onChangeFullPrice}
-          />
+          <Row container alignItems="center">
+            <Grid>
+              <Label variant="h6">정가</Label>
+            </Grid>
+            <Accordion
+              summary={`${fullPrice.toLocaleString()} 원`}
+              detailElements={renderDetailElements()}
+            />
+          </Row>
           <Row container>
             <InlineInput
               id="discountPrice"
