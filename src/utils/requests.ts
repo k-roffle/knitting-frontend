@@ -95,11 +95,11 @@ export const getRequest = async <T extends ListResponse<unknown>>(
   return data;
 };
 
-export const postRequest = async <T extends unknown>(
+export const postRequest = async <TData = unknown, TVariables = unknown>(
   pathname: string,
-  postData: T,
+  postData: TVariables,
   useCurrentToken = true,
-): Promise<void> => {
+): Promise<TData> => {
   const { data } = await request({
     pathname,
     method: 'post',

@@ -6,12 +6,16 @@ import { useMutation, UseMutationResult } from 'react-query';
 import { RequestParam } from 'utils/requestType';
 import { postRequest } from 'utils/requests';
 
-export const usePost = ({
+export const usePost = <
+  TQueryFnData = unknown,
+  TError = unknown,
+  TData = TQueryFnData
+>({
   pathname,
   errorMessage = GENERAL_ERROR,
   onSuccess,
   onError,
-}: RequestParam): UseMutationResult<void, unknown> => {
+}: RequestParam): UseMutationResult<TData, TError> => {
   const [postErrorMessage, setPostErrorMessage] = useState<string>();
 
   useCommonSnackbar({
@@ -20,8 +24,8 @@ export const usePost = ({
     dependencies: [postErrorMessage],
   });
 
-  const handleError = (error: { response: unknown }) => {
-    const isNetworkError = error.response == null;
+  const handleError = (error: TError) => {
+    const isNetworkError = error == null;
     const message = isNetworkError ? NETWORK_ERROR : errorMessage;
 
     onError?.();

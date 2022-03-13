@@ -8,6 +8,7 @@ import {
 } from 'pages/CreateProduct/recoils';
 import { PAGE } from 'pages/CreateProduct/types';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { ObjectResponse } from 'utils/requestType';
 import { splitText } from 'utils/splitText';
 
 type SaveProduct = {
@@ -36,7 +37,7 @@ export const useSaveProduct = (): SaveProduct => {
     setCurrentStep(PAGE.INTRODUCTION);
   };
 
-  const { data, mutate } = usePost({
+  const { data, mutate } = usePost<ObjectResponse<{ id: number }>>({
     pathname: '/product/package',
     errorMessage: FAILED_TO_SAVE_PRODUCT,
     onSuccess,
