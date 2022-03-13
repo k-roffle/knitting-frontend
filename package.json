@@ -17,6 +17,7 @@
     "date-fns": "^2.24.0",
     "dayjs": "^1.10.7",
     "firebase": "^9.6.3",
+    "firebase-tools": "^10.2.0",
     "jwt-decode": "^3.1.2",
     "knitting": "link:./src",
     "query-string": "^7.1.0",
@@ -36,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
     "format": "yarn prettier --write \"./**/*.{ts,tsx,js,jsx,md,json}\"",
     "format-check": "yarn prettier -c \"./**/*.{ts,tsx,js,jsx,md,json}\"",

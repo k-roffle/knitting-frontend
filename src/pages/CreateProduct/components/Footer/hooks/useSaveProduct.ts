@@ -1,7 +1,6 @@
 import { FAILED_TO_SAVE_PRODUCT } from 'knitting/constants/errors';
 import { usePost } from 'knitting/hooks/usePost';
 import {
-  currentProductIdAtom,
   currentProductInputAtom,
   currentStepAtom,
 } from 'knitting/pages/CreateProduct/recoils';
@@ -16,7 +15,6 @@ type SaveProduct = {
 
 export const useSaveProduct = (): SaveProduct => {
   const setCurrentStep = useSetRecoilState(currentStepAtom);
-  const setCurrentProductId = useSetRecoilState(currentProductIdAtom);
 
   const {
     name,
