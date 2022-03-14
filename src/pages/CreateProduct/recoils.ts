@@ -17,7 +17,7 @@ export const currentProductInputAtom = atom<ProductInput>({
     specifiedSalesStartDate: null,
     specifiedSalesEndDate: null,
     tags: '',
-    designIds: [],
+    designs: [],
   },
 });
 

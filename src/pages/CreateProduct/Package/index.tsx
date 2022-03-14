@@ -1,17 +1,13 @@
 import { FormLabel, InputWithLabel, RequiredMark } from 'knitting/dumbs';
-import InlineInput from 'knitting/dumbs/InlineInput';
-import { theme } from 'knitting/themes';
+import Accordion from 'knitting/dumbs/Accordion';
+import InlineInput, { FormLabel as Label } from 'knitting/dumbs/InlineInput';
 import { formatDate } from 'knitting/utils/format';
 
-import styled from '@emotion/styled';
-import { Close } from '@mui/icons-material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DatePicker from '@mui/lab/DatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import {
   Grid,
-  Input,
-  Typography,
   InputProps,
   InputAdornment,
   TextField,
@@ -25,65 +21,21 @@ import { useRecoilState } from 'recoil';
 
 import { currentProductInputAtom } from '../recoils';
 
-const Row = styled(Grid)`
-  margin-top: ${theme.spacing(2)};
-`;
-
-const FullWidthInput = styled(Input)`
-  width: 100%;
-`;
-
-const Rate = styled.span`
-  color: ${theme.palette.primary.main};
-  margin-left: ${theme.spacing(2)};
-  font-size: ${theme.spacing(1.75)};
-`;
-
-const SalesDateInfo = styled(Typography)<{
-  invalid?: boolean;
-}>`
-  margin-top: ${theme.spacing(1)};
-  color: ${({ invalid }) => (invalid ? '#ff0000' : '#808080')};
-`;
-
-const Wave = styled.span`
-  margin: 0 ${theme.spacing(1)};
-`;
-
-const ImageWrapper = styled(Grid)`
-  margin: ${theme.spacing(-1)};
-`;
-
-const ImageItem = styled(Grid)`
-  margin: ${theme.spacing(1)};
-  position: relative;
-`;
-
-const CloseButton = styled(Close)`
-  position: absolute;
-  top: ${theme.spacing(1)};
-  right: ${theme.spacing(1)};
-`;
-
-const ImageUploader = styled.button`
-  margin: ${theme.spacing(1)};
-  border-radius: ${theme.spacing(5)};
-  background: none;
-  color: inherit;
-  border: ${theme.spacing(0.25)} solid ${theme.palette.grey[200]};
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-  width: ${theme.spacing(20)};
-  height: ${theme.spacing(20)};
-`;
-
-const ImagePreview = styled.img`
-  border-radius: ${theme.spacing(5)};
-  width: ${theme.spacing(20)};
-  height: ${theme.spacing(20)};
-`;
+import {
+  AccordionDetail,
+  CloseButton,
+  FullWidthInput,
+  ImageItem,
+  ImagePreview,
+  ImageUploader,
+  ImageWrapper,
+  Name,
+  Price,
+  Rate,
+  Row,
+  SalesDateInfo,
+  Wave,
+} from './Package.css';
 
 const Package = (): React.ReactElement => {
   const [currentProductInput, setCurrentProductInput] = useRecoilState(
@@ -96,6 +48,7 @@ const Package = (): React.ReactElement => {
     specifiedSalesStartDate,
     specifiedSalesEndDate,
     tags,
+    designs,
   } = currentProductInput;
   const [images, setImages] = React.useState<ImageListType>([]);
   const [invalidPrice, setInvalidPrice] = React.useState<boolean>(false);
@@ -167,13 +120,6 @@ const Package = (): React.ReactElement => {
     });
   };
 
-  const onChangeFullPrice: InputProps['onChange'] = ({ currentTarget }) => {
-    setCurrentProductInput({
-      ...currentProductInput,
-      fullPrice: Number(currentTarget.value),
-    });
-  };
-
   const onChangeDiscountPrice: InputProps['onChange'] = ({ currentTarget }) => {
     setCurrentProductInput({
       ...currentProductInput,
@@ -206,6 +152,15 @@ const Package = (): React.ReactElement => {
     setImages(imageList);
   };
 
+  const renderDetailElements = () => {
+    return designs.map((design) => (
+      <AccordionDetail>
+        <Name>{design.name}</Name>
+        <Price>+ {design.price.toLocaleString()} 원</Price>
+      </AccordionDetail>
+    ));
+  };
+
   return (
     <form>
       <Grid container>
@@ -224,16 +179,15 @@ const Package = (): React.ReactElement => {
             판매가
             <RequiredMark />
           </FormLabel>
-          <InlineInput
-            id="fullPrice"
-            type="number"
-            label="정가"
-            variant="h6"
-            value={fullPrice}
-            aria-describedby="fullPrice"
-            endAdornment={<InputAdornment position="end">원</InputAdornment>}
-            onChange={onChangeFullPrice}
-          />
+          <Row container alignItems="center">
+            <Grid>
+              <Label variant="h6">정가</Label>
+            </Grid>
+            <Accordion
+              summary={`${fullPrice.toLocaleString()} 원`}
+              detailElements={renderDetailElements()}
+            />
+          </Row>
           <Row container>
             <InlineInput
               id="discountPrice"

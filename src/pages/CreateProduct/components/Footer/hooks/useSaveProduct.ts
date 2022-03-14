@@ -24,7 +24,7 @@ export const useSaveProduct = (): SaveProduct => {
     specifiedSalesStartDate,
     specifiedSalesEndDate,
     tags,
-    designIds,
+    designs,
   } = useRecoilValue(currentProductInputAtom);
 
   const onSuccess = () => {
@@ -51,7 +51,7 @@ export const useSaveProduct = (): SaveProduct => {
       specified_sales_start_date: specifiedSalesStartDate,
       specified_sales_end_date: specifiedSalesEndDate,
       tags: splitText(tags, '#'),
-      design_ids: designIds,
+      design_ids: designs.map((design) => design.id),
     };
 
     mutate(postProductData);
