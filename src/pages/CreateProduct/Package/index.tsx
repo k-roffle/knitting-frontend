@@ -191,14 +191,14 @@ const Package = (): React.ReactElement => {
   const onChangeSpecifiedSalesStartDate = (date: Date | null) => {
     setCurrentProductInput({
       ...currentProductInput,
-      specifiedSalesStartDate: date?.toISOString(),
+      specifiedSalesStartDate: date?.toISOString() ?? null,
     });
   };
 
   const onChangeSpecifiedSalesEndDate = (date: Date | null) => {
     setCurrentProductInput({
       ...currentProductInput,
-      specifiedSalesEndDate: date?.toISOString(),
+      specifiedSalesEndDate: date?.toISOString() ?? null,
     });
   };
 

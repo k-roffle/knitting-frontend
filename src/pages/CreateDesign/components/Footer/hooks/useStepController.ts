@@ -1,12 +1,11 @@
 import {
-  coverInputAtom,
   currentStepAtom,
   stepValidationsAtom,
 } from 'knitting/pages/CreateDesign/atom';
 import { PAGE } from 'knitting/pages/CreateDesign/types';
 import { checkInvalid } from 'knitting/pages/CreateDesign/utils';
 
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 import { useSaveDesign } from './useSaveDesign';
 
@@ -18,7 +17,6 @@ type StepController = {
 
 export const useStepController = (): StepController => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
-  const { name, coverImageUrl } = useRecoilValue(coverInputAtom);
   const [stepValidations, setStepValidations] =
     useRecoilState(stepValidationsAtom);
   const { draftDesign, saveDesign } = useSaveDesign();
