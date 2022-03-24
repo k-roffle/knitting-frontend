@@ -1,11 +1,10 @@
 import { Ellipsis } from 'knitting/components';
 import Skeleton from 'knitting/dumbs/Skeleton';
 import { DesignItemResponse } from 'knitting/pages/MyInformation/hooks/types';
-import { theme } from 'knitting/themes';
 import { formatDate } from 'knitting/utils/format';
 
 import { Checkbox } from '@mui/material';
-import { MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 
 import {
   StyledListItemButton,
@@ -13,12 +12,12 @@ import {
   ImageWrapper,
   Content,
   Name,
-  DesignType,
   Information,
   CreatedDate,
   ThumbNail,
   Divider,
   Price,
+  HamburgerMenu,
 } from './DesignItem.css';
 
 interface Props {
@@ -68,35 +67,24 @@ const DesignItem = ({
           </Name>
           <Information variant="subtitle2">
             <Skeleton isLoading={isLoading} variant="text">
+              {tags.map((tag) => `${tag} · `)}
               {yarn}
             </Skeleton>
           </Information>
           {createdAt != null && (
             <CreatedDate variant="caption">
               <Skeleton isLoading={isLoading} variant="text">
-                {formatDate(createdAt)}
+                도안작성일 {formatDate(createdAt, 'YYYY-MM-DD hh:mm:ss')}
               </Skeleton>
             </CreatedDate>
           )}
-
-          {tags.map((tag) => (
-            <DesignType key={tag}>
-              <Skeleton
-                isLoading={isLoading}
-                variant="text"
-                width={theme.spacing(5)}
-              >
-                {tag}
-              </Skeleton>
-            </DesignType>
-          ))}
-
           <Price>
             <Skeleton isLoading={isLoading} variant="text">
               {price.toLocaleString()}원
             </Skeleton>
           </Price>
         </Content>
+        <HamburgerMenu />
       </ListItemContainer>
       {showDivider && <Divider />}
     </StyledListItemButton>

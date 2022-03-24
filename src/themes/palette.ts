@@ -20,6 +20,7 @@ export const { palette } = createTheme({
     },
     grey: {
       200: '#f4f4f4',
+      600: '#999999',
     },
   },
 });
