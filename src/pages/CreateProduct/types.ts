@@ -19,8 +19,8 @@ export type PostProductInput = {
   full_price: number;
   discount_price: number;
   representative_image_url: string;
-  specified_sales_start_date: string | null;
-  specified_sales_end_date: string | null;
+  specified_sales_start_date?: string | null;
+  specified_sales_end_date?: string | null;
   tags: string[];
 };
 
