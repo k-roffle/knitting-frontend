@@ -1,8 +1,5 @@
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
-import {
-  FAILED_TO_GET_MY_SALE_SUMMARY,
-  FAILED_TO_GET_MY_PROFILE,
-} from 'knitting/constants/errors';
+import { FAILED_TO_GET_MY_PROFILE } from 'knitting/constants/errors';
 import EmptyContent from 'knitting/dumbs/EmptyContent';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 
@@ -12,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { useGetMyProfile } from '../../hooks/useGetMyProfile';
-import { useGetMySalesSummary } from '../../hooks/useGetMySalesSummary';
 
 import {
   CreateButton,
@@ -30,8 +26,6 @@ import { useRenderButtonText } from './useRenderButtonText';
 const MyProfile = (): React.ReactElement => {
   const [createButtonText, handleButtonClick] = useRenderButtonText();
   const tabItemLength = useRecoilValue(tabItemLengthAtom);
-  const { error: salesSummaryError, data: salesSummaryData } =
-    useGetMySalesSummary();
   const { error: myProfileError, data: myProfileData } = useGetMyProfile();
   const navigate = useNavigate();
 
@@ -40,12 +34,6 @@ const MyProfile = (): React.ReactElement => {
     buttonText: '메인으로 돌아가기',
     onClick: () => navigate('/'),
   };
-
-  useCommonSnackbar({
-    message: FAILED_TO_GET_MY_SALE_SUMMARY,
-    severity: 'error',
-    dependencies: [salesSummaryError],
-  });
 
   useCommonSnackbar({
     message: FAILED_TO_GET_MY_PROFILE,
@@ -58,14 +46,6 @@ const MyProfile = (): React.ReactElement => {
   }
 
   const { email, profile_image_url, name } = myProfileData.payload;
-  const {
-    number_of_products_on_sales: numberOfProductsOnSales,
-    number_of_products_sold: numberOfProductsSold,
-  } = salesSummaryData?.payload ?? {
-    number_of_products_on_sales: 0,
-    number_of_products_sold: 0,
-  };
-
   const emptyList = tabItemLength === 0;
 
   return (
@@ -84,15 +64,11 @@ const MyProfile = (): React.ReactElement => {
           <MySalesSummary>
             <div>
               <Typography variant="caption">판매중인 상품</Typography>
-              <SalesSummaryCount variant="h5">
-                {numberOfProductsOnSales}
-              </SalesSummaryCount>
+              <SalesSummaryCount variant="h5">0</SalesSummaryCount>
             </div>
             <div>
               <Typography variant="caption">판매 수</Typography>
-              <SalesSummaryCount variant="h5">
-                {numberOfProductsSold}
-              </SalesSummaryCount>
+              <SalesSummaryCount variant="h5">0</SalesSummaryCount>
             </div>
           </MySalesSummary>
         </div>
