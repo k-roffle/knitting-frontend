@@ -1,11 +1,10 @@
 import { Ellipsis } from 'knitting/components';
 import Skeleton from 'knitting/dumbs/Skeleton';
-import { theme } from 'knitting/themes';
+import { DesignItemResponse } from 'knitting/pages/MyInformation/hooks/types';
 import { formatDate } from 'knitting/utils/format';
 
-import { MouseEvent } from 'react';
-
-import { DesignItemResponse } from '../../hooks/types';
+import { Checkbox } from '@mui/material';
+import React, { MouseEvent } from 'react';
 
 import {
   StyledListItemButton,
@@ -13,13 +12,12 @@ import {
   ImageWrapper,
   Content,
   Name,
-  DesignType,
   Information,
   CreatedDate,
   ThumbNail,
   Divider,
-  StyledCheckBox,
   Price,
+  HamburgerMenu,
 } from './DesignItem.css';
 
 interface Props {
@@ -47,12 +45,7 @@ const DesignItem = ({
     <StyledListItemButton onClick={onClick}>
       <ListItemContainer>
         {showCheckBox && (
-          <StyledCheckBox
-            color="primary"
-            edge="start"
-            checked={checked}
-            disableRipple
-          />
+          <Checkbox edge="start" checked={checked} disableRipple />
         )}
         {(isLoading || coverImageUrl) && (
           <ImageWrapper>
@@ -74,35 +67,24 @@ const DesignItem = ({
           </Name>
           <Information variant="subtitle2">
             <Skeleton isLoading={isLoading} variant="text">
+              {tags.map((tag) => `${tag} · `)}
               {yarn}
             </Skeleton>
           </Information>
           {createdAt != null && (
             <CreatedDate variant="caption">
               <Skeleton isLoading={isLoading} variant="text">
-                {formatDate(createdAt)}
+                도안작성일 {formatDate(createdAt, 'YYYY-MM-DD hh:mm:ss')}
               </Skeleton>
             </CreatedDate>
           )}
-
-          {tags.map((tag) => (
-            <DesignType key={tag}>
-              <Skeleton
-                isLoading={isLoading}
-                variant="text"
-                width={theme.spacing(5)}
-              >
-                {tag}
-              </Skeleton>
-            </DesignType>
-          ))}
-
           <Price>
             <Skeleton isLoading={isLoading} variant="text">
               {price.toLocaleString()}원
             </Skeleton>
           </Price>
         </Content>
+        <HamburgerMenu />
       </ListItemContainer>
       {showDivider && <Divider />}
     </StyledListItemButton>
