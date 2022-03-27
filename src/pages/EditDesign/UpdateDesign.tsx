@@ -31,7 +31,7 @@ const UpdateDesign = (): React.ReactElement => {
 
   return (
     <Layout>
-      <Header />
+      <Header type="UPDATE" />
       {renderContent()}
     </Layout>
   );

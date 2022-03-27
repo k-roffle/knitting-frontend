@@ -31,7 +31,7 @@ const CreateDesign = (): React.ReactElement => {
 
   return (
     <Layout>
-      <Header />
+      <Header type="CREATE" />
       {renderContent()}
     </Layout>
   );

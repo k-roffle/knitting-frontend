@@ -12,3 +12,5 @@ export type SnakeToCamelCase<T> = T extends Record<string, unknown>
       >;
     }
   : T;
+
+export type EditType = 'CREATE' | 'UPDATE';
