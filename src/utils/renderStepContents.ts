@@ -1,4 +1,4 @@
-import { PAGE, PAGE_TYPE } from '../pages/CreateDesign/types';
+import { PAGE, PAGE_TYPE } from '../pages/EditDesign/types';
 
 type StepContent = {
   title: string;

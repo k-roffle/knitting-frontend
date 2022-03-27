@@ -1,10 +1,11 @@
-import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
-import StepProgressBar from 'knitting/pages/CreateDesign/components/StepProgressBar';
 import { renderStepContents } from 'knitting/utils/renderStepContents';
 
 import { Grid } from '@mui/material';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
+
+import { currentStepAtom } from '../../atom';
+import StepProgressBar from '../StepProgressBar';
 
 import { Contents, Title } from './Header.css';
 

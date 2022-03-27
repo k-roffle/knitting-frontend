@@ -1,7 +1,5 @@
 import { changeOriginalStyleToNewStyle } from 'knitting/libs/draftjs-utils/inline';
 import { StyleKeyType } from 'knitting/libs/draftjs-utils/types';
-import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
-import { PAGE } from 'knitting/pages/CreateDesign/types';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -9,6 +7,9 @@ import { Tooltip } from '@mui/material';
 import { ContentState, EditorState } from 'draft-js';
 import { ReactElement, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+
+import { currentStepAtom } from '../../pages/EditDesign/atom';
+import { PAGE } from '../../pages/EditDesign/types';
 
 import { DetailTooltipMenu } from './components/DetailTooltipMenu';
 import { RepeatTooltipMenu } from './components/RepeatTooltipMenu';

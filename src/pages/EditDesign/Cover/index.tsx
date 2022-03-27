@@ -1,19 +1,19 @@
 import ImageFileUploader from 'knitting/components/ImageFileUploader';
 import { ImageInformation } from 'knitting/components/ImageFileUploader/hooks/useImageFileUploader';
 import { FormLabel, InputWithLabel, RequiredMark } from 'knitting/dumbs';
-import {
-  coverImageAtom,
-  CoverInput,
-  coverInputAtom,
-  stepValidationsAtom,
-} from 'knitting/pages/CreateDesign/atom';
-import { Row } from 'knitting/pages/CreateDesign/common.css';
-import Footer from 'knitting/pages/CreateDesign/components/Footer';
 
 import { FormGroup } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
+import {
+  coverImageAtom,
+  CoverInput,
+  coverInputAtom,
+  stepValidationsAtom,
+} from '../atom';
+import { Row } from '../common.css';
+import Footer from '../components/Footer';
 import { useStepController } from '../components/Footer/hooks/useStepController';
 import { PAGE } from '../types';
 
