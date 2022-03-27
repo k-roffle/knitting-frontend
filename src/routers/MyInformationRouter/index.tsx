@@ -1,6 +1,7 @@
 import {
   MY_INFORMATION_PROFILE_PATH,
   MY_INFORMATION_CREATE_DESIGN_PATH,
+  MY_INFORMATION_UPDATE_DESIGN_PATH,
   MY_INFORMATION_CREATE_PRODUCT_PATH,
 } from 'knitting/constants/path';
 import CreateProduct from 'knitting/pages/CreateProduct';
@@ -11,6 +12,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import CreateDesign from '../../pages/EditDesign/CreateDesign';
+import UpdateDesign from '../../pages/EditDesign/UpdateDesign';
 
 const MyInformationRouter = (): React.ReactElement => {
   return (
@@ -23,6 +25,11 @@ const MyInformationRouter = (): React.ReactElement => {
       <Route
         path={MY_INFORMATION_CREATE_DESIGN_PATH}
         element={<CreateDesign />}
+        caseSensitive
+      />
+      <Route
+        path={MY_INFORMATION_UPDATE_DESIGN_PATH}
+        element={<UpdateDesign />}
         caseSensitive
       />
       <Route
