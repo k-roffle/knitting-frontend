@@ -3,8 +3,18 @@ import Skeleton from 'knitting/dumbs/Skeleton';
 import { DesignItemResponse } from 'knitting/pages/MyInformation/hooks/types';
 import { formatDate } from 'knitting/utils/format';
 
-import { Checkbox } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import {
+  Checkbox,
+  ClickAwayListener,
+  Grow,
+  MenuItem,
+  MenuList,
+  Paper,
+  Popper,
+} from '@mui/material';
 import React, { MouseEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   StyledListItemButton,
@@ -18,6 +28,7 @@ import {
   Divider,
   Price,
   HamburgerMenu,
+  Menu,
 } from './DesignItem.css';
 
 interface Props {
@@ -29,6 +40,7 @@ interface Props {
 }
 
 const DesignItem = ({
+  id,
   name = '',
   cover_image_url: coverImageUrl,
   yarn = '',
@@ -41,6 +53,26 @@ const DesignItem = ({
   checked = false,
   onClick,
 }: Props & DesignItemResponse): React.ReactElement => {
+  const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+  const handleClick = () => {
+    navigate(`/my/designs/create?id=${id}`);
+  };
+  const handleClose = (event: Event | React.SyntheticEvent) => {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return;
+    }
+    setOpen(false);
+  };
+
   return (
     <StyledListItemButton onClick={onClick}>
       <ListItemContainer>
@@ -84,7 +116,36 @@ const DesignItem = ({
             </Skeleton>
           </Price>
         </Content>
-        <HamburgerMenu />
+        <Menu>
+          <HamburgerMenu ref={anchorRef} onClick={handleToggle}>
+            <MenuIcon />
+          </HamburgerMenu>
+          <Popper
+            open={open}
+            anchorEl={anchorRef.current}
+            placement="bottom-start"
+            transition
+            disablePortal
+          >
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{
+                  transformOrigin:
+                    placement === 'bottom-start' ? 'left top' : 'left bottom',
+                }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList>
+                      <MenuItem onClick={handleClick}>도안 수정하기</MenuItem>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </Menu>
       </ListItemContainer>
       {showDivider && <Divider />}
     </StyledListItemButton>
