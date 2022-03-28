@@ -2,8 +2,7 @@ import { palette } from 'knitting/themes/palette';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import MenuIcon from '@mui/icons-material/Menu';
-import { ListItemButton, Typography, Checkbox } from '@mui/material';
+import { Button, ListItemButton, Typography, Checkbox } from '@mui/material';
 
 export const StyledListItemButton = styled(ListItemButton)`
   padding: ${({ theme }) => theme.spacing(3)};
@@ -109,10 +108,13 @@ export const StyledCheckBox = styled(Checkbox)`
   }
 `;
 
-export const HamburgerMenu = styled(MenuIcon)`
+export const Menu = styled.div`
   position: absolute;
-  right: 0;
   top: 0;
+  right: 0;
+`;
+
+export const HamburgerMenu = styled(Button)`
   color: ${({ theme }) => theme.palette.grey[600]};
 
   &:hover {
