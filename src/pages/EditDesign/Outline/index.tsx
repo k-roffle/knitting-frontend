@@ -4,14 +4,6 @@ import {
   RequiredMark,
   RequiredSelect,
 } from 'knitting/dumbs';
-import { InfoBox } from 'knitting/pages/CreateDesign/Outline/Outline.css';
-import {
-  OutlineInput,
-  outlineInputAtom,
-  stepValidationsAtom,
-} from 'knitting/pages/CreateDesign/atom';
-import Footer from 'knitting/pages/CreateDesign/components/Footer';
-import { DESIGN, PAGE, PATTERN } from 'knitting/pages/CreateDesign/types';
 import { renderDesign, renderPattern } from 'knitting/utils/renderText';
 
 import { InfoOutlined } from '@mui/icons-material';
@@ -26,10 +18,15 @@ import {
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
+import { OutlineInput, outlineInputAtom, stepValidationsAtom } from '../atom';
 import { Row } from '../common.css';
+import Footer from '../components/Footer';
 import { useStepController } from '../components/Footer/hooks/useStepController';
 import OptionalOutline from '../components/OptionalOutline';
+import { DESIGN, PAGE, PATTERN } from '../types';
 import { checkInvalid } from '../utils';
+
+import { InfoBox } from './Outline.css';
 
 const Outline = (): React.ReactElement => {
   const { SWEATER } = DESIGN;

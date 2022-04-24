@@ -1,11 +1,8 @@
-import {
-  currentStepAtom,
-  stepValidationsAtom,
-} from 'knitting/pages/CreateDesign/atom';
-import { PAGE } from 'knitting/pages/CreateDesign/types';
-import { checkInvalid } from 'knitting/pages/CreateDesign/utils';
-
 import { useRecoilState } from 'recoil';
+
+import { currentStepAtom, stepValidationsAtom } from '../../../atom';
+import { PAGE } from '../../../types';
+import { checkInvalid } from '../../../utils';
 
 import { useSaveDesign } from './useSaveDesign';
 

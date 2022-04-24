@@ -2,6 +2,12 @@ import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonS
 import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
 import useFirebaseImageStorage from 'knitting/hooks/useFirebaseImageStorage';
 import { usePost } from 'knitting/hooks/usePost';
+
+import { convertToRaw } from 'draft-js';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+
 import {
   coverInputAtom,
   outlineInputAtom,
@@ -9,16 +15,8 @@ import {
   localCoverImageAtom,
   optionalOutlineInputAtom,
   draftIdAtom,
-} from 'knitting/pages/CreateDesign/atom';
-import {
-  PostDesignInput,
-  PostDraftDesign,
-} from 'knitting/pages/CreateDesign/types';
-
-import { convertToRaw } from 'draft-js';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+} from '../../../atom';
+import { PostDesignInput, PostDraftDesign } from '../../../types';
 
 type SaveDesign = {
   draftDesign: () => void;

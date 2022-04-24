@@ -1,5 +1,4 @@
 import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
-import Footer from 'knitting/pages/CreateDesign/components/Footer';
 
 import Editor from '@draft-js-plugins/editor';
 import { Grid } from '@mui/material';
@@ -14,6 +13,7 @@ import {
   stepValidationsAtom,
 } from '../atom';
 import DesignSizeImage from '../components/DesignSizeImage';
+import Footer from '../components/Footer';
 import { useStepController } from '../components/Footer/hooks/useStepController';
 import { PATTERN, PATTERN_TYPE } from '../types';
 

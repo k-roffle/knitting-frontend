@@ -1,10 +1,7 @@
-import {
-  FooterContainer,
-  NextContainer,
-} from 'knitting/pages/CreateDesign/components/Footer/Footer.css';
-
 import { Button as MaterialButton } from '@mui/material';
 import React, { ReactElement, ReactNode } from 'react';
+
+import { FooterContainer, NextContainer } from './Footer.css';
 
 interface FooterProps {
   previousLabel: ReactNode;

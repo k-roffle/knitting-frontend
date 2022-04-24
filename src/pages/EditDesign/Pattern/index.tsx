@@ -1,7 +1,6 @@
 import { FAILED_TO_PASTE_MORE_THAN_MAXIMUM_LENGTH } from 'knitting/constants/errors';
 import { Snackbar } from 'knitting/dumbs';
 import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
-import Footer from 'knitting/pages/CreateDesign/components/Footer';
 import createDeleteDecoratorPlugin from 'knitting/plugins/deleteDecorator';
 import createUnitDecoratorPlugin from 'knitting/plugins/unitDecorator';
 
@@ -25,6 +24,7 @@ import { useRecoilState } from 'recoil';
 
 import { editorStateAtom } from '../atom';
 import { FontSize } from '../components/FontSize';
+import Footer from '../components/Footer';
 import { useStepController } from '../components/Footer/hooks/useStepController';
 
 import {

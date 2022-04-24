@@ -1,5 +1,5 @@
-import Pattern from './CreateDesign/Pattern';
-import Review from './CreateDesign/Review';
+import Pattern from './EditDesign/Pattern';
+import Review from './EditDesign/Review';
 import Error404 from './Error404';
 import Login from './Login';
 import LoginRedirected from './LoginRedirected';

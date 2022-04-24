@@ -1,10 +1,4 @@
 import { FormLabel, InputWithLabel } from 'knitting/dumbs';
-import {
-  OptionalOutlineInput,
-  optionalOutlineInputAtom,
-} from 'knitting/pages/CreateDesign/atom';
-import { FullWidthInput, Row } from 'knitting/pages/CreateDesign/common.css';
-import { DesignSize, LevelKind } from 'knitting/pages/CreateDesign/types';
 import { SnakeToCamelCase } from 'knitting/utils/types';
 
 import {
@@ -17,6 +11,9 @@ import {
 import React from 'react';
 import { useRecoilState } from 'recoil';
 
+import { OptionalOutlineInput, optionalOutlineInputAtom } from '../../atom';
+import { FullWidthInput, Row } from '../../common.css';
+import { DesignSize, LevelKind } from '../../types';
 import DesignSizeImage from '../DesignSizeImage';
 
 type DesignSizeKey = keyof SnakeToCamelCase<DesignSize>;

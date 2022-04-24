@@ -1,10 +1,10 @@
-import { checkInvalid } from 'knitting/pages/CreateDesign/utils';
-
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Input, InputBaseComponentProps, Typography } from '@mui/material';
 import { Variant } from '@mui/material/styles/createTypography';
 import React from 'react';
+
+import { checkInvalid } from '../../pages/EditDesign/utils';
 
 interface Props {
   id: string;

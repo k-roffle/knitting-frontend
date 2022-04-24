@@ -1,14 +1,15 @@
 import { Layout } from 'knitting/dumbs';
-import Cover from 'knitting/pages/CreateDesign/Cover';
-import Outline from 'knitting/pages/CreateDesign/Outline';
-import Pattern from 'knitting/pages/CreateDesign/Pattern';
-import Review from 'knitting/pages/CreateDesign/Review';
-import { currentStepAtom } from 'knitting/pages/CreateDesign/atom';
-import Header from 'knitting/pages/CreateDesign/components/Header';
-import { PAGE } from 'knitting/pages/CreateDesign/types';
 
 import React from 'react';
 import { useRecoilValue } from 'recoil';
+
+import Cover from './Cover';
+import Outline from './Outline';
+import Pattern from './Pattern';
+import Review from './Review';
+import { currentStepAtom } from './atom';
+import Header from './components/Header';
+import { PAGE } from './types';
 
 const CreateDesign = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentStepAtom);
@@ -30,7 +31,7 @@ const CreateDesign = (): React.ReactElement => {
 
   return (
     <Layout>
-      <Header />
+      <Header type="CREATE" />
       {renderContent()}
     </Layout>
   );
