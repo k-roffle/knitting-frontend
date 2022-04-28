@@ -1,10 +1,12 @@
+import Modal from 'knitting/dumbs/Modal';
 import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
 import Footer from 'knitting/pages/CreateDesign/components/Footer';
 
 import Editor from '@draft-js-plugins/editor';
 import { Grid } from '@mui/material';
 import React from 'react';
-import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import {
   coverInputAtom,
@@ -12,6 +14,8 @@ import {
   editorStateAtom,
   optionalOutlineInputAtom,
   stepValidationsAtom,
+  showSaveModal,
+  showInfoModal,
 } from '../atom';
 import DesignSizeImage from '../components/DesignSizeImage';
 import { useStepController } from '../components/Footer/hooks/useStepController';
@@ -33,6 +37,9 @@ const Review = (): React.ReactElement => {
   } = size;
   const editorState = useRecoilValue(editorStateAtom);
   const stepValidations = useRecoilValue(stepValidationsAtom);
+  const [isShowInfoModal, setIsShowInfoModal] = useRecoilState(showInfoModal);
+  const [isShowSaveModal, setIsShowSaveModal] = useRecoilState(showSaveModal);
+  const navigate = useNavigate();
 
   const { onPreviousClick, onNextClick } = useStepController();
 
@@ -49,6 +56,20 @@ const Review = (): React.ReactElement => {
       default:
         return '서술형 도안';
     }
+  };
+
+  const handleClose = () => {
+    setIsShowInfoModal(false);
+  };
+
+  const handleConfirm = () => {
+    setIsShowInfoModal(false);
+    onNextClick();
+    setIsShowSaveModal(true);
+  };
+
+  const navigatePath = (path: string) => {
+    navigate(path);
   };
 
   return (
@@ -130,12 +151,30 @@ const Review = (): React.ReactElement => {
         previousLabel="이전"
         nextLabel="저장"
         onPreviousClick={onPreviousClick}
-        onNextClick={onNextClick}
+        onNextClick={() => setIsShowInfoModal(true)}
         invalidMessage={
           stepValidations.some((validation) => validation === false)
             ? '저장이 불가능한 페이지가 있어요'
             : undefined
         }
+      />
+      <Modal
+        isShow={isShowInfoModal}
+        title="도안 등록 전 Check📝"
+        description="도안명과 표지 이미지, 가격은 입력 후 수정할 수 없어요. <br />
+            입력한 정보로 등록할까요?"
+        handleClose={handleClose}
+        handleConfirm={handleConfirm}
+      />
+      <Modal
+        isShow={isShowSaveModal}
+        title="도안 저장 완료 🐣"
+        description="도안을 다른 니터들에게 판매해보는 것은 어떠신가요? <br />
+            도안을 상품으로 등록해보세요!"
+        closeButtonText="다음에 등록할게요"
+        confirmButtonText="상품을 등록할게요!"
+        handleClose={() => navigatePath('/my')}
+        handleConfirm={() => navigatePath('/my/products/create')}
       />
     </>
   );
