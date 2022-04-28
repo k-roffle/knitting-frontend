@@ -10,7 +10,7 @@ import { useRecoilValue } from 'recoil';
 import Confirm from './Confirm';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import { currentStepAtom } from './recoils';
+import { currentCreateProductStepAtom } from './recoils';
 import { PAGE } from './types';
 
 const Container = styled.section`
@@ -18,7 +18,7 @@ const Container = styled.section`
 `;
 
 const CreateProduct = (): React.ReactElement => {
-  const currentStep = useRecoilValue(currentStepAtom);
+  const currentStep = useRecoilValue(currentCreateProductStepAtom);
 
   const renderContent = (): React.ReactElement => {
     switch (currentStep) {

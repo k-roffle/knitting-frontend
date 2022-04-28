@@ -1,5 +1,5 @@
 import { Button } from 'knitting/dumbs';
-import { currentStepAtom } from 'knitting/pages/CreateProduct/recoils';
+import { currentCreateProductStepAtom } from 'knitting/pages/CreateProduct/recoils';
 import { PAGE } from 'knitting/pages/CreateProduct/types';
 import { FooterContainer } from 'knitting/styles/constants';
 
@@ -12,7 +12,9 @@ import { useStartSale } from './hooks/useStartSale';
 
 const Footer = (): React.ReactElement => {
   const { DESIGN, PACKAGE, INTRODUCTION, CONFIRM } = PAGE;
-  const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
+  const [currentStep, setCurrentStep] = useRecoilState(
+    currentCreateProductStepAtom,
+  );
   const { saveProduct } = useSaveProduct();
   const { startSale } = useStartSale();
 
