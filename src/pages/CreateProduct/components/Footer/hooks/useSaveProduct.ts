@@ -3,7 +3,7 @@ import { usePost } from 'knitting/hooks/usePost';
 import {
   currentProductIdAtom,
   currentProductInputAtom,
-  currentStepAtom,
+  currentCreateProductStepAtom,
 } from 'knitting/pages/CreateProduct/recoils';
 import { PAGE, PostProductInput } from 'knitting/pages/CreateProduct/types';
 import { splitText } from 'knitting/utils/splitText';
@@ -15,7 +15,7 @@ type SaveProduct = {
 };
 
 export const useSaveProduct = (): SaveProduct => {
-  const setCurrentStep = useSetRecoilState(currentStepAtom);
+  const setCurrentStep = useSetRecoilState(currentCreateProductStepAtom);
   const setCurrentProductId = useSetRecoilState(currentProductIdAtom);
 
   const {
