@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Button as MaterialButton } from '@mui/material';
+import { Button as MaterialButton, ButtonProps } from '@mui/material';
 import React from 'react';
 
 export const SIDE = {
@@ -10,7 +10,7 @@ export const SIDE = {
 
 export type SIDE_TYPE = typeof SIDE[keyof typeof SIDE];
 
-export interface Props {
+export interface Props extends ButtonProps {
   side?: SIDE_TYPE;
   label: string;
   onClick?(): void;
