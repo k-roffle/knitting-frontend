@@ -89,13 +89,3 @@ export const draftIdAtom = atom<string | null>({
   key: 'draftId',
   default: null,
 });
-
-export const showInfoModal = atom<boolean>({
-  key: 'showInfoModal',
-  default: false,
-});
-
-export const showSaveModal = atom<boolean>({
-  key: 'showSaveModal',
-  default: false,
-});
