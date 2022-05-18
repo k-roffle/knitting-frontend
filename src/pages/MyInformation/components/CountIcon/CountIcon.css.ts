@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 
 export const Icon = styled.div`
   border-radius: 50%;
-
   display: flex;
   justify-content: center;
   align-items: center;
