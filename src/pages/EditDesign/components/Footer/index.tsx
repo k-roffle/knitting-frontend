@@ -30,14 +30,14 @@ const Footer = ({
   onNextClick,
 }: FooterProps): ReactElement => {
   const [open, setOpen] = useState<boolean>(
-    localStorage.getItem('popup')
-      ? localStorage.getItem('popup') === 'true'
+    localStorage.getItem('showDesignGuide')
+      ? localStorage.getItem('showDesignGuide') === 'true'
       : true,
   );
 
   const handleClose = () => {
     setOpen(false);
-    localStorage.setItem('popup', JSON.stringify(false));
+    localStorage.setItem('showDesignGuide', JSON.stringify(false));
   };
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
