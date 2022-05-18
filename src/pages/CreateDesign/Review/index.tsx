@@ -4,9 +4,9 @@ import Footer from 'knitting/pages/CreateDesign/components/Footer';
 
 import Editor from '@draft-js-plugins/editor';
 import { Grid } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 import {
   coverInputAtom,
@@ -14,8 +14,6 @@ import {
   editorStateAtom,
   optionalOutlineInputAtom,
   stepValidationsAtom,
-  showSaveModal,
-  showInfoModal,
 } from '../atom';
 import DesignSizeImage from '../components/DesignSizeImage';
 import { useStepController } from '../components/Footer/hooks/useStepController';
@@ -37,8 +35,8 @@ const Review = (): React.ReactElement => {
   } = size;
   const editorState = useRecoilValue(editorStateAtom);
   const stepValidations = useRecoilValue(stepValidationsAtom);
-  const [isShowInfoModal, setIsShowInfoModal] = useRecoilState(showInfoModal);
-  const [isShowSaveModal, setIsShowSaveModal] = useRecoilState(showSaveModal);
+  const [isShowInfoModal, setIsShowInfoModal] = useState<boolean>(false);
+  const [isShowSaveModal, setIsShowSaveModal] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const { onPreviousClick, onNextClick } = useStepController();

@@ -11,7 +11,7 @@ export const ModalContainer = styled(Modal)`
 
 export const ModalBox = styled(Box)`
   ${({ theme }) => css`
-    width: ${theme.spacing(71.25)};
+    width: ${theme.spacing(72)};
     height: ${theme.spacing(30)};
     border-radius: ${theme.spacing(2.5)};
   `}
