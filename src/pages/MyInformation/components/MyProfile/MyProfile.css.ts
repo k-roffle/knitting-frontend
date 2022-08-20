@@ -49,7 +49,7 @@ export const MySalesSummary = styled.div`
   display: flex;
   margin-top: ${theme.spacing(1.5)};
 
-  > div:first-child {
+  > div:first-of-type {
     margin-right: ${theme.spacing(3)};
   }
 `;
