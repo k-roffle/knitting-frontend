@@ -7,7 +7,7 @@ import EmptyContent from 'knitting/dumbs/EmptyContent';
 import { tabItemLengthAtom } from 'knitting/pages/MyInformation/atom';
 
 import { Typography } from '@mui/material';
-import React from 'react';
+import React, { ReactEventHandler } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
@@ -67,12 +67,24 @@ const MyProfile = (): React.ReactElement => {
   };
 
   const emptyList = tabItemLength === 0;
+  const defaultProfileImag = '//via.placeholder.com/100x100';
+
+  const handleError: ReactEventHandler<HTMLImageElement> = ({
+    currentTarget,
+  }) => {
+    currentTarget.onerror = null;
+    currentTarget.src = defaultProfileImag;
+  };
 
   return (
     <MyProfileContainer>
       <ProfileContainer>
         {profile_image_url ? (
-          <Profile src={profile_image_url} />
+          <Profile
+            src={profile_image_url}
+            onError={handleError}
+            alt="프로필 이미지"
+          />
         ) : (
           <EmptyProfile />
         )}
