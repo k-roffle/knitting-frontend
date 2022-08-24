@@ -23,7 +23,7 @@ export type OptionalOutlineInput = Pick<
 };
 
 export const currentStepAtom = atom<PAGE_TYPE>({
-  key: 'currentStep',
+  key: 'editCurrentStep',
   default: PAGE.COVER,
 });
 
