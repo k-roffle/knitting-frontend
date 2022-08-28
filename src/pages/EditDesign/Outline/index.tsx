@@ -85,12 +85,8 @@ const Outline = (): React.ReactElement => {
   };
 
   const handleNextClick = (): void => {
-    if (stepValidations[PAGE.OUTLINE] == null) {
-      changeValidation([price, stitches, rows, needle]);
-    }
-    if (stepValidations[PAGE.OUTLINE] != null) {
-      onNextClick();
-    }
+    changeValidation([price, stitches, rows, needle]);
+    onNextClick();
   };
 
   useEffect(() => {

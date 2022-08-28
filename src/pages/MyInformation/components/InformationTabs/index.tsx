@@ -47,7 +47,6 @@ const MyInformationTabs = (): React.ReactElement => {
           label="판매 중인 상품"
           icon={<CountIcon count={myProductsCount} />}
           iconPosition="end"
-          disabled
         />
         <StyledTab
           value={DESIGN_MENU.PURCHASED_DESIGN}
