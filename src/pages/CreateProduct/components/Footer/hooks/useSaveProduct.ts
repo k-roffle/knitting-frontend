@@ -1,10 +1,12 @@
 import { FAILED_TO_SAVE_PRODUCT } from 'knitting/constants/errors';
 import { usePost } from 'knitting/hooks/usePost';
 import {
+  currentProductIdAtom,
   currentProductInputAtom,
   currentStepAtom,
 } from 'knitting/pages/CreateProduct/recoils';
 import { PAGE, PostProductInput } from 'knitting/pages/CreateProduct/types';
+import { ObjectResponse } from 'knitting/utils/requestType';
 import { splitText } from 'knitting/utils/splitText';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -13,33 +15,39 @@ type SaveProduct = {
   saveProduct: () => void;
 };
 
+interface productResponse {
+  id: string;
+}
+
 export const useSaveProduct = (): SaveProduct => {
   const setCurrentStep = useSetRecoilState(currentStepAtom);
+  const setCurrentProductId = useSetRecoilState(currentProductIdAtom);
 
   const {
     name,
     fullPrice,
     discountPrice,
     representativeImageUrl,
-    specifiedSalesStartDate,
-    specifiedSalesEndDate,
+    specifiedSalesStartedAt,
+    specifiedSalesEndedAt,
     tags,
     designs,
   } = useRecoilValue(currentProductInputAtom);
 
-  const onSuccess = () => {
-    if (data) {
-      // TODO FIX
-      // setCurrentProductId(data.payload.id);
+  const onSuccess = ({ payload: { id } }: ObjectResponse<productResponse>) => {
+    if (id) {
+      setCurrentProductId(id);
     }
-    setCurrentStep(PAGE.INTRODUCTION);
+    setCurrentStep(PAGE.CONFIRM);
   };
 
-  const { data, mutate } = usePost<number, PostProductInput>({
-    pathname: '/product/package',
-    errorMessage: FAILED_TO_SAVE_PRODUCT,
-    onSuccess,
-  });
+  const { mutate } = usePost<ObjectResponse<productResponse>, PostProductInput>(
+    {
+      pathname: '/products',
+      errorMessage: FAILED_TO_SAVE_PRODUCT,
+      onSuccess,
+    },
+  );
 
   const saveProduct = (): void => {
     const postProductData = {
@@ -48,10 +56,12 @@ export const useSaveProduct = (): SaveProduct => {
       full_price: fullPrice,
       discount_price: discountPrice,
       representative_image_url: representativeImageUrl,
-      specified_sales_start_date: specifiedSalesStartDate,
-      specified_sales_end_date: specifiedSalesEndDate,
+      specified_sales_started_at: specifiedSalesStartedAt,
+      specified_sales_ended_at: specifiedSalesEndedAt,
       tags: splitText(tags, '#'),
       design_ids: designs.map((design) => design.id),
+      content: '',
+      draft_id: null,
     };
 
     mutate(postProductData);

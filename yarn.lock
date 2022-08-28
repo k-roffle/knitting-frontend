@@ -15677,7 +15677,6 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
     react-ellipsis-component: ^1.1.8
-    react-images-uploading: ^3.1.3
     react-infinite-scroll-component: ^6.1.0
     react-query: ^3.34.8
     react-router-dom: ^6.2.1
@@ -19795,16 +19794,6 @@ __metadata:
     react: ^16.6.0 || ^17.0.0
     react-dom: ^16.6.0 || ^17.0.0
   checksum: 3251ab596143a48f9380a78a9e71f451ef729e25081bb4c1476561a1689eee23d650964e1518792bd44a8d24d95da1f9774b9b7ed80cae8eccc8119d7f5dd3f3
-  languageName: node
-  linkType: hard
-
-"react-images-uploading@npm:^3.1.3":
-  version: 3.1.3
-  resolution: "react-images-uploading@npm:3.1.3"
-  peerDependencies:
-    react: ^16.8.0
-    react-dom: ^16.8.0
-  checksum: 5747e3bb3429a6fe1b34af7224ad5f3ec08428d6dd170fa590ca354c1b5c3577cd1986a35e45b7fc61f24ff9c7bf881f6c001523bff9823ba552242a0132a20f
   languageName: node
   linkType: hard
 

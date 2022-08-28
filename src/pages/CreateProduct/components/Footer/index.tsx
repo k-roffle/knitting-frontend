@@ -53,10 +53,10 @@ const Footer = (): React.ReactElement => {
         setCurrentStep(PACKAGE);
         break;
       case PACKAGE:
-        saveProduct();
+        setCurrentStep(INTRODUCTION);
         break;
       case INTRODUCTION:
-        setCurrentStep(CONFIRM);
+        saveProduct();
         break;
       case CONFIRM:
         startSale();

@@ -17,7 +17,7 @@ export const useRenderEmptyContent = (): EmptyContentProps | null => {
           buttonText: '지금 도안 만들기',
           onClick: () => navigate('/my/designs/create'),
         };
-      case DESIGN_MENU.DESIGN_ON_SALE:
+      case DESIGN_MENU.PRODUCT_ON_SALE:
         return {
           title: '아직 판매 중인 상품이 없어요! 😢',
           description:
