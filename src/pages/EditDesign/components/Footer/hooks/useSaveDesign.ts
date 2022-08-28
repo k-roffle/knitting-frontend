@@ -2,12 +2,6 @@ import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonS
 import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
 import useFirebaseImageStorage from 'knitting/hooks/useFirebaseImageStorage';
 import { usePost } from 'knitting/hooks/usePost';
-
-import { convertToRaw } from 'draft-js';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-
 import {
   coverInputAtom,
   outlineInputAtom,
@@ -15,8 +9,18 @@ import {
   localCoverImageAtom,
   optionalOutlineInputAtom,
   draftIdAtom,
-} from '../../../atom';
-import { PostDesignInput, PostDraftDesign } from '../../../types';
+} from 'knitting/pages/EditDesign/atom';
+import {
+  DraftDesign,
+  PostDesignInput,
+  PostDraftDesign,
+} from 'knitting/pages/EditDesign/types';
+import { ObjectResponse } from 'knitting/utils/requestType';
+
+import { convertToRaw } from 'draft-js';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 type SaveDesign = {
   draftDesign: () => void;
@@ -48,17 +52,20 @@ export const useSaveDesign = (): SaveDesign => {
     fileInformationList: localCoverImage,
   });
 
-  const { mutate: saveMutate } = usePost<number, PostDesignInput>({
+  const { mutate: saveMutate } = usePost<string, PostDesignInput>({
     pathname: '/designs',
     onSuccess: () => navigate(MY_INFORMATION_ROUTER_ROOT),
   });
 
   const navigate = useNavigate();
 
-  const { isSuccess, mutate: draftMutate } = usePost<number, PostDraftDesign>({
+  const { isSuccess, mutate: draftMutate } = usePost<
+    ObjectResponse<DraftDesign>,
+    PostDraftDesign
+  >({
     pathname: 'designs/draft',
-    onSuccess: (id) => {
-      setDraftId(id);
+    onSuccess: ({ payload }) => {
+      setDraftId(payload.id);
     },
   });
 
@@ -102,8 +109,8 @@ export const useSaveDesign = (): SaveDesign => {
 
   const draftDesign = (): void => {
     draftMutate({
-      id: draftId,
       design_id: null,
+      id: draftId,
       value: JSON.stringify(getDesignData()),
     });
   };
@@ -111,7 +118,7 @@ export const useSaveDesign = (): SaveDesign => {
   const saveDesign = (): void => {
     saveMutate({
       ...getDesignData(),
-      draft_id: draftId,
+      draft_id: null,
     });
   };
 

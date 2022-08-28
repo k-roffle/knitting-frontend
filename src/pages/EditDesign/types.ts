@@ -74,12 +74,16 @@ export type PostDesignInput = {
   extra?: string;
   price: number;
   pattern: string;
-  draft_id: number | null;
+  draft_id: string | null;
 };
 
+export interface DraftDesign {
+  id: string;
+}
+
 export type PostDraftDesign = {
-  id: number | null;
-  design_id: number | null;
+  id: string | null;
+  design_id: string | null;
   value: string;
 };
 
