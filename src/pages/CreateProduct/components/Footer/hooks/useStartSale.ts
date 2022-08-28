@@ -13,8 +13,8 @@ export const useStartSale = (): StartSale => {
   const currentProductId = useRecoilValue(currentProductIdAtom);
   const navigate = useNavigate();
 
-  const { mutate } = usePost<number, { id?: number }>({
-    pathname: '/product',
+  const { mutate } = usePost<string, { id?: string }>({
+    pathname: '/products',
   });
 
   const startSale = () => {

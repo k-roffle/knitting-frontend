@@ -84,7 +84,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:17.0.2"],
             ["react-ellipsis-component", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:1.1.8"],
-            ["react-images-uploading", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:3.1.3"],
             ["react-infinite-scroll-component", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:6.1.0"],
             ["react-query", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:3.34.11"],
             ["react-router-dom", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:6.2.1"],
@@ -21492,7 +21491,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:17.0.2"],
             ["react-ellipsis-component", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:1.1.8"],
-            ["react-images-uploading", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:3.1.3"],
             ["react-infinite-scroll-component", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:6.1.0"],
             ["react-query", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:3.34.11"],
             ["react-router-dom", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:6.2.1"],
@@ -26959,32 +26957,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:17.0.2"],
             ["react-fast-compare", "npm:3.2.0"],
             ["shallowequal", "npm:1.1.0"]
-          ],
-          "packagePeers": [
-            "@types/react-dom",
-            "@types/react",
-            "react-dom",
-            "react"
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["react-images-uploading", [
-        ["npm:3.1.3", {
-          "packageLocation": "./.yarn/cache/react-images-uploading-npm-3.1.3-64b7c08a68-5747e3bb34.zip/node_modules/react-images-uploading/",
-          "packageDependencies": [
-            ["react-images-uploading", "npm:3.1.3"]
-          ],
-          "linkType": "SOFT",
-        }],
-        ["virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:3.1.3", {
-          "packageLocation": "./.yarn/__virtual__/react-images-uploading-virtual-e435eafe82/0/cache/react-images-uploading-npm-3.1.3-64b7c08a68-5747e3bb34.zip/node_modules/react-images-uploading/",
-          "packageDependencies": [
-            ["react-images-uploading", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:3.1.3"],
-            ["@types/react", "npm:17.0.38"],
-            ["@types/react-dom", "npm:17.0.11"],
-            ["react", "npm:17.0.2"],
-            ["react-dom", "virtual:1062dec1679a1e307ad2f514531979ef4b71660bfa2aadba2bec08ca9bfd717422cdf42958c0e1d69aab7cd7cf4d43e3681518b18f2a40cbba3fd79b3e9724bc#npm:17.0.2"]
           ],
           "packagePeers": [
             "@types/react-dom",

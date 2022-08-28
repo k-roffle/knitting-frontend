@@ -1,6 +1,6 @@
 export const DESIGN_MENU = {
   CREATED_DESIGN: 'created_design',
-  DESIGN_ON_SALE: 'design_on_sale',
+  PRODUCT_ON_SALE: 'product_on_sale',
   PURCHASED_DESIGN: 'purchased_design',
 } as const;
 

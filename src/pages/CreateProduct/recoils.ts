@@ -14,14 +14,14 @@ export const currentProductInputAtom = atom<ProductInput>({
     fullPrice: 0,
     discountPrice: 0,
     representativeImageUrl: '',
-    specifiedSalesStartDate: null,
-    specifiedSalesEndDate: null,
+    specifiedSalesStartedAt: null,
+    specifiedSalesEndedAt: null,
     tags: '',
     designs: [],
   },
 });
 
-export const currentProductIdAtom = atom<number | undefined>({
+export const currentProductIdAtom = atom<string | undefined>({
   key: 'currentProductId',
   default: undefined,
 });

@@ -12,23 +12,17 @@ import {
   InputAdornment,
   TextField,
   TextFieldProps,
+  Input,
 } from '@mui/material';
 import dayjs from 'dayjs';
-import React, { ReactNode } from 'react';
-import ImageUploading from 'react-images-uploading';
-import { ImageListType } from 'react-images-uploading/dist/typings';
+import React, { ChangeEvent, ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { currentProductInputAtom } from '../recoils';
 
 import {
   AccordionDetail,
-  CloseButton,
   FullWidthInput,
-  ImageItem,
-  ImagePreview,
-  ImageUploader,
-  ImageWrapper,
   Name,
   Price,
   Rate,
@@ -45,12 +39,11 @@ const Package = (): React.ReactElement => {
     name,
     fullPrice,
     discountPrice,
-    specifiedSalesStartDate,
-    specifiedSalesEndDate,
+    specifiedSalesStartedAt,
+    specifiedSalesEndedAt,
     tags,
     designs,
   } = currentProductInput;
-  const [images, setImages] = React.useState<ImageListType>([]);
   const [invalidPrice, setInvalidPrice] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -75,32 +68,32 @@ const Package = (): React.ReactElement => {
 
   const renderSalesDateInfoMessage = (): ReactNode => {
     const invalidDateRange =
-      dayjs(specifiedSalesStartDate).valueOf() >
-      dayjs(specifiedSalesEndDate).valueOf();
+      dayjs(specifiedSalesStartedAt).valueOf() >
+      dayjs(specifiedSalesEndedAt).valueOf();
 
     let invalid = false;
     let message = '상품이 등록된 이후부터 계속해서 판매됩니다.';
 
-    if (specifiedSalesStartDate || specifiedSalesEndDate) {
-      if (specifiedSalesStartDate) {
+    if (specifiedSalesStartedAt || specifiedSalesEndedAt) {
+      if (specifiedSalesStartedAt) {
         message = `${formatDate(
-          specifiedSalesStartDate,
+          specifiedSalesStartedAt,
         )} 이후부터 계속해서 판매됩니다.`;
       }
-      if (specifiedSalesEndDate) {
+      if (specifiedSalesEndedAt) {
         message = `상품이 등록된 이후부터 ${formatDate(
-          specifiedSalesEndDate,
+          specifiedSalesEndedAt,
         )} 까지
           판매됩니다.`;
       }
-      if (specifiedSalesStartDate && specifiedSalesEndDate) {
+      if (specifiedSalesStartedAt && specifiedSalesEndedAt) {
         if (invalidDateRange) {
           invalid = true;
           message = '종료일은 시작일보다 커야 합니다.';
         } else {
           message = `
-          ${formatDate(specifiedSalesStartDate)} 이후부터
-          ${formatDate(specifiedSalesEndDate)}까지 판매됩니다.
+          ${formatDate(specifiedSalesStartedAt)} 이후부터
+          ${formatDate(specifiedSalesEndedAt)}까지 판매됩니다.
         `;
         }
       }
@@ -134,27 +127,30 @@ const Package = (): React.ReactElement => {
     });
   };
 
-  const onChangeSpecifiedSalesStartDate = (date: Date | null) => {
+  const onChangespecifiedSalesStartedAt = (date: Date | null) => {
     setCurrentProductInput({
       ...currentProductInput,
-      specifiedSalesStartDate: date?.toISOString() ?? null,
+      specifiedSalesStartedAt: date?.toISOString() ?? null,
     });
   };
 
-  const onChangeSpecifiedSalesEndDate = (date: Date | null) => {
+  const onChangespecifiedSalesEndedAt = (date: Date | null) => {
     setCurrentProductInput({
       ...currentProductInput,
-      specifiedSalesEndDate: date?.toISOString() ?? null,
+      specifiedSalesEndedAt: date?.toISOString() ?? null,
     });
   };
 
-  const onChangeImages = (imageList: ImageListType) => {
-    setImages(imageList);
+  const onChangeImage = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    setCurrentProductInput({
+      ...currentProductInput,
+      representativeImageUrl: target.value,
+    });
   };
 
   const renderDetailElements = () => {
     return designs.map((design) => (
-      <AccordionDetail>
+      <AccordionDetail key={design.id}>
         <Name>{design.name}</Name>
         <Price>+ {design.price.toLocaleString()} 원</Price>
       </AccordionDetail>
@@ -219,27 +215,7 @@ const Package = (): React.ReactElement => {
             대표 이미지
             <RequiredMark />
           </FormLabel>
-          <ImageUploading
-            multiple
-            value={images}
-            onChange={onChangeImages}
-            maxNumber={3}
-            dataURLKey="data_url"
-          >
-            {({ imageList, onImageUpload, onImageRemove }) => (
-              <ImageWrapper container>
-                {imageList.map((image, index) => (
-                  <ImageItem key={index} item>
-                    <ImagePreview src={image.data_url} alt="" />
-                    <CloseButton onClick={() => onImageRemove(index)} />
-                  </ImageItem>
-                ))}
-                <ImageUploader onClick={onImageUpload}>
-                  새로 업로드하기
-                </ImageUploader>
-              </ImageWrapper>
-            )}
-          </ImageUploading>
+          <Input type="file" onChange={onChangeImage} />
         </Row>
         <Row item xs={12}>
           <FormLabel variant="h5">판매 기간</FormLabel>
@@ -249,8 +225,8 @@ const Package = (): React.ReactElement => {
                 disableFuture
                 openTo="day"
                 views={['year', 'month', 'day']}
-                value={specifiedSalesStartDate}
-                onChange={onChangeSpecifiedSalesStartDate}
+                value={specifiedSalesStartedAt}
+                onChange={onChangespecifiedSalesStartedAt}
                 renderInput={(params: TextFieldProps) => (
                   <TextField {...params} />
                 )}
@@ -260,8 +236,8 @@ const Package = (): React.ReactElement => {
                 disableFuture
                 openTo="day"
                 views={['year', 'month', 'day']}
-                value={specifiedSalesEndDate}
-                onChange={onChangeSpecifiedSalesEndDate}
+                value={specifiedSalesEndedAt}
+                onChange={onChangespecifiedSalesEndedAt}
                 renderInput={(params: TextFieldProps) => (
                   <TextField {...params} />
                 )}
