@@ -1,13 +1,13 @@
 import { useRecoilValue } from 'recoil';
 
-import { currentStepAtom } from '../recoils';
+import { currentCreateProductStepAtom } from '../recoils';
 import { PAGE } from '../types';
 
 export const useGetStepContents = (): {
   title: string;
   detailContents: string;
 } => {
-  const currentStep = useRecoilValue(currentStepAtom);
+  const currentStep = useRecoilValue(currentCreateProductStepAtom);
 
   const stepContents = [
     {

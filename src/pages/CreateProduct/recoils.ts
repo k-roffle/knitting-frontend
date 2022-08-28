@@ -2,8 +2,8 @@ import { atom } from 'recoil';
 
 import { PAGE, PAGE_TYPE, ProductInput } from './types';
 
-export const currentStepAtom = atom<PAGE_TYPE>({
-  key: 'currentStep',
+export const currentCreateProductStepAtom = atom<PAGE_TYPE>({
+  key: 'currentCreateProductStep',
   default: PAGE.DESIGN,
 });
 

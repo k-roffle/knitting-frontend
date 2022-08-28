@@ -1,19 +1,25 @@
 import { selectedTabAtom } from 'knitting/pages/MyInformation/atom';
+import { useMySummary } from 'knitting/pages/MyInformation/hooks/useMySummary';
 import {
   DESIGN_MENU_TYPE,
   DESIGN_MENU,
 } from 'knitting/pages/MyInformation/types';
 
-import { Tab, Tabs } from '@mui/material';
+import { Tabs } from '@mui/material';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 
+import CountIcon from '../CountIcon';
 import Designs from '../Designs';
 import InformationTabPanel from '../InformationTabPanel';
 import Products from '../Products';
 
+import { StyledTab } from './InformationTabs.css';
+
 const MyInformationTabs = (): React.ReactElement => {
   const [selectedTab, setSelectedTab] = useRecoilState(selectedTabAtom);
+  const { myDesignsCount, myProductsCount, purchasedProductsCount } =
+    useMySummary();
 
   const handleChange = (
     _event: React.SyntheticEvent<Element, Event>,
@@ -30,11 +36,23 @@ const MyInformationTabs = (): React.ReactElement => {
         textColor="primary"
         indicatorColor="primary"
       >
-        <Tab value={DESIGN_MENU.CREATED_DESIGN} label="내가 만든 도안" />
-        <Tab value={DESIGN_MENU.PRODUCT_ON_SALE} label="판매 중인 상품" />
-        <Tab
+        <StyledTab
+          value={DESIGN_MENU.CREATED_DESIGN}
+          label="내가 만든 도안"
+          icon={<CountIcon count={myDesignsCount} />}
+          iconPosition="end"
+        />
+        <StyledTab
+          value={DESIGN_MENU.PRODUCT_ON_SALE}
+          label="판매 중인 상품"
+          icon={<CountIcon count={myProductsCount} />}
+          iconPosition="end"
+        />
+        <StyledTab
           value={DESIGN_MENU.PURCHASED_DESIGN}
           label="구매한 상품"
+          icon={<CountIcon count={purchasedProductsCount} />}
+          iconPosition="end"
           disabled
         />
       </Tabs>

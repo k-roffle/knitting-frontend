@@ -44,12 +44,8 @@ const Cover = (): React.ReactElement => {
   };
 
   const handleNextClick = (): void => {
-    if (stepValidations[PAGE.COVER] == null) {
-      changeValidation([name, coverImageUrl]);
-    }
-    if (stepValidations[PAGE.COVER] != null) {
-      onNextClick();
-    }
+    changeValidation([name, coverImageUrl]);
+    onNextClick();
   };
 
   useEffect(() => {
