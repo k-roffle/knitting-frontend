@@ -46,7 +46,7 @@ const FullWithInput = styled(Input)<{ type?: string }>`
 `;
 
 export const RequiredMark = (): React.ReactElement => (
-  <Required variant="h4"> *</Required>
+  <Required variant="body1"> *</Required>
 );
 
 const InputWithLabel = ({

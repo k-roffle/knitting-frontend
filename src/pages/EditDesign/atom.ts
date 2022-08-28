@@ -23,7 +23,7 @@ export type OptionalOutlineInput = Pick<
 };
 
 export const currentStepAtom = atom<PAGE_TYPE>({
-  key: 'currentStep',
+  key: 'editCurrentStep',
   default: PAGE.COVER,
 });
 
@@ -85,7 +85,7 @@ export const editorStateAtom = atom<EditorState>({
   default: EditorState.createEmpty(),
 });
 
-export const draftIdAtom = atom<number | null>({
+export const draftIdAtom = atom<string | null>({
   key: 'draftId',
   default: null,
 });
