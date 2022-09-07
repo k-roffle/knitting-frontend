@@ -20,23 +20,28 @@ jobs:
         run: yarn run build
 
       - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v3
         with:
           name: dist
           path: dist
 
   deploy:
     if: github.ref == 'refs/heads/main'
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
       - name: Download Artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: dist
           path: dist
+
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: dist
 
       - name: Deploy to Firebase
         uses: joinflux/firebase-action@master
