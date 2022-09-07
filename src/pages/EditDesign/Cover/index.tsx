@@ -96,7 +96,7 @@ const Cover = (): React.ReactElement => {
             label="한 줄 소개"
             aria-describedby="description"
             placeholder="예) 어디서나 잘 어울리는 기본 니트 도안"
-            value={description}
+            value={description || ''}
             onChange={(event) => handleInputChange(event, 'description')}
           />
         </Row>

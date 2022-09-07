@@ -3,7 +3,16 @@ import { ImageInformation } from 'knitting/components/ImageFileUploader/hooks/us
 import { EditorState } from 'draft-js';
 import { atom } from 'recoil';
 
-import { DESIGN, DesignInput, LEVEL, PAGE, PAGE_TYPE, PATTERN } from './types';
+import { SnakeToCamelCase } from '../../utils/types';
+
+import {
+  DESIGN,
+  DesignInput,
+  DesignSize,
+  PAGE,
+  PAGE_TYPE,
+  PATTERN,
+} from './types';
 
 export type CoverInput = Pick<
   DesignInput,
@@ -17,9 +26,10 @@ export type OutlineInput = Pick<
 
 export type OptionalOutlineInput = Pick<
   DesignInput,
-  'targetLevel' | 'yarn' | 'extra' | 'size'
+  'targetLevel' | 'yarn' | 'extra'
 > & {
-  techniques: string;
+  techniques: string | null;
+  size: SnakeToCamelCase<DesignSize>;
 };
 
 export const currentStepAtom = atom<PAGE_TYPE>({
@@ -37,7 +47,7 @@ export const coverInputAtom = atom<CoverInput>({
   default: {
     name: '',
     coverImageUrl: '',
-    description: '',
+    description: null,
   },
 });
 
@@ -61,17 +71,17 @@ export const outlineInputAtom = atom<OutlineInput>({
 export const optionalOutlineInputAtom = atom<OptionalOutlineInput>({
   key: 'optionalOutlineInputAtom',
   default: {
-    techniques: '',
-    targetLevel: LEVEL.NORMAL,
+    techniques: null,
+    targetLevel: null,
     size: {
       totalLength: 0,
-      sleeveLength: 0,
       shoulderWidth: 0,
       bottomWidth: 0,
       armholeDepth: 0,
+      sleeveLength: 0,
     },
-    yarn: '',
-    extra: undefined,
+    yarn: null,
+    extra: null,
   },
 });
 
@@ -88,4 +98,14 @@ export const editorStateAtom = atom<EditorState>({
 export const draftIdAtom = atom<string | null>({
   key: 'draftId',
   default: null,
+});
+
+export const isShowSaveModalAtom = atom<boolean>({
+  key: 'isShowSaveModal',
+  default: false,
+});
+
+export const sizeValidationAtom = atom<boolean>({
+  key: 'sizeValidation',
+  default: true,
 });

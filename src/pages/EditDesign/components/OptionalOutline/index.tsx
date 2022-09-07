@@ -26,10 +26,10 @@ const OptionalOutline = (): React.ReactElement => {
   const { techniques, targetLevel, yarn, extra, size } = optionalOutlineInput;
   const {
     totalLength,
-    sleeveLength,
     shoulderWidth,
     bottomWidth,
     armholeDepth,
+    sleeveLength,
   } = size;
 
   const getNumberToChange = (value: string) => {
@@ -56,11 +56,13 @@ const OptionalOutline = (): React.ReactElement => {
     }: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
     type: DesignSizeKey,
   ): void => {
+    const value = getNumberToChange(currentTarget.value);
+
     setOptionalOutlineInput({
       ...optionalOutlineInput,
       size: {
         ...size,
-        [type]: getNumberToChange(currentTarget.value),
+        [type]: value,
       },
     });
   };
@@ -73,14 +75,14 @@ const OptionalOutline = (): React.ReactElement => {
           id="techniques"
           aria-describedby="techniques"
           placeholder="예) 겉뜨기, 안뜨기, 원통뜨기"
-          value={techniques}
+          value={techniques || ''}
           onChange={(event) => handleInputChange(event, 'techniques')}
         />
       </Row>
       <Row item xs={12}>
         <FormLabel variant="h5">난이도</FormLabel>
         <RadioGroup
-          value={targetLevel}
+          value={targetLevel || ''}
           onChange={(event) => handleInputChange(event, 'targetLevel')}
         >
           {LevelKind.map(({ value, label }) => (
@@ -99,7 +101,7 @@ const OptionalOutline = (): React.ReactElement => {
           variant="h5"
           label="사용한 실"
           placeholder="예) 티파니 100g 4볼"
-          value={yarn}
+          value={yarn || ''}
           onChange={(event) => handleInputChange(event, 'yarn')}
         />
       </Row>
@@ -109,7 +111,7 @@ const OptionalOutline = (): React.ReactElement => {
           id="extra"
           aria-describedby="extra"
           placeholder="예) 18mm 단추 3개, 돗바늘, 지퍼 10개, 마커 10개"
-          value={extra}
+          value={extra || ''}
           onChange={(event) => handleInputChange(event, 'extra')}
         />
       </Row>

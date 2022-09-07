@@ -13,6 +13,7 @@ import {
   editorStateAtom,
   optionalOutlineInputAtom,
   stepValidationsAtom,
+  isShowSaveModalAtom,
 } from '../atom';
 import DesignSizeImage from '../components/DesignSizeImage';
 import Footer from '../components/Footer';
@@ -36,7 +37,8 @@ const Review = (): React.ReactElement => {
   const editorState = useRecoilValue(editorStateAtom);
   const stepValidations = useRecoilValue(stepValidationsAtom);
   const [isShowInfoModal, setIsShowInfoModal] = useState<boolean>(false);
-  const [isShowSaveModal, setIsShowSaveModal] = useState<boolean>(false);
+  const isShowSaveModal = useRecoilValue(isShowSaveModalAtom);
+
   const navigate = useNavigate();
 
   const { onPreviousClick, onNextClick } = useStepController();
@@ -63,7 +65,6 @@ const Review = (): React.ReactElement => {
   const handleConfirm = () => {
     setIsShowInfoModal(false);
     onNextClick();
-    setIsShowSaveModal(true);
   };
 
   const navigatePath = (path: string) => {

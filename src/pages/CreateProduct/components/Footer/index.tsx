@@ -7,16 +7,14 @@ import { Button as MaterialButton } from '@mui/material';
 import React from 'react';
 import { useRecoilState } from 'recoil';
 
-import { useSaveProduct } from './hooks/useSaveProduct';
-import { useStartSale } from './hooks/useStartSale';
+import useProduct from './hooks/useProduct';
 
 const Footer = (): React.ReactElement => {
   const { DESIGN, PACKAGE, INTRODUCTION, CONFIRM } = PAGE;
   const [currentStep, setCurrentStep] = useRecoilState(
     currentCreateProductStepAtom,
   );
-  const { saveProduct } = useSaveProduct();
-  const { startSale } = useStartSale();
+  const { draftProduct, saveProduct } = useProduct();
 
   const handleOnClickPrevious = async (): Promise<void> => {
     switch (currentStep) {
@@ -50,6 +48,8 @@ const Footer = (): React.ReactElement => {
   };
 
   const handleOnClickNext = (): void => {
+    draftProduct();
+
     switch (currentStep) {
       case DESIGN:
         setCurrentStep(PACKAGE);
@@ -58,10 +58,10 @@ const Footer = (): React.ReactElement => {
         setCurrentStep(INTRODUCTION);
         break;
       case INTRODUCTION:
-        saveProduct();
+        setCurrentStep(CONFIRM);
         break;
       case CONFIRM:
-        startSale();
+        saveProduct();
         break;
       default:
         break;

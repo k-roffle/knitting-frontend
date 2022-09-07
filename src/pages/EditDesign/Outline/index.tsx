@@ -34,8 +34,12 @@ const Outline = (): React.ReactElement => {
 
   const [outlineInput, setOutlineInput] = useRecoilState(outlineInputAtom);
   const stepValidations = useRecoilValue(stepValidationsAtom);
-  const { onPreviousClick, onNextClick, changeValidation } =
-    useStepController();
+  const {
+    onPreviousClick,
+    onNextClick,
+    changeValidation,
+    changeSizeValidation,
+  } = useStepController();
 
   const { price, designType, patternType, stitches, rows, needle } =
     outlineInput;
@@ -86,6 +90,7 @@ const Outline = (): React.ReactElement => {
 
   const handleNextClick = (): void => {
     changeValidation([price, stitches, rows, needle]);
+    changeSizeValidation();
     onNextClick();
   };
 
