@@ -44,7 +44,7 @@ jobs:
         working-directory: build
 
       - name: Deploy to Firebase
-        uses: joinflux/firebase-action@master
+        uses: joinflux/firebase-tools@v9.16.0
         with:
           args: deploy --only hosting
         env:
