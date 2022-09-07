@@ -22,8 +22,8 @@ jobs:
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: dist
-          path: dist
+          name: build
+          path: build
 
   deploy:
     if: github.ref == 'refs/heads/main'
@@ -36,12 +36,12 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
-          name: dist
-          path: dist
+          name: build
+          path: build
 
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: dist
+        working-directory: build
 
       - name: Deploy to Firebase
         uses: joinflux/firebase-action@master
