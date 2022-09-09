@@ -1,5 +1,4 @@
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
-import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
 import useDesignAtom from 'knitting/hooks/useDesignAtom';
 import useFirebaseImageStorage from 'knitting/hooks/useFirebaseImageStorage';
 import { usePost } from 'knitting/hooks/usePost';
@@ -21,7 +20,6 @@ import { ObjectResponse } from 'knitting/utils/requestType';
 
 import { convertToRaw } from 'draft-js';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 type SaveDesign = {
@@ -49,7 +47,7 @@ export const useSaveDesign = (): SaveDesign => {
   });
 
   const handleSaveDesign = () => {
-    navigate(MY_INFORMATION_ROUTER_ROOT);
+    setIsShowSaveModal(true);
     resetSaveDesignAtom();
   };
 
@@ -61,8 +59,6 @@ export const useSaveDesign = (): SaveDesign => {
     pathname: '/designs',
     onSuccess: handleSaveDesign,
   });
-
-  const navigate = useNavigate();
 
   const {
     isSuccess: draftDesignSuccess,
@@ -153,10 +149,6 @@ export const useSaveDesign = (): SaveDesign => {
       saveDesign();
     }
   }, [uploadResults]);
-
-  useEffect(() => {
-    setIsShowSaveModal(saveDesignSuccess);
-  }, [saveDesignSuccess]);
 
   return { draftDesign, saveDesign, uploadFile };
 };

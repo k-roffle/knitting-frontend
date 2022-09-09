@@ -1,3 +1,4 @@
+import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
 import Modal from 'knitting/dumbs/Modal';
 import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
 
@@ -172,7 +173,7 @@ const Review = (): React.ReactElement => {
             도안을 상품으로 등록해보세요!"
         closeButtonText="다음에 등록할게요"
         confirmButtonText="상품을 등록할게요!"
-        handleClose={() => navigatePath('/my')}
+        handleClose={() => navigatePath(MY_INFORMATION_ROUTER_ROOT)}
         handleConfirm={() => navigatePath('/my/products/create')}
       />
     </>
