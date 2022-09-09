@@ -1,8 +1,6 @@
 import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
 import Modal from 'knitting/dumbs/Modal';
-import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
 
-import Editor from '@draft-js-plugins/editor';
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +9,6 @@ import { useRecoilValue } from 'recoil';
 import {
   coverInputAtom,
   outlineInputAtom,
-  editorStateAtom,
   optionalOutlineInputAtom,
   stepValidationsAtom,
   isShowSaveModalAtom,
@@ -35,7 +32,6 @@ const Review = (): React.ReactElement => {
     bottomWidth,
     armholeDepth,
   } = size;
-  const editorState = useRecoilValue(editorStateAtom);
   const stepValidations = useRecoilValue(stepValidationsAtom);
   const [isShowInfoModal, setIsShowInfoModal] = useState<boolean>(false);
   const isShowSaveModal = useRecoilValue(isShowSaveModalAtom);
@@ -135,16 +131,6 @@ const Review = (): React.ReactElement => {
         <Row item xs={12}>
           <Label variant="h4">추가 재료</Label>
           <Contents>{extra}</Contents>
-        </Row>
-        <Row item xs={12}>
-          <Label variant="h4">도안</Label>
-          <Contents>
-            <Editor
-              customStyleMap={customInlineStylesMap}
-              editorState={editorState}
-              readOnly={true}
-            />
-          </Contents>
         </Row>
       </Grid>
       <Footer
