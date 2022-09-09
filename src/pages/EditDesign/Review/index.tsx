@@ -1,7 +1,6 @@
+import { MY_INFORMATION_ROUTER_ROOT } from 'knitting/constants/path';
 import Modal from 'knitting/dumbs/Modal';
-import { customInlineStylesMap } from 'knitting/libs/draftjs-utils/inline';
 
-import Editor from '@draft-js-plugins/editor';
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +9,9 @@ import { useRecoilValue } from 'recoil';
 import {
   coverInputAtom,
   outlineInputAtom,
-  editorStateAtom,
   optionalOutlineInputAtom,
   stepValidationsAtom,
+  isShowSaveModalAtom,
 } from '../atom';
 import DesignSizeImage from '../components/DesignSizeImage';
 import Footer from '../components/Footer';
@@ -33,10 +32,10 @@ const Review = (): React.ReactElement => {
     bottomWidth,
     armholeDepth,
   } = size;
-  const editorState = useRecoilValue(editorStateAtom);
   const stepValidations = useRecoilValue(stepValidationsAtom);
   const [isShowInfoModal, setIsShowInfoModal] = useState<boolean>(false);
-  const [isShowSaveModal, setIsShowSaveModal] = useState<boolean>(false);
+  const isShowSaveModal = useRecoilValue(isShowSaveModalAtom);
+
   const navigate = useNavigate();
 
   const { onPreviousClick, onNextClick } = useStepController();
@@ -63,7 +62,6 @@ const Review = (): React.ReactElement => {
   const handleConfirm = () => {
     setIsShowInfoModal(false);
     onNextClick();
-    setIsShowSaveModal(true);
   };
 
   const navigatePath = (path: string) => {
@@ -134,16 +132,6 @@ const Review = (): React.ReactElement => {
           <Label variant="h4">추가 재료</Label>
           <Contents>{extra}</Contents>
         </Row>
-        <Row item xs={12}>
-          <Label variant="h4">도안</Label>
-          <Contents>
-            <Editor
-              customStyleMap={customInlineStylesMap}
-              editorState={editorState}
-              readOnly={true}
-            />
-          </Contents>
-        </Row>
       </Grid>
       <Footer
         previousLabel="이전"
@@ -171,7 +159,7 @@ const Review = (): React.ReactElement => {
             도안을 상품으로 등록해보세요!"
         closeButtonText="다음에 등록할게요"
         confirmButtonText="상품을 등록할게요!"
-        handleClose={() => navigatePath('/my')}
+        handleClose={() => navigatePath(MY_INFORMATION_ROUTER_ROOT)}
         handleConfirm={() => navigatePath('/my/products/create')}
       />
     </>

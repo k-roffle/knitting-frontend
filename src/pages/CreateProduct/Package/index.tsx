@@ -15,9 +15,10 @@ import {
   Input,
 } from '@mui/material';
 import dayjs from 'dayjs';
-import React, { ChangeEvent, ReactNode } from 'react';
+import React, { ChangeEvent, ReactNode, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
+import { DesignItemResponse } from '../../MyInformation/hooks/types';
 import { currentProductInputAtom } from '../recoils';
 
 import {
@@ -32,13 +33,13 @@ import {
 } from './Package.css';
 
 const Package = (): React.ReactElement => {
+  const [discount, setDiscount] = useState<number>(0);
   const [currentProductInput, setCurrentProductInput] = useRecoilState(
     currentProductInputAtom,
   );
   const {
     name,
     fullPrice,
-    discountPrice,
     specifiedSalesStartedAt,
     specifiedSalesEndedAt,
     tags,
@@ -46,16 +47,8 @@ const Package = (): React.ReactElement => {
   } = currentProductInput;
   const [invalidPrice, setInvalidPrice] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    if (fullPrice < discountPrice) {
-      setInvalidPrice(true);
-    }
-  }, [fullPrice, discountPrice]);
-
   const getRate = (): string => {
-    const rate = Math.round(
-      (currentProductInput.discountPrice / currentProductInput.fullPrice) * 100,
-    );
+    const rate = Math.round((discount / currentProductInput.fullPrice) * 100);
 
     return isNaN(rate) ? '' : rate.toString();
   };
@@ -63,8 +56,14 @@ const Package = (): React.ReactElement => {
   const rate = getRate();
 
   const getSalePrice = (): number => {
-    return currentProductInput.fullPrice - currentProductInput.discountPrice;
+    return currentProductInput.fullPrice - discount;
   };
+
+  React.useEffect(() => {
+    if (fullPrice < discount) {
+      setInvalidPrice(true);
+    }
+  }, [fullPrice, discount]);
 
   const renderSalesDateInfoMessage = (): ReactNode => {
     const invalidDateRange =
@@ -113,10 +112,12 @@ const Package = (): React.ReactElement => {
     });
   };
 
-  const onChangeDiscountPrice: InputProps['onChange'] = ({ currentTarget }) => {
+  const onChangeDiscount: InputProps['onChange'] = ({ currentTarget }) => {
+    setDiscount(Number(currentTarget.value));
     setCurrentProductInput({
       ...currentProductInput,
-      discountPrice: Number(currentTarget.value),
+      discountPrice:
+        currentProductInput.fullPrice - Number(currentTarget.value),
     });
   };
 
@@ -149,7 +150,7 @@ const Package = (): React.ReactElement => {
   };
 
   const renderDetailElements = () => {
-    return designs.map((design) => (
+    return designs.map((design: DesignItemResponse) => (
       <AccordionDetail key={design.id}>
         <Name>{design.name}</Name>
         <Price>+ {design.price.toLocaleString()} 원</Price>
@@ -186,14 +187,14 @@ const Package = (): React.ReactElement => {
           </Row>
           <Row container>
             <InlineInput
-              id="discountPrice"
+              id="discount"
               type="number"
               label="할인"
               variant="h6"
-              value={discountPrice}
-              aria-describedby="discountPrice"
+              value={discount}
+              aria-describedby="discount"
               endAdornment={<InputAdornment position="end">원</InputAdornment>}
-              onChange={onChangeDiscountPrice}
+              onChange={onChangeDiscount}
               error={invalidPrice}
               message="할인가는 정가보다 클 수 없습니다."
             />

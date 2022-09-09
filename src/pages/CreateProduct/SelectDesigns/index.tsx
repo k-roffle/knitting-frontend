@@ -15,38 +15,43 @@ import { currentProductInputAtom } from '../recoils';
 import { Loader, StyledList } from './SelectDesigns.css';
 
 const SelectDesigns = (): React.ReactElement => {
-  const { isLoading, hasLastCursor, designs, loadMore } = useMyDesigns();
+  const {
+    isLoading,
+    hasLastCursor,
+    designs: myDesigns,
+    loadMore,
+  } = useMyDesigns();
   const navigate = useNavigate();
 
   const [currentProductInput, setCurrentProductInput] = useRecoilState(
     currentProductInputAtom,
   );
-  const { designs: selectDesigns } = currentProductInput;
+  const { designs, designIds } = currentProductInput;
 
   const isEmpty = !isLoading && designs.length === 0;
 
   const handleSelectDesign = (design: DesignItemResponse) => (): void => {
-    let newDesigns;
-
-    if (selectDesigns.find(({ id }) => id === design.id)) {
-      newDesigns = selectDesigns.filter(({ id }) => id !== design.id);
+    if (designIds.length && designIds.includes(design.id)) {
+      setCurrentProductInput({
+        ...currentProductInput,
+        designIds: designIds.filter(
+          (designId: string) => designId !== design.id,
+        ),
+        designs: designs.filter(({ id }) => id !== design.id),
+      });
     } else {
-      newDesigns = selectDesigns.concat(design);
+      setCurrentProductInput({
+        ...currentProductInput,
+        designIds: [...designIds, design.id],
+        designs: [...designs, design],
+      });
     }
-
-    setCurrentProductInput({
-      ...currentProductInput,
-      fullPrice: newDesigns
-        .map((newDesign) => newDesign.price)
-        .reduce((current, prev) => current + prev, 0),
-      designs: newDesigns,
-    });
   };
 
   return (
     <StyledList>
       <InfiniteScroll
-        dataLength={designs.length}
+        dataLength={myDesigns.length}
         next={loadMore}
         hasMore={hasLastCursor}
         loader={
@@ -55,10 +60,10 @@ const SelectDesigns = (): React.ReactElement => {
           </Loader>
         }
       >
-        {(isLoading ? [...Array(DEFAULT_LIST_LENGTH)] : designs).map(
+        {(isLoading ? [...Array(DEFAULT_LIST_LENGTH)] : myDesigns).map(
           (design, index) => {
-            const showDivider = designs.length - 1 !== index;
-            const isChecked = selectDesigns.some(({ id }) => id === design.id);
+            const showDivider = myDesigns.length - 1 !== index;
+            const isChecked = designIds.includes(design.id);
 
             return (
               <DesignItem
