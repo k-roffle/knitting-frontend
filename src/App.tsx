@@ -37,6 +37,14 @@ const App = (): React.ReactElement => {
               <RouteWithoutTrailingSlash />
               <Routes>
                 <Route
+                  index
+                  element={
+                    <ProtectedRoute>
+                      <MyInformation />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
                   path={MY_INFORMATION_ROUTER_ROOT + ROUTER_PATH}
                   element={
                     <ProtectedRoute>
