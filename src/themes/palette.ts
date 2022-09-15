@@ -7,7 +7,7 @@ export const { palette } = createTheme({
   palette: {
     primary: {
       light: deepOrange[200],
-      main: deepOrange[600],
+      main: deepOrange[650],
       dark: deepOrange[800],
     },
     secondary: {
@@ -19,7 +19,9 @@ export const { palette } = createTheme({
       hover: 'rgba(0, 0, 0, 0.06)',
     },
     grey: {
+      100: '#f2f2f2',
       200: '#f4f4f4',
+      500: '#555555',
       600: '#999999',
     },
   },
