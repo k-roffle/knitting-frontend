@@ -75,7 +75,11 @@ const Footer = (): React.ReactElement => {
           이전
         </MaterialButton>
       )}
-      <Button label={renderNextLabel()} onClick={handleOnClickNext} />
+      <Button
+        label={renderNextLabel()}
+        onClick={handleOnClickNext}
+        sx={{ marginLeft: 'auto' }}
+      />
     </FooterContainer>
   );
 };
