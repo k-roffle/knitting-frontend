@@ -11,6 +11,7 @@ export const LOGIN_ROUTER_ROOT = '/login';
 export const LOGIN_PATH = '/';
 export const LOGIN_REDIRECTED_PATH = '/redirected';
 
-export const PRODUCT_DETAIL_PATH = '/products/:id';
+export const PRODUCT_ROUTER_ROOT = '/products';
+export const PRODUCT_DETAIL_PATH = '/:id';
 
 export const ERROR_PATH = '/error';

@@ -1,11 +1,14 @@
 import { Button } from 'knitting/dumbs';
-import { currentCreateProductStepAtom } from 'knitting/pages/CreateProduct/recoils';
+import {
+  currentCreateProductStepAtom,
+  isShowAtom,
+} from 'knitting/pages/CreateProduct/recoils';
 import { PAGE } from 'knitting/pages/CreateProduct/types';
 import { FooterContainer } from 'knitting/styles/constants';
 
 import { Button as MaterialButton } from '@mui/material';
 import React from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 import useProduct from './hooks/useProduct';
 
@@ -14,7 +17,8 @@ const Footer = (): React.ReactElement => {
   const [currentStep, setCurrentStep] = useRecoilState(
     currentCreateProductStepAtom,
   );
-  const { draftProduct, saveProduct } = useProduct();
+  const setIsShow = useSetRecoilState(isShowAtom);
+  const { draftProduct } = useProduct();
 
   const handleOnClickPrevious = async (): Promise<void> => {
     switch (currentStep) {
@@ -48,7 +52,9 @@ const Footer = (): React.ReactElement => {
   };
 
   const handleOnClickNext = (): void => {
-    draftProduct();
+    if (currentStep !== CONFIRM) {
+      draftProduct();
+    }
 
     switch (currentStep) {
       case DESIGN:
@@ -61,7 +67,7 @@ const Footer = (): React.ReactElement => {
         setCurrentStep(CONFIRM);
         break;
       case CONFIRM:
-        saveProduct();
+        setIsShow(true);
         break;
       default:
         break;
@@ -75,7 +81,11 @@ const Footer = (): React.ReactElement => {
           이전
         </MaterialButton>
       )}
-      <Button label={renderNextLabel()} onClick={handleOnClickNext} />
+      <Button
+        label={renderNextLabel()}
+        onClick={handleOnClickNext}
+        sx={{ marginLeft: 'auto' }}
+      />
     </FooterContainer>
   );
 };

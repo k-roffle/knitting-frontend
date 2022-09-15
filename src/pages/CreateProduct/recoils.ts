@@ -33,3 +33,8 @@ export const currentProductIdAtom = atom<string | undefined>({
   key: 'currentProductId',
   default: undefined,
 });
+
+export const isShowAtom = atom<boolean>({
+  key: 'isShow',
+  default: false,
+});

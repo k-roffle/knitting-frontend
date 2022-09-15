@@ -6,12 +6,10 @@ import { usePost } from 'knitting/hooks/usePost';
 import {
   currentProductIdAtom,
   currentProductInputAtom,
-  currentCreateProductStepAtom,
   draftProductIdAtom,
 } from 'knitting/pages/CreateProduct/recoils';
 import {
   DraftProductRequest,
-  PAGE,
   PostProductInput,
   DraftProduct,
   ProductAction,
@@ -21,11 +19,12 @@ import { DraftDesign } from 'knitting/pages/EditDesign/types';
 import { ObjectResponse } from 'knitting/utils/requestType';
 import { splitText } from 'knitting/utils/splitText';
 
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 const useProduct = (): ProductAction => {
+  const navigate = useNavigate();
   const draftProductId = useRecoilValue(draftProductIdAtom);
-  const setCurrentStep = useSetRecoilState(currentCreateProductStepAtom);
   const setCurrentProductId = useSetRecoilState(currentProductIdAtom);
   const setDraftId = useSetRecoilState(draftIdAtom);
 
@@ -49,8 +48,10 @@ const useProduct = (): ProductAction => {
   const onSuccessSave = ({ payload: { id } }: ObjectResponse<DraftProduct>) => {
     if (id) {
       setCurrentProductId(id);
+      navigate(`/products/${id}`);
+    } else {
+      navigate('/');
     }
-    setCurrentStep(PAGE.CONFIRM);
   };
 
   const { mutate: draft } = usePost<

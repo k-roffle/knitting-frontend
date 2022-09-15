@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Link } from '@mui/material';
 import React from 'react';
 
 const getTextStyle = (size: 'small' | 'large'): string => {
@@ -44,9 +45,11 @@ const Logo = ({
   className,
 }: Props): React.ReactElement => {
   return (
-    <LogoWrapper size={size} align={align} className={className}>
-      <LogoIcon size={size}>🧶</LogoIcon>knitting
-    </LogoWrapper>
+    <Link href="/" underline="none" color="black">
+      <LogoWrapper size={size} align={align} className={className}>
+        <LogoIcon size={size}>🧶</LogoIcon>knitting
+      </LogoWrapper>
+    </Link>
   );
 };
 

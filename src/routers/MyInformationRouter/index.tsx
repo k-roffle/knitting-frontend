@@ -5,14 +5,13 @@ import {
   MY_INFORMATION_CREATE_PRODUCT_PATH,
 } from 'knitting/constants/path';
 import CreateProduct from 'knitting/pages/CreateProduct';
+import CreateDesign from 'knitting/pages/EditDesign/CreateDesign';
+import UpdateDesign from 'knitting/pages/EditDesign/UpdateDesign';
 import Error404 from 'knitting/pages/Error404';
 import MyInformation from 'knitting/pages/MyInformation';
 
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-
-import CreateDesign from '../../pages/EditDesign/CreateDesign';
-import UpdateDesign from '../../pages/EditDesign/UpdateDesign';
 
 const MyInformationRouter = (): React.ReactElement => {
   return (
