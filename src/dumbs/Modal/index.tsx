@@ -7,7 +7,7 @@ import {
 
 type Props = {
   isShow: boolean;
-  title: string;
+  title?: string;
   description: string;
   closeButtonText?: string;
   confirmButtonText?: string;
@@ -28,7 +28,7 @@ const Modal = ({
     <ModalContainer open={isShow} onClose={handleClose}>
       <ModalBox sx={{ width: 400 }}>
         <ModalContents>
-          <h2>{title}</h2>
+          {title && <h2>{title}</h2>}
           <p dangerouslySetInnerHTML={{ __html: description }} />
           <ModalButton
             label={closeButtonText || '취소'}

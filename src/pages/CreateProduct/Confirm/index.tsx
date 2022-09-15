@@ -1,10 +1,16 @@
+import Modal from 'knitting/dumbs/Modal';
 import { splitText } from 'knitting/utils/splitText';
 
 import { Grid, Box, Typography } from '@mui/material';
 import React from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-import { currentProductIdAtom, currentProductInputAtom } from '../recoils';
+import useProduct from '../components/Footer/hooks/useProduct';
+import {
+  currentProductIdAtom,
+  currentProductInputAtom,
+  isShowAtom,
+} from '../recoils';
 
 import {
   ProductCard,
@@ -18,6 +24,8 @@ const Confirm = (): React.ReactElement => {
   const { name, fullPrice, discountPrice, representativeImageUrl, tags } =
     useRecoilValue(currentProductInputAtom);
   const currentProductId = useRecoilValue(currentProductIdAtom);
+  const [isShow, setIsShow] = useRecoilState(isShowAtom);
+  const { saveProduct } = useProduct();
 
   const getRate = (): string => {
     const rate = Math.round((discountPrice / fullPrice) * 100);
@@ -29,6 +37,14 @@ const Confirm = (): React.ReactElement => {
     const price = fullPrice - discountPrice;
 
     return isNaN(price) && Math.sign(price) ? '' : price.toLocaleString();
+  };
+
+  const handleClose = () => {
+    setIsShow(false);
+  };
+
+  const handleConfirm = () => {
+    saveProduct();
   };
 
   return (
@@ -45,8 +61,8 @@ const Confirm = (): React.ReactElement => {
             <Typography variant="h4">{name}</Typography>
             <Box display="flex" justifyContent="space-between" mt={4}>
               <div>
-                {splitText(tags, '#').map((tag: string) => (
-                  <Tag>#{tag}</Tag>
+                {splitText(tags, '#').map((tag: string, index) => (
+                  <Tag key={index}>#{tag}</Tag>
                 ))}
               </div>
               <Box display="flex">
@@ -72,6 +88,13 @@ const Confirm = (): React.ReactElement => {
           " 노출됩니다.
         </InfoMessage>
       </ul>
+      <Modal
+        isShow={isShow}
+        description="상품명과 표지 이미지, 가격은<br /> 입력 후 수정할 수 없습니다.<br />
+            등록하시겠습니까?"
+        handleClose={handleClose}
+        handleConfirm={handleConfirm}
+      />
     </>
   );
 };

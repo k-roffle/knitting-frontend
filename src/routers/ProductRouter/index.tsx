@@ -8,7 +8,11 @@ import { Route, Routes } from 'react-router-dom';
 const ProductRouter = (): React.ReactElement => {
   return (
     <Routes>
-      <Route path={PRODUCT_DETAIL_PATH} element={ProductDetail} caseSensitive />
+      <Route
+        path={PRODUCT_DETAIL_PATH}
+        element={<ProductDetail />}
+        caseSensitive
+      />
       <Route path="*" element={Error404} />
     </Routes>
   );
