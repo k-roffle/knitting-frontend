@@ -28,24 +28,21 @@ const SelectDesigns = (): React.ReactElement => {
   );
   const { designs, designIds } = currentProductInput;
 
-  const isEmpty = !isLoading && designs.length === 0;
+  const isEmpty = !isLoading && myDesigns.length === 0;
 
   const handleSelectDesign = (design: DesignItemResponse) => (): void => {
-    if (designIds.length && designIds.includes(design.id)) {
-      setCurrentProductInput({
-        ...currentProductInput,
-        designIds: designIds.filter(
-          (designId: string) => designId !== design.id,
-        ),
-        designs: designs.filter(({ id }) => id !== design.id),
-      });
-    } else {
-      setCurrentProductInput({
-        ...currentProductInput,
-        designIds: [...designIds, design.id],
-        designs: [...designs, design],
-      });
-    }
+    const newDesigns = designIds.includes(design.id)
+      ? designs.filter(({ id }) => id !== design.id)
+      : [...designs, design];
+
+    setCurrentProductInput({
+      ...currentProductInput,
+      designs: newDesigns,
+      designIds: newDesigns.map((newDesign) => newDesign.id),
+      fullPrice: newDesigns
+        .map((newDesign) => newDesign.price)
+        .reduce((prev, curr) => prev + curr, 0),
+    });
   };
 
   return (
