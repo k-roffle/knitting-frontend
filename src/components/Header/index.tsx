@@ -45,7 +45,7 @@ const Header = (): React.ReactElement => {
 
   return (
     <AppBar color="inherit">
-      <Toolbar>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Logo size="large" />
         <div>
           <StyledIconButton onClick={handleMenu} color="inherit">
