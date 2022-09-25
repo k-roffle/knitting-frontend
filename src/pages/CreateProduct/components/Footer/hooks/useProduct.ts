@@ -7,7 +7,7 @@ import {
   currentProductIdAtom,
   currentProductInputAtom,
   draftProductIdAtom,
-} from 'knitting/pages/CreateProduct/recoils';
+} from 'knitting/pages/CreateProduct/atom';
 import {
   DraftProductRequest,
   PostProductInput,

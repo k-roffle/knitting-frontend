@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 
-import { currentCreateProductStepAtom } from '../recoils';
+import { currentCreateProductStepAtom } from '../atom';
 import { PAGE } from '../types';
 
 export const useGetStepContents = (): {

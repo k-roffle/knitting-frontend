@@ -5,12 +5,12 @@ import { Grid, Box, Typography } from '@mui/material';
 import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import useProduct from '../components/Footer/hooks/useProduct';
 import {
   currentProductIdAtom,
   currentProductInputAtom,
   isShowAtom,
-} from '../recoils';
+} from '../atom';
+import useProduct from '../components/Footer/hooks/useProduct';
 
 import {
   ProductCard,

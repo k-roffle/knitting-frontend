@@ -2,7 +2,7 @@ import { Button } from 'knitting/dumbs';
 import {
   currentCreateProductStepAtom,
   isShowAtom,
-} from 'knitting/pages/CreateProduct/recoils';
+} from 'knitting/pages/CreateProduct/atom';
 import { PAGE } from 'knitting/pages/CreateProduct/types';
 import { FooterContainer } from 'knitting/styles/constants';
 
