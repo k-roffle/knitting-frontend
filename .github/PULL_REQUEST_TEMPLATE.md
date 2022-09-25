@@ -13,8 +13,6 @@ PR 제목에 다음과 같은 prefix를 붙여 PR을 구분할 수 있도록 해
 - Remove: 파일을 삭제하는 작업만 수행한 경우
 -->
 
-[Click Up 이슈 링크](https://app.clickup.com/t/)
-
 ## 주요 변경 기록
 
 <!--
