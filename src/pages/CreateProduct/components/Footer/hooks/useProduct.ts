@@ -48,7 +48,9 @@ const useProduct = (): ProductAction => {
   const onSuccessSave = ({ payload: { id } }: ObjectResponse<DraftProduct>) => {
     if (id) {
       setCurrentProductId(id);
-      navigate(`/products/${id}`);
+      // TODO: 상품 상세 페이지로 이동
+      // navigate(`/products/${id}`);
+      navigate('/');
     } else {
       navigate('/');
     }

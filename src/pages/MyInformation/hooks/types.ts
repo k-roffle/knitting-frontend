@@ -1,3 +1,5 @@
+import { Product } from 'knitting/pages/ProductDetail/types';
+
 export type DesignItemResponse = {
   id: string;
   name: string;
@@ -18,3 +20,8 @@ export type SalesSummaryResponse = {
   number_of_products_on_sales: number;
   number_of_products_sold: number;
 };
+
+export type ProductItemResponse = Omit<
+  Product,
+  'content' | 'items' | 'created_at'
+>;
