@@ -3,7 +3,7 @@ import { ImageInformation } from 'knitting/components/ImageFileUploader/hooks/us
 import { FormLabel, InputWithLabel, RequiredMark } from 'knitting/dumbs';
 
 import { FormGroup } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import {
@@ -14,6 +14,7 @@ import {
 } from '../atom';
 import { Row } from '../common.css';
 import Footer from '../components/Footer';
+import { useSaveDesign } from '../components/Footer/hooks/useSaveDesign';
 import { useStepController } from '../components/Footer/hooks/useStepController';
 import { PAGE } from '../types';
 
@@ -23,6 +24,7 @@ const Cover = (): React.ReactElement => {
   const stepValidations = useRecoilValue(stepValidationsAtom);
   const { onPreviousClick, onNextClick, changeValidation } =
     useStepController();
+  const { uploadFile } = useSaveDesign();
   const { name, description, coverImageUrl } = coverInput;
 
   const showValidation = stepValidations[PAGE.COVER] === false;
@@ -39,29 +41,18 @@ const Cover = (): React.ReactElement => {
     });
   };
 
-  const handleChangeCoverImage = (images: ImageInformation[]) => {
+  const handleChangeCoverImage = async (images: ImageInformation[]) => {
     setCoverImage(images[0]);
+
+    if (uploadFile) {
+      await uploadFile('designs/cover-image', images);
+    }
   };
 
   const handleNextClick = (): void => {
     changeValidation([name, coverImageUrl]);
     onNextClick();
   };
-
-  useEffect(() => {
-    if (coverImage) {
-      setCoverInput({
-        ...coverInput,
-        coverImageUrl: coverImage.url,
-      });
-    }
-  }, [coverImage]);
-
-  useEffect(() => {
-    if (stepValidations[PAGE.COVER] != null) {
-      changeValidation([name, coverImageUrl]);
-    }
-  }, [coverInput, stepValidations[PAGE.COVER]]);
 
   return (
     <>

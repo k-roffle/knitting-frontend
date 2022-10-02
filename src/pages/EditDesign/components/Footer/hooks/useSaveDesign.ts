@@ -1,4 +1,5 @@
 import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
+import { ImageInformation } from 'knitting/components/ImageFileUploader/hooks/useImageFileUploader';
 import useDesignAtom from 'knitting/hooks/useDesignAtom';
 import useFirebaseImageStorage from 'knitting/hooks/useFirebaseImageStorage';
 import { usePost } from 'knitting/hooks/usePost';
@@ -6,7 +7,6 @@ import {
   coverInputAtom,
   outlineInputAtom,
   editorStateAtom,
-  localCoverImageAtom,
   optionalOutlineInputAtom,
   draftIdAtom,
   isShowSaveModalAtom,
@@ -25,26 +25,25 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 type SaveDesign = {
   draftDesign: () => void;
   saveDesign: () => void;
-  uploadFile: (() => void) | undefined;
+  uploadFile:
+    | ((path: string, fileInformationList: ImageInformation[]) => void)
+    | undefined;
 };
 
 export const useSaveDesign = (): SaveDesign => {
   const { name, coverImageUrl, description } = useRecoilValue(coverInputAtom);
+  const setCoverInput = useSetRecoilState(coverInputAtom);
   const { price, designType, patternType, stitches, rows, needle } =
     useRecoilValue(outlineInputAtom);
   const { size, yarn, extra, targetLevel, techniques } = useRecoilValue(
     optionalOutlineInputAtom,
   );
   const editorState = useRecoilValue(editorStateAtom);
-  const localCoverImage = useRecoilValue(localCoverImageAtom);
   const [draftId, setDraftId] = useRecoilState(draftIdAtom);
   const setIsShowSaveModal = useSetRecoilState(isShowSaveModalAtom);
   const { resetSaveDesignAtom } = useDesignAtom();
 
-  const { uploadResults, uploadFile } = useFirebaseImageStorage({
-    path: 'designs/cover-image',
-    fileInformationList: localCoverImage,
-  });
+  const { downloadUrl, uploadFile } = useFirebaseImageStorage();
 
   const handleSaveDesign = () => {
     setIsShowSaveModal(true);
@@ -143,12 +142,13 @@ export const useSaveDesign = (): SaveDesign => {
   };
 
   useEffect(() => {
-    const imageUrl = uploadResults.map(({ url }) => url)[0];
-
-    if (imageUrl != null) {
-      saveDesign();
+    if (downloadUrl) {
+      setCoverInput((currVal) => ({
+        ...currVal,
+        coverImageUrl: downloadUrl,
+      }));
     }
-  }, [uploadResults]);
+  }, [downloadUrl]);
 
   return { draftDesign, saveDesign, uploadFile };
 };
