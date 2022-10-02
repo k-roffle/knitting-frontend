@@ -19,7 +19,7 @@ import React, { ChangeEvent, ReactNode, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { DesignItemResponse } from '../../MyInformation/hooks/types';
-import { currentProductInputAtom } from '../recoils';
+import { currentProductInputAtom } from '../atom';
 
 import {
   AccordionDetail,

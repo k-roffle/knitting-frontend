@@ -24,8 +24,7 @@ export const useStepController = (): StepController => {
   const { size } = useRecoilValue<OptionalOutlineInput>(
     optionalOutlineInputAtom,
   );
-  const [stepValidations, setStepValidations] =
-    useRecoilState(stepValidationsAtom);
+  const setStepValidations = useSetRecoilState(stepValidationsAtom);
   const setSizeValidation = useSetRecoilState(sizeValidationAtom);
   const { draftDesign, saveDesign } = useSaveDesign();
   const {
@@ -76,8 +75,8 @@ export const useStepController = (): StepController => {
   };
 
   const changeValidation = (values: unknown[]): void => {
-    setStepValidations(
-      stepValidations.map((validation, index) =>
+    setStepValidations((prev) =>
+      prev.map((validation, index) =>
         index === currentStep
           ? values.every((value) => !checkInvalid(value))
           : validation,

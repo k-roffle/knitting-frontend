@@ -85,11 +85,6 @@ export const optionalOutlineInputAtom = atom<OptionalOutlineInput>({
   },
 });
 
-export const localCoverImageAtom = atom<ImageInformation[]>({
-  key: 'localCoverImage',
-  default: [],
-});
-
 export const editorStateAtom = atom<EditorState>({
   key: 'editorState',
   default: EditorState.createEmpty(),

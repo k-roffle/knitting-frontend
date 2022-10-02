@@ -8,9 +8,9 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 
 import Confirm from './Confirm';
+import { currentCreateProductStepAtom } from './atom';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import { currentCreateProductStepAtom } from './recoils';
 import { PAGE } from './types';
 
 const Container = styled.section`

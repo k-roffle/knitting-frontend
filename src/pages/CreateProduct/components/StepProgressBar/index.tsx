@@ -3,7 +3,7 @@ import CommonStepProgressBar from 'knitting/components/CommonStepProgressBar';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { currentCreateProductStepAtom } from '../../recoils';
+import { currentCreateProductStepAtom } from '../../atom';
 
 const StepProgressBar = (): React.ReactElement => {
   const currentStep = useRecoilValue(currentCreateProductStepAtom);

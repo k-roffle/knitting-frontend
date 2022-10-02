@@ -1,6 +1,4 @@
-import { useCommonSnackbar } from 'knitting/components/CommonSnackbar/useCommonSnackbar';
 import { ImageInformation } from 'knitting/components/ImageFileUploader/hooks/useImageFileUploader';
-import { FAILED_TO_UPLOAD_IMAGE } from 'knitting/constants/errors';
 import { getAccessToken, TokenPayload } from 'knitting/utils/auth';
 
 import {
@@ -13,7 +11,7 @@ import {
   UploadTask,
 } from 'firebase/storage';
 import decodeJwtToken from 'jwt-decode';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import firebaseInit from '../firebaseInit';
 
@@ -25,14 +23,9 @@ type UploadStorage = {
 };
 
 type FirebaseImageStorage = {
-  uploadResults: UploadStorage[];
-  uploadFile?(): void;
+  downloadUrl: string;
+  uploadFile?: (path: string, fileInformationList: ImageInformation[]) => void;
 };
-
-interface Props {
-  path: string;
-  fileInformationList: ImageInformation[];
-}
 
 const getUpdatedUploadResult = (
   localFileId: string,
@@ -44,26 +37,17 @@ const getUpdatedUploadResult = (
     : updatedUploadResult;
 };
 
-const useFirebaseImageStorage = ({
-  path,
-  fileInformationList,
-}: Props): FirebaseImageStorage => {
+const useFirebaseImageStorage = (): FirebaseImageStorage => {
   const token = getAccessToken();
 
   if (token == null) {
     return {
-      uploadResults: [],
+      downloadUrl: '',
     };
   }
 
   const [uploadResults, setUploadResults] = useState<UploadStorage[]>([]);
-  const [showErrorToast, setShowErrorToast] = useState(false);
-
-  useCommonSnackbar({
-    message: FAILED_TO_UPLOAD_IMAGE,
-    severity: 'error',
-    dependencies: [showErrorToast],
-  });
+  const [downloadUrl, setDownloadUrl] = useState('');
 
   const storage = getStorage(firebaseInit());
   const { id: userId }: TokenPayload = decodeJwtToken(token);
@@ -94,20 +78,16 @@ const useFirebaseImageStorage = ({
     setUploadResults(updatedUploadResults);
   };
 
-  const onComplete = (uploadTask: UploadTask, localFileId: string): void => {
-    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-      const updatedUploadResults = uploadResults.map((uploadResult) =>
-        getUpdatedUploadResult(localFileId, uploadResult, {
-          url: downloadURL,
-          ...uploadResult,
-        }),
-      );
-
-      setUploadResults(updatedUploadResults);
+  const onComplete = (uploadTask: UploadTask): void => {
+    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+      setDownloadUrl(url);
     });
   };
 
-  const uploadFile = async (): Promise<void> => {
+  const uploadFile = (
+    path: string,
+    fileInformationList: ImageInformation[],
+  ) => {
     fileInformationList.forEach((fileInformation) => {
       const { metadata, file, url } = fileInformation;
       const extension = metadata.type.split('/')[1];
@@ -117,39 +97,16 @@ const useFirebaseImageStorage = ({
       );
       const uploadTask = uploadBytesResumable(storageRef, file);
 
-      setUploadResults(
-        uploadResults.concat({
-          localFileId: url,
-        }),
-      );
       uploadTask.on(
         'state_changed',
         (snapshot) => onLoading(snapshot, url),
         (error) => onError(error, url),
-        () => onComplete(uploadTask, url),
+        () => onComplete(uploadTask),
       );
     });
   };
 
-  useEffect(() => {
-    const hasError = uploadResults.some(({ error }) => error);
-
-    setShowErrorToast(hasError);
-  }, [uploadResults]);
-
-  useEffect(() => {
-    const initialUploadResult = fileInformationList.map(
-      ({ url }): UploadStorage => {
-        return {
-          localFileId: url,
-        };
-      },
-    );
-
-    setUploadResults(initialUploadResult);
-  }, [fileInformationList]);
-
-  return { uploadResults, uploadFile };
+  return { downloadUrl, uploadFile };
 };
 
 export default useFirebaseImageStorage;

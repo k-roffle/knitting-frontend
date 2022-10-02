@@ -10,7 +10,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
-import { currentProductInputAtom } from '../recoils';
+import { currentProductInputAtom } from '../atom';
 
 import { Loader, StyledList } from './SelectDesigns.css';
 
