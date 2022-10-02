@@ -65,16 +65,16 @@ const Footer = ({
           <DownloadAlert
             severity="info"
             action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={handleClose}
-              >
+              <IconButton aria-label="close" size="small" onClick={handleClose}>
                 <CloseIcon fontSize="inherit" />
               </IconButton>
             }
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 2,
+              display: 'flex',
+              alignItems: 'center',
+              color: 'black',
+            }}
           >
             샘플도안과 가이드를 통해 어떻게 도안이 만들어지는지 확인할 수
             있어요! 🧚‍

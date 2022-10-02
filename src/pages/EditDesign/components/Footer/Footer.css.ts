@@ -26,7 +26,7 @@ export const NextContainer = styled.div`
 `;
 
 export const DownloadAlert = styled(Alert)`
-  background-color: ${({ theme }) => theme.palette.grey[300]};
+  background-color: ${({ theme }) => theme.palette.grey[200]};
 `;
 
 export const DownloadButton = styled(Button)`
