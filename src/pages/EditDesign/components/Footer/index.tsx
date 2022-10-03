@@ -1,4 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
+import { LoadingButton } from '@mui/lab';
 import {
   Button as MaterialButton,
   Box,
@@ -6,6 +7,9 @@ import {
   IconButton,
 } from '@mui/material';
 import React, { ReactElement, ReactNode, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { isLoadingAtom } from '../../atom';
 
 import {
   FooterContainer,
@@ -29,6 +33,7 @@ const Footer = ({
   onPreviousClick,
   onNextClick,
 }: FooterProps): ReactElement => {
+  const isLoading = useRecoilValue(isLoadingAtom);
   const [open, setOpen] = useState<boolean>(
     localStorage.getItem('showDesignGuide')
       ? localStorage.getItem('showDesignGuide') === 'true'
@@ -50,13 +55,14 @@ const Footer = ({
           {previousLabel}
         </MaterialButton>
         <NextContainer>
-          <MaterialButton
+          <LoadingButton
             variant="contained"
+            loading={isLoading}
             disabled={invalidMessage != null}
             onClick={onNextClick}
           >
             {nextLabel}
-          </MaterialButton>
+          </LoadingButton>
           {invalidMessage && <span>{invalidMessage}</span>}
         </NextContainer>
       </FooterContainer>
@@ -65,16 +71,16 @@ const Footer = ({
           <DownloadAlert
             severity="info"
             action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={handleClose}
-              >
+              <IconButton aria-label="close" size="small" onClick={handleClose}>
                 <CloseIcon fontSize="inherit" />
               </IconButton>
             }
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 2,
+              display: 'flex',
+              alignItems: 'center',
+              color: 'black',
+            }}
           >
             샘플도안과 가이드를 통해 어떻게 도안이 만들어지는지 확인할 수
             있어요! 🧚‍

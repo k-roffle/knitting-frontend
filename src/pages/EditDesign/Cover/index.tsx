@@ -10,6 +10,7 @@ import {
   coverImageAtom,
   CoverInput,
   coverInputAtom,
+  isLoadingAtom,
   stepValidationsAtom,
 } from '../atom';
 import { Row } from '../common.css';
@@ -22,6 +23,7 @@ const Cover = (): React.ReactElement => {
   const [coverInput, setCoverInput] = useRecoilState(coverInputAtom);
   const [coverImage, setCoverImage] = useRecoilState(coverImageAtom);
   const stepValidations = useRecoilValue(stepValidationsAtom);
+  const [isLoading, setIsLoading] = useRecoilState(isLoadingAtom);
   const { onPreviousClick, onNextClick, changeValidation } =
     useStepController();
   const { uploadFile } = useSaveDesign();
@@ -45,13 +47,16 @@ const Cover = (): React.ReactElement => {
     setCoverImage(images[0]);
 
     if (uploadFile) {
+      setIsLoading(true);
       await uploadFile('designs/cover-image', images);
     }
   };
 
   const handleNextClick = (): void => {
-    changeValidation([name, coverImageUrl]);
-    onNextClick();
+    if (!isLoading) {
+      changeValidation([name, coverImageUrl]);
+      onNextClick();
+    }
   };
 
   return (

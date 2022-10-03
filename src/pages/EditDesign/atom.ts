@@ -104,3 +104,8 @@ export const sizeValidationAtom = atom<boolean>({
   key: 'sizeValidation',
   default: true,
 });
+
+export const isLoadingAtom = atom<boolean>({
+  key: 'isLoading',
+  default: false,
+});
