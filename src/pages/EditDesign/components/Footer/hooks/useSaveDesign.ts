@@ -10,6 +10,7 @@ import {
   optionalOutlineInputAtom,
   draftIdAtom,
   isShowSaveModalAtom,
+  isLoadingAtom,
 } from 'knitting/pages/EditDesign/atom';
 import {
   DraftDesign,
@@ -41,6 +42,7 @@ export const useSaveDesign = (): SaveDesign => {
   const editorState = useRecoilValue(editorStateAtom);
   const [draftId, setDraftId] = useRecoilState(draftIdAtom);
   const setIsShowSaveModal = useSetRecoilState(isShowSaveModalAtom);
+  const setIsLoading = useSetRecoilState(isLoadingAtom);
   const { resetSaveDesignAtom } = useDesignAtom();
 
   const { downloadUrl, uploadFile } = useFirebaseImageStorage();
@@ -147,6 +149,8 @@ export const useSaveDesign = (): SaveDesign => {
         ...currVal,
         coverImageUrl: downloadUrl,
       }));
+
+      setIsLoading(false);
     }
   }, [downloadUrl]);
 

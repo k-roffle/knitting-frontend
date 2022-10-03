@@ -1,4 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
+import { LoadingButton } from '@mui/lab';
 import {
   Button as MaterialButton,
   Box,
@@ -6,6 +7,9 @@ import {
   IconButton,
 } from '@mui/material';
 import React, { ReactElement, ReactNode, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { isLoadingAtom } from '../../atom';
 
 import {
   FooterContainer,
@@ -29,6 +33,7 @@ const Footer = ({
   onPreviousClick,
   onNextClick,
 }: FooterProps): ReactElement => {
+  const isLoading = useRecoilValue(isLoadingAtom);
   const [open, setOpen] = useState<boolean>(
     localStorage.getItem('showDesignGuide')
       ? localStorage.getItem('showDesignGuide') === 'true'
@@ -50,13 +55,14 @@ const Footer = ({
           {previousLabel}
         </MaterialButton>
         <NextContainer>
-          <MaterialButton
+          <LoadingButton
             variant="contained"
+            loading={isLoading}
             disabled={invalidMessage != null}
             onClick={onNextClick}
           >
             {nextLabel}
-          </MaterialButton>
+          </LoadingButton>
           {invalidMessage && <span>{invalidMessage}</span>}
         </NextContainer>
       </FooterContainer>
