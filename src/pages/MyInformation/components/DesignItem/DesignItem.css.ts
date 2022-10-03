@@ -20,8 +20,7 @@ export const ImageWrapper = styled.div`
     width: ${theme.spacing(33.75)};
     height: ${theme.spacing(25)};
     border-radius: ${theme.spacing(1.25)};
-    box-shadow: ${theme.spacing(0.5)} ${theme.spacing(0.5)}
-      ${theme.palette.grey[200]};
+    border: ${theme.spacing(0.25)} solid ${theme.palette.grey[200]};
   `}
   overflow: hidden;
 `;
